@@ -28,10 +28,12 @@ function App() {
     }99%)`;
 
     const toggleTheme = () => {
-        const newTheme = theme === 'dark' ? 'light' : 'dark';
+        const newTheme = theme === 'dark' ? 'light' : 'dark'; //TODO make this nicer, for some fucking reason if dark == !dark doesn't work
         setTheme(newTheme);
         localStorage.setItem('theme', newTheme);
-        window.dispatchEvent(new Event("storage")); //TODO maybe solution to theme not refreshing, use it or delete it if i find another solution
+        window.dispatchEvent(new Event("storage")); //TODO maybe solution to theme not refreshing, if not, cap his ass
+        
+        //TODO keeps throwing an error so I duct taped an ignore onto it, fix it properly later
         // @ts-ignore
         animate(primary, newTheme === 'dark' ? '6, 12, 26' : '199 224 254', {
             duration: 1.4
