@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 102 65 169;
+        --foreground: 255 255 255;
+        
+        --primary: 102 65 169;
+        --frimary-foreground: 255 255 255;
+        
+        --secondary: 196 26 105;
+        --secondary-foreground: 255 255 255;
+        
+        --muted: 59 7 100;
+        --muted-foreground: 255 255 255;
+        
+        --accent: 88 202 155;
+        --accent-foreground: 255 255 255;
+    }
+}
