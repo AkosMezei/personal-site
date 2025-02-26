@@ -73,25 +73,37 @@ function HomePage() {
                                <div className="w-full">
                                    
                                    <ExpandableDiv
-                                       title="Project 1"
+                                       title="Project 1 - left"
                                        orientation="left"
                                        defaultContent={
-                                           <p> maybe hopefully it works?</p>
-                                       }/>
+                                           <p className="text-left"> maybe hopefully it works?</p>
+                                       }
+                                   expandedContent={
+                                       <p className="text-left"> Left aligned interior content stuffs. </p>
+                                   }
+                                   />
                                    
                                    <ExpandableDiv
-                                       title="Project 2"
-                                       orientation="left"
+                                       title="Project 2 - right"
+                                       orientation="right"
                                        defaultContent={
-                                           <p> maybe hopefully it works?</p>
-                                       }/>
+                                           <p className="text-right"> maybe hopefully it works?</p>
+                                       }
+                                       expandedContent={
+                                           <p className="text-right"> Left aligned interior content stuffs. </p>
+                                       }
+                                   />
                                    
                                    <ExpandableDiv
-                                       title="Project 3"
-                                       orientation="left"
+                                       title="Project 3 - center"
+                                       orientation="center"
                                        defaultContent={
-                                           <p> maybe hopefully it works?</p>
-                                       }/>
+                                           <p className="text-center"> maybe hopefully it works?</p>
+                                       }
+                                       expandedContent={
+                                           <p className="text-center"> Left aligned interior content stuffs. </p>
+                                       }
+                                   />
                                    
                                </div>
                            }

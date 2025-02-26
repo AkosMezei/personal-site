@@ -116,7 +116,7 @@ function ExpandableDiv({
                                     }}>
 
                             {orientation == "left" && (
-                                <div className={`flex ${isMobile? "flex-col" : "flex-row"} items-center justify-between`}>
+                                <div className="flex flex-row items-center justify-between">
                                     <div>
                                         {expandedContent}
                                     </div>
@@ -136,8 +136,7 @@ function ExpandableDiv({
                             )}
 
                             {orientation == "right" && (
-                                <div
-                                    className={`flex ${isMobile ? "flex-col" : "flex-row"} items-center justify-between`}>
+                                <div className="flex flex-row items-center justify-between text-right">
                                     <motion.div
                                         whileHover={{
                                             scale: imageIsExpanded ? 0.98 : 1.1,
