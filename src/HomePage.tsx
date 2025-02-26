@@ -2,19 +2,24 @@
 
 import ExpandableDiv from "./Components/ExpandableDiv.tsx";
 import giantPlaceholderImage from "../src/assets/placeholderImage.jpeg"
-function HomePage() {
+import {preload} from "react-dom";
 
+function HomePage() {
+    preload(giantPlaceholderImage, {as: "image"})
     return (
         <div className="mx-2 py-16">
             <ExpandableDiv title="About me" orientation="center"
-                           image = {giantPlaceholderImage}
+                           image={giantPlaceholderImage}
                            defaultContent={
-                <p className="text-center"> Hello! My name is [Your Name], and I'm a passionate programmer with a knack
-                    for
-                    solving complex problems through code. With expertise in various programming languages and
-                    frameworks, I strive to create efficient and innovative solutions. My journey in the tech world has
-                    been fueled by my curiosity and a constant drive to learn and improve. </p>
-            }
+                               <p className="text-center"> Hello! My name is [Your Name], and I'm a passionate
+                                   programmer with a knack
+                                   for
+                                   solving complex problems through code. With expertise in various programming
+                                   languages and
+                                   frameworks, I strive to create efficient and innovative solutions. My journey in the
+                                   tech world has
+                                   been fueled by my curiosity and a constant drive to learn and improve. </p>
+                           }
                            expandedContent={
                                <>
                                    <p className="mt-3 text-center"> When I'm not coding, you can find me exploring the
@@ -28,9 +33,9 @@ function HomePage() {
                                </>
                            }
             />
-            
+
             <ExpandableDiv title={"Left Aligned"}
-                           image = {giantPlaceholderImage}
+                           image={giantPlaceholderImage}
                            defaultContent={
                                <p> This is some left aligned content as a placeholder for testing purposes. </p>
                            }
@@ -42,12 +47,13 @@ function HomePage() {
                                </>
                            }
             />
-            
+
             <ExpandableDiv title={"Right Aligned"}
                            orientation="right"
-                           image = {giantPlaceholderImage}
+                           image={giantPlaceholderImage}
                            defaultContent={
-                               <p className="text-right"> This is some right aligned content as a placeholder for testing purposes. </p>
+                               <p className="text-right"> This is some right aligned content as a placeholder for
+                                   testing purposes. </p>
                            }
                            expandedContent={
                                <>
@@ -57,6 +63,41 @@ function HomePage() {
                                </>
                            }
             />
+
+            <ExpandableDiv title={"Projects"}
+                           orientation="center"
+                           defaultContent={
+                               <p>I wonder if this'll work lmao</p>
+                           }
+                           expandedContent={
+                               <div className="w-full">
+                                   
+                                   <ExpandableDiv
+                                       title="Project 1"
+                                       orientation="left"
+                                       defaultContent={
+                                           <p> maybe hopefully it works?</p>
+                                       }/>
+                                   
+                                   <ExpandableDiv
+                                       title="Project 2"
+                                       orientation="left"
+                                       defaultContent={
+                                           <p> maybe hopefully it works?</p>
+                                       }/>
+                                   
+                                   <ExpandableDiv
+                                       title="Project 3"
+                                       orientation="left"
+                                       defaultContent={
+                                           <p> maybe hopefully it works?</p>
+                                       }/>
+                                   
+                               </div>
+                           }
+
+            />
+
         </div>
     );
 }

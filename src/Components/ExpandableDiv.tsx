@@ -2,7 +2,7 @@
 //TODO proper content types
 //TODO reformat code so it's more readable
 
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {AnimatePresence, motion} from "motion/react";
 import {getInitialTheme} from "./BackgroundContext.tsx";
@@ -21,6 +21,25 @@ function ExpandableDiv({
     expandedContent?: any,
     orientation?: "left" | "right" | "center"
 }) {
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkIfMobile = () => {
+            setIsMobile(window.innerWidth < 640);
+        };
+
+        // Initial check
+        checkIfMobile();
+
+        // Add event listener
+        window.addEventListener('resize', checkIfMobile);
+
+        // Cleanup
+        return () => window.removeEventListener('resize', checkIfMobile);
+    }, []);
+    
+    
     const [theme] = useState(getInitialTheme);
 
     const [isExpanded, setIsExpanded] = useState(false);
@@ -32,7 +51,8 @@ function ExpandableDiv({
         setImageIsExpanded(!imageIsExpanded);
     }
     
-    function changeExpanded() {
+    function changeExpanded(e: { stopPropagation: () => void; }) {
+        e.stopPropagation()
         setIsExpanded(!isExpanded);
     }
 
@@ -104,7 +124,7 @@ function ExpandableDiv({
                                         whileHover={{scale: imageIsExpanded? 0.98 : 1.1, transformOrigin: "bottom right"}}
                                         animate={{width: imageIsExpanded ? "40vw" : "20vw"}}
                                         initial={{transformOrigin: "bottom right"}}
-                                        transition={{duration: 0.3, ease: "easeInOut"}}
+                                        transition={{duration: 0.2, ease: "easeInOut"}}
                                     >
                                     <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
                                     </motion.div>
@@ -120,7 +140,7 @@ function ExpandableDiv({
                                         }}
                                         animate={{width: imageIsExpanded ? "40vw" : "20vw"}}
                                         initial={{transformOrigin: "bottom left"}}
-                                        transition={{duration: 0.3, ease: "easeInOut"}}
+                                        transition={{duration: 0.2, ease: "easeInOut"}}
                                     >
                                         <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
                                     </motion.div>
@@ -132,15 +152,19 @@ function ExpandableDiv({
 
                             {orientation == "center" && (
                                 <div className="flex flex-col items-center justify-center">
-                                    <div className="m-3">
+                                    <div className="m-3 w-full">
                                         {expandedContent}
                                     </div>
                                     <motion.div
                                         whileHover={{
                                             scale: imageIsExpanded ? 0.98 : 1.1,
                                         }}
-                                        animate={{width: imageIsExpanded ? "40vw" : "20vw"}}
-                                        transition={{duration: 0.3, ease: "easeInOut"}}
+                                        animate={{
+                                            width: imageIsExpanded
+                                                ? (isMobile ? "80vw" : "40vw")
+                                                : (isMobile ? "40vw" : "20vw")
+                                        }}
+                                        transition={{duration: 0.2, ease: "easeInOut"}}
                                     >
                                         <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
                                     </motion.div>
