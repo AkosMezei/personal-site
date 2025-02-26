@@ -21,4 +21,7 @@
     }
 }
 
-html {background-color: rgb(32,51,87)}
+html {
+    background-color: rgb(32,51,87);
+    font-size:17px;
+}
