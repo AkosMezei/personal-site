@@ -43,7 +43,7 @@ function HomePage() {
             <ExpandableDiv title={"Right Aligned"}
                            orientation="right"
                            defaultContent={
-                               <p> This is some right aligned content as a placeholder for testing purposes. </p>
+                               <p className="text-right"> This is some right aligned content as a placeholder for testing purposes. </p>
                            }
                            expandedContent={
                                <>
