@@ -1,12 +1,14 @@
 ﻿//TODO refuses to update on theme change, make it work with static bg or make it update
 
 import ExpandableDiv from "./Components/ExpandableDiv.tsx";
-
+import giantPlaceholderImage from "../src/assets/placeholderImage.jpeg"
 function HomePage() {
 
     return (
         <div className="mx-2 py-16">
-            <ExpandableDiv title="About me" orientation="center" defaultContent={
+            <ExpandableDiv title="About me" orientation="center"
+                           image = {giantPlaceholderImage}
+                           defaultContent={
                 <p className="text-center"> Hello! My name is [Your Name], and I'm a passionate programmer with a knack
                     for
                     solving complex problems through code. With expertise in various programming languages and
@@ -28,6 +30,7 @@ function HomePage() {
             />
             
             <ExpandableDiv title={"Left Aligned"}
+                           image = {giantPlaceholderImage}
                            defaultContent={
                                <p> This is some left aligned content as a placeholder for testing purposes. </p>
                            }
@@ -42,6 +45,7 @@ function HomePage() {
             
             <ExpandableDiv title={"Right Aligned"}
                            orientation="right"
+                           image = {giantPlaceholderImage}
                            defaultContent={
                                <p className="text-right"> This is some right aligned content as a placeholder for testing purposes. </p>
                            }
