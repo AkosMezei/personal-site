@@ -5,7 +5,7 @@
 import {useEffect, useState} from "react";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {AnimatePresence, motion} from "motion/react";
-import {getInitialTheme} from "./BackgroundContext.tsx";
+import { useBackgroundContext } from "./BackgroundContext.tsx";
 
 function ExpandableDiv({
                            image = null,
@@ -38,9 +38,9 @@ function ExpandableDiv({
         // Cleanup
         return () => window.removeEventListener('resize', checkIfMobile);
     }, []);
-    
-    
-    const [theme] = useState(getInitialTheme);
+
+
+    const { theme } = useBackgroundContext();
 
     const [isExpanded, setIsExpanded] = useState(false);
 
