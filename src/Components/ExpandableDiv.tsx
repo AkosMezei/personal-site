@@ -122,7 +122,11 @@ function ExpandableDiv({
                                     </div>
                                     <motion.div
                                         whileHover={{scale: imageIsExpanded? 0.98 : 1.1, transformOrigin: "bottom right"}}
-                                        animate={{width: imageIsExpanded ? "40vw" : "20vw"}}
+                                        animate={{
+                                            width: imageIsExpanded
+                                                ? (isMobile ? "80vw" : "40vw")
+                                                : (isMobile ? "40vw" : "20vw")
+                                        }}
                                         initial={{transformOrigin: "bottom right"}}
                                         transition={{duration: 0.2, ease: "easeInOut"}}
                                     >
@@ -138,7 +142,11 @@ function ExpandableDiv({
                                             scale: imageIsExpanded ? 0.98 : 1.1,
                                             transformOrigin: "bottom left"
                                         }}
-                                        animate={{width: imageIsExpanded ? "40vw" : "20vw"}}
+                                        animate={{
+                                            width: imageIsExpanded
+                                                ? (isMobile ? "80vw" : "40vw")
+                                                : (isMobile ? "40vw" : "20vw")
+                                        }}
                                         initial={{transformOrigin: "bottom left"}}
                                         transition={{duration: 0.2, ease: "easeInOut"}}
                                     >
