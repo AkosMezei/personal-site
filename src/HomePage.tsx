@@ -90,7 +90,7 @@ function HomePage() {
                                            <p className="text-right"> maybe hopefully it works?</p>
                                        }
                                        expandedContent={
-                                           <p className="text-right"> Left aligned interior content stuffs. </p>
+                                           <p className="text-right"> Right aligned interior content stuffs. </p>
                                        }
                                    />
                                    
@@ -101,7 +101,7 @@ function HomePage() {
                                            <p className="text-center"> maybe hopefully it works?</p>
                                        }
                                        expandedContent={
-                                           <p className="text-center"> Left aligned interior content stuffs. </p>
+                                           <p className="text-center"> Center aligned interior content stuffs. </p>
                                        }
                                    />
                                    
