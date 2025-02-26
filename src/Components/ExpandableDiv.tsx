@@ -58,7 +58,7 @@ function ExpandableDiv({
 
     return (
         <div onClick={changeExpanded}
-             className={`w-auto rounded-2xl p-3 hover:bg-white/10 m-3 ${theme === 'dark' ? "bg-white/5" : "bg-black/10"}`}> {/*this is the motherfucker that refuses to update*/}
+             className={`w-auto rounded-2xl p-3  m-3 ${theme === 'dark' ? "bg-black/10 hover:bg-white/5" : "bg-black/10 hover:bg-black/15"}`}> {/*this is the motherfucker that refuses to update*/}
 
             {orientation == "left" && (
                 <div className="flex flex-row items-center justify-between">

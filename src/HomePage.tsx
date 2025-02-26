@@ -7,7 +7,7 @@ import {preload} from "react-dom";
 function HomePage() {
     preload(giantPlaceholderImage, {as: "image"})
     return (
-        <div className="mx-2 py-16">
+        <div className="mx-2 py-16 lg:w-3/5 ml-auto mr-auto">
             <ExpandableDiv title="About me" orientation="center"
                            image={giantPlaceholderImage}
                            defaultContent={
