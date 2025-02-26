@@ -7,7 +7,7 @@ import {AnimatePresence, motion} from "motion/react";
 import {getInitialTheme} from "./BackgroundContext.tsx";
 
 function ExpandableDiv({image = null, title = "Default Title", defaultContent = "Default Content", expandedContent = "Expanded Content", orientation = "left"}: {image?: string | null, title?: string, defaultContent?: any, expandedContent?:any, orientation?: "left" | "right" | "center"}) {
-
+    image //TODO only here to resolve the error temporarily
     const [theme] = useState(getInitialTheme);
     
     const [isExpanded, setIsExpanded] = useState(false);
@@ -19,7 +19,6 @@ function ExpandableDiv({image = null, title = "Default Title", defaultContent = 
     return (
             <div onClick={changeExpanded}
                  className={`w-auto rounded-2xl p-3 hover:bg-white/10 m-3 ${theme === 'dark' ? "bg-white/5" : "bg-black/10"}`}> {/*this is the motherfucker that refuses to update*/}
-                {image} //TODO only so the declaration error leaves me alone
                 {orientation == "left" && (
                 <div className="flex flex-row items-center justify-between">
                     <h1 className="text-3xl font-bold">{title}</h1>
