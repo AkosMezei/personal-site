@@ -3,6 +3,7 @@
 import ExpandableDiv from "./Components/ExpandableDiv.tsx";
 import giantPlaceholderImage from "../src/assets/placeholderImage.jpeg"
 import {preload} from "react-dom";
+import MessageBox from "./Components/MessageBox.tsx";
 
 function HomePage() {
     preload(giantPlaceholderImage, {as: "image"})
@@ -109,7 +110,7 @@ function HomePage() {
                            }
 
             />
-
+        <MessageBox/>
         </div>
     );
 }
