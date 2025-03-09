@@ -21,11 +21,18 @@ function MessageBox(){
     const [messages, setMessages] = useState<Message[]>([]);
 
     const [inputMessage, setInputMessage] = useState('');
-
-    const [chatId, setChatId] = useState('')
     
     const [isLoading, setIsLoading] = useState(false);
 
+    const getChatId = () => {
+        try {
+            return localStorage.getItem("chatId") || sessionStorage.getItem("chatId");
+        } catch (e) {
+            console.error("LocalStorage access error:", e);
+            return null;
+        }
+    };
+    
     function getMessagesById(id: string) {
         axios({
             method: 'GET',
@@ -45,17 +52,15 @@ function MessageBox(){
             // Check if we already have a chat ID from localStorage
             const savedChatId = localStorage.getItem("chatId");
             if (savedChatId) {
-                setChatId(savedChatId);
                 getMessagesById(savedChatId);
             }
         }
     }, [isExpanded]);
 
     async function ensureChatId() {
-        const savedChatId = localStorage.getItem("chatId");
+        const savedChatId = getChatId();
         if (savedChatId) {
-            setChatId(savedChatId);
-            return chatId;
+            return savedChatId;
         } else {
             setIsLoading(true);
             try {
@@ -73,7 +78,7 @@ function MessageBox(){
                 });
                 const newChatId = response.data.id;
                 localStorage.setItem("chatId", newChatId);
-                setChatId(newChatId);
+                sessionStorage.setItem("chatId", newChatId); //implement trying to get this as a fallback when localstorage doesn't work
                 return newChatId;
             } catch (error) {
                 console.log(error);
