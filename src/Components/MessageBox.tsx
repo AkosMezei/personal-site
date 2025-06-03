@@ -36,7 +36,7 @@ function MessageBox(){
     function getMessagesById(id: string) {
         axios({
             method: 'GET',
-            url: `https://personalsitemessageapi.azure-api.net/api/messages/${id}/contents`,
+            url: `https://personal-messaging-api-96o2v.ondigitalocean.app/api/messages/${id}/contents`,
             headers: {
                 "X-API-Key": apiKey
             }
@@ -66,7 +66,7 @@ function MessageBox(){
             try {
                 const response = await axios({
                     method: 'POST',
-                    url:'https://personalsitemessageapi.azure-api.net/api/messages',
+                    url:'https://personal-messaging-api-96o2v.ondigitalocean.app/api/messages',
                     headers: {
                         "Content-Type": "application/json",
                         "X-API-Key": apiKey
@@ -120,7 +120,7 @@ function MessageBox(){
         // Now send the message with the confirmed chat ID
         axios({
             method: 'POST',
-            url: `https://personalsitemessageapi.azure-api.net/api/messages/${id}/contents`,
+            url: `https://personal-messaging-api-96o2v.ondigitalocean.app/api/messages/${id}/contents`,
             headers: {
                 "Content-Type": "application/json",
                 "X-API-Key": apiKey
