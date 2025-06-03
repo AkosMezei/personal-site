@@ -6,6 +6,7 @@ import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import { BackgroundContext, getInitialTheme } from './Components/BackgroundContext';
 import {useEffect, useState } from 'react';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const styles = `
   /* Base transitions for theme changes */
@@ -72,6 +73,7 @@ function App() {
                     <HomePage/>
                     <Footer/>
                 </motion.main>
+                <SpeedInsights />
             </div>
         </BackgroundContext.Provider>
     );
