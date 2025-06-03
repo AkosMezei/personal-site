@@ -6,6 +6,8 @@ import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import { BackgroundContext, getInitialTheme } from './Components/BackgroundContext';
 import {useEffect, useState } from 'react';
+import { injectSpeedInsights } from '@vercel/speed-insights';
+
 
 const styles = `
   /* Base transitions for theme changes */
@@ -19,6 +21,9 @@ const styles = `
   }`
 
 function App() {
+
+    injectSpeedInsights();
+
     const [theme, setTheme] = useState(getInitialTheme);
     const primary = useMotionValue(theme === 'dark' ? '6, 12, 26' : '199 224 254'); // Primary theme color
     const background = useMotionTemplate`linear-gradient(to bottom right, rgb(${primary}), ${
@@ -72,6 +77,7 @@ function App() {
                     <HomePage/>
                     <Footer/>
                 </motion.main>
+                <SpeedInsights />
             </div>
         </BackgroundContext.Provider>
     );
