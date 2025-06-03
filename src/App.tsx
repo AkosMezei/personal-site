@@ -77,7 +77,6 @@ function App() {
                     <HomePage/>
                     <Footer/>
                 </motion.main>
-                <SpeedInsights />
             </div>
         </BackgroundContext.Provider>
     );
