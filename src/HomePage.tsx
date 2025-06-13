@@ -9,31 +9,23 @@ function HomePage() {
     preload(giantPlaceholderImage, {as: "image"})
     return (
         <div className="mx-2 py-16 lg:w-3/5 ml-auto mr-auto">
-            <ExpandableDiv title="About me" orientation="center"
-                           image={giantPlaceholderImage}
-                           defaultContent={
-                               <p className="text-center"> Hello! My name is [Your Name], and I'm a passionate
-                                   programmer with a knack
-                                   for
-                                   solving complex problems through code. With expertise in various programming
-                                   languages and
-                                   frameworks, I strive to create efficient and innovative solutions. My journey in the
-                                   tech world has
-                                   been fueled by my curiosity and a constant drive to learn and improve. </p>
-                           }
-                           expandedContent={
-                               <>
-                                   <p className="mt-3 text-center"> When I'm not coding, you can find me exploring the
-                                       latest tech trends,
-                                       participating
-                                       in hackathons, or enjoying a good book. I'm excited to connect and collaborate
-                                       with
-                                       like-minded individuals who share my enthusiasm for technology. </p>
-                                   <p className="mt-3 text-center text-lg text-red-500/75"> Note: This is a placeholder
-                                       "About Me" section. </p>
-                               </>
-                           }
-            />
+            <motion.div layout transition={{layout: {duration: 0.5, ease: "easeInOut"}}}> {/*TODO this does jack shit fuck all currently*/}
+                <ExpandableDiv title={t('aboutMeTitle')} orientation="center"
+                               image={giantPlaceholderImage}
+                               defaultContent={
+                                   <p className="text-center">
+                                       {t('aboutMeDefault')}
+                                   </p>
+                               }
+                               expandedContent={
+                                   <>
+                                       <p className="mt-3 text-center"> {t('aboutMeExpanded')} </p>
+                                       <p className="mt-3 text-center text-lg text-red-500/75"> Note: This is a
+                                           placeholder
+                                           "About Me" section. </p>
+                                   </>
+                               }
+                />
 
             <ExpandableDiv title={"Left Aligned"}
                            image={giantPlaceholderImage}
@@ -109,10 +101,11 @@ function HomePage() {
                                </div>
                            }
 
-            />
-        <MessageBox/>
+                />
+            </motion.div>
+                <MessageBox/>
         </div>
-    );
+);
 }
 
 export default HomePage;

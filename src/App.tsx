@@ -7,6 +7,7 @@ import Header from "./Components/Header";
 import { BackgroundContext, getInitialTheme } from './Components/BackgroundContext';
 import {useEffect, useState } from 'react';
 import { injectSpeedInsights } from '@vercel/speed-insights';
+import {LanguageProvider} from "./Components/LanguageContext.tsx";
 
 
 const styles = `
@@ -65,6 +66,7 @@ function App() {
 
     return (
         <BackgroundContext.Provider value={{theme, toggleTheme}}>
+            <LanguageProvider>
             <style>{styles}</style>
             <div className={theme}>
                 <Header/>
@@ -78,6 +80,7 @@ function App() {
                     <Footer/>
                 </motion.main>
             </div>
+            </LanguageProvider>
         </BackgroundContext.Provider>
     );
 }
