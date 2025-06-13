@@ -100,7 +100,7 @@ function MessageBox(){
 
         const newMessage: Message = {
             senderID: "client",
-            content: inputMessage,
+            content: inputMessage.trim(),
             status: "sending"
         };
 
