@@ -3,10 +3,29 @@ import { Moon, Sun } from 'lucide-react';
 import {useLanguageContext} from "./LanguageContext.tsx";
 import flagEN from "../assets/Flag_of_the_United_Kingdom.svg.jpg"
 import flagHU from "../assets/128px-Flag_of_Hungary.svg.jpg"
+import {useEffect, useState} from "react";
 
 //TODO add language selector from other side
 
 function Header() {
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkIfMobile = () => {
+            setIsMobile(window.innerWidth < 640);
+        };
+
+        // Initial check
+        checkIfMobile();
+
+        // Add event listener
+        window.addEventListener('resize', checkIfMobile);
+
+        // Cleanup
+        return () => window.removeEventListener('resize', checkIfMobile);
+    }, []);
+    
     const { theme, toggleTheme } = useBackgroundContext();
     
     const { language, toggleLanguage } = useLanguageContext() //TODO get language preferences from TT site, localstorage etc stuffs, save it to context
@@ -20,7 +39,7 @@ function Header() {
                 <h1 className={`text-xl font-bold ${
                     theme === 'dark' ? 'text-white' : 'text-gray-900'
                 }`}>
-                    Your Logo
+                    Name goes here
                 </h1>
                 </div>
                 <div className="flex">
@@ -38,7 +57,7 @@ function Header() {
                     </label>
                     <button
                         onClick={toggleTheme}
-                        className={`ml-2 rounded-lg p-2 hover:bg-opacity-20 transition-colors ${
+                        className={`${isMobile ? "" : "ml-12"} ml-2 rounded-lg p-2 hover:bg-opacity-20 transition-colors ${
                             theme === 'dark'
                                 ? 'text-white hover:bg-white'
                                 : 'text-gray-900 hover:bg-gray-900'

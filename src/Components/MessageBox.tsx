@@ -159,7 +159,7 @@ function MessageBox(){
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute m-3 right-0 bottom-9 flex flex-col justify-between bg-white/10 backdrop-blur-2xl rounded-lg h-1/2 aspect-[5/6]">
+                        className="mb-12 m-3 right-0 bottom-9 flex flex-col justify-between bg-white/10 backdrop-blur-2xl rounded-lg max-w-96 aspect-[5/6]">
                         <div className="max-h-fit overflow-y-scroll flex flex-col-reverse">
                             <ul className="m-3">
                                 {messages.map((message, index) => (

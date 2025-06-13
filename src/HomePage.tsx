@@ -34,30 +34,29 @@ function HomePage() {
                                }
                 />
 
-                <ExpandableDiv title={"Left Aligned"}
+                <ExpandableDiv title={t('experienceTitle')}
                                image={giantPlaceholderImage}
                                defaultContent={
-                                   <p> This is some left aligned content as a placeholder for testing purposes. </p>
+                                   <p> {t('experienceDefault')} </p>
                                }
                                expandedContent={
                                    <>
-                                       <p> Expanded left aligned test section</p>
+                                       <p> {t('experienceExpanded')} </p>
                                        <p className="mt-3 text-lg text-red-500/75"> Note: This is a placeholder
                                            section. </p>
                                    </>
                                }
                 />
 
-                <ExpandableDiv title={"Right Aligned"}
+                <ExpandableDiv title={t('educationTitle')}
                                orientation="right"
                                image={giantPlaceholderImage}
                                defaultContent={
-                                   <p className="text-right"> This is some right aligned content as a placeholder for
-                                       testing purposes. </p>
+                                   <p className="text-right"> {t('educationDefault')} </p>
                                }
                                expandedContent={
                                    <>
-                                       <p> Expanded right aligned test section</p>
+                                       <p> {t('educationExpanded')} </p>
                                        <p className="mt-3 text-lg text-red-500/75"> Note: This is a placeholder
                                            section. </p>
                                    </>
@@ -67,41 +66,30 @@ function HomePage() {
                 <ExpandableDiv title={"Projects"}
                                orientation="center"
                                defaultContent={
-                                   <p>I wonder if this'll work lmao</p>
+                                   <p> {t('projectsDefault')} </p>
                                }
                                expandedContent={
                                    <div className="w-full">
 
                                        <ExpandableDiv
-                                           title="Project 1 - left"
-                                           orientation="left"
-                                           defaultContent={
-                                               <p className="text-left"> maybe hopefully it works?</p>
-                                           }
-                                           expandedContent={
-                                               <p className="text-left"> Left aligned interior content stuffs. </p>
-                                           }
-                                       />
-
-                                       <ExpandableDiv
-                                           title="Project 2 - right"
-                                           orientation="right"
-                                           defaultContent={
-                                               <p className="text-right"> maybe hopefully it works?</p>
-                                           }
-                                           expandedContent={
-                                               <p className="text-right"> Right aligned interior content stuffs. </p>
-                                           }
-                                       />
-
-                                       <ExpandableDiv
-                                           title="Project 3 - center"
+                                           title={t('cvWebsiteProjectTitle')}
                                            orientation="center"
                                            defaultContent={
-                                               <p className="text-center"> maybe hopefully it works?</p>
+                                               <p className="text-center"> {t('cvWebsiteProjectDefault')} </p>
                                            }
                                            expandedContent={
-                                               <p className="text-center"> Center aligned interior content stuffs. </p>
+                                               <p className="text-center"> {t('cvWebsiteProjectExpanded')} </p>
+                                           }
+                                       />
+
+                                       <ExpandableDiv
+                                           title={t('ttWebsiteProjectTitle')}
+                                           orientation="center"
+                                           defaultContent={
+                                               <p className="text-center"> {t('ttWebsiteProjectDefault')} </p>
+                                           }
+                                           expandedContent={
+                                               <p className="text-center"> {t('ttWebsiteProjectExpanded')} </p>
                                            }
                                        />
 
@@ -110,7 +98,9 @@ function HomePage() {
 
                 />
             </motion.div>
+            <div className="fixed m-3 right-0 bottom-0">
                 <MessageBox/>
+            </div>
         </div>
 );
 }
