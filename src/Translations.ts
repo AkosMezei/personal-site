@@ -21,5 +21,18 @@
         aboutMeTitle: "Rólam",
         aboutMeDefault: "Szia! A nevem [Your Name], és szenvedélyes programozó vagyok, aki szereti a komplex problémákat kód segítségével megoldani. Különböző programozási nyelvekben és keretrendszerekben szerzett szakértelmemmel hatékony és innovatív megoldások létrehozására törekszem. A technológiai világban tett utamat a kíváncsiság és a folyamatos tanulás és fejlődés iránti vágy hajtja.",
         aboutMeExpanded: "",
+        educationTitle: "Education",
+        educationDefault: "Default Education text placeholder",
+        educationExpanded: "Expanded Education text placeholder",
+        experienceTitle: "Experience",
+        experienceDefault: "Default Experience text placeholder",
+        experienceExpanded: "Expanded Experience text placeholder",
+        projectsDefault: "Default Projects text placeholder",
+        cvWebsiteProjectTitle: "CV Website Project",
+        cvWebsiteProjectDefault: "Default CV Website Project text placeholder",
+        cvWebsiteProjectExpanded: "Expanded CV Website text placeholder",
+        ttWebsiteProjectTitle: "TT Website Project",
+        ttWebsiteProjectDefault: "Default TT Website Project text placeholder",
+        ttWebsiteProjectExpanded: "Expanded TT Website Project text placeholder",
     }
 };
