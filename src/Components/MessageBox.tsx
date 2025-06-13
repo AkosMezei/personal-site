@@ -13,8 +13,11 @@ interface Message {
 }
 
 function MessageBox(){
-    
+
     const apiKey = import.meta.env.VITE_API_KEY;
+
+    //debug
+    console.log('API Key loaded:', apiKey ? 'Yes' : 'No');
 
     const [isExpanded, setIsExpanded] = useState(false);
 
@@ -117,7 +120,7 @@ function MessageBox(){
             return;
         }
 
-        // Now send the message with the confirmed chat ID
+        // Send the message with the confirmed chat ID
         axios({
             method: 'POST',
             url: `https://personal-messaging-api-96o2v.ondigitalocean.app/api/messages/${id}/contents`,
@@ -146,7 +149,8 @@ function MessageBox(){
         e.stopPropagation();
         setIsExpanded(!isExpanded);
     };
-
+    
+    
     return (
         <div>
             <AnimatePresence>
@@ -161,13 +165,17 @@ function MessageBox(){
                                 {messages.map((message, index) => (
                                     <li
                                         key={message._id || index}
-                                        className={`mt-3 px-2 py-1 rounded-md bg-white/5 ${message.senderID === "client" ? "ml-10" : "mr-10"}`}
+                                        className={`mt-3 px-2 py-1 rounded-md ${message.senderID === "client" ? "justify-self-end ml-10 bg-green-500/50 w-fit" : "justify-self-start mr-10 w-fit bg-teal-500/50"}`}
                                     >
                                         {message.content}
-                                        {message.status === "sending" && <span className="text-xs ml-2 opacity-50">(sending...)</span>}
+                                        {message.status === "sending" &&
+                                            <span className="text-xs ml-2 opacity-50">(sending...)</span>}
                                     </li>
                                 ))}
                             </ul>
+                            <p className="text-sm mt-3 mx-3 text-center text-gray-400"> Please do not include sensitive information, the
+                                messages are NOT end-to-end encrypted (yet).</p>
+                            
                         </div>
                         <form className="flex justify-between" onSubmit={handleSubmit}>
                             <TextareaAutosize

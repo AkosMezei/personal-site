@@ -1,14 +1,20 @@
 ﻿import { useBackgroundContext } from './BackgroundContext.tsx';
 import { Moon, Sun } from 'lucide-react';
+import {useLanguageContext} from "./LanguageContext.tsx";
+
+//TODO add language selector from other side
 
 function Header() {
     const { theme, toggleTheme } = useBackgroundContext();
-
+    
+    const { language, toggleLanguage } = useLanguageContext() //TODO get language preferences from TT site, localstorage etc stuffs, save it to context
+    
     return (
         <header className={`fixed top-0 w-full z-50 backdrop-blur-sm ${
             theme === 'dark' ? 'bg-gray-900/90' : 'bg-white/50'
         }`}>
-            <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div className="container mx-auto px-4 py-3 flex justify-between items-center ">
+                <div>
                 <h1 className={`text-xl font-bold ${
                     theme === 'dark' ? 'text-white' : 'text-gray-900'
                 }`}>
