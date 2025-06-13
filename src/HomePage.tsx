@@ -1,6 +1,11 @@
 ﻿//TODO refuses to update on theme change, make it work with static bg or make it update
 //TODO if the number of lines is different between languages, the language change is jagged af
 //TODO sometimes on first expand the image load jumps the whole div, figure out what causes it
+//TODO if on mobile, when opening message sender, jump to bottom so keyboard doesn't hide input 
+//TODO fix centered titles inside projects not being centered on mobile
+
+
+//TODO section off the cw website project to 3 parts, database, api, front-end
 
 import ExpandableDiv from "./Components/ExpandableDiv.tsx";
 import giantPlaceholderImage from "../src/assets/placeholderImage.jpeg"

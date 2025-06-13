@@ -80,6 +80,7 @@ function MessageBox(){
                     }
                 });
                 const newChatId = response.data.id;
+                console.log(newChatId);
                 localStorage.setItem("chatId", newChatId);
                 sessionStorage.setItem("chatId", newChatId); //implement trying to get this as a fallback when localstorage doesn't work
                 return newChatId;
@@ -161,18 +162,20 @@ function MessageBox(){
                         exit={{ opacity: 0 }}
                         className="mb-12 m-3 right-0 bottom-9 flex flex-col justify-between bg-white/10 backdrop-blur-2xl rounded-lg max-w-96 aspect-[5/6]">
                         <div className="max-h-fit overflow-y-scroll flex flex-col-reverse">
-                            <ul className="m-3">
+                            <div className="m-3 flex flex-col">
                                 {messages.map((message, index) => (
-                                    <li
+                                    <div
                                         key={message._id || index}
-                                        className={`mt-3 px-2 py-1 rounded-md ${message.senderID === "client" ? "justify-self-end ml-10 bg-green-500/50 w-fit" : "justify-self-start mr-10 w-fit bg-teal-500/50"}`}
+                                        className={`mt-3 flex ${message.senderID === "client" ? "justify-end" : "justify-start"}`}
                                     >
+                                        <div className={`px-2 py-1 rounded-md max-w-[75%] ${message.senderID === "client" ? "bg-green-500/50" : "bg-teal-500/50"}`}>
                                         {message.content}
                                         {message.status === "sending" &&
                                             <span className="text-xs ml-2 opacity-50">(sending...)</span>}
-                                    </li>
+                                        </div>
+                                    </div>
                                 ))}
-                            </ul>
+                            </div>
                             <p className="text-sm mt-3 mx-3 text-center text-gray-400"> Please do not include sensitive information, the
                                 messages are NOT end-to-end encrypted (yet).</p>
                             
