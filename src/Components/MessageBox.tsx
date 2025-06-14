@@ -1,4 +1,6 @@
-﻿import TextareaAutosize from 'react-textarea-autosize';
+﻿//TODO dismissible popup for msgbox as a way to quickly get in contact 
+
+import TextareaAutosize from 'react-textarea-autosize';
 import {SendHorizontal, MessageCircle} from 'lucide-react'
 import {FormEvent, useEffect, useState} from "react";
 import {AnimatePresence, motion} from "motion/react";

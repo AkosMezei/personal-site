@@ -1,6 +1,8 @@
 ﻿//TODO make text orientation right look all right
 //TODO proper content types
 //TODO reformat code so it's more readable
+//TODO on mobile, expand images to full width
+//TODO somehow alert user to the expandability of pictues
 
 import {useEffect, useState} from "react";
 import {ChevronDown, ChevronUp} from "lucide-react";
@@ -208,7 +210,7 @@ function ExpandableDiv({
                                         whileHover={{scale: imageIsExpanded? 0.98 : 1.1, transformOrigin: "bottom right"}}
                                         animate={{
                                             width: imageIsExpanded
-                                                ? (isMobile ? "80vw" : "40vw")
+                                                ? (isMobile ? "100vw" : "40vw")
                                                 : (isMobile ? "40vw" : "20vw")
                                         }}
                                         initial={{transformOrigin: "bottom right"}}
@@ -228,8 +230,8 @@ function ExpandableDiv({
                                         }}
                                         animate={{
                                             width: imageIsExpanded
-                                                ? (isMobile ? "80vw" : "40vw")
-                                                : (isMobile ? "40vw" : "20vw")
+                                                ? (isMobile ? "250vw" : "80vw")
+                                                : (isMobile ? "40vw" : "30vw")
                                         }}
                                         initial={{transformOrigin: "bottom left"}}
                                         transition={{duration: 0.2, ease: "easeInOut"}}

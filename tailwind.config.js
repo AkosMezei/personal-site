@@ -7,6 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
+        viteStart: '#4dc1ff',
+        viteMiddle: '#ffd028',
+        viteEnd: '#b142fe',
+        react: '#58c4dc',
+        typescript: '#3178c6',
+        tailwind: '#00bcff',
+        framerMotion: '#faef2c',
+        mongoDB: '#00ed64',
+        docker: '#1d63ed',
+        digitalOcean: '#0069ff',
         background: 'rgb(var(--background) / <alpha-value>)',
         foreground: 'rgb(var(--foreground) / <alpha-value>)',
         primary: {
