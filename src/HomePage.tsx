@@ -3,7 +3,9 @@
 //TODO sometimes on first expand the image load jumps the whole div, figure out what causes it
 //TODO if on mobile, when opening message sender, jump to bottom so keyboard doesn't hide input 
 //TODO fix centered titles inside projects not being centered on mobile
-
+//TODO add hrefs to tech stack in about me
+//TODO maybe unhighlight the woodworking part
+//TODO preload or preallocate space for edu. images (and maybe all other images too while at it)
 
 //TODO section off the cw website project to 3 parts, database, api, front-end
 
@@ -29,15 +31,32 @@ function HomePage() {
                                image={giantPlaceholderImage}
                                defaultContent={
                                    <p className="text-center">
-                                       {t('aboutMeDefault')}
+                                       {t('aboutMeDefault.part1')}
+                                       <strong className="text-lg font-bold">{t('aboutMeDefault.highlight_name')}</strong>
+                                       {t('aboutMeDefault.part2')}
                                    </p>
                                }
                                expandedContent={
                                    <>
-                                       <p className="mt-3 text-center"> {t('aboutMeExpanded')} </p>
-                                       <p className="mt-3 text-center text-lg text-red-500/75"> Note: This is a
-                                           placeholder
-                                           "About Me" section. </p>
+                                       <p className="mt-3 text-center">
+                                           {t('aboutMeExpanded.para1_part1')}
+                                           <strong>{t('aboutMeExpanded.highlight_woodworking')}</strong>
+                                           {t('aboutMeExpanded.para1_part2')}
+                                       </p>
+                                       <p className="mt-3 text-center">
+                                           {t('aboutMeExpanded.para2_part1')}
+                                           <a href="..." className="text-react font-bold">{t('aboutMeExpanded.highlight_react')}</a>
+                                           {t('aboutMeExpanded.para2_part2')}
+                                           <a href="..." className="text-typescript font-bold">{t('aboutMeExpanded.highlight_typescript')}</a>
+                                           {t('aboutMeExpanded.para2_part3')}
+                                           <a href="..." className="text-dotnet font-bold">{t('aboutMeExpanded.highlight_dotnet')}</a>
+                                           {t('aboutMeExpanded.para2_part4')}
+                                       </p>
+                                       <p className="mt-3 text-center">
+                                           {t('aboutMeExpanded.para3_part1')}
+                                           <strong>{t('aboutMeExpanded.highlight_builder')}</strong>
+                                           {t('aboutMeExpanded.para3_part2')}
+                                       </p>
                                    </>
                                }
                 />

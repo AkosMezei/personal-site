@@ -1,8 +1,32 @@
-﻿export const translations = {
+﻿//TODO rewrite hungarian part, it sounds like ass
+
+export const translations = {
     en: {
-        aboutMeTitle: "About me",
-        aboutMeDefault: "Hello! My name is [Your Name], and I'm a passionate programmer with a knack for solving complex problems through code. With expertise in various programming languages and frameworks, I strive to create efficient and innovative solutions. My journey in the tech world has been fueled by my curiosity and a constant drive to learn and improve.",
-        aboutMeExpanded: "When I'm not coding, you can find me exploring the latest tech trends, participating in hackathons, or enjoying a good book. I'm excited to connect and collaborate with like-minded individuals who share my enthusiasm for technology.",
+        aboutMeTitle: "About Me",
+
+        aboutMeDefault: {
+            part1: "Hello! I'm ",
+            highlight_name: "Mezei Ákos",
+            part2: ", a self-taught full-stack developer driven by a passion for building elegant solutions to complex problems."
+        },
+
+        aboutMeExpanded: {
+            para1_part1: "My journey into tech started in my family's ",
+            highlight_woodworking: "woodworking shop",
+            para1_part2: ", where I learned to value precision, planning, and the satisfaction of turning an idea into a well-crafted product. I've translated that same dedication to craftsmanship into the digital world.",
+
+            para2_part1: "This portfolio is a showcase of that philosophy, from the responsive ",
+            highlight_react: "React",
+            para2_part2: " front-end built with ",
+            highlight_typescript: "TypeScript",
+            para2_part3: " to the custom ",
+            highlight_dotnet: ".NET REST API",
+            para2_part4: " that powers its features.",
+
+            para3_part1: "When I step away from the keyboard, I'm usually either hiking or finding practical solutions to the everyday challenges of village life. I'm a ",
+            highlight_builder: "builder at heart",
+            para3_part2: ", whether with code or with physical materials, and I am eager to bring my unique blend of practical skills and a determined, curious mindset to a forward-thinking development team."
+        },
         educationTitle: "Education",
         educationDefault: "Default Education text placeholder",
         educationExpanded: "Expanded Education text placeholder",
@@ -107,8 +131,30 @@
     },
     hu: {
         aboutMeTitle: "Rólam",
-        aboutMeDefault: "Szia! A nevem [Your Name], és szenvedélyes programozó vagyok, aki szereti a komplex problémákat kód segítségével megoldani. Különböző programozási nyelvekben és keretrendszerekben szerzett szakértelmemmel hatékony és innovatív megoldások létrehozására törekszem. A technológiai világban tett utamat a kíváncsiság és a folyamatos tanulás és fejlődés iránti vágy hajtja.",
-        aboutMeExpanded: "When I'm not coding, you can find me exploring the latest tech trends, participating in hackathons, or enjoying a good book. I'm excited to connect and collaborate with like-minded individuals who share my enthusiasm for technology.",
+
+        aboutMeDefault: {
+            part1: "Szia! ",
+            highlight_name: "Mezei Ákos",
+            part2: " vagyok, egy autodidakta full-stack fejlesztő, akit az a szenvedély hajt, hogy elegáns megoldásokat építsek komplex problémákra."
+        },
+
+        aboutMeExpanded: {
+            para1_part1: "A tech világába vezető utam a családom ",
+            highlight_woodworking: "asztalosműhelyében",
+            para1_part2: " kezdődött, ahol megtanultam értékelni a precizitást, a tervezést és azt az elégedettséget, amikor egy ötletből egy gondosan kidolgozott termék lesz. Ugyanezt az elhivatottságot és a minőségi kivitelezés iránti igényt ültettem át a digitális világba is.",
+
+            para2_part1: "Ez a portfólió ennek a filozófiának a bemutatója, a reszponzív ",
+            highlight_react: "React",
+            para2_part2: " front-endtől, ami ",
+            highlight_typescript: "TypeScript",
+            para2_part3: "-tel készült, egészen az egyedi ",
+            highlight_dotnet: ".NET REST API",
+            para2_part4: "-ig, amely a funkcióit működteti.",
+
+            para3_part1: "Amikor nem a billentyűzet mögött ülök, általában túrázom vagy gyakorlatias megoldásokat keresek a falusi élet mindennapi kihívásaira. A szívem mélyén ",
+            highlight_builder: "építő vagyok",
+            para3_part2: ", legyen szó kódról vagy fizikai anyagokról, és alig várom, hogy egyedi, gyakorlatias képességeimet és elszánt, kíváncsi gondolkodásmódomat egy előremutató fejlesztői csapathoz vigyem."
+        },
         educationTitle: "Education",
         educationDefault: "Default Education text placeholder",
         educationExpanded: "Expanded Education text placeholder",
