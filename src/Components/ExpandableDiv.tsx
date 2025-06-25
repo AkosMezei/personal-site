@@ -2,7 +2,10 @@
 //TODO proper content types
 //TODO reformat code so it's more readable
 //TODO on mobile, expand images to full width
-//TODO somehow alert user to the expandability of pictues
+//TODO somehow alert user to the expandability of pictures
+//TODO make margins smaller on mobile so more content can fit
+//TODO resize/remake expansion chevrons on mobile on nested exp. divs
+//TODO fix un-expansion when changing language in nested exp. divs
 
 import {useEffect, useState} from "react";
 import {ChevronDown, ChevronUp} from "lucide-react";
