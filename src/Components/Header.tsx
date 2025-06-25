@@ -39,7 +39,7 @@ function Header() {
                 <h1 className={`text-xl font-bold ${
                     theme === 'dark' ? 'text-white' : 'text-gray-900'
                 }`}>
-                    Name goes here
+                    Mezei Ákos
                 </h1>
                 </div>
                 <div className="flex">
