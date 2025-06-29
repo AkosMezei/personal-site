@@ -21,12 +21,14 @@ const textVariants = {
 
 function ExpandableDiv({
                            image = null,
+                           preloadOnHover = () => {},
                            title = "Default Title",
                            defaultContent = "Default Content",
                            expandedContent = "Expanded Content",
                            orientation = "left"
                        }: {
     image?: any | null,
+    preloadOnHover?: () => void,
     expandImage?: boolean,
     title?: string,
     defaultContent?: any,
@@ -69,7 +71,8 @@ function ExpandableDiv({
 
     return (
         <div onClick={changeExpanded}
-             className={`w-auto rounded-2xl p-3  m-3 ${theme === 'dark' ? "bg-black/10 hover:bg-white/5" : "bg-black/10 hover:bg-black/15"}`}> {/*this is the motherfucker that refuses to update*/}
+             onMouseEnter={preloadOnHover}
+             className={`w-auto rounded-2xl p-3  m-3 ${theme === 'dark' ? "bg-black/10 hover:bg-gray-500/5" : "bg-black/10 hover:bg-black/15"}`}> {/*this is the motherfucker that refuses to update*/}
 
             {orientation == "left" && (
                 <div className="flex flex-row items-center justify-between">
