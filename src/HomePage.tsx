@@ -7,11 +7,12 @@
 //TODO maybe unhighlight the woodworking part
 //TODO preload or preallocate space for edu. images (and maybe all other images too while at it)
 
-//TODO section off the cw website project to 3 parts, database, api, front-end
+//TODO move ttwebsite image to top
 
 import giantPlaceholderImage from "../src/assets/placeholderImage.jpeg"
 import uni from "../src/assets/sapientia.jpg"
 import highschool from "../src/assets/salamon erno.jpg"
+import ttwebsite from "../src/assets/ttwebsite.png"
 import ExpandableDiv from "./Components/ExpandableDiv.tsx";
 import {preload} from "react-dom";
 import MessageBox from "./Components/MessageBox.tsx";
@@ -22,7 +23,10 @@ function HomePage() {
 
     const { t } = useTranslation();
     
+    // TODO preload on div expansion OR hover
     preload(giantPlaceholderImage, {as: "image"})
+    
+    
     return (
         <div className="mx-2 py-16 lg:w-3/5 ml-auto mr-auto">
             <motion.div layout transition={{layout: {duration: 0.5, ease: "easeInOut"}}}> {/*TODO this does jack shit fuck all currently*/}
@@ -68,10 +72,10 @@ function HomePage() {
                                }
                                expandedContent={
                                    <div className="w-full">
-
                                        <ExpandableDiv
                                            title={t('hsTitle')}
                                            image={highschool}
+                                           preloadOnHover={() => preload(highschool, {as: "image"})}
                                            orientation="left"
                                            defaultContent={
                                                    <p className=""> {t('hsDefault')} </p>
@@ -84,12 +88,13 @@ function HomePage() {
                                        <ExpandableDiv
                                            title={t("uniTitle")}
                                            image={uni}
+                                           preloadOnHover={() => preload(uni, {as: "image"})}
                                            orientation="right"
                                            defaultContent={
                                                <p className="text-center"> {t('uniDefault')} </p>
                                            }
                                            expandedContent={
-                                               <p className="text-center"> {t('uniExpanded')} </p>
+                                               <p className="text-center ml-10"> {t('uniExpanded')} </p>
                                            }
                                        />
 
@@ -230,11 +235,65 @@ function HomePage() {
                                        <ExpandableDiv
                                            title={t('ttWebsiteProjectTitle')}
                                            orientation="center"
+                                           image={ttwebsite}
+                                           preloadOnHover={()=> preload(highschool, {as: "image"})}
                                            defaultContent={
-                                               <p className="text-center"> {t('ttWebsiteProjectDefault')} </p>
+                                               <p className="text-center">{t('ttWebsiteProjectDefault')}</p>
                                            }
                                            expandedContent={
-                                               <p className="text-center"> {t('ttWebsiteProjectExpanded')} </p>
+                                               <div className="w-full mt-4 space-y-2">
+
+                                                   {/* Performance Accordion (no links, simple p tag) */}
+                                                   <ExpandableDiv
+                                                       title={t('ttWebsiteProjectExpanded.performance.title')}
+                                                       orientation="center"
+                                                       defaultContent={<p>{t('ttWebsiteProjectExpanded.performance.default')}</p>}
+                                                       expandedContent={<p className="text-center">{t('ttWebsiteProjectExpanded.performance.expanded.part1')}</p>}
+                                                   />
+
+                                                   {/* Interactivity Accordion (with styled links) */}
+                                                   <ExpandableDiv
+                                                       title={t('ttWebsiteProjectExpanded.interactive.title')}
+                                                       orientation="center"
+                                                       defaultContent={<p>{t('ttWebsiteProjectExpanded.interactive.default')}</p>}
+                                                       expandedContent={
+                                                           <div className="text-center">
+                                                               {t('ttWebsiteProjectExpanded.interactive.expanded.part1')}
+                                                               <a href="https://react.dev" target="_blank" className="text-react font-bold text-lg rounded-md px-1">{t('ttWebsiteProjectExpanded.interactive.expanded.highlightReact')}</a>
+                                                               {t('ttWebsiteProjectExpanded.interactive.expanded.part2')}
+                                                               <a href="https://www.typescriptlang.org" target="_blank" className="text-typescript font-bold text-lg rounded-md px-1">{t('ttWebsiteProjectExpanded.interactive.expanded.highlightTypescript')}</a>
+                                                               {t('ttWebsiteProjectExpanded.interactive.expanded.part3')}
+                                                               <a href="https://motion.dev" target="_blank" className="text-framerMotion font-bold text-lg rounded-md px-1">{t('ttWebsiteProjectExpanded.interactive.expanded.highlightFramerMotion')}</a>
+                                                               {t('ttWebsiteProjectExpanded.interactive.expanded.part4')}
+                                                           </div>
+                                                       }
+                                                   />
+
+                                                   {/* Stack Accordion (with styled links) */}
+                                                   <ExpandableDiv
+                                                       title={t('ttWebsiteProjectExpanded.stack.title')}
+                                                       orientation="center"
+                                                       defaultContent={<p>{t('ttWebsiteProjectExpanded.stack.default')}</p>}
+                                                       expandedContent={
+                                                           <div className="text-center">
+                                                               {t('ttWebsiteProjectExpanded.stack.expanded.part1')}
+                                                               <a href="https://vite.dev" target="_blank" className="bg-gradient-to-br from-viteStart from-45% via-viteMiddle via-50% to-viteEnd to-80% text-transparent bg-clip-text font-bold text-lg rounded-md px-1">{t('ttWebsiteProjectExpanded.stack.expanded.highlightVite')}</a>
+                                                               {t('ttWebsiteProjectExpanded.stack.expanded.part2')}
+                                                               <a href="https://tailwindcss.com" target="_blank" className="text-tailwind font-bold text-lg rounded-md px-1">{t('ttWebsiteProjectExpanded.stack.expanded.highlightTailwindCSS')}</a>
+                                                               {t('ttWebsiteProjectExpanded.stack.expanded.part3')}
+                                                           </div>
+                                                       }
+                                                   />
+
+                                                   {/* Design Accordion (no links, simple p tag) */}
+                                                   <ExpandableDiv
+                                                       title={t('ttWebsiteProjectExpanded.design.title')}
+                                                       orientation="center"
+                                                       defaultContent={<p>{t('ttWebsiteProjectExpanded.design.default')}</p>}
+                                                       expandedContent={<p className="text-center">{t('ttWebsiteProjectExpanded.design.expanded.part1')}</p>}
+                                                   />
+
+                                               </div>
                                            }
                                        />
 

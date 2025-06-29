@@ -117,10 +117,56 @@ export const translations = {
         cvWebsiteFrontendTitle: "CV Website Frontend Title",
         cvWebsiteFrontendDefault: "Default CV Website Frontend Title",
         cvWebsiteFrontendExpanded: "Expanded CV Website Frontend Title",
+
+        ttWebsiteProjectTitle: "E-Commerce Frontend",
+
+        ttWebsiteProjectDefault: "A fully responsive and performant website frontend designed for \"Transylvania Transport\", a woodworking business.",
+
+        ttWebsiteProjectExpanded: {
+            performance: {
+                title: "Performance-First Architecture",
+                default: "Optimized for fast loading and a smooth user experience.",
+                // No tech links here, so a single part is fine
+                expanded: {
+                    part1: "Implemented advanced performance patterns including component-level code-splitting using `React.lazy()` and lazy-loading of page sections with the `IntersectionObserver` API. This ensures a fast initial page load and minimizes data usage for the end-user."
+                }
+            },
+            interactive: {
+                title: "Interactive & Custom Components",
+                default: "Featuring bespoke, reusable components with rich animations.",
+                // NEW: Broken down for tech links
+                expanded: {
+                    part1: "Developed custom, reusable components in ",
+                    highlightReact: "React",
+                    part2: " and ",
+                    highlightTypescript: "TypeScript",
+                    part3: ". The centerpiece is a draggable image carousel with an expandable lightbox gallery, built using the ",
+                    highlightFramerMotion: "Framer Motion",
+                    part4: " library for smooth, physics-based animations."
+                }
+            },
+            stack: {
+                title: "Modern & Maintainable Stack",
+                default: "Built with an industry-standard, scalable technology stack.",
+                // NEW: Broken down for tech links
+                expanded: {
+                    part1: "Built on a modern foundation using ",
+                    highlightVite: "Vite",
+                    part2: ", React 19, and ",
+                    highlightTailwindCSS: "Tailwind CSS",
+                    part3: " for a highly efficient and maintainable styling workflow. The project demonstrates best practices in componentization and responsive design."
+                }
+            },
+            design: {
+                title: "Client-Centric Design",
+                default: "A user interface and brand identity tailored to business needs.",
+                // No tech links here, so a single part is fine
+                expanded: {
+                    part1: "The entire application, from the color palette to the layout, was designed with a specific business and brand identity in mind, proving an ability to translate product requirements into a polished final product."
+                }
+            }
+        },
         
-        ttWebsiteProjectTitle: "TT Website Project",
-        ttWebsiteProjectDefault: "Default TT Website Project text placeholder",
-        ttWebsiteProjectExpanded: "Expanded TT Website Project text placeholder",
         hsTitle: "Salamon Ernő - Theoretical High School",
         hsDefault: "Math - Informatics",
         hsExpanded: "My majors were mathematics and computer science, mainly c++.",
@@ -246,9 +292,51 @@ export const translations = {
         cvWebsiteFrontendDefault: "Default CV Website Frontend Title",
         cvWebsiteFrontendExpanded: "Expanded CV Website Frontend Title",
 
-        ttWebsiteProjectTitle: "TT Website Project",
-        ttWebsiteProjectDefault: "Default TT Website Project text placeholder",
-        ttWebsiteProjectExpanded: "Expanded TT Website Project text placeholder",
+        ttWebsiteProjectTitle: "E-kereskedelmi Frontend",
+
+        ttWebsiteProjectDefault: "Egy teljesen reszponzív és performáns weboldal frontend a \"Transylvania Transport\" nevű asztalos vállalkozás számára.",
+
+        ttWebsiteProjectExpanded: {
+            performance: {
+                title: "Teljesítmény-központú Architektúra",
+                default: "Gyors betöltésre és zökkenőmentes felhasználói élményre optimalizálva.",
+                expanded: {
+                    part1: "Fejlett teljesítménynövelő mintákat alkalmaztam, beleértve a komponens-szintű kód-felosztást a `React.lazy()` segítségével, valamint az oldalszakaszok lusta betöltését az `IntersectionObserver` API-val. Ez gyors kezdeti betöltést biztosít és minimalizálja a végfelhasználó adatforgalmát."
+                }
+            },
+            interactive: {
+                title: "Interaktív és Egyedi Komponensek",
+                default: "Egyedi, újrahasznosítható komponensekkel és gazdag animációkkal.",
+                expanded: {
+                    part1: "Egyedi, újrahasznosítható komponenseket fejlesztettem ",
+                    highlightReact: "React",
+                    part2: " és ",
+                    highlightTypescript: "TypeScript",
+                    part3: " használatával. A projekt központi eleme egy húzható kép-körhinta egy kibővíthető lightbox galériával, amely a ",
+                    highlightFramerMotion: "Framer Motion",
+                    part4: " könyvtárral készült a sima, fizika-alapú animációk érdekében."
+                }
+            },
+            stack: {
+                title: "Modern és Karbantartható Tech Stack",
+                default: "Ipari szabványoknak megfelelő, skálázható technológiai háttérrel építve.",
+                expanded: {
+                    part1: "A projekt egy modern alapra épült, ",
+                    highlightVite: "Vite",
+                    part2: ", React 19 és ",
+                    highlightTailwindCSS: "Tailwind CSS",
+                    part3: " felhasználásával, ami egy rendkívül hatékony és karbantartható stílusozási munkafolyamatot tesz lehetővé. A projekt a komponens-alapú felépítés és a reszponzív dizájn legjobb gyakorlatait mutatja be."
+                }
+            },
+            design: {
+                title: "Ügyfél-központú Tervezés",
+                default: "A felhasználói felület és a márkaidentitás az üzleti igényekre szabva.",
+                expanded: {
+                    part1: "A teljes alkalmazás, a színpalettától az elrendezésig, egy konkrét üzleti és márkaidentitás figyelembevételével lett megtervezve, bizonyítva a képességet, hogy a termékkövetelményeket egy csiszolt végtermékké alakítsam."
+                }
+            }
+        },
+        
         hsTitle: "Salamon Ernő - Theoretical High School",
         hsDefault: "Math - Informatics",
         hsExpanded: "My majors were mathematics and computer science, mainly c++.",
