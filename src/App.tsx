@@ -26,7 +26,7 @@ function App() {
     injectSpeedInsights();
 
     const [theme, setTheme] = useState(getInitialTheme);
-    const primary = useMotionValue(theme === 'dark' ? '6, 12, 26' : '199 224 254'); // Primary theme color
+    const primary = useMotionValue(theme === 'dark' ? '6, 12, 26' : '254 250 224'); // Primary theme color
     const background = useMotionTemplate`linear-gradient(to bottom right, rgb(${primary}), ${
         theme === 'dark'
             ? 'rgb(32,51,87)' // Dark theme
