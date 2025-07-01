@@ -4,10 +4,12 @@
 //TODO on mobile, expand images to full width
 //TODO somehow alert user to the expandability of pictures
 //TODO make margins smaller on mobile so more content can fit
+//TODO make shit not expand/unexpand when highlighting - yoink from TT website
 //TODO resize/remake expansion chevrons on mobile on nested exp. divs
 //TODO fix un-expansion when changing language in nested exp. divs
+//TODO make prop for image expansion size, default | full width - for TT website project for example
 
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {AnimatePresence, motion} from "motion/react";
 import { useBackgroundContext } from "./BackgroundContext.tsx";
@@ -21,6 +23,7 @@ const textVariants = {
 
 function ExpandableDiv({
                            image = null,
+                           imageLocation = "default",
                            preloadOnHover = () => {},
                            title = "Default Title",
                            defaultContent = "Default Content",
@@ -28,6 +31,7 @@ function ExpandableDiv({
                            orientation = "left"
                        }: {
     image?: any | null,
+    imageLocation?: "top" | "default",
     preloadOnHover?: () => void,
     expandImage?: boolean,
     title?: string,
@@ -37,7 +41,40 @@ function ExpandableDiv({
 }) {
 
     const [isMobile, setIsMobile] = useState(false);
+    const divRef = useRef<HTMLDivElement>(null);
+    const [mouseDownTarget, setMouseDownTarget] = useState<EventTarget | null>(null);
 
+    function handleMouseDown(e: React.MouseEvent) {
+        // Store the target element where the mouse was pressed
+        setMouseDownTarget(e.target);
+    }
+
+    function handleMouseUp(e: React.MouseEvent) {
+        // Only toggle if mouse down and mouse up occurred on the same element
+        if (divRef.current && mouseDownTarget === e.target) {
+            const target = e.target as Node;
+
+            if ((target as HTMLElement).tagName === 'IMG') {
+                return;
+            }
+            
+            // Check if the user has selected any text
+            const selection = window.getSelection();
+            const hasTextSelection = selection && selection.toString().length > 0;
+
+            // If there's a text selection, don't expand/collapse
+            if (hasTextSelection) {
+                return;
+            }
+
+            // Check if the click was within our component
+            if (divRef.current.contains(target)) {
+                e.stopPropagation();
+                setIsExpanded(!isExpanded);
+            }
+        }
+    }
+    
     useEffect(() => {
         const checkIfMobile = () => {
             setIsMobile(window.innerWidth < 640);
@@ -64,15 +101,12 @@ function ExpandableDiv({
         setImageIsExpanded(!imageIsExpanded);
     }
 
-    function changeExpanded(e: { stopPropagation: () => void; }) {
-        e.stopPropagation()
-        setIsExpanded(!isExpanded);
-    }
-
     return (
-        <div onClick={changeExpanded}
+        <div ref={divRef}
+             onMouseDown={handleMouseDown}
+             onMouseUp={handleMouseUp}
              onMouseEnter={preloadOnHover}
-             className={`w-auto rounded-2xl p-3  m-3 ${theme === 'dark' ? "bg-black/10 hover:bg-gray-500/5" : "bg-black/10 hover:bg-black/15"}`}> {/*this is the motherfucker that refuses to update*/}
+             className={`w-auto rounded-2xl p-3  m-3 ${theme === 'dark' ? "bg-black/10 hover:bg-gray-500/5" : "bg-lightDivBackground/50 hover:bg-lightDivHoverBackground/10"}`}> {/*this is the motherfucker that refuses to update*/}
 
             {orientation == "left" && (
                 <div className="flex flex-row items-center justify-between">
@@ -212,18 +246,6 @@ function ExpandableDiv({
                                             {expandedContent}
                                         </motion.div>
                                     </AnimatePresence>
-                                    <motion.div
-                                        whileHover={{scale: imageIsExpanded? 0.98 : 1.1, transformOrigin: "bottom right"}}
-                                        animate={{
-                                            width: imageIsExpanded
-                                                ? (isMobile ? "100vw" : "40vw")
-                                                : (isMobile ? "40vw" : "20vw")
-                                        }}
-                                        initial={{transformOrigin: "bottom right"}}
-                                        transition={{duration: 0.2, ease: "easeInOut"}}
-                                    >
-                                        <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
-                                    </motion.div>
                                 </div>
                             )}
 
@@ -261,6 +283,20 @@ function ExpandableDiv({
 
                             {orientation == "center" && (
                                 <div className="flex flex-col items-center justify-center">
+                                    {imageLocation == "top" && (
+                                        <motion.div
+                                            whileHover={{scale: imageIsExpanded? 0.98 : 1.1, transformOrigin: "bottom right"}}
+                                            animate={{
+                                                width: imageIsExpanded
+                                                    ? (isMobile ? "100vw" : "40vw")
+                                                    : (isMobile ? "40vw" : "20vw")
+                                            }}
+                                            initial={{transformOrigin: "bottom right"}}
+                                            transition={{duration: 0.2, ease: "easeInOut"}}
+                                        >
+                                            <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
+                                        </motion.div>
+                                    )}
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={`expanded-content-${language}`}
@@ -274,19 +310,20 @@ function ExpandableDiv({
                                             {expandedContent}
                                         </motion.div>
                                     </AnimatePresence>
-                                    <motion.div
-                                        whileHover={{
-                                            scale: imageIsExpanded ? 0.98 : 1.1,
-                                        }}
-                                        animate={{
-                                            width: imageIsExpanded
-                                                ? (isMobile ? "80vw" : "40vw")
-                                                : (isMobile ? "40vw" : "20vw")
-                                        }}
-                                        transition={{duration: 0.2, ease: "easeInOut"}}
-                                    >
-                                        <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
-                                    </motion.div>
+                                    {imageLocation == "default" && (
+                                        <motion.div
+                                            whileHover={{scale: imageIsExpanded? 0.98 : 1.1, transformOrigin: "bottom right"}}
+                                            animate={{
+                                                width: imageIsExpanded
+                                                    ? (isMobile ? "100vw" : "40vw")
+                                                    : (isMobile ? "40vw" : "20vw")
+                                            }}
+                                            initial={{transformOrigin: "bottom right"}}
+                                            transition={{duration: 0.2, ease: "easeInOut"}}
+                                        >
+                                            <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
+                                        </motion.div>
+                                    )}
                                 </div>
                             )}
 
