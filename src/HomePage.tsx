@@ -11,7 +11,7 @@
 
 import giantPlaceholderImage from "../src/assets/placeholderImage.jpeg"
 import uni from "../src/assets/sapientia.jpg"
-import highschool from "../src/assets/salamon_erno.jpg"
+import highschool from "../src/assets/salamon.png" //TODO resize, remove top
 import ttwebsite from "../src/assets/ttwebsite.png"
 import ExpandableDiv from "./Components/ExpandableDiv.tsx";
 import {preload} from "react-dom";
