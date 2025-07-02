@@ -17,6 +17,10 @@ export default {
         mongoDB: '#00ed64',
         docker: '#1d63ed',
         digitalOcean: '#0069ff',
+        dotNetStart: '#7215e9',
+        dotNetEnd: '#4730de',
+        lightDivBackground: '#CCD5AE',
+        lightDivHoverBackground: '#D4A373',
         background: 'rgb(var(--background) / <alpha-value>)',
         foreground: 'rgb(var(--foreground) / <alpha-value>)',
         primary: {

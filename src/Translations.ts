@@ -30,9 +30,23 @@ export const translations = {
         educationTitle: "Education",
         educationDefault: "Default Education text placeholder",
         educationExpanded: "Expanded Education text placeholder",
+        
         experienceTitle: "Experience",
-        experienceDefault: "Default Experience text placeholder",
-        experienceExpanded: "Expanded Experience text placeholder",
+        // Woodworking Experience
+        woodworking: {
+            title: "Woodworking Craftsman",
+            company: "Transylvania Transport",
+            dates: "[Start Date] – [End Date]",
+            description: "In my role as a craftsman, I translated ideas into designs and then into high-quality, finished products. This experience was foundational in developing a high standard for precision and attention to detail — a 'measure twice, cut once' mentality that I now apply to writing clean, bug-resistant code. I was responsible for managing projects from raw material selection through to final assembly, which honed my ability to follow a process, solve problems, and deliver on project requirements."
+        },
+
+        // Internship Experience
+        internship: {
+            title: "Web Content Intern",
+            company: "Octopus Digital",
+            dates: "[Start Date] – [End Date]",
+            description: "During my internship, I gained practical experience within a professional development environment. My primary responsibility was updating content for a large-scale enterprise website using the Umbraco CMS. This role required me to collaborate with the development team to ensure content integrity, troubleshoot issues, and adhere to project deadlines, providing me with valuable insight into the maintenance and operation of a live web application."
+        },
         
         projectsTitle: "Projects",
         projectsDefault: "Expand to see my current projects.",
@@ -175,6 +189,8 @@ export const translations = {
         uniExpanded: "I studied Fundamentals of Programming, Java Programming, Operations Research, Database Design, Computer Networks, Operating Systems, Micro- and Macroeconomics.",
         
     },
+    
+    
     hu: {
         aboutMeTitle: "Rólam",
 
@@ -205,8 +221,20 @@ export const translations = {
         educationDefault: "Default Education text placeholder",
         educationExpanded: "Expanded Education text placeholder",
         experienceTitle: "Experience",
-        experienceDefault: "Default Experience text placeholder",
-        experienceExpanded: "Expanded Experience text placeholder",
+        woodworking: {
+            title: "Asztalosmester",
+            company: "[A Családi Vállalkozás Neve]",
+            dates: "[Kezdés Dátuma] – [Befejezés Dátuma]",
+            description: "Mesteremberként ötleteket alakítottam át tervekké, majd kiváló minőségű, kész termékekké. Ez a tapasztalat alapozta meg a precizitás és a részletekre való odafigyelés iránti magas szintű elkötelezettségemet – a 'kétszer mérj, egyszer vágj' mentalitást, amelyet most a tiszta, hibáktól mentes kód írásakor is alkalmazok. Felelős voltam a projektek teljes körű menedzseléséért a nyersanyag kiválasztásától a végső összeszerelésig, ami fejlesztette a folyamat-orientált munkavégzési képességemet, a problémamegoldó készségemet és a projektkövetelményeknek való megfelelést."
+        },
+
+        // Internship Experience - Hungarian
+        internship: {
+            title: "Webes Tartalomkezelő Gyakornok",
+            company: "[Cégnév]",
+            dates: "[Kezdés Dátuma] – [Befejezés Dátuma]",
+            description: "Gyakornoki időszakom alatt gyakorlati tapasztalatot szereztem egy professzionális fejlesztői környezetben. Elsődleges feladatom egy nagyvállalati weboldal tartalmának frissítése volt az Umbraco CMS segítségével. Ez a szerepkör megkövetelte a fejlesztői csapattal való együttműködést a tartalom integritásának biztosítása, a felmerülő hibák elhárítása és a projekt határidők betartása érdekében, ami értékes betekintést nyújtott egy élő webalkalmazás karbantartásába és működésébe."
+        },
 
         projectsTitle: "Projects",
         projectsDefault: "Expand to see my current projects.",
