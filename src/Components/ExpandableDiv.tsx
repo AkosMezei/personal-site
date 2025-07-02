@@ -241,11 +241,26 @@ function ExpandableDiv({
                                             initial="initial"
                                             animate="animate"
                                             exit="exit"
-                                            transition={{ duration: 0.3 }}
+                                            transition={{duration: 0.3}}
                                         >
                                             {expandedContent}
                                         </motion.div>
                                     </AnimatePresence>
+                                    <motion.div
+                                        whileHover={{
+                                            scale: imageIsExpanded ? 0.98 : 1.1,
+                                            transformOrigin: "bottom right"
+                                        }}
+                                        animate={{
+                                            width: imageIsExpanded
+                                                ? (isMobile ? "100vw" : "40vw")
+                                                : (isMobile ? "40vw" : "20vw")
+                                        }}
+                                        initial={{transformOrigin: "bottom right"}}
+                                        transition={{duration: 0.2, ease: "easeInOut"}}
+                                    >
+                                        <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
+                                    </motion.div>
                                 </div>
                             )}
 
