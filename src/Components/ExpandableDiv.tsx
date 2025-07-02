@@ -246,18 +246,6 @@ function ExpandableDiv({
                                             {expandedContent}
                                         </motion.div>
                                     </AnimatePresence>
-                                    <motion.div
-                                        whileHover={{scale: imageIsExpanded? 0.98 : 1.1, transformOrigin: "bottom right"}}
-                                        animate={{
-                                            width: imageIsExpanded
-                                                ? (isMobile ? "100vw" : "40vw")
-                                                : (isMobile ? "40vw" : "20vw")
-                                        }}
-                                        initial={{transformOrigin: "bottom right"}}
-                                        transition={{duration: 0.2, ease: "easeInOut"}}
-                                    >
-                                        <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
-                                    </motion.div>
                                 </div>
                             )}
 
@@ -295,6 +283,20 @@ function ExpandableDiv({
 
                             {orientation == "center" && (
                                 <div className="flex flex-col items-center justify-center">
+                                    {imageLocation == "top" && (
+                                        <motion.div
+                                            whileHover={{scale: imageIsExpanded? 0.98 : 1.1, transformOrigin: "bottom right"}}
+                                            animate={{
+                                                width: imageIsExpanded
+                                                    ? (isMobile ? "100vw" : "40vw")
+                                                    : (isMobile ? "40vw" : "20vw")
+                                            }}
+                                            initial={{transformOrigin: "bottom right"}}
+                                            transition={{duration: 0.2, ease: "easeInOut"}}
+                                        >
+                                            <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
+                                        </motion.div>
+                                    )}
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={`expanded-content-${language}`}
