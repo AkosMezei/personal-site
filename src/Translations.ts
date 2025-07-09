@@ -1,6 +1,4 @@
-﻿//TODO rewrite hungarian part, it sounds like ass
-
-export const translations = {
+﻿export const translations = {
     en: {
         aboutMeTitle: "About Me",
 
@@ -27,30 +25,27 @@ export const translations = {
             highlight_builder: "builder at heart",
             para3_part2: ", whether with code or with physical materials, and I am eager to bring my unique blend of practical skills and a determined, curious mindset to a forward-thinking development team."
         },
+
         educationTitle: "Education",
-        educationDefault: "Default Education text placeholder",
-        educationExpanded: "Expanded Education text placeholder",
-        
+        educationDefault: "My formal and self-directed learning path.",
+
         experienceTitle: "Experience",
-        // Woodworking Experience
         woodworking: {
             title: "Woodworking Craftsman",
-            company: "Transylvania Transport",
-            dates: "[Start Date] – [End Date]",
+            company: "Local Artisan Workshop",
+            dates: "Ongoing, on and off",
             description: "In my role as a craftsman, I translated ideas into designs and then into high-quality, finished products. This experience was foundational in developing a high standard for precision and attention to detail — a 'measure twice, cut once' mentality that I now apply to writing clean, bug-resistant code. I was responsible for managing projects from raw material selection through to final assembly, which honed my ability to follow a process, solve problems, and deliver on project requirements."
         },
-
-        // Internship Experience
         internship: {
             title: "Web Content Intern",
             company: "Octopus Digital",
-            dates: "[Start Date] – [End Date]",
+            dates: "April 2024 – August 2024",
             description: "During my internship, I gained practical experience within a professional development environment. My primary responsibility was updating content for a large-scale enterprise website using the Umbraco CMS. This role required me to collaborate with the development team to ensure content integrity, troubleshoot issues, and adhere to project deadlines, providing me with valuable insight into the maintenance and operation of a live web application."
         },
-        
+
         projectsTitle: "Projects",
         projectsDefault: "Expand to see my current projects.",
-        
+
         cvWebsiteProjectTitle: "CV Website Project",
         cvWebsiteProjectDefault: "The site you're currently on.",
         cvWebsiteProjectDescription: {
@@ -78,7 +73,6 @@ export const translations = {
         cvWebsiteMessageBoxTitle: "Messaging System Architecture",
         cvWebsiteMessageBoxDefault: "A behind-the-scenes look at the messaging feature.",
         cvWebsiteMessageBoxDescription: {
-            //full disclosure, I made AI structure the raw text to fit into my language file based on cvWebsiteProjectDescription
             para1_part1: "The messaging functionality is built on a two-tier architecture, consisting of a ",
             highlight_dotnet: ".NET REST API",
             para1_part2: " (C#) and a ",
@@ -86,8 +80,6 @@ export const translations = {
             para1_part3: " database. The API serves as the gateway for all message-related operations, while ",
             highlight_mongo2: "MongoDB",
             para1_part4: " handles the data persistence.",
-
-            //why I'm using mongoDB
             para2_part1: "While a traditional ",
             highlight_sql: "SQL",
             para2_part2: " database would have been a natural fit for this kind of structured data, this project presented an excellent opportunity to gain hands-on experience with ",
@@ -99,8 +91,6 @@ export const translations = {
             para2_part5: ", even though the project's current scale doesn't require its powerful ",
             highlight_scaling: "horizontal scaling",
             para2_part6: " capabilities.",
-
-            //how chats work
             para3_part1: "The user-facing chat experience is designed to be efficient and resource-conscious. When a user opens the chat interface, the application first checks ",
             highlight_storage: "local and session storage",
             para3_part2: " for an existing ",
@@ -110,37 +100,22 @@ export const translations = {
             para3_part4: ", is only created when the user sends their first message. This '",
             highlight_lazy: "lazy creation",
             para3_part5: "' approach prevents unnecessary database entries.",
-
-            //data structure
             para4_part1: "On the backend, each conversation is stored as a single document in ",
             highlight_mongo4: "MongoDB",
             para4_part2: ". This document includes the ",
             highlight_chatid3: "chatID",
             para4_part3: ", creation and update timestamps, and an embedded array of message objects. Each message object in the array contains its content, a timestamp, and a flag to identify the sender (user or administrator).",
-
-            //admin stuffs
             para5_part1: "To manage conversations, I made a separate ",
             highlight_admin: "administrative dashboard",
             para5_part2: ". This interface allows me to view and respond to all incoming user messages, completing the communication loop."
         },
-        
-        cvWebsiteAPITitle: "CV Website API Title",
-        cvWebsiteAPIDefault: "Default CV Website API Title",
-        cvWebsiteAPIExpanded: "Expanded CV Website Expanded Title",
-        
-        cvWebsiteFrontendTitle: "CV Website Frontend Title",
-        cvWebsiteFrontendDefault: "Default CV Website Frontend Title",
-        cvWebsiteFrontendExpanded: "Expanded CV Website Frontend Title",
 
-        ttWebsiteProjectTitle: "E-Commerce Frontend",
-
+        ttWebsiteProjectTitle: "Artisan E-Commerce Frontend",
         ttWebsiteProjectDefault: "A fully responsive and performant website frontend designed for \"Transylvania Transport\", a woodworking business.",
-
         ttWebsiteProjectExpanded: {
             performance: {
                 title: "Performance-First Architecture",
                 default: "Optimized for fast loading and a smooth user experience.",
-                // No tech links here, so a single part is fine
                 expanded: {
                     part1: "Implemented advanced performance patterns including component-level code-splitting using `React.lazy()` and lazy-loading of page sections with the `IntersectionObserver` API. This ensures a fast initial page load and minimizes data usage for the end-user."
                 }
@@ -148,7 +123,6 @@ export const translations = {
             interactive: {
                 title: "Interactive & Custom Components",
                 default: "Featuring bespoke, reusable components with rich animations.",
-                // NEW: Broken down for tech links
                 expanded: {
                     part1: "Developed custom, reusable components in ",
                     highlightReact: "React",
@@ -162,215 +136,193 @@ export const translations = {
             stack: {
                 title: "Modern & Maintainable Stack",
                 default: "Built with an industry-standard, scalable technology stack.",
-                // NEW: Broken down for tech links
                 expanded: {
                     part1: "Built on a modern foundation using ",
                     highlightVite: "Vite",
-                    part2: ", React 19, and ",
+                    part2: ", ",
+                    highlightReact: "React",
+                    part3: ", and ",
                     highlightTailwindCSS: "Tailwind CSS",
-                    part3: " for a highly efficient and maintainable styling workflow. The project demonstrates best practices in componentization and responsive design."
+                    part4: " for a highly efficient and maintainable styling workflow. The project demonstrates best practices in componentization and responsive design."
                 }
             },
             design: {
                 title: "Client-Centric Design",
                 default: "A user interface and brand identity tailored to business needs.",
-                // No tech links here, so a single part is fine
                 expanded: {
                     part1: "The entire application, from the color palette to the layout, was designed with a specific business and brand identity in mind, proving an ability to translate product requirements into a polished final product."
                 }
             }
         },
-        
-        hsTitle: "Salamon Ernő - Theoretical High School",
-        hsDefault: "Math - Informatics",
-        hsExpanded: "My majors were mathematics and computer science, mainly c++.",
-        uniTitle: "Sapientia EMTE",
+
+        hsTitle: "Salamon Ernő Theoretical High School",
+        hsDefault: "Mathematics & Informatics",
+        hsExpanded: "My specialization focused on mathematics and computer science, with an emphasis on foundational C++ programming.",
+        uniTitle: "Sapientia University (EMTE)",
         uniDefault: "Economic Informatics",
-        uniExpanded: "I studied Fundamentals of Programming, Java Programming, Operations Research, Database Design, Computer Networks, Operating Systems, Micro- and Macroeconomics.",
-        
+        uniExpanded: "I built a strong foundation in key computer science and economic principles, including coursework in: Fundamentals of Programming, Java Programming, Operations Research, Database Design, Computer Networks, and Operating Systems."
     },
-    
-    
+
+
     hu: {
         aboutMeTitle: "Rólam",
 
         aboutMeDefault: {
-            part1: "Szia! ",
+            part1: "Szia, ",
             highlight_name: "Mezei Ákos",
-            part2: " vagyok, egy autodidakta full-stack fejlesztő, akit az a szenvedély hajt, hogy elegáns megoldásokat építsek komplex problémákra."
+            part2: " vagyok, autodidakta full-stack fejlesztő. Szenvedélyem, hogy komplex problémákra elegáns, műszaki megoldásokat alkossak."
         },
 
         aboutMeExpanded: {
-            para1_part1: "A tech világába vezető utam a családom ",
-            highlight_woodworking: "asztalosműhelyében",
-            para1_part2: " kezdődött, ahol megtanultam értékelni a precizitást, a tervezést és azt az elégedettséget, amikor egy ötletből egy gondosan kidolgozott termék lesz. Ugyanezt az elhivatottságot és a minőségi kivitelezés iránti igényt ültettem át a digitális világba is.",
+            para1_part1: "A tech világába vezető utam a családi ",
+            highlight_woodworking: "asztalosműhelyünkben",
+            para1_part2: " kezdődött, ahol megtanultam a precizitás, a tervezés és a gondos kivitelezés fontosságát. Ezt a kézműves szemléletet és a minőség iránti elkötelezettséget hoztam magammal a szoftverfejlesztés világába.",
 
-            para2_part1: "Ez a portfólió ennek a filozófiának a bemutatója, a reszponzív ",
+            para2_part1: "Ez a portfólió ennek a filozófiának a megtestesülése: a reszponzív, ",
             highlight_react: "React",
-            para2_part2: " front-endtől, ami ",
+            para2_part2: " alapú és ",
             highlight_typescript: "TypeScript",
-            para2_part3: "-tel készült, egészen az egyedi ",
+            para2_part3: "-ben írt front-endtől kezdve az egyedi ",
             highlight_dotnet: ".NET REST API",
-            para2_part4: "-ig, amely a funkcióit működteti.",
+            para2_part4: "-ig, amely a háttérfunkciókat biztosítja.",
 
-            para3_part1: "Amikor nem a billentyűzet mögött ülök, általában túrázom vagy gyakorlatias megoldásokat keresek a falusi élet mindennapi kihívásaira. A szívem mélyén ",
-            highlight_builder: "építő vagyok",
-            para3_part2: ", legyen szó kódról vagy fizikai anyagokról, és alig várom, hogy egyedi, gyakorlatias képességeimet és elszánt, kíváncsi gondolkodásmódomat egy előremutató fejlesztői csapathoz vigyem."
+            para3_part1: "Amikor nem a gép előtt ülök, szívesen túrázom, vagy a falusi élet mindennapi kihívásaira keresek gyakorlatias megoldásokat. A szívem mélyén ",
+            highlight_builder: "alkotó ember vagyok",
+            para3_part2: ", legyen szó kódról vagy fizikai anyagokról, és készen állok arra, hogy egyedi képességeimet és elszánt, kíváncsi szemléletmódomat egy innovatív fejlesztői csapatban kamatoztassam."
         },
-        educationTitle: "Education",
-        educationDefault: "Default Education text placeholder",
-        educationExpanded: "Expanded Education text placeholder",
-        experienceTitle: "Experience",
+
+        educationTitle: "Tanulmányok",
+        educationDefault: "Formális és önképzésen alapuló tanulmányi utam.",
+
+        experienceTitle: "Szakmai Tapasztalat",
         woodworking: {
             title: "Asztalosmester",
-            company: "[A Családi Vállalkozás Neve]",
-            dates: "[Kezdés Dátuma] – [Befejezés Dátuma]",
-            description: "Mesteremberként ötleteket alakítottam át tervekké, majd kiváló minőségű, kész termékekké. Ez a tapasztalat alapozta meg a precizitás és a részletekre való odafigyelés iránti magas szintű elkötelezettségemet – a 'kétszer mérj, egyszer vágj' mentalitást, amelyet most a tiszta, hibáktól mentes kód írásakor is alkalmazok. Felelős voltam a projektek teljes körű menedzseléséért a nyersanyag kiválasztásától a végső összeszerelésig, ami fejlesztette a folyamat-orientált munkavégzési képességemet, a problémamegoldó készségemet és a projektkövetelményeknek való megfelelést."
+            company: "Helyi Kézműves Műhely",
+            dates: "Ongoing, on and off",
+            description: "Asztalosként ötletekből terveket, majd azokból kézzel készült, minőségi termékeket hoztam létre. Ez a tapasztalat alapozta meg a precizitás és a részletekre való odafigyelés iránti elkötelezettségemet – a 'kétszer mérj, egyszer vágj' elvét, amelyet ma a tiszta, hibamentes kód írásánál is alkalmazok. Felelős voltam a projektek teljes folyamatának felügyeletéért, a nyersanyagtól a végső összeszerelésig, ami megerősítette a folyamatorientált gondolkodásomat és a problémamegoldó képességemet."
         },
-
-        // Internship Experience - Hungarian
         internship: {
             title: "Webes Tartalomkezelő Gyakornok",
-            company: "[Cégnév]",
-            dates: "[Kezdés Dátuma] – [Befejezés Dátuma]",
-            description: "Gyakornoki időszakom alatt gyakorlati tapasztalatot szereztem egy professzionális fejlesztői környezetben. Elsődleges feladatom egy nagyvállalati weboldal tartalmának frissítése volt az Umbraco CMS segítségével. Ez a szerepkör megkövetelte a fejlesztői csapattal való együttműködést a tartalom integritásának biztosítása, a felmerülő hibák elhárítása és a projekt határidők betartása érdekében, ami értékes betekintést nyújtott egy élő webalkalmazás karbantartásába és működésébe."
+            company: "Octopus Digital",
+            dates: "2024. április – 2024. augusztus",
+            description: "Gyakornoki időszakom alatt gyakorlati tapasztalatot szereztem egy professzionális fejlesztői környezetben. Elsődleges feladatom egy nagyvállalati weboldal tartalmának frissítése volt az Umbraco CMS segítségével. Ez a szerepkör megkövetelte a fejlesztői csapattal való együttműködést a tartalom integritásának biztosítása, a hibák elhárítása és a határidők betartása érdekében, ami értékes betekintést nyújtott egy élő webalkalmazás karbantartásába és működésébe."
         },
 
-        projectsTitle: "Projects",
-        projectsDefault: "Expand to see my current projects.",
+        projectsTitle: "Projektek",
+        projectsDefault: "Kattints a részletekért.",
 
-        cvWebsiteProjectTitle: "CV Website Project",
-        cvWebsiteProjectDefault: "The site you're currently on.",
+        cvWebsiteProjectTitle: "Szakmai Portfólió Weboldal",
+        cvWebsiteProjectDefault: "Az oldal, amit éppen böngészel.",
         cvWebsiteProjectDescription: {
-            part1: "This website serves as my digital resume, built to be fast, interactive while minimizing full page reloads. The front-end uses a ",
+            part1: "Ez a weboldal a digitális önéletrajzom, amely gyors, interaktív és minimalizálja a teljes oldalbetöltéseket. A front-end egy ",
             highlightVite: "Vite",
-            part2: " and ",
+            part2: " és ",
             highlightReact: "React",
-            part3: " foundation with ",
+            part3: " alapra épül, ",
             highlightTypescript: "TypeScript",
-            part4: ". Styling is handled with ",
+            part4: " használatával. A stílusokért a ",
             highlightTailwindCSS: "Tailwind CSS",
-            part5: ", and ",
+            part5: ", az animációk többségéért pedig a ",
             highlightFramerMotion: "Framer Motion",
-            part6: " is responsible for the majority of animations. The site is deployed globally via ",
+            part6: " felel. Az oldal globálisan a ",
             highlightVercel: "▲ Vercel",
-            part7: ", while the messaging function is powered by a ",
+            part7: " platformján fut, míg az üzenetküldő funkciót egy ",
             highlightMongoDB: "MongoDB",
-            part8: " database running in a ",
+            part8: " adatbázis szolgálja ki, amely egy ",
             highlightDocker: "Docker",
-            part9: " container on a ",
+            part9: " konténerben fut egy ",
             highlightDigitalOcean: "DigitalOcean",
-            part10: " app platform.",
+            part10: " szerveren.",
         },
 
-        cvWebsiteMessageBoxTitle: "Messaging System Architecture",
-        cvWebsiteMessageBoxDefault: "A behind-the-scenes look at the messaging feature.",
+        cvWebsiteMessageBoxTitle: "Üzenetküldő Rendszer Architektúrája",
+        cvWebsiteMessageBoxDefault: "Betekintés az üzenetküldő funkció kulisszái mögé.",
         cvWebsiteMessageBoxDescription: {
-            //full disclosure, I made AI structure the raw text to fit into my language file based on cvWebsiteProjectDescription
-            para1_part1: "The messaging functionality is built on a two-tier architecture, consisting of a ",
+            para1_part1: "Az üzenetküldő egy kétszintű architektúrára épül, amely egy ",
             highlight_dotnet: ".NET REST API",
-            para1_part2: " (C#) and a ",
+            para1_part2: "-ból (C#) és egy ",
             highlight_mongo1: "MongoDB",
-            para1_part3: " database. The API serves as the gateway for all message-related operations, while ",
+            para1_part3: " adatbázisból áll. Az API átjáróként szolgál az üzenetekkel kapcsolatos műveletekhez, míg a ",
             highlight_mongo2: "MongoDB",
-            para1_part4: " handles the data persistence.",
-
-            //why I'm using mongoDB
-            para2_part1: "While a traditional ",
+            para1_part4: " kezeli az adatok tárolását.",
+            para2_part1: "Bár egy hagyományos ",
             highlight_sql: "SQL",
-            para2_part2: " database would have been a natural fit for this kind of structured data, this project presented an excellent opportunity to gain hands-on experience with ",
+            para2_part2: " adatbázis is jó választás lett volna, ez a projekt kiváló lehetőséget nyújtott a ",
             highlight_nosql: "NoSQL",
-            para2_part3: " technologies. The decision to use ",
+            para2_part3: " technológiák megismerésére. A ",
             highlight_mongo3: "MongoDB",
-            para2_part4: " was a deliberate choice to explore its ",
-            highlight_doc_model: "document-based model",
-            para2_part5: ", even though the project's current scale doesn't require its powerful ",
-            highlight_scaling: "horizontal scaling",
-            para2_part6: " capabilities.",
-
-            //how chats work
-            para3_part1: "The user-facing chat experience is designed to be efficient and resource-conscious. When a user opens the chat interface, the application first checks ",
-            highlight_storage: "local and session storage",
-            para3_part2: " for an existing ",
-            highlight_chatid1: "chatID",
-            para3_part3: ". If one is found, the message history is retrieved. If not, the application remains idle. A new chat session, including a database document and a server-generated ",
-            highlight_chatid2: "chatID",
-            para3_part4: ", is only created when the user sends their first message. This '",
-            highlight_lazy: "lazy creation",
-            para3_part5: "' approach prevents unnecessary database entries.",
-
-            //data structure
-            para4_part1: "On the backend, each conversation is stored as a single document in ",
+            para2_part4: " melletti döntés tudatos választás volt a ",
+            highlight_doc_model: "dokumentum-alapú modelljének",
+            para2_part5: " felfedezésére, még akkor is, ha a projekt jelenlegi mérete nem indokolja a ",
+            highlight_scaling: "horizontális skálázhatóság",
+            para2_part6: " nyújtotta előnyöket.",
+            para3_part1: "A felhasználói felületet a hatékonyság jegyében terveztem. Amikor a felhasználó megnyitja a chatet, az alkalmazás először a ",
+            highlight_storage: "böngésző tárolójában",
+            para3_part2: " keres egy meglévő ",
+            highlight_chatid1: "chat ID",
+            para3_part3: "-t. Ha talál, betölti a beszélgetést. Ha nem, az új chat csak az első üzenet elküldésekor jön létre. Ez a '",
+            highlight_lazy: "lusta létrehozás",
+            para3_part5: "' megközelítés elkerüli a felesleges adatbázis-bejegyzéseket.",
+            para4_part1: "A háttérben minden beszélgetés egyetlen dokumentumként van tárolva a ",
             highlight_mongo4: "MongoDB",
-            para4_part2: ". This document includes the ",
-            highlight_chatid3: "chatID",
-            para4_part3: ", creation and update timestamps, and an embedded array of message objects. Each message object in the array contains its content, a timestamp, and a flag to identify the sender (user or administrator).",
-
-            //admin stuffs
-            para5_part1: "To manage conversations, I made a separate ",
-            highlight_admin: "administrative dashboard",
-            para5_part2: ". This interface allows me to view and respond to all incoming user messages, completing the communication loop."
+            para4_part2: "-ben. Ez a dokumentum tartalmazza a ",
+            highlight_chatid3: "chat ID",
+            para4_part3: "-t, a létrehozási és frissítési időbélyegeket, valamint egy beágyazott tömböt az üzenetekkel.",
+            para5_part1: "A beszélgetések kezelésére egy külön ",
+            highlight_admin: "adminisztrációs felületet",
+            para5_part2: " készítettem, amely lehetővé teszi a bejövő üzenetek megtekintését és megválaszolását, lezárva a kommunikációs kört."
         },
 
-        cvWebsiteAPITitle: "CV Website API Title",
-        cvWebsiteAPIDefault: "Default CV Website API Title",
-        cvWebsiteAPIExpanded: "Expanded CV Website Expanded Title",
-
-        cvWebsiteFrontendTitle: "CV Website Frontend Title",
-        cvWebsiteFrontendDefault: "Default CV Website Frontend Title",
-        cvWebsiteFrontendExpanded: "Expanded CV Website Frontend Title",
-
-        ttWebsiteProjectTitle: "E-kereskedelmi Frontend",
-
-        ttWebsiteProjectDefault: "Egy teljesen reszponzív és performáns weboldal frontend a \"Transylvania Transport\" nevű asztalos vállalkozás számára.",
-
+        ttWebsiteProjectTitle: "Kézműves E-kereskedelmi Frontend",
+        ttWebsiteProjectDefault: "Egy teljesen reszponzív és performáns weboldal frontend egy asztalos vállalkozás számára.",
         ttWebsiteProjectExpanded: {
             performance: {
                 title: "Teljesítmény-központú Architektúra",
                 default: "Gyors betöltésre és zökkenőmentes felhasználói élményre optimalizálva.",
                 expanded: {
-                    part1: "Fejlett teljesítménynövelő mintákat alkalmaztam, beleértve a komponens-szintű kód-felosztást a `React.lazy()` segítségével, valamint az oldalszakaszok lusta betöltését az `IntersectionObserver` API-val. Ez gyors kezdeti betöltést biztosít és minimalizálja a végfelhasználó adatforgalmát."
+                    part1: "Fejlett teljesítménynövelő mintákat alkalmaztam, beleértve a komponens-szintű kód-felosztást a `React.lazy()` segítségével, valamint az oldalszakaszok lusta betöltését az `IntersectionObserver` API-val. Ez gyors kezdeti betöltést és minimális adatforgalmat biztosít."
                 }
             },
             interactive: {
                 title: "Interaktív és Egyedi Komponensek",
-                default: "Egyedi, újrahasznosítható komponensekkel és gazdag animációkkal.",
+                default: "Egyedi, újrahasznosítható komponensek és gazdag animációk.",
                 expanded: {
                     part1: "Egyedi, újrahasznosítható komponenseket fejlesztettem ",
                     highlightReact: "React",
                     part2: " és ",
                     highlightTypescript: "TypeScript",
-                    part3: " használatával. A projekt központi eleme egy húzható kép-körhinta egy kibővíthető lightbox galériával, amely a ",
+                    part3: " használatával. A központi elem egy húzható kép-körhinta, amely a ",
                     highlightFramerMotion: "Framer Motion",
                     part4: " könyvtárral készült a sima, fizika-alapú animációk érdekében."
                 }
             },
             stack: {
                 title: "Modern és Karbantartható Tech Stack",
-                default: "Ipari szabványoknak megfelelő, skálázható technológiai háttérrel építve.",
+                default: "Ipari szabványoknak megfelelő, skálázható technológiai háttérrel.",
                 expanded: {
-                    part1: "A projekt egy modern alapra épült, ",
+                    part1: "A projekt ",
                     highlightVite: "Vite",
-                    part2: ", React 19 és ",
+                    part2: ", ",
+                    highlightReact: "React",
+                    part3: " és ",
                     highlightTailwindCSS: "Tailwind CSS",
-                    part3: " felhasználásával, ami egy rendkívül hatékony és karbantartható stílusozási munkafolyamatot tesz lehetővé. A projekt a komponens-alapú felépítés és a reszponzív dizájn legjobb gyakorlatait mutatja be."
+                    part4: " alapokra épül, ami hatékony és karbantartható stílusozási munkafolyamatot tesz lehetővé."
                 }
             },
             design: {
                 title: "Ügyfél-központú Tervezés",
                 default: "A felhasználói felület és a márkaidentitás az üzleti igényekre szabva.",
                 expanded: {
-                    part1: "A teljes alkalmazás, a színpalettától az elrendezésig, egy konkrét üzleti és márkaidentitás figyelembevételével lett megtervezve, bizonyítva a képességet, hogy a termékkövetelményeket egy csiszolt végtermékké alakítsam."
+                    part1: "Az alkalmazás a színpalettától az elrendezésig egyedi üzleti igények szerint lett megtervezve, bizonyítva, hogy képes vagyok a termékkövetelményeket egy csiszolt végtermékké alakítani."
                 }
             }
         },
-        
-        hsTitle: "Salamon Ernő - Theoretical High School",
-        hsDefault: "Math - Informatics",
-        hsExpanded: "My majors were mathematics and computer science, mainly c++.",
-        uniTitle: "Sapientia EMTE",
-        uniDefault: "Economic Informatics",
-        uniExpanded: "I studied Fundamentals of Programming, Java Programming, Operations Research, Database Design, Computer Networks, Operating Systems, Micro- and Macroeconomics.",
 
+        hsTitle: "Salamon Ernő Elméleti Líceum",
+        hsDefault: "Matematika-Informatika",
+        hsExpanded: "A szakirányom a matematikára és az informatikára fókuszált, kiemelt hangsúlyt fektetve a C++ programozás alapjaira.",
+        uniTitle: "Sapientia EMTE",
+        uniDefault: "Gazdasági Informatika",
+        uniExpanded: "Szilárd alapot szereztem a legfontosabb informatikai és közgazdasági területeken, többek között: Programozás Alapjai, Java Programozás, Operációkutatás, Adatbázis-tervezés, Számítógépes Hálózatok és Operációs Rendszerek."
     }
 };
