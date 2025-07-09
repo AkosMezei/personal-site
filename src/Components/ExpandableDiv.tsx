@@ -300,16 +300,16 @@ function ExpandableDiv({
                                 <div className="flex flex-col items-center justify-center">
                                     {imageLocation == "top" && (
                                         <motion.div
-                                            whileHover={{scale: imageIsExpanded? 0.98 : 1.1, transformOrigin: "bottom right"}}
+                                            whileHover={{scale: imageIsExpanded? 0.98 : 1.1, transformOrigin: ""}}
                                             animate={{
                                                 width: imageIsExpanded
-                                                    ? (isMobile ? "100vw" : "40vw")
+                                                    ? (isMobile ? "80vw" : "50vw")
                                                     : (isMobile ? "40vw" : "20vw")
                                             }}
-                                            initial={{transformOrigin: "bottom right"}}
+                                            initial={{transformOrigin: ""}}
                                             transition={{duration: 0.2, ease: "easeInOut"}}
                                         >
-                                            <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
+                                            <img className="rounded-2xl w-full mt-5" src={image} onClick={expandImage}/>
                                         </motion.div>
                                     )}
                                     <AnimatePresence mode="wait">
