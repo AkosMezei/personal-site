@@ -8,6 +8,7 @@ import { BackgroundContext, getInitialTheme } from './Components/BackgroundConte
 import {useEffect, useState } from 'react';
 import { injectSpeedInsights } from '@vercel/speed-insights';
 import {LanguageProvider} from "./Components/LanguageContext.tsx";
+import {Analytics} from "@vercel/analytics/react";
 
 
 const styles = `
@@ -81,6 +82,7 @@ function App() {
                 </motion.main>
             </div>
             </LanguageProvider>
+            <Analytics/>
         </BackgroundContext.Provider>
     );
 }
