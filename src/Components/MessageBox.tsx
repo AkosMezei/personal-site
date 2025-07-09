@@ -18,9 +18,6 @@ function MessageBox(){
 
     const apiKey = import.meta.env.VITE_API_KEY;
 
-    //debug
-    console.log('API Key loaded:', apiKey ? 'Yes' : 'No');
-
     const [isExpanded, setIsExpanded] = useState(false);
 
     const [messages, setMessages] = useState<Message[]>([]);
@@ -61,7 +58,8 @@ function MessageBox(){
             }
         }
     }, [isExpanded]);
-
+    
+    // Get chat id if exists, if not, request from API
     async function ensureChatId() {
         const savedChatId = getChatId();
         if (savedChatId) {
@@ -82,9 +80,8 @@ function MessageBox(){
                     }
                 });
                 const newChatId = response.data.id;
-                console.log(newChatId);
                 localStorage.setItem("chatId", newChatId);
-                sessionStorage.setItem("chatId", newChatId); //implement trying to get this as a fallback when localstorage doesn't work
+                sessionStorage.setItem("chatId", newChatId); //TODO implement trying to get this as a fallback when localstorage doesn't work
                 return newChatId;
             } catch (error) {
                 console.log(error);
@@ -112,7 +109,7 @@ function MessageBox(){
         // Store the message temporarily
         const messageToSend = inputMessage;
 
-        // Clear input right away for better UX
+        // Clear input right away
         setInputMessage('');
 
         // Ensure we have a chat ID before sending
