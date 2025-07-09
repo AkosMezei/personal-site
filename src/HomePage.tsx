@@ -1,15 +1,10 @@
-﻿//TODO refuses to update on theme change, make it work with static bg or make it update
+﻿//TODO move todos to issues
+
 //TODO if the number of lines is different between languages, the language change is jagged af
-//TODO sometimes on first expand the image load jumps the whole div, figure out what causes it
 //TODO if on mobile, when opening message sender, jump to bottom so keyboard doesn't hide input 
 //TODO fix centered titles inside projects not being centered on mobile
 //TODO add hrefs to tech stack in about me
-//TODO maybe unhighlight the woodworking part
-//TODO preload or preallocate space for edu. images (and maybe all other images too while at it)
 
-//TODO move ttwebsite image to top
-
-import giantPlaceholderImage from "../src/assets/placeholderImage.jpeg"
 import uni from "../src/assets/sapientia.jpg"
 import highschool from "../src/assets/salamon.png" //TODO resize, remove top
 import ttwebsite from "../src/assets/ttwebsite.png"
@@ -23,13 +18,9 @@ function HomePage() {
 
     const { t } = useTranslation();
 
-    // TODO preload on div expansion OR hover
-    preload(giantPlaceholderImage, {as: "image"})
-
-
     return (
         <div className="mx-2 py-16 lg:w-3/5 ml-auto mr-auto">
-            <motion.div layout transition={{layout: {duration: 0.5, ease: "easeInOut"}}}> {/*TODO this does jack shit fuck all currently*/}
+            <motion.div layout transition={{layout: {duration: 0.5, ease: "easeInOut"}}}>
                 <ExpandableDiv title={t('aboutMeTitle')}
                                orientation="center"
                                defaultContent={

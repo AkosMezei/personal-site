@@ -5,8 +5,6 @@ import flagEN from "../assets/Flag_of_the_United_Kingdom.svg.jpg"
 import flagHU from "../assets/128px-Flag_of_Hungary.svg.jpg"
 import {useEffect, useState} from "react";
 
-//TODO add language selector from other side
-
 function Header() {
 
     const [isMobile, setIsMobile] = useState(false);
