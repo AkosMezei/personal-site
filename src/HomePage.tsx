@@ -277,10 +277,12 @@ function HomePage() {
                                                        expandedContent={
                                                            <div className="text-center">
                                                                {t('ttWebsiteProjectExpanded.stack.expanded.part1')}
-                                                               <a href="https://vite.dev" target="_blank" className="bg-gradient-to-br from-viteStart from-45% via-viteMiddle via-50% to-viteEnd to-80% text-transparent bg-clip-text font-bold text-lg rounded-md px-1">{t('ttWebsiteProjectExpanded.stack.expanded.highlightVite')}</a>
+                                                               <a href="https://vite.dev" target="_blank" className="hover:bg-gradient-to-br hover:from-viteStart hover:from-45% hover:via-viteMiddle hover:via-50% hover:to-viteEnd hover:to-80% hover:text-transparent hover:bg-clip-text font-bold text-lg rounded-md px-1">{t('ttWebsiteProjectExpanded.stack.expanded.highlightVite')}</a>
                                                                {t('ttWebsiteProjectExpanded.stack.expanded.part2')}
-                                                               <a href="https://tailwindcss.com" target="_blank" className="text-tailwind font-bold text-lg rounded-md px-1">{t('ttWebsiteProjectExpanded.stack.expanded.highlightTailwindCSS')}</a>
+                                                               <a href="https://react.dev" target="_blank" className="hover:text-react font-bold text-lg rounded-md px-1">{t('ttWebsiteProjectExpanded.stack.expanded.highlightReact')}</a>
                                                                {t('ttWebsiteProjectExpanded.stack.expanded.part3')}
+                                                               <a href="https://tailwindcss.com" target="_blank" className="hover:text-tailwind font-bold text-lg rounded-md px-1">{t('ttWebsiteProjectExpanded.stack.expanded.highlightTailwindCSS')}</a>
+                                                               {t('ttWebsiteProjectExpanded.stack.expanded.part4')}
                                                            </div>
                                                        }
                                                    />
