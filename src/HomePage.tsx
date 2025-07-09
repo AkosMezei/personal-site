@@ -39,11 +39,11 @@ function HomePage() {
                                        </p>
                                        <p className="mt-3 text-center">
                                            {t('aboutMeExpanded.para2_part1')}
-                                           <a href="..." className="hover:text-react font-bold">{t('aboutMeExpanded.highlight_react')}</a>
+                                           <a href="https://react.dev" target="_blank" className="hover:text-react font-bold">{t('aboutMeExpanded.highlight_react')}</a>
                                            {t('aboutMeExpanded.para2_part2')}
-                                           <a href="..." className="hover:text-typescript font-bold">{t('aboutMeExpanded.highlight_typescript')}</a>
+                                           <a href="https://www.typescriptlang.org" target="_blank" className="hover:text-typescript font-bold">{t('aboutMeExpanded.highlight_typescript')}</a>
                                            {t('aboutMeExpanded.para2_part3')}
-                                           <a href="..." className="hover:bg-gradient-to-bl hover:from-dotNetStart hover:from-45% hover:to-dotNetEnd hover:to-80% hover:text-transparent hover:bg-clip-text font-bold">{t('aboutMeExpanded.highlight_dotnet')}</a>
+                                           <a href="https://dotnet.microsoft.com/" target="_blank" className="hover:bg-gradient-to-bl hover:from-dotNetStart hover:from-45% hover:to-dotNetEnd hover:to-80% hover:text-transparent hover:bg-clip-text font-bold">{t('aboutMeExpanded.highlight_dotnet')}</a>
                                            {t('aboutMeExpanded.para2_part4')}
                                        </p>
                                        <p className="mt-3 text-center">
@@ -139,6 +139,9 @@ function HomePage() {
                                            defaultContent={
                                                <>
                                                    <p className="text-center mb-3"> {t('cvWebsiteProjectDefault')} </p>
+                                                   <div className="text-center mb-3 font-bold">
+                                                   <a href="https://github.com/AkosMezei/personal-site" target="_blank"> Click here to get to the github repo of this project. </a>
+                                                   </div>
                                                    <div className="text-center">
                                                        {t('cvWebsiteProjectDescription.part1')}
                                                        <a href="https://vite.dev" target="_blank" className="hover:bg-gradient-to-br hover:from-viteStart hover:from-45% hover:via-viteMiddle hover:via-50% hover:to-viteEnd hover:to-80% hover:text-transparent hover:bg-clip-text font-bold text-lg rounded-md px-1">{t('cvWebsiteProjectDescription.highlightVite')}</a>
