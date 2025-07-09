@@ -23,7 +23,7 @@ const styles = `
 
 function App() {
 
-    injectSpeedInsights();
+    injectSpeedInsights(); //for vercel
 
     const [theme, setTheme] = useState(getInitialTheme);
     const primary = useMotionValue(theme === 'dark' ? '6, 12, 26' : '254 250 224'); // Primary theme color
@@ -34,10 +34,10 @@ function App() {
     }99%)`;
 
     const toggleTheme = () => {
-        const newTheme = theme === 'dark' ? 'light' : 'dark'; //TODO make this nicer, for some fucking reason if dark == !dark doesn't work
+        const newTheme = theme === 'dark' ? 'light' : 'dark'; //TODO make this nicer, for some reason if dark == !dark doesn't work
         setTheme(newTheme);
         localStorage.setItem('theme', newTheme);
-        window.dispatchEvent(new Event("storage")); //TODO maybe solution to theme not refreshing, if not, cap his ass
+        window.dispatchEvent(new Event("storage"));
         
         //TODO keeps throwing an error so I duct taped an ignore onto it, fix it properly later
         // @ts-ignore
