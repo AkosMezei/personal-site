@@ -2,9 +2,9 @@
 
 This is the repository for my personal portfolio website, built from the ground up to be a fast, interactive, and modern showcase of my skills as a developer.
 
-**[➡️ View the Live Site](https://your-live-url.com)**
+**[➡️ View the Live Site](https://www.mezeiakos.cv)**
 
-![Screenshot of the portfolio website](./path-to-your/screenshot.png)
+![Screenshot of the portfolio website](./src/assets/cvWebsiteScreenshot.png)
 
 ## About This Project
 
@@ -60,30 +60,9 @@ This project is actively maintained. Here are some of the key improvements plann
 
 ---
 
-## Getting Started Locally
+## Transparency notice
 
-To run this project on your local machine, follow these steps:
+-   **AI** was used to format the translation file because while I regret the way I set it up and is a giant hassle to add content, with AI it's quick and mostly foolproof to format content I wrote to fit it.
+-   **AI** was also used to comment some parts of code, mostly comments that mark different sections of content on site.
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/your-username/your-repo-name.git
-    cd your-repo-name
-    ```
-
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
-
-3.  **Set up environment variables:**
-    Create a `.env.local` file in the root of the project and add the following variables:
-    ```
-    VITE_API_KEY=your_api_key_for_local_development
-    ```
-
-4.  **Run the development server:**
-    ```bash
-    npm run dev
-    ```
-
-The application will be available at `http://localhost:3000` (or another port if 3000 is in use).
+---
