@@ -103,7 +103,6 @@ function HomePage() {
                                        <div className="experience-item mt-4">
                                            <div className="flex justify-between items-baseline">
                                                <h3 className="text-xl font-bold">{t('woodworking.title')}</h3>
-                                               <p className="text-sm text-gray-400">{t('woodworking.dates')}</p>
                                            </div>
                                            <h4 className="text-lg font-semibold italic">{t('woodworking.company')}</h4>
                                            <p className="mt-2">
@@ -226,16 +225,6 @@ function HomePage() {
                                                                    {t('cvWebsiteMessageBoxDescription.para5_part2')}
                                                                </p>
                                                            </div>
-                                                       }
-                                                   />
-                                                   <ExpandableDiv
-                                                       title={t('cvWebsiteFrontendTitle')}
-                                                       orientation="center"
-                                                       defaultContent={
-                                                           <p className="text-center"> {t('cvWebsiteFrontendDefault')} </p>
-                                                       }
-                                                       expandedContent={
-                                                           <p className="text-center"> {t('cvWebsiteFrontendExpanded')} </p>
                                                        }
                                                    />
                                                </div>
