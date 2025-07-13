@@ -1,4 +1,5 @@
 ﻿//TODO move todos to issues
+//TODO move todos to issues
 
 //TODO if the number of lines is different between languages, the language change is jagged af
 //TODO if on mobile, when opening message sender, jump to bottom so keyboard doesn't hide input 
@@ -139,7 +140,7 @@ function HomePage() {
                                                <>
                                                    <p className="text-center mb-3"> {t('cvWebsiteProjectDefault')} </p>
                                                    <div className="text-center mb-3 font-bold">
-                                                   <a href="https://github.com/AkosMezei/personal-site" target="_blank"> Click here to get to the github repo of this project. </a>
+                                                   <a href="https://github.com/AkosMezei/personal-site" target="_blank"> {t('cvWebsiteGithubLinkText')} </a>
                                                    </div>
                                                    <div className="text-center">
                                                        {t('cvWebsiteProjectDescription.part1')}

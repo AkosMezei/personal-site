@@ -48,6 +48,7 @@
 
         cvWebsiteProjectTitle: "CV Website Project",
         cvWebsiteProjectDefault: "The site you're currently on.",
+        cvWebsiteGithubLinkText: "Click here to get to the github repo of this project.",
         cvWebsiteProjectDescription: {
             part1: "This website serves as my digital resume, built to be fast, interactive while minimizing full page reloads. The front-end uses a ",
             highlightVite: "Vite",
@@ -213,6 +214,7 @@
 
         cvWebsiteProjectTitle: "Szakmai Portfólió Weboldal",
         cvWebsiteProjectDefault: "Az oldal, amit éppen böngészel.",
+        cvWebsiteGithubLinkText: "Kattints ide a weboldal github repójának megtekintéséhez.",
         cvWebsiteProjectDescription: {
             part1: "Ez a weboldal a digitális önéletrajzom, amely gyors, interaktív és minimalizálja a teljes oldalbetöltéseket. A front-end egy ",
             highlightVite: "Vite",
