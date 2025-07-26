@@ -9,6 +9,7 @@
 //TODO fix un-expansion when changing language in nested exp. divs
 //TODO make prop for image expansion size, default | full width - for TT website project for example
 //TODO make bg ever so slightly blur, so the stars are less invasive
+//TODO make the div borders more distinct, maybe with a shadow, the normal daytime night mode is hard to see
 
 
 import {useEffect, useState, useRef} from "react";
