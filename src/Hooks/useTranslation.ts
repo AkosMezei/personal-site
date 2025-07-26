@@ -1,6 +1,6 @@
 ﻿//Hook to get language, falls back to english if no other language is available
 
-import { useLanguageContext } from "../Components/LanguageContext"
+import { useLanguageContext } from "../Contexts/LanguageContext.tsx"
 import { translations } from "../Translations.ts"
 
 const getNestedProperty = (obj: any, path: string): string | undefined => {
