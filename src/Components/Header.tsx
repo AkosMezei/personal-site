@@ -1,6 +1,6 @@
-﻿import { useBackgroundContext } from './BackgroundContext.tsx';
+﻿import { useBackgroundContext } from '../Contexts/BackgroundContext.tsx';
 import { Moon, Sun } from 'lucide-react';
-import {useLanguageContext} from "./LanguageContext.tsx";
+import {useLanguageContext} from "../Contexts/LanguageContext.tsx";
 import flagEN from "../assets/Flag_of_the_United_Kingdom.svg.jpg"
 import flagHU from "../assets/128px-Flag_of_Hungary.svg.jpg"
 import {useEffect, useState} from "react";
@@ -30,7 +30,7 @@ function Header() {
     
     return (
         <header className={`fixed top-0 w-full z-50 backdrop-blur-sm ${
-            theme === 'dark' ? 'bg-gray-900/90' : 'bg-white/50'
+            theme === 'dark' ? 'bg-white/5' : 'bg-gray-900/15'
         }`}>
             <div className="container mx-auto px-4 py-3 flex justify-between items-center ">
                 <div>

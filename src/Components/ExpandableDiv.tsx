@@ -8,12 +8,14 @@
 //TODO resize/remake expansion chevrons on mobile on nested exp. divs
 //TODO fix un-expansion when changing language in nested exp. divs
 //TODO make prop for image expansion size, default | full width - for TT website project for example
+//TODO make bg ever so slightly blur, so the stars are less invasive
+
 
 import {useEffect, useState, useRef} from "react";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {AnimatePresence, motion} from "motion/react";
-import { useBackgroundContext } from "./BackgroundContext.tsx";
-import { useLanguageContext } from "./LanguageContext.tsx";
+import { useBackgroundContext } from "../Contexts/BackgroundContext.tsx";
+import { useLanguageContext } from "../Contexts/LanguageContext.tsx";
 
 const textVariants = {
     initial: { opacity: 0, filter: "blur(10px)" },

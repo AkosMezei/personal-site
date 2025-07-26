@@ -50,7 +50,11 @@ The portfolio includes a fully functional messaging system, as a demonstration o
 
 ## Roadmap & Future Enhancements
 
-This project is actively maintained. Here are some of the key improvements planned to further enhance its architecture and security:
+This project is actively maintained. Here are some of the key improvements planned, categorized by their primary focus:
+
+## Core Architecture & Security
+
+These enhancements focus on making the application's foundation more robust, secure, and efficient.
 
 -   **Enhanced API Security (Backend-for-Frontend):** The current architecture involves a client-side API key. The next major step is to implement a **Backend-for-Frontend (BFF)** proxy. This will involve a lightweight server-side component that will receive requests from the React app, securely attach the secret API key on the server, and then forward the request to the main API. This will ensure the API key is never exposed on the client, adhering to security best practices.
 
@@ -58,6 +62,13 @@ This project is actively maintained. Here are some of the key improvements plann
 
 -   **Real-Time Communication with WebSockets:** The current chat relies on HTTP polling. A significant planned upgrade is to transition to a WebSocket-based connection (likely using SignalR for .NET) to provide true real-time, bidirectional communication, reduce network overhead, and improve the user experience.
 
+## Frontend & User Experience
+
+These features are focused on improving the client-side experience and adding more interactive elements.
+
+-   **Adaptive Performance Monitoring:** To ensure a smooth experience for all users, a client-side performance monitor could be implemented. This system would measure the application's frame rate in real-time. If a sustained drop below a set threshold is detected (indicating the user's device is struggling with animations), a non-intrusive UI element would appear, offering the user the option to disable performance-intensive effects like the starfield animation with a single click. This setting would be persisted in localStorage.
+
+-   **Manual Theme Override:** A user control could be added to allow for manual selection of the four time-based background themes (dawn, day, dusk, night), overriding the automatic time detection to let users explore all visual styles.
 ---
 
 ## Transparency notice
