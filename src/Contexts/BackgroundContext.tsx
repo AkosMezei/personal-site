@@ -1,6 +1,5 @@
 ﻿import {createContext, useContext, ReactNode, useEffect, useState} from 'react';
-import {motion, useMotionTemplate, useMotionValue} from "motion/react";
-import {animate} from "motion";
+import { motion, useMotionTemplate, useMotionValue, animate, MotionValue } from 'framer-motion';
 import {useTimeContext} from "./TimeContext.tsx";
 import {getColorsForThemeAndTime} from "../Utils/backgroundUtils.ts";
 import {Stars} from "../Components/FX/Stars.tsx";
@@ -40,9 +39,9 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
     const initialColors = getColorsForThemeAndTime(initialTheme, hour);
     const calculatedMidpoint = 20 + (hour / 23) * 60;
     const [theme, setTheme] = useState(getInitialTheme);
-    const primary = useMotionValue(initialColors.primary);
-    const via = useMotionValue(initialColors.via);
-    const secondary = useMotionValue(initialColors.secondary);
+    const primary: MotionValue<string> = useMotionValue(initialColors.primary);
+    const via: MotionValue<string> = useMotionValue(initialColors.via);
+    const secondary: MotionValue<string> = useMotionValue(initialColors.secondary);
     const gradientMidpoint = useMotionValue(calculatedMidpoint);
 
     useEffect(() => {
