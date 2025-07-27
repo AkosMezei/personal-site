@@ -43,8 +43,10 @@ export const WeatherProvider = ({children}:{children:ReactNode}) => {
             try {
                 const response = await axios.get('/api/weather')
 
+                console.log(response.data);
+
                 const code = response.data.current.condition.code;
-                const category = mapWeatherCodeToCategory(code);
+                const category = mapWeatherCodeToCategory(parseInt(code));
 
                 setWeatherCategory(category);
                 setError(false);
