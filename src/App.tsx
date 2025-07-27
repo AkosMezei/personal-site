@@ -7,6 +7,7 @@ import { injectSpeedInsights } from '@vercel/speed-insights';
 import {LanguageProvider} from "./Contexts/LanguageContext.tsx";
 import {Analytics} from "@vercel/analytics/react";
 import {TimeProvider} from "./Contexts/TimeContext.tsx";
+import {WeatherProvider} from "./Contexts/WeatherContext.tsx";
 
 const styles = `
   /* Base transitions for theme changes */
@@ -24,19 +25,21 @@ function App() {
     injectSpeedInsights(); //for vercel
 
     return (
-        <TimeProvider>
-        <BackgroundProvider>
-            <LanguageProvider>
-                <style>{styles}</style>
-                <div>
-                        <Header/>
-                        <HomePage/>
-                        <Footer/>
-                </div>
-            </LanguageProvider>
-            <Analytics/>
-        </BackgroundProvider>
-        </TimeProvider>
+        <WeatherProvider>
+            <TimeProvider>
+                <BackgroundProvider>
+                    <LanguageProvider>
+                        <style>{styles}</style>
+                        <div>
+                                <Header/>
+                                <HomePage/>
+                                <Footer/>
+                        </div>
+                    </LanguageProvider>
+                    <Analytics/>
+                </BackgroundProvider>
+            </TimeProvider>
+        </WeatherProvider>
     );
 }
 
