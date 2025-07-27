@@ -5,7 +5,6 @@ import {getColorsForThemeAndTime} from "../Utils/backgroundUtils.ts";
 import {Stars} from "../Components/FX/Stars.tsx";
 import {scenes} from "../data/cloudData.ts";
 import {Clouds} from "../Components/FX/Clouds.tsx";
-import {useWeatherContext} from "./WeatherContext.tsx";
 
 type Theme = 'dark' | 'light';
 
@@ -47,18 +46,16 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
     const secondary: MotionValue<string> = useMotionValue(initialColors.secondary);
     const gradientMidpoint = useMotionValue(calculatedMidpoint);
 
-    const {weatherCategory, isLoading} = useWeatherContext()
+    const currentFakeWeather = 'stormy' //clear | cloudy | stormy
 
-    const activeWeather = isLoading ? 'clear' : weatherCategory //clear | cloudy | stormy
-
-    const cloudData = scenes[activeWeather];
+    const cloudData = scenes[currentFakeWeather];
     const cloudColorFilter = {
         clear: 'opacity(0.8)',
         cloudy: 'opacity(1.0)',
         stormy: 'brightness(0.7) contrast(1.2) saturate(0.8)',
     }
 
-    const activeCloudFilter = cloudColorFilter[activeWeather];
+    const activeCloudFilter = cloudColorFilter[currentFakeWeather];
 
     useEffect(() => {
         // Get the target colors for the NEW theme
