@@ -109,7 +109,7 @@ function ExpandableDiv({
              onMouseDown={handleMouseDown}
              onMouseUp={handleMouseUp}
              onMouseEnter={preloadOnHover}
-             className={`w-auto rounded-2xl p-3  m-3 ${theme === 'dark' ? "bg-black/10 hover:bg-gray-500/5" : "bg-lightDivBackground/50 hover:bg-lightDivHoverBackground/10"}`}> {/*this is the motherfucker that refuses to update*/}
+             className={`w-auto rounded-2xl backdrop-blur-[2px] p-3 m-3 ${theme === 'dark' ? "bg-black/10 hover:bg-gray-500/5" : "bg-lightDivBackground/50 hover:bg-lightDivHoverBackground/10"}`}> {/*this is the motherfucker that refuses to update*/}
 
             {orientation == "left" && (
                 <div className="flex flex-row items-center justify-between">
