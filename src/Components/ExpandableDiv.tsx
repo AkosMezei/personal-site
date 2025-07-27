@@ -1,18 +1,4 @@
-﻿//TODO make text orientation right look all right
-//TODO proper content types
-//TODO reformat code so it's more readable
-//TODO on mobile, expand images to full width
-//TODO somehow alert user to the expandability of pictures
-//TODO make margins smaller on mobile so more content can fit
-//TODO make shit not expand/unexpand when highlighting - yoink from TT website
-//TODO resize/remake expansion chevrons on mobile on nested exp. divs
-//TODO fix un-expansion when changing language in nested exp. divs
-//TODO make prop for image expansion size, default | full width - for TT website project for example
-//TODO make bg ever so slightly blur, so the stars are less invasive
-//TODO make the div borders more distinct, maybe with a shadow, the normal daytime night mode is hard to see
-
-
-import {useEffect, useState, useRef} from "react";
+﻿import {useEffect, useState, useRef} from "react";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {AnimatePresence, motion} from "motion/react";
 import { useBackgroundContext } from "../Contexts/BackgroundContext.tsx";

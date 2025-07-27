@@ -31,4 +31,3 @@ export const getColorsForThemeAndTime = (theme: "dark" | "light", hour: number) 
     if (hour >= 17 && hour < 21) return palette.dusk;
     return palette.night; // Default for hours 22:00 to 04:59
 }
-//TODO get sunset info so the palette can more accurately reflect time of day

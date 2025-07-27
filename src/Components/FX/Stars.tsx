@@ -1,8 +1,4 @@
-﻿//TODO window.innerWidth and height could be a potential issue during serverside rendering
-//TODO parseFloat without checking if the conversion was successful could lead to NaN
-//TODO layer value validation, enum or type guard
-// TODO add subtle twinkle effect to stars
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import { motion, useMotionValue, useTransform, MotionValue } from 'framer-motion';
 import {STAR_DATA} from "../../data/starData.ts";
 
