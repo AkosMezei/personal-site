@@ -2,7 +2,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 export default async function handler(request: VercelRequest, response: VercelResponse) {
-    const apiKey = process.env.WEATHER_API_KEY;
+    const apiKey = import.meta.env.WEATHER_API_KEY;
     const location = request.query.location || 'auto:ip';
 
     const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}`;
