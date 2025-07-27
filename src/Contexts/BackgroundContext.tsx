@@ -3,6 +3,8 @@ import { motion, useMotionTemplate, useMotionValue, animate, MotionValue } from 
 import {useTimeContext} from "./TimeContext.tsx";
 import {getColorsForThemeAndTime} from "../Utils/backgroundUtils.ts";
 import {Stars} from "../Components/FX/Stars.tsx";
+import {scenes} from "../data/cloudData.ts";
+import {Clouds} from "../Components/FX/Clouds.tsx";
 
 type Theme = 'dark' | 'light';
 
@@ -43,6 +45,17 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
     const via: MotionValue<string> = useMotionValue(initialColors.via);
     const secondary: MotionValue<string> = useMotionValue(initialColors.secondary);
     const gradientMidpoint = useMotionValue(calculatedMidpoint);
+
+    const currentFakeWeather = 'stormy' //clear | cloudy | stormy
+
+    const cloudData = scenes[currentFakeWeather];
+    const cloudColorFilter = {
+        clear: 'opacity(0.8)',
+        cloudy: 'opacity(1.0)',
+        stormy: 'brightness(0.7) contrast(1.2) saturate(0.8)',
+    }
+
+    const activeCloudFilter = cloudColorFilter[currentFakeWeather];
 
     useEffect(() => {
         // Get the target colors for the NEW theme
@@ -98,6 +111,12 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
             {theme === 'dark' && (
                 <div style={{ position: 'absolute', inset: 0, zIndex: -1 }}>
                     <Stars />
+                </div>
+            )}
+
+            {theme === 'light' && (
+                <div style={{position: 'absolute', inset:0, zIndex: -1, pointerEvents: 'none'}}>
+                    <Clouds data={cloudData} filter={activeCloudFilter} />
                 </div>
             )}
             {children}
