@@ -1,13 +1,19 @@
 ﻿import { useBackgroundContext } from '../Contexts/BackgroundContext.tsx';
-import { Moon, Sun } from 'lucide-react';
+import { Moon, Sun, Palette, BugOff, BugPlay } from 'lucide-react';
 import {useLanguageContext} from "../Contexts/LanguageContext.tsx";
 import flagEN from "../assets/Flag_of_the_United_Kingdom.svg.jpg"
 import flagHU from "../assets/128px-Flag_of_Hungary.svg.jpg"
 import {useEffect, useState} from "react";
+import {AnimatePresence, motion} from "motion/react";
+import {useThemeSettingsContext} from "../Contexts/ThemeSettingsContext.tsx";
 
 function Header() {
 
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState<boolean>(false);
+    const [isThemeSettingsBarExpanded, setIsThemeSettingsBarExpanded] = useState<boolean>(false)
+
+    const { timeMode, manualTime, setTimeMode, setManualTime, weatherMode, manualWeather, setWeatherMode, setManualWeather, debugMode, setDebugMode } = useThemeSettingsContext()
+
 
     useEffect(() => {
         const checkIfMobile = () => {
@@ -58,7 +64,7 @@ function Header() {
                         className={`${isMobile ? "" : "ml-12"} ml-2 rounded-lg p-2 hover:bg-opacity-20 transition-colors ${
                             theme === 'dark'
                                 ? 'text-white hover:bg-white'
-                                : 'text-gray-900 hover:bg-gray-900'
+                                : 'text-black hover:bg-black'
                         }`}
                         aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
                     >
@@ -68,8 +74,55 @@ function Header() {
                             <Moon className="w-5 h-5"/>
                         )}
                     </button>
+                    {!isMobile &&
+                    <button onClick={() => setIsThemeSettingsBarExpanded(!isThemeSettingsBarExpanded)}>
+                        <Palette/>
+                    </button>
+                    }
                 </div>
             </div>
+            <AnimatePresence>
+                {isThemeSettingsBarExpanded &&
+                    <motion.div
+                        initial={{height: 0, opacity: 0}}
+                        animate={{height: "auto", opacity: 1}}
+                        exit={{height: 0, opacity: 0}}
+                        transition={{duration: 0.3, ease: "easeInOut"}}
+                    >
+                        <div className=""> {/*container for theme settings expanded section, colr it here if need be*/}
+                            <div className="flex flex-auto justify-evenly pb-2 pt-2 w-4/5 m-auto">
+                                    <div className="flex flex-auto justify-evenly w-1/4 flex-wrap">
+                                        <h1> Theme Colors: </h1>
+                                        <button className={`rounded-lg pr-1 pl-1 ${timeMode === "dynamic" ? "bg-amber-200" : ""}`} onClick={() => setTimeMode('dynamic')}> Dynamic </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 5) ? "bg-amber-200" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(5)}}> Morning </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 12) ? "bg-amber-200" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(12)}}> Midday </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 19) ? "bg-amber-200" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(19)}}> Evening </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 23) ? "bg-amber-200" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(23)}}> Night </button>
+
+                                    </div>
+                                {theme === "light" &&
+                                    <div className="flex flex-auto justify-evenly w-1/4 flex-wrap">
+                                        <h1> Weather: </h1>
+                                        <button className={`rounded-lg pr-1 pl-1 ${weatherMode === "dynamic" ? "bg-amber-200" : ""}`} onClick={() => setWeatherMode('dynamic')}> Dynamic </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${(weatherMode === "manual" && manualWeather === 'clear') ? "bg-amber-200" : ""}`} onClick={() => {setWeatherMode('manual'); setManualWeather('clear')}}> Clear </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${(weatherMode === "manual" && manualWeather === 'cloudy') ? "bg-amber-200" : ""}`} onClick={() => {setWeatherMode('manual'); setManualWeather('cloudy')}}> Cloudy </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${(weatherMode === "manual" && manualWeather === 'stormy') ? "bg-amber-200" : ""}`} onClick={() => {setWeatherMode('manual'); setManualWeather('stormy')}}> Stormy </button>
+                                    </div>
+                                }
+                                { theme === "light" &&
+                                <div>
+                                    {debugMode ?
+                                    (<BugOff className="cursor-pointer" onClick={() => setDebugMode(!debugMode)}/>)
+                                    :
+                                    (<BugPlay className="cursor-pointer" onClick={() => setDebugMode(!debugMode)}/>)
+                                    }
+
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </motion.div>}
+            </AnimatePresence>
         </header>
     );
 }
