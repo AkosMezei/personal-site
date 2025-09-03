@@ -3,9 +3,9 @@ import { motion, useMotionTemplate, useMotionValue, animate, MotionValue } from 
 import {useTimeContext} from "./TimeContext.tsx";
 import {getColorsForThemeAndTime} from "../Utils/backgroundUtils.ts";
 import {Stars} from "../Components/FX/Stars.tsx";
-import {scenes} from "../data/cloudData.ts";
 import {Clouds} from "../Components/FX/Clouds.tsx";
 import {useWeatherContext} from "./WeatherContext.tsx";
+import {useCloudGenerator} from "../Hooks/useCloudGenerator.ts";
 
 type Theme = 'dark' | 'light';
 
@@ -51,14 +51,7 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
 
     const activeWeather = isLoading ? 'clear' : weatherCategory //clear | cloudy | stormy
 
-    const cloudData = scenes[activeWeather];
-    const cloudColorFilter = {
-        clear: 'opacity(0.8)',
-        cloudy: 'opacity(1.0)',
-        stormy: 'brightness(0.7) contrast(1.2) saturate(0.8)',
-    }
-
-    const activeCloudFilter = cloudColorFilter[activeWeather];
+    const cloudData = useCloudGenerator(activeWeather);
 
     useEffect(() => {
         // Get the target colors for the NEW theme
@@ -119,7 +112,7 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
 
             {theme === 'light' && (
                 <div style={{position: 'absolute', inset:0, zIndex: -1, pointerEvents: 'none'}}>
-                    <Clouds data={cloudData} filter={activeCloudFilter} />
+                    <Clouds data={cloudData}/>
                 </div>
             )}
             {children}

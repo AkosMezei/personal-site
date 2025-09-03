@@ -2,6 +2,7 @@
 import {useState, useEffect, useContext, ReactNode} from "react";
 import axios from "axios";
 import React from 'react';
+import {useThemeSettingsContext} from "./ThemeSettingsContext.tsx";
 
 type WeatherContextType = {
     weatherCategory: WeatherCategory;
@@ -19,11 +20,17 @@ const CACHE_DURATION_MS = 30 * 60 * 1000; //30 mins
 const WeatherContext = React.createContext<WeatherContextType | undefined>(undefined);
 
 export const WeatherProvider = ({children}:{children:ReactNode}) => {
+    const {weatherMode, manualWeather} = useThemeSettingsContext()
     const [weatherCategory, setWeatherCategory] = useState<WeatherCategory>('clear');
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
+        if (weatherMode === 'manual') {
+            setWeatherCategory(manualWeather);
+            setIsLoading(false);
+            return;
+        }
         const fetchWeatherByIp = async () => {
             try {
                 const response = await axios.get('/api/weather'); // No location query param
@@ -97,7 +104,7 @@ export const WeatherProvider = ({children}:{children:ReactNode}) => {
         };
 
         getWeatherData();
-    }, []);
+    }, [weatherMode, manualWeather]);
 
     const value = {weatherCategory, isLoading, error};
 
