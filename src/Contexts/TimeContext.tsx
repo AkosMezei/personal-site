@@ -1,11 +1,15 @@
-﻿import { createContext, useContext, useState, ReactNode } from 'react';
+﻿import {createContext, useContext, ReactNode} from 'react';
+import {useThemeSettingsContext} from "./ThemeSettingsContext.tsx";
 
 const TimeContext = createContext<number | null>(null);
 
 export const TimeProvider = ({ children }: { children: ReactNode }) => {
-    const [loadHour] = useState<number>(new Date().getHours());
+    const {timeMode, manualTime} = useThemeSettingsContext()
+
+    const currentHour = timeMode === 'manual' ? manualTime : new Date().getHours();
+
     return (
-        <TimeContext.Provider value={loadHour}>
+        <TimeContext.Provider value={currentHour}>
             {children}
         </TimeContext.Provider>
     )
