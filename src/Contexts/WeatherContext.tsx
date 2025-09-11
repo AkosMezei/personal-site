@@ -26,7 +26,7 @@ export const WeatherProvider = ({children}:{children:ReactNode}) => {
     useEffect(() => {
         const getWeatherData = async () => {
             try {
-                const cachedDataString = sessionStorage.getItem("weather");
+                const cachedDataString = localStorage.getItem("weather");
             if (cachedDataString) {
                 const cachedData: CachedWeather = JSON.parse(cachedDataString)
                 const isCacheFresh = Date.now() - cachedData.timestamp < CACHE_DURATION_MS;
@@ -38,7 +38,7 @@ export const WeatherProvider = ({children}:{children:ReactNode}) => {
                 }
             }
             } catch (e) {
-                console.error("Couldn't get weather from sessionStorage:", e);
+                console.error("Couldn't get weather from localStorage:", e);
             }
             try {
                 const response = await axios.get('/api/weather')
@@ -50,7 +50,7 @@ export const WeatherProvider = ({children}:{children:ReactNode}) => {
                 setError(false);
 
                 const dataToCache: CachedWeather = {category, timestamp: Date.now()};
-                sessionStorage.setItem("weather", JSON.stringify(dataToCache));
+                localStorage.setItem("weather", JSON.stringify(dataToCache));
             } catch (err) {
                 console.error("Couldn't get weather from API:", err);
                 setError(true);
