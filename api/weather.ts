@@ -64,8 +64,8 @@ export default async function handler(request: VercelRequest, response: VercelRe
         return response.status(405).json({ error: "Method not allowed." });
     }
 
-    console.log("Request headers: " + request.headers);
-    console.log("Request body: " + request.body);
+    console.log("Request headers: ", request.headers);
+    console.log("Request body: ", request.body);
 
     const clientLocation : LocationWithCoords | null = request.body.location;
     const location : LocationWithCoords | string = clientLocation || 'auto:ip';
@@ -76,7 +76,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
 
     if (hasCoords) {
         console.log("Using coords");
-        console.log("Location: "+ location)
+        console.log("Location: ", location)
         const providersToCall = weatherProviders.filter(provider => provider.type === 'coords')
         apiPromises = providersToCall.map(provider => {
             if (!provider.key && provider.name !== 'OpenMeteo')
@@ -105,6 +105,10 @@ export default async function handler(request: VercelRequest, response: VercelRe
 
     const results = await Promise.allSettled(apiPromises)
 
+    for (const result of results) {
+        console.log("Result: ", result);
+    }
+
     const successfulResponses = results
         .filter(result => result.status === 'fulfilled')
         .map(result => result.value)
@@ -123,9 +127,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
     }
 
     for (const response of successfulResponses) {
-        console.log("Response: " + response);
-        console.log("Provider: " + response.provider);
-        console.log("Data: " + response.data);
+        console.log("Response: ", response, "Provider: ", response.provider, "Data: ", response.data);
         if (response.provider === 'WeatherAPI' || response.provider === 'WeatherAPI-FallbackToIP'){
             switch (response.data.current.condition.code) {
                 case 1000:
@@ -179,6 +181,8 @@ export default async function handler(request: VercelRequest, response: VercelRe
     }
 
     // endregion
+
+    console.log("Normalized weather codes: ", normalizedWeatherCodes);
 
     //TODO return response as clear | cloudy | stormy
     if (normalizedWeatherCodes.clear > normalizedWeatherCodes.cloudy && normalizedWeatherCodes.clear > normalizedWeatherCodes.stormy) {
