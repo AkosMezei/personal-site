@@ -37,6 +37,8 @@ export const WeatherProvider = ({children}:{children:ReactNode}) => {
             setError(false);
 
             console.log("response: ", response.data)
+            console.log("category: ", category)
+            console.log("location: ", location)
 
             const dataToCache: CachedWeather = {category, timestamp: Date.now()};
             localStorage.setItem("weather", JSON.stringify(dataToCache));
