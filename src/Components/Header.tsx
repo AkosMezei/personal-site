@@ -6,8 +6,11 @@ import flagHU from "../assets/128px-Flag_of_Hungary.svg.jpg"
 import {useEffect, useState} from "react";
 import {AnimatePresence, motion} from "motion/react";
 import {useThemeSettingsContext} from "../Contexts/ThemeSettingsContext.tsx";
+import {useWeatherContext} from "../Contexts/WeatherContext.tsx"
 
 function Header() {
+
+    const {weatherCategory} = useWeatherContext()
 
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const [isThemeSettingsBarExpanded, setIsThemeSettingsBarExpanded] = useState<boolean>(false)
@@ -116,7 +119,9 @@ function Header() {
                                     :
                                     (<BugPlay className="cursor-pointer" onClick={() => setDebugMode(!debugMode)}/>)
                                     }
-
+                                    {debugMode &&
+                                        <h1> Current weather: {weatherCategory} </h1>
+                                    }
                                 </div>
                                 }
                             </div>
