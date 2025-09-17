@@ -241,7 +241,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
                 case 1030:
                 case 1135:
                 case 1147: normalizedWeatherCodes.cloudy++; break;
-                default: normalizedWeatherCodes.stormy++; break;
+                default: normalizedWeatherCodes.stormy++; break; //NOTE code 1063 is "patchy rain nearby", falls into stormy, maybe change it to cloudy to fit better?
             }
         }
         // --- Tomorrow.io ---
