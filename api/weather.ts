@@ -98,6 +98,63 @@ const weatherProviders: WeatherProvider[] = [
 ]
 
 /**
+ * Normalizes OpenMeteo API data into a weather category.
+ * @param data The weather data object from the OpenMeteo API.
+ * @returns A weather category: 'clear', 'cloudy', or 'stormy'.
+ * @see https://open-meteo.com/en/docs (WMO Weather interpretation codes)
+ */
+function normalizeOpenMeteo(data: any): 'clear' | 'cloudy' | 'stormy' {
+    const code = data.current.weather_code;
+
+    switch (true){
+        // clear / mostly clear / partly cloudy
+        case (code >= 0 && code <= 2):
+            return 'clear';
+
+        case (code ===3): //overcast
+        case (code >= 40 && code < 60): //fog and drizzle
+            return 'cloudy';
+
+        case (code >= 60): // rain, snow, showers, thunderstorms
+            return 'stormy';
+
+        //unknown codes default to clear
+        default:
+            return 'clear';
+    }
+}
+
+/**
+ * Normalizes OpenWeatherMap API data into a weather category.
+ * @param data The weather data object from the OpenWeatherMap API.
+ * @returns A weather category: 'clear', 'cloudy', or 'stormy'.
+ * @see https://openweathermap.org/weather-conditions
+ */
+function normalizeOpenWeatherMap(data: any): 'clear' | 'cloudy' | 'stormy' {
+    // The API returns an array of weather conditions, we use the first one.
+    const id = data.current.weather[0].id;
+
+    if (id === 800) { // clear
+        return 'clear';
+    }
+
+    if (id > 800) { // All 80x codes for clouds
+        return 'cloudy';
+    }
+    if (id >= 700 && id < 800) { // atmosphere, we assume mist fog etc is cloudy
+        return 'cloudy';
+    }
+    if (id >= 300 && id < 400) { // drizzle
+        return 'cloudy';
+    }
+    if (id === 500 || id === 501) { // light, moderate rain
+        return 'cloudy';
+    }
+    // All other codes fall into this category.
+    return 'stormy';
+}
+
+/**
  * Handles an HTTP request to determine the weather category based on data from multiple weather providers.
  * Supports both IP-based and coordinate-based weather data retrieval, normalizes the results, and returns a category of
  * "clear," "cloudy," or "stormy."
@@ -157,63 +214,6 @@ export default async function handler(request: VercelRequest, response: VercelRe
 
     // region Normalization
 
-    /**
-     * Normalizes OpenMeteo API data into a weather category.
-     * @param data The weather data object from the OpenMeteo API.
-     * @returns A weather category: 'clear', 'cloudy', or 'stormy'.
-     * @see https://open-meteo.com/en/docs (WMO Weather interpretation codes)
-     */
-    function normalizeOpenMeteo(data: any): 'clear' | 'cloudy' | 'stormy' {
-        const code = data.current.weather_code;
-
-        switch (true){
-            // clear / mostly clear / partly cloudy
-            case (code >= 0 && code <= 2):
-                return 'clear';
-
-            case (code ===3): //overcast
-            case (code >= 40 && code < 60): //fog and drizzle
-                return 'cloudy';
-
-            case (code >= 60): // rain, snow, showers, thunderstorms
-                return 'stormy';
-
-            //unknown codes default to clear
-            default:
-                return 'clear';
-        }
-    }
-
-    /**
-     * Normalizes OpenWeatherMap API data into a weather category.
-     * @param data The weather data object from the OpenWeatherMap API.
-     * @returns A weather category: 'clear', 'cloudy', or 'stormy'.
-     * @see https://openweathermap.org/weather-conditions
-     */
-    function normalizeOpenWeatherMap(data: any): 'clear' | 'cloudy' | 'stormy' {
-        // The API returns an array of weather conditions, we use the first one.
-        const id = data.current.weather[0].id;
-
-        if (id === 800) { // clear
-            return 'clear';
-        }
-
-        if (id > 800) { // All 80x codes for clouds
-            return 'cloudy';
-        }
-        if (id >= 700 && id < 800) { // atmosphere, we assume mist fog etc is cloudy
-            return 'cloudy';
-        }
-        if (id >= 300 && id < 400) { // drizzle
-            return 'cloudy';
-        }
-        if (id === 500 || id === 501) { // light, moderate rain
-            return 'cloudy';
-        }
-        // All other codes fall into this category.
-        return 'stormy';
-    }
-
     const normalizedWeatherCodes = {
         'clear': 0,
         'cloudy': 0,
@@ -247,7 +247,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
         // --- Tomorrow.io ---
         // @see https://docs.tomorrow.io/reference/data-layers-weather-codes
         else if (response.provider === 'TomorrowIO'){
-            switch (response.data.values.weatherCode) {
+            switch (response.data.data.values.weatherCode) {
                 case 1000:
                 case 1100:
                 case 1101: normalizedWeatherCodes.clear++; break;
