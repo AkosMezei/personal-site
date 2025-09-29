@@ -37,6 +37,9 @@ export const WeatherProvider = ({children}:{children:ReactNode}) => {
         if (weatherMode === 'manual'){
             setWeatherCategory(manualWeather);
         }
+        else {
+            setWeatherCategory(localStorage.getItem("weather") ? JSON.parse(localStorage.getItem("weather") as string).category : 'clear');
+        }
     }, [manualWeather, weatherMode]);
 
     //function to call the bff
