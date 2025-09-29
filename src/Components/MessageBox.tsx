@@ -24,11 +24,14 @@ function MessageBox(){
     
     const [isLoading, setIsLoading] = useState(false);
 
+    const [error, setError] = useState<string|null>(null)
+
     const getChatId = () => {
         try {
             return localStorage.getItem("chatId") || sessionStorage.getItem("chatId");
         } catch (e) {
             console.error("LocalStorage access error:", e);
+            setError("getting chat ID locally")
             return null;
         }
     };
@@ -44,7 +47,10 @@ function MessageBox(){
             .then((response) => {
                 setMessages(response.data);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => {
+                console.log(error)
+                setError("getting messages by ID from API")
+            });
     }
 
     useEffect(() => {
@@ -83,6 +89,7 @@ function MessageBox(){
                 return newChatId;
             } catch (error) {
                 console.log(error);
+                setError("getting chat ID from API")
                 return null;
             } finally {
                 setIsLoading(false);
@@ -139,6 +146,7 @@ function MessageBox(){
             .catch(error => {
                 console.log(error);
                 // Revert the optimistic update on error
+                setError("sending message to API")
                 getMessagesById(id);
             });
     };
@@ -175,7 +183,7 @@ function MessageBox(){
                             </div>
                             <p className="text-sm mt-3 mx-3 text-center text-gray-400"> Please do not include sensitive information, the
                                 messages are NOT end-to-end encrypted (yet).</p>
-                            
+                            {error === null ? "" : <p className="text-sm mt-3 mx-3 text-center text-gray-900 bg-red-500/50 rounded-xl p-1"> There was an error during {error}, please try sending the message again. </p>}
                         </div>
                         <form className="flex justify-between" onSubmit={handleSubmit}>
                             <TextareaAutosize
