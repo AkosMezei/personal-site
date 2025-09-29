@@ -19,7 +19,8 @@ type CachedWeather = {
     timestamp: number;
 };
 
-const CACHE_DURATION_MS = 30 * 60 * 1000; //30 mins
+const CACHE_DURATION_MINUTES = 30;
+const CACHE_DURATION_MS = CACHE_DURATION_MINUTES * 60 * 1000; //*1000 to translate seconds into ms, *60 to translate seconds into minutes
 
 const WeatherContext = React.createContext<WeatherContextType | undefined>(undefined);
 

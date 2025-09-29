@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import {AnimatePresence, motion} from "motion/react";
 import {useThemeSettingsContext} from "../Contexts/ThemeSettingsContext.tsx";
 import {useWeatherContext} from "../Contexts/WeatherContext.tsx"
+import {MOBILE_BREAKPOINT_PX} from "../data/constants.ts";
 
 function Header() {
 
@@ -20,7 +21,7 @@ function Header() {
 
     useEffect(() => {
         const checkIfMobile = () => {
-            setIsMobile(window.innerWidth < 640);
+            setIsMobile(window.innerWidth < MOBILE_BREAKPOINT_PX);
         };
 
         // Initial check

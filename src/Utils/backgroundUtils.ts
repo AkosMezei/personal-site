@@ -1,20 +1,61 @@
 ﻿// A palette of colors for different times of day
+
+// yellow -> orange -> skyblue
+const light_primaryDawnColor = '252 211 77';
+const light_dawnTransitionColor = '249 115 22';
+const light_secondaryDawnColor = '135 206 235';
+
+// skyblue -> periwinkle -> lavender
+const light_primaryDayColor = '56 189 248';
+const light_dayTransitionColor = '118 169 255';
+const light_secondaryDayColor = '224 231 255';
+
+// orange -> red -> purple
+const light_secondaryDuskColor = '96 78 130';
+const light_duskTransitionColor = '239 68 68';
+const light_primaryDuskColor = '251 146 60';
+
+// darkblue -> deeper blue -> gray-900
+const light_primaryNightColor = '30 58 138';
+const light_nightTransitionColor = '23 37 84';
+const light_secondaryNightColor = '17 24 39';
+
+// gray-blue -> dark muted purple -> deep purple
+const dark_primaryDawnColor = '17, 24, 39';
+const dark_dawnTransitionColor = '43, 28, 51';
+const dark_secondaryDawnColor = '59, 17, 59';
+
+
+const dark_primaryDayColor = '6, 12, 26';
+const dark_dayTransitionColor = '12, 25, 51';
+const dark_secondaryDayColor = '32, 51, 87';
+
+// navy -> MUTED DARK PURPLE -> deep red
+const dark_primaryDuskColor = '6, 12, 26';
+const dark_duskTransitionColor = '43, 28, 51';
+const dark_secondaryDuskColor = '51, 12, 25';
+
+// black -> almost-black-blue -> deep navy
+const dark_primaryNightColor = '0, 0, 0';
+const dark_nightTransitionColor = '5, 8, 18';
+const dark_secondaryNightColor = '12, 25, 51';
+
 export const timePalettes = {
     light: {
         // sunrise: 5am-8am
-        dawn:    { primary: '252 211 77', via: '249 115 22',  secondary: '135 206 235' }, // yellow -> orange -> skyblue
+        dawn:    { primary: light_primaryDawnColor, via: light_dawnTransitionColor, secondary: light_secondaryDawnColor },
         // day: 8am-5pm
-        day:     { primary: '56 189 248', via: '118 169 255', secondary: '224 231 255' }, // skyblue -> periwinkle -> lavender
+        day:     { primary: light_primaryDayColor, via: light_dayTransitionColor, secondary: light_secondaryDayColor },
         // sunset: 5pm-8pm
-        dusk:    { primary: '251 146 60', via: '239 68 68',   secondary: '96 78 130' },   // orange -> red -> purple
+        dusk:    { primary: light_primaryDuskColor, via: light_duskTransitionColor, secondary: light_secondaryDuskColor },
         // night: 8pm-5am
-        night:   { primary: '30 58 138',  via: '23 37 84',    secondary: '17 24 39' },    // darkblue -> deeper blue -> gray-900
+        night:   { primary: light_primaryNightColor,  via: light_nightTransitionColor, secondary: light_secondaryNightColor },
     },
     dark: {
-        dawn:    { primary: '17, 24, 39',   via: '43, 28, 51',    secondary: '59, 17, 59'},     // gray-blue -> dark muted purple -> deep purple
-        day:     { primary: '6, 12, 26',  via: '12, 25, 51',  secondary: '32, 51, 87' },
-        dusk:    { primary: '6, 12, 26',  via: '43, 28, 51',  secondary: '51, 12, 25' },  // navy -> MUTED DARK PURPLE -> deep red
-        night:   { primary: '0, 0, 0',    via: '5, 8, 18',   secondary: '12, 25, 51' },     // black -> almost-black-blue -> deep navy
+        dawn:    { primary: dark_primaryDawnColor, via: dark_dawnTransitionColor,    secondary: dark_secondaryDawnColor},
+        day:     { primary: dark_primaryDayColor,  via: dark_dayTransitionColor,  secondary: dark_secondaryDayColor },
+        dusk:    { primary: dark_primaryDuskColor,  via: dark_duskTransitionColor,  secondary: dark_secondaryDuskColor },
+        night:   { primary: dark_primaryNightColor,    via: dark_nightTransitionColor,   secondary: dark_secondaryNightColor },
     }
 };
 

@@ -3,6 +3,9 @@ import {ChevronDown, ChevronUp} from "lucide-react";
 import {AnimatePresence, motion} from "motion/react";
 import { useBackgroundContext } from "../Contexts/BackgroundContext.tsx";
 import { useLanguageContext } from "../Contexts/LanguageContext.tsx";
+import {MOBILE_BREAKPOINT_PX} from "../data/constants.ts";
+
+
 
 const textVariants = {
     initial: { opacity: 0, filter: "blur(10px)" },
@@ -66,7 +69,7 @@ function ExpandableDiv({
     
     useEffect(() => {
         const checkIfMobile = () => {
-            setIsMobile(window.innerWidth < 640);
+            setIsMobile(window.innerWidth < MOBILE_BREAKPOINT_PX);
         };
 
         // Initial check
