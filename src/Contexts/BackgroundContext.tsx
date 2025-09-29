@@ -36,11 +36,16 @@ export function getInitialTheme(): Theme {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
+const GRADIENT_MIDPOINT_START_PERCENT = 20;
+
+const GRADIENT_MIDPOINT_RANGE_PERCENT = 60;
+
 export function BackgroundProvider({ children }: { children: ReactNode }) {
     const hour = useTimeContext();
     const initialTheme = getInitialTheme();
     const initialColors = getColorsForThemeAndTime(initialTheme, hour);
-    const calculatedMidpoint = 20 + (hour / 23) * 60;
+    const gradientHourlyProgress = hour / 23; //get the percentage of how much of the day already passed
+    const calculatedMidpoint = GRADIENT_MIDPOINT_START_PERCENT + gradientHourlyProgress * GRADIENT_MIDPOINT_RANGE_PERCENT;
     const [theme, setTheme] = useState(getInitialTheme);
     const primary: MotionValue<string> = useMotionValue(initialColors.primary);
     const via: MotionValue<string> = useMotionValue(initialColors.via);
@@ -68,7 +73,7 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
     }, [theme, hour]);
 
     useEffect(() => {
-        const calculatedMidpoint = 20 + (hour / 23) * 60;
+        const calculatedMidpoint = GRADIENT_MIDPOINT_START_PERCENT + gradientHourlyProgress * GRADIENT_MIDPOINT_RANGE_PERCENT;
         gradientMidpoint.set(calculatedMidpoint);
     }, [hour]);
 

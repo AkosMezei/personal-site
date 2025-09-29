@@ -30,12 +30,21 @@ function generateLongCloud(speed:CloudSpeedType, type:CloudType = "normal"){
 export function useCloudGenerator(weatherCategory:WeatherCategory) {
     const [clouds, setClouds] = useState<GeneratedCloudData[]>([])
     useEffect(() => {
+        const minClearClouds = 3;
+        const maxClearClouds = 6;
+
+        const minCloudyClouds = 6;
+        const maxCloudyClouds = 15;
+
+        const minStormyClouds = 15;
+        const maxStormyClouds = 25;
+
         switch (weatherCategory) {
             case "clear":
             {
-                const totalNumberOfClouds = randomBetween(3, 6)
+                const totalNumberOfClouds = randomBetween(minClearClouds, maxClearClouds)
                 const currentClouds = []
-                while(currentClouds.length <= totalNumberOfClouds){ //generate 3-6 small clouds
+                while(currentClouds.length <= totalNumberOfClouds){ //generate min-max small clouds
                     currentClouds.push(generateSmallCloud("slow"))
                 }
                 setClouds(currentClouds)
@@ -43,9 +52,9 @@ export function useCloudGenerator(weatherCategory:WeatherCategory) {
             }
             case "cloudy":
             {
-                const totalNumberOfClouds = randomBetween(6, 15)
+                const totalNumberOfClouds = randomBetween(minCloudyClouds, maxCloudyClouds)
                 const currentClouds = []
-                while(currentClouds.length <= totalNumberOfClouds){ //generate 6-15 clouds, mediums being twice the number of smalls or longs, or roughly the same as smalls+longs
+                while(currentClouds.length <= totalNumberOfClouds){ //generate min-max clouds, mediums being twice the number of smalls or longs, or roughly the same as smalls+longs
                     currentClouds.push(generateSmallCloud("medium"))
                     currentClouds.push(generateMediumCloud("medium"))
                     currentClouds.push(generateMediumCloud("medium"))
@@ -57,9 +66,9 @@ export function useCloudGenerator(weatherCategory:WeatherCategory) {
             }
             case "stormy":
             {
-                const totalNumberOfClouds = randomBetween(15, 25)
+                const totalNumberOfClouds = randomBetween(minStormyClouds, maxStormyClouds)
                 const currentClouds = []
-                while(currentClouds.length <= totalNumberOfClouds){ //generate 15-25 clouds, at a 2:3:1 ratio of medium, large, long, with a mix of speeds
+                while(currentClouds.length <= totalNumberOfClouds){ //generate min-max clouds, at a 2:3:1 ratio of medium, large, long, with a mix of speeds
                     currentClouds.push(generateMediumCloud("fast"))
                     currentClouds.push(generateMediumCloud("medium"))
                     currentClouds.push(generateLargeCloud("slow"))

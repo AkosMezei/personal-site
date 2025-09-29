@@ -1,0 +1,1 @@
+﻿export const MOBILE_BREAKPOINT_PX = 640
