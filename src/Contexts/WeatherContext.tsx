@@ -2,6 +2,7 @@
 import {useState, useEffect, useContext, ReactNode} from "react";
 import axios from "axios";
 import React from 'react';
+import {useThemeSettingsContext} from "./ThemeSettingsContext.tsx";
 
 type Location = {
     lat: number;
@@ -25,9 +26,22 @@ const CACHE_DURATION_MS = CACHE_DURATION_MINUTES * 60 * 1000; //*1000 to transla
 const WeatherContext = React.createContext<WeatherContextType | undefined>(undefined);
 
 export const WeatherProvider = ({children}:{children:ReactNode}) => {
+
+    const {weatherMode, manualWeather} = useThemeSettingsContext()
+
     const [weatherCategory, setWeatherCategory] = useState<WeatherCategory>('clear');
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(false);
+
+    //actively listen to changes in manually set theme regarding the weather
+    useEffect(() => {
+        if (weatherMode === 'manual'){
+            setWeatherCategory(manualWeather);
+        }
+        else {
+            setWeatherCategory(localStorage.getItem("weather") ? JSON.parse(localStorage.getItem("weather") as string).category : 'clear');
+        }
+    }, [manualWeather, weatherMode]);
 
     //function to call the bff
     const fetchWeatherFromApi = async (location: Location | null) => {
