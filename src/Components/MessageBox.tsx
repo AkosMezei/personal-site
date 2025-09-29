@@ -3,6 +3,7 @@ import {SendHorizontal, MessageCircle} from 'lucide-react'
 import {FormEvent, useEffect, useState} from "react";
 import {AnimatePresence, motion} from "motion/react";
 import axios from 'axios';
+import {FocusEvent} from "react";
 
 interface Message {
     _id?: string;
@@ -35,7 +36,14 @@ function MessageBox(){
             return null;
         }
     };
-    
+
+    const handleFocus = (event: FocusEvent<HTMLTextAreaElement>) => {
+        //possibly add an isExpanded and/or isMobile check
+        setTimeout(()=> {
+            event.target.scrollIntoView({behavior: "smooth", block: "end",});
+        }, 300)
+    }
+
     function getMessagesById(id: string) {
         axios({
             method: 'GET',
@@ -195,6 +203,7 @@ function MessageBox(){
                                 onChange={(e) => setInputMessage(e.target.value)}
                                 className="rounded-md m-3 w-full px-2 py-1 resize-none text-black"
                                 disabled={isLoading}
+                                onFocus={handleFocus}
                             />
                             <button type="submit" className="mr-3" disabled={isLoading}>
                                 <SendHorizontal className="m-auto" />
