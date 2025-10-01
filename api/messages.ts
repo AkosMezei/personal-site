@@ -58,9 +58,15 @@ export default async function handler(request: VercelRequest, response: VercelRe
         }
     }
     catch (error: any){
-        console.log("Error forwarding request to messaging API :", error.message);
+        console.error("--- ERROR FORWARDING REQUEST ---");
+
+        console.error("Downstream API Status:", error.response?.status);
+        console.error("Downstream API Response Body:", error.response?.data);
+
         const status = error.response?.status || 500;
-        return response.status(status).json({error: error.message});
+        const data = error.response?.data || { error: "An internal server error occurred while forwarding the request." };
+
+        return response.status(status).json(data);
     }
 
 }
