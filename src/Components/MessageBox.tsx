@@ -34,9 +34,7 @@ function MessageBox(){
     function getMessagesById(id: string) {
         axios({
             method: 'GET',
-            url: `/api/messages/${id}/contents`,
-            headers: {
-            }
+            url: `/api/messages?chatID=${id}`,
         })
             .then((response) => {
                 setMessages(response.data);
@@ -117,7 +115,7 @@ function MessageBox(){
         // Send the message with the confirmed chat ID
         axios({
             method: 'POST',
-            url: `/api/messages/${id}/contents`,
+            url: `/api/messages?chatID=${id}`,
             headers: {
                 "Content-Type": "application/json",
             },
