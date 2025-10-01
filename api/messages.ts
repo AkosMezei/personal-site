@@ -4,6 +4,8 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 const API_BASE_URL = "https://personal-messaging-api-96o2v.ondigitalocean.app/api/messages"
 const API_KEY = process.env.MESSAGING_API_KEY;
 
+console.log('MESSAGING_API_KEY loaded:', API_KEY ? `Exists (length: ${API_KEY.length})` : 'IS MISSING OR EMPTY');
+
 export default async function handler(request: VercelRequest, response: VercelResponse) {
     if (!API_KEY) {
         return response.status(500).json({error: "Messaging API key not found, server configuration error."});
