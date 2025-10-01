@@ -1,0 +1,11 @@
+﻿{
+  "rewrites": [
+    {
+      "source": "/api/messages/:path*",
+      "destination": "https://personal-messaging-api-96o2v.ondigitalocean.app/api/messages/:path*",
+      "headers": {
+        "X-API-Key": "$MESSAGING_API_KEY"
+      }
+    }
+  ]
+}
