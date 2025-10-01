@@ -11,7 +11,8 @@ export default async function handler(request: VercelRequest, response: VercelRe
 
     try{
         if (request.method === 'GET'){
-            const {id} = request.query;
+            const rawChatID = request.query;
+            const id = Array.isArray(rawChatID) ? rawChatID[0] : rawChatID;
             if (!id) {
                 return response.status(400).json({error: "No ID provided"});
             }
@@ -26,8 +27,9 @@ export default async function handler(request: VercelRequest, response: VercelRe
             return response.status(forwardedResponse.status).json(forwardedResponse.data);
         }
         else if (request.method === 'POST'){
-            const {id} = request.query;
-            if (id) { //if id doesn't exist, create new conversation
+            const rawChatID = request.query;
+            const id = Array.isArray(rawChatID) ? rawChatID[0] : rawChatID;
+            if (id) {
             const forwardedResponse = await axios({
                 method: 'POST',
                 url: `${API_BASE_URL}/${id}/contents`,
