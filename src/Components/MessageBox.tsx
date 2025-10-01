@@ -14,8 +14,6 @@ interface Message {
 
 function MessageBox(){
 
-    const apiKey = import.meta.env.VITE_API_KEY;
-
     const [isExpanded, setIsExpanded] = useState(false);
 
     const [messages, setMessages] = useState<Message[]>([]);
@@ -36,10 +34,7 @@ function MessageBox(){
     function getMessagesById(id: string) {
         axios({
             method: 'GET',
-            url: `https://personal-messaging-api-96o2v.ondigitalocean.app/api/messages/${id}/contents`,
-            headers: {
-                "X-API-Key": apiKey
-            }
+            url: `/api/messages?chatID=${id}`,
         })
             .then((response) => {
                 setMessages(response.data);
@@ -67,10 +62,9 @@ function MessageBox(){
             try {
                 const response = await axios({
                     method: 'POST',
-                    url:'https://personal-messaging-api-96o2v.ondigitalocean.app/api/messages',
+                    url:'/api/messages',
                     headers: {
                         "Content-Type": "application/json",
-                        "X-API-Key": apiKey
                     },
                     data: {
                         conversationID: "string",
@@ -121,10 +115,9 @@ function MessageBox(){
         // Send the message with the confirmed chat ID
         axios({
             method: 'POST',
-            url: `https://personal-messaging-api-96o2v.ondigitalocean.app/api/messages/${id}/contents`,
+            url: `/api/messages?chatID=${id}`,
             headers: {
                 "Content-Type": "application/json",
-                "X-API-Key": apiKey
             },
             data: {
                 senderID: "client",
