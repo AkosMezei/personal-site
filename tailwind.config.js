@@ -19,6 +19,15 @@ export default {
         digitalOcean: '#0069ff',
         dotNetStart: '#7215e9',
         dotNetEnd: '#4730de',
+        javascript: '#f7df1e',
+        python: '#3776ab',
+        fastAPI: '#009688',
+        postgres: '#4169e1',
+        plotly: '#3f4f75',
+        matlab: '#e67e22',
+        geminiStart: '#4285f4', // Google Blue
+        geminiEnd: '#9b72cb',   // Purple
+
         lightDivBackground: '#CCD5AE',
         lightDivHoverBackground: '#D4A373',
         background: 'rgb(var(--background) / <alpha-value>)',
