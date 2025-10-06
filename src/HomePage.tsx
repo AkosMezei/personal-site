@@ -40,6 +40,7 @@ function HomePage() {
         csharpLink: <a href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank" className="hover:text-dotNetStart font-bold" />,
         matlabLink: <a href="https://www.mathworks.com/products/matlab.html" target="_blank" className="hover:text-matlab font-bold" />,
         SPALink: <a href="https://developer.mozilla.org/en-US/docs/Glossary/SPA" target="_blank" className="font-semibold italic hover:underline" />,
+        playwrightLink: <a href="https://playwright.dev" target="_blank" className="hover:text-playwright font-bold" />,
         name: <strong className="font-semibold text-gray-900 dark:text-gray-100" />,
         bold: <strong />,
         subtitle: <strong className="font-semibold text-gray-900 dark:text-gray-100 mr-2" />,
