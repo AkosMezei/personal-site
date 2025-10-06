@@ -286,7 +286,7 @@
                         },
                         architecture: {
                             title: "Technical Architecture",
-                            description: "A decoupled architecture featuring a <reactLink>React</reactLink> frontend on <vercelLink>Vercel</vercelLink>, a <dockerLink>Dockerized</dockerLink> backend API on <digitalOcean>DigitalOcean</digitalOcean>, and a unique, locally hosted scraper to ensure effectiveness and avoid IP blocks.",
+                            description: "A decoupled architecture featuring a <reactLink>React</reactLink> frontend on <vercelLink>Vercel</vercelLink>, a <dockerLink>Dockerized</dockerLink> backend API on <digitalOceanLink>DigitalOcean</digitalOceanLink>, and a unique, locally hosted scraper to ensure effectiveness and avoid IP blocks.",
                             bullet_1: "<subtitle>Frontend:</subtitle> <reactLink>React</reactLink> <typeScriptLink" +
                                 ">(TypeScript)</typeScriptLink" +
                                 "> with <tailwindLink>Tailwind CSS</tailwindLink>, deployed on <vercelLink>Vercel.</vercelLink>",
@@ -387,6 +387,370 @@
 
 
     hu: {
-
+        translation:{
+            aboutMe: {
+                title: "Rólam",
+                description: "Szia! <name>Mezei Ákos</name> vagyok, autodidakta full-stack fejlesztő. Az hajt, hogy komplex problémákra elegáns megoldásokat hozzak létre.",
+                expanded_p1: "A tech világába vezető utam a családi asztalosműhelyben indult. Itt tanultam meg, milyen fontos a pontosság, a tervezés, és mekkora öröm, amikor egy ötletből kézzel fogható, minőségi termék lesz. Ugyanezt a hozzáállást vittem tovább a digitális alkotómunkába is.",
+                expanded_p2: "Ez a portfólió is ezt a szemléletet mutatja be, a dinamikus, időjárás-követő, <reactLink>React</reactLink> és <typeScriptLink>TypeScript</typeScriptLink> alapú front-endtől kezdve, egészen az egészet működtető, egyedi <dotnetLink>.NET REST API</dotnetLink>-ig.",
+                expanded_p3: "Amikor épp nem kódolok, akkor vagy túrázok, vagy a vidéki élet mindennapi problémáira keresek praktikus megoldásokat. Alapvetően egy építő szellemű ember vagyok, és izgatottan várom, hogy a kézműves múltból hozott precizitásomat és a veleszületett kíváncsiságomat egy modern szemléletű fejlesztői csapatnál kamatoztassam."
+            },
+            education: {
+                title: "Tanulmányok",
+                highSchool: {
+                    title: "Salamon Ernő Elméleti Líceum",
+                    description: "Itt kezdtem el komolyabban foglalkozni a programozással. A C++ segítségével erős logikai és algoritmikus gondolkodásbeli alapokat szereztem, ami megalapozta a szoftverfejlesztés iránti szenvedélyemet.",
+                    dates: "2014 - 2018"
+                },
+                university: {
+                    title: "Sapientia Erdélyi Magyar Tudományegyetem (EMTE)",
+                    description_p1: "Az egyetemi évek kiváló lehetőséget adtak, hogy elmélyedjek a szoftverfejlesztés és a kvantitatív problémamegoldás metszetében. A tanulmányaim csúcspontja egy <bold>Operációkutatás</bold> projekt volt, melynek keretében egy komplex részvényportfólió-optimalizálási probléma megoldására fejlesztettünk egy eszközt <matlabLink>MATLAB</matlabLink>-ban.",
+                    description_p2: "Az alkalmazás <bold>lineáris programozást</bold> használt a profit maximalizálására, különböző valós korlátok – mint például a költségvetés, tranzakciós költségek és részvényenkénti befektetési limitek – figyelembevételével.",
+                    description_p3: "Ez a gyakorlati tapasztalat, ahol egy komplex üzleti követelményt egy működőképes, adatvezérelt megoldássá alakítottunk, szilárdította meg bennem az elhivatottságot a gyakorlatias szoftverek készítése iránt. Ez vezetett végül ahhoz, hogy a formális oktatás helyett az önálló, autodidakta utat válasszam, a modern full-stack fejlesztésre fókuszálva.",
+                    "dates": "2019 - 2021"
+                },
+                universityProject: {
+                    title: "Projekt: Részvényportfólió Optimalizáló",
+                    status: "Egyetemi kurzusmunka keretében készült.",
+                    what_title: "Mi ez?",
+                    what_description: "Egy <matlabLink>MATLAB</matlabLink>-ban készült döntéstámogató eszköz, amely lineáris programozás segítségével határozza meg egy részvényportfólió legnyereségesebb befektetési stratégiáját. Adott részvények, azok aktuális és várható jövőbeli árai, valamint különböző korlátok alapján az alkalmazás kiszámítja az optimális darabszámot, amelyet az egyes részvényekből érdemes vásárolni a potenciális profit maximalizálása érdekében.",
+                    why_title: "Miért készült?",
+                    why_description: "Ez a projekt volt az <bold>Operációkutatás</bold> kurzusom központi eleme, azzal a céllal, hogy áthidalja a szakadékot az absztrakt matematikai elmélet és a valós pénzügyi döntéshozatal között. A cél a \"vedd olcsón, add drágán\" egyszerű logikáján való túllépés volt, és egy olyan robusztus modell létrehozása, amely képes kezelni azokat az összetett, egymással összefüggő korlátokat (költségvetési korlát, tranzakciós díjak, minimális befektetési követelmények), amelyekkel a valódi befektetők szembesülnek.",
+                    how_title: "Hogyan működik?",
+                    how_description: "A megoldást egy <bold>Vegyes Egészértékű Lineáris Programozási (MILP)</bold> problémaként modelleztük, mivel a megvásárolt részvények számának egész számnak kell lennie.",
+                    how_bullet_1: "<subtitle>A probléma modellezése:</subtitle> A projekt magját a pénzügyi követelmények matematikai modellé alakítása jelentette. A \"célfüggvényt\" a profit maximalizálására definiáltuk (a teljes várható eladási érték és a teljes vételi költség különbsége, csökkentve a jutalékokkal). Ezt egy sor lineáris korlát egészítette ki, amelyek a befektető szabályait reprezentálták (pl. teljes_befektetés <= 5 000 000 EUR).",
+                    how_bullet_2: "<subtitle>Megvalósítás MATLAB-ban:</subtitle> A <matlabLink>MATLAB</matlabLink> Optimization Toolbox-át, azon belül is az <code>intlinprog</code> függvényt használtam, amely egy hatékony, pont az ilyen típusú problémákra tervezett megoldó. Az alkalmazás felhasználói felülete lehetővé teszi az összes szükséges paraméter (részvények száma, árak, jutalékok, korlátok) dinamikus megadását.",
+                    how_bullet_3: "<subtitle>Elemzés és vizualizáció:</subtitle> Miután a megoldó megtalálja az optimális megoldást, az alkalmazás nem csupán egy számot ad vissza. Világos bontásban mutatja be, hogy melyik részvényből hány darabot érdemes vásárolni, mennyi a teljes költség és a várható profit. Tartalmaz egy <bold>érzékenységi analízis</bold> funkciót is, amely grafikonokon vizualizálja, hogyan változik a potenciális profit és az optimális vásárlási mennyiség egy adott részvény árának változásával. Ez kulcsfontosságú betekintést nyújt a befektetési stratégia kockázatába és volatilitásába."
+                }
+            },
+            experience: {
+                title: "Tapasztalat",
+                woodworking: {
+                    title: "Famegmunkáló kézműves",
+                    company: "Helyi kézműves műhely",
+                    bullet_1: "Absztrakt ötletek átültetése részletes tervekbe, majd azok megvalósítása magas minőségű késztermékként. A teljes projekt életciklus felügyelete a tervezéstől az átadásig.",
+                    bullet_2: "A \"mérj kétszer, vágj egyszer\" elv elsajátítása, ami a precizitás és a részletekre való odafigyelés fontosságára tanított. Ez a szemlélet közvetlenül kamatoztatható a tiszta, hibáknak ellenálló kód írása során.",
+                    bullet_3: "Projektek teljes körű menedzselése a nyersanyag kiválasztásától a végső összeszerelésig, mely során fejlődött a folyamatok betartásához, a problémamegoldáshoz és a szigorú projektkövetelmények teljesítéséhez szükséges készségem.",
+                    dates: "TODO"
+                },
+                internship: {
+                    title: "Webtartalom-kezelő gyakornok",
+                    company: "Octopus Digital",
+                    bullet_1: "Nagyvállalati weboldal tartalmának kezelése és frissítése az **Umbraco CMS** segítségével, a tartalmi integritás és a projektcéloknak való megfelelés biztosítása.",
+                    bullet_2: "A Figma használata mint \"egyedüli hiteles forrás\" (single source of truth) a tartalmak frissítéséhez az Umbraco CMS-ben, biztosítva a design tervek és az éles weboldal közötti 1:1 arányú megegyezést.",
+                    bullet_3: "Professzionális fejlesztői környezetben dolgozva értékes betekintést nyertem egy kereskedelmi webalkalmazás karbantartási és működési életciklusába.",
+                    dates: "2024. április – 2024. augusztus"
+                }
+            },
+            projects: {
+                title: "Projektek",
+                description: "Hiszem, hogy a tudás bemutatásának legjobb módja a kézzelfogható megoldások építése. Minden alábbi projekt egy esettanulmány egy valós probléma megoldására, a személyes produktivitás növelésétől a professzionális szintű webalkalmazások készítéséig. Először a kiemelt projektjeim láthatók, melyeket egy betekintés követ abba, amin jelenleg dolgozom.",
+                featured: {
+                    title: "Kiemelt Projektek",
+                    portfolio: {
+                        title: "Személyes Portfólió és Digitális Önéletrajz",
+                        description: "A dinamikus, interaktív weboldal, amelyet éppen böngészel.",
+                        repoLinkText: "A forráskód megtekintése a GitHub-on",
+                        what_title: "Mi ez?",
+                        what_description: "Egy nagy teljesítményű, full-stack <SPALink>Single-Page Application (SPA)</SPALink>, amely a digitális önéletrajzomként funkcionál. Dinamikus, időjárás-érzékeny háttérrel, akadálymentes, valós idejű üzenetküldő rendszerrel, interaktív UI elemekkel és többnyelvű támogatással rendelkezik.",
+                        why_title: "Miért készült?",
+                        why_description: "A cél egy olyan digitális jelenlét megteremtése volt, amely sokkal informatívabb és érdekesebb, mint egy hagyományos PDF önéletrajz. Egy olyan oldalt akartam építeni, ami nem csupán egy dokumentum, hanem a <bold>full-stack fejlesztői képességeim élő demonstrációja</bold>: a csiszolt, animált frontendtől a biztonságos, konténerizált backend API-ig. Minden egyes funkció egy-egy konkrét technikai készség vagy architekturális minta tudatos bemutatása.",
+                        how_title: "Hogyan működik?",
+                        how_description: "Az oldal egy függetlenített (decoupled) architektúrával épült fel, amely egy <reactLink>React</reactLink> frontendből, egy <dotnetLink>.NET</dotnetLink> backend API-ból és egy szervermentes BFF-ből (Backend-for-Frontend) áll.",
+                        deepDive: {
+                            title: "Részletes Technikai Bemutató",
+                            description: "Az alábbiakban a portfólió oldal architektúrájának és kulcsfontosságú funkcióinak részletes bemutatása található. Minden szekció lenyitható a további technikai információkért.",
+                            frontEnd: {
+                                title: "Frontend",
+                                architectureAndTechnologies: {
+                                    title: "Architektúra és Technológiák",
+                                    description: "Egy nagy teljesítményű, <reactLink>React</reactLink>, <typeScriptLink>TypeScript</typeScriptLink> és <viteLink>Vite</viteLink> alapú Single-Page Application, reszponzív felhasználói felülettel, amelynek stílusát a <tailwindLink>Tailwind CSS</tailwindLink>, animációit pedig a <framerMotionLink>Framer Motion</framerMotionLink> biztosítja.",
+                                    expanded_bullet_1: "<subtitle>Keretrendszer:</subtitle> Az oldal egy <SPALink>Single-Page Application (SPA)</SPALink>, amely <reactLink>React</reactLink> és <typeScriptLink>TypeScript</typeScriptLink> használatával készült, a build folyamatot a <viteLink>Vite</viteLink> kezeli.",
+                                    expanded_bullet_2: "<subtitle>Stílus:</subtitle> A komponensek stílusát a <tailwindLink>Tailwind CSS</tailwindLink> biztosítja.",
+                                    expanded_bullet_3: "<subtitle>Animációk:</subtitle> Az összes jelentősebb UI animációt, beleértve az elrendezési és átmeneti effekteket, a <framerMotionLink>Framer Motion</framerMotionLink> kezeli.",
+                                    expanded_bullet_4: "<subtitle>Állapotkezelés (State Management):</subtitle> Az interaktív komponensek állapotának kezelésére alapvető <reactLink>React</reactLink> funkciókat, mint a <code>useState</code> és <code>useContext</code> hook-okat használom.",
+                                    expanded_bullet_5: "<subtitle>Telepítés (Deployment):</subtitle> A frontend a <vercelLink>Vercel</vercelLink>-en van telepítve és hosztolva."
+                                },
+                                features: {
+                                    title: "Kiemelt Funkciók",
+                                    description: "Dinamikus háttér, amely az időre és az időjárásra is reagál, egy akadálymentes üzenetküldő rendszer, interaktív technológiai linkek és egy egyedi többnyelvű rendszer.",
+                                    dynamicBackground: {
+                                        title: "Dinamikus Háttér",
+                                        description: "A háttér teljesen dinamikus, a napszaknak és a valós idejű időjárási viszonyoknak megfelelően változik.",
+                                        bullet_1: "<subtitle>Időalapú színátmenet:</subtitle> Mind a világos, mind a sötét téma háttere egy színátmenet, amely finoman vált a reggeli, déli, esti és éjszakai színsémák között.",
+                                        bullet_2: "<subtitle>Dinamikus időjárás effektek:</subtitle> Világos témában a felhők dinamikusan generálódnak és animálódnak a képernyőn a felhasználó helyi időjárása alapján. A sötét téma egy parallax csillagmező effektet használ."
+                                    },
+                                    messagingUI: {
+                                        title: "Akadálymentes Üzenetküldő Felület",
+                                        description: "Egy egyedi fejlesztésű, kétirányú üzenetküldő rendszer, melynek célja az egyszerű használat és a zökkenőmentes, regisztráció nélküli kommunikáció.",
+                                        bullet_1: "A gördülékenység érdekében a felhasználók regisztráció nélkül küldhetnek üzeneteket. A rendszer egy egyedi <code>chatID</code>-t generál, amelyet a böngésző <code>localStorage</code>-ában tárol, így a visszatérő felhasználók zökkenőmentesen folytathatják a beszélgetéseiket."
+                                    },
+                                    interactiveTechLinks: {
+                                        title: "Interaktív Technológiai Linkek",
+                                        description: "Az oldalon szereplő technológiák nevei interaktív linkek, amelyek egérmutatóra a technológia hivatalos arculatának megfelelő színre váltanak.",
+                                        bullet_1: "Amikor az egér föléjük kerül, dinamikusan felveszik az adott technológia hivatalos márkaszínét – például a Vite a jellegzetes színátmenetét mutatja. Ezek a linkek közvetlenül az adott technológia hivatalos weboldalára vezetnek."
+                                    },
+                                    multiLanguageSupport: {
+                                        title: "Többnyelvű Támogatás",
+                                        description: "A portfólió több nyelvet is támogat egy egyedi, pehelysúlyú fordítási rendszeren keresztül.",
+                                        bullet_1: "A teljes szöveges tartalom egyszerű JSON fájlokból töltődik be, ami a rendszert könnyen kezelhetővé és bővíthetővé teszi. ---TODO change this to reflect the new i18n system"
+                                    }
+                                }
+                            },
+                            backEnd: {
+                                title: "Backend és Infrastruktúra",
+                                architectureAndTechnologies: {
+                                    title: "API Architektúra és Technológiák",
+                                    description: "Egy biztonságos REST API, amely <dotnetLink>.NET 8</dotnetLink>-ra és <csharpLink>C#</csharpLink>-ra épül, a tiszta architektúra (clean architecture) elveit követve. Az adatbázis <mongoDBLink>MongoDB</mongoDBLink>, a telepítés pedig <dockerLink>Docker</dockerLink> konténerizációval történik.",
+                                    expanded_bullet_1: "<subtitle>API Keretrendszer:</subtitle> Az üzenetküldő rendszert egy <dotnetLink>.NET 8</dotnetLink> <csharpLink>(C#)</csharpLink> alapú REST API működteti. Az API a tiszta architektúra mintáját követi: a controllerek kezelik a HTTP kéréseket, egy dedikált <code>MessageService</code> felel az üzleti logikáért, és az adatmodellek világosan definiáltak.",
+                                    expanded_bullet_2: "<subtitle>Adatbázis:</subtitle> A NoSQL adatbázis szerepét a <mongoDBLink>MongoDB</mongoDBLink> tölti be. Egy teljes beszélgetés, az összes üzenetével együtt, egyetlen dokumentumként van tárolva, ami ebben az esetben egy rendkívül hatékony megoldás.",
+                                    expanded_bullet_3: "<subtitle>Telepítés (Deployment):</subtitle> A <dotnetLink>.NET</dotnetLink> API <dockerLink>Docker</dockerLink> segítségével konténerizálva van, és a <digitalOceanLink>DigitalOcean</digitalOceanLink>-on fut. Az API úgy van konfigurálva, hogy a portot egy környezeti változóból olvassa ki, ami a konténerizált alkalmazásoknál bevett gyakorlat."
+                                },
+                                security: {
+                                    title: "Biztonság és Konfiguráció",
+                                    description: "Az API biztonságát egyedi API kulcs kezelő, szerepkör alapú jogosultságkezelés és szigorú CORS policy garantálja. A konfiguráció és a titkos adatok kezelése környezeti változókon keresztül történik.",
+                                    bullet_1: "<subtitle>Azonosítás (Authentication):</subtitle> Hagyományos tokenek helyett egy egyedi <code>ApiKeyHandler</code>-t használ, amely a <code>X-API-Key</code> fejlécben küldött API kulcsokat érvényesíti.",
+                                    bullet_2: "<subtitle>Jogosultságkezelés (Authorization):</subtitle> Külön policy-k vannak definiálva a \"User\" és \"Admin\" szerepkörökre. Például az összes beszélgetést lekérdező végpont csak adminisztrátori jogosultsággal érhető el, míg egy beszélgetés létrehozása vagy frissítése a felhasználók számára is engedélyezett. Ez részletes kontrollt biztosít az API felett.",
+                                    bullet_3: "<subtitle>Konfigurációkezelés:</subtitle> Az alkalmazás az érzékeny adatokat, mint a connection stringek és API kulcsok, környezeti változókból olvassa be, fejlesztés során pedig helyi konfigurációs fájlokra támaszkodik tartalékként. Ez egy biztonságos és rugalmas megközelítés.",
+                                    bullet_4: "<subtitle>Specifikus CORS Policy:</subtitle> A Cross-Origin Resource Sharing (CORS) policy kifejezetten úgy van beállítva, hogy csak a portfólió weboldalának domainjéről és localhostról érkező kéréseket engedélyezze, megelőzve ezzel más oldalakról érkező illetéktelen hozzáférést."
+                                },
+                                weatherService: {
+                                    title: "Időjárás Szolgáltatás (BFF)",
+                                    description: "Egy <vercelLink>Vercel</vercelLink> szervermentes funkció működik Backend-for-Frontend-ként, amely biztonságosan hív meg és aggregál adatokat több külső időjárás API-ból.",
+                                    bullet_1: "<subtitle>A miért:</subtitle> Azért készült, hogy a külső szolgáltatók API kulcsait biztonságosan elrejtse a kliens oldal elől, és hogy egy olyan ellenálló rendszert hozzon létre, amely nem függ egyetlen időjárás szolgáltatótól.",
+                                    bullet_2: "<subtitle>A hogyan:</subtitle> Párhuzamosan több időjárás API-t hív meg, a különböző adatformátumokat egy egységes kategóriába (\"tiszta\", \"felhős\", \"viharos\") normalizálja, majd a többségi szavazás eredményét küldi vissza a frontendnek."
+                                }
+                            },
+                            stockPortfolioOptimizer: {
+                                title: "Részvényportfólió Optimalizáló",
+                                description: "Egy egyetemi esettanulmány az Operációkutatás elveinek alkalmazására egy komplex pénzügyi modellezési probléma megoldásához. Ez a projekt jól demonstrálja azt a képességet, hogy bonyolult üzleti szabályokat egy matematikai modellé és egy működő szoftveres megoldássá alakítsak.",
+                                overview: {
+                                    title: "Projekt Áttekintés",
+                                    description: "Egy <matlabLink>MATLAB</matlabLink>-ban készült döntéstámogató eszköz, amely lineáris programozás segítségével határozza meg egy részvényportfólió legnyereségesebb befektetési stratégiáját, figyelembe véve egy sor komplex, valós korlátot.",
+                                    expanded: "Ez a projekt volt az Operációkutatás kurzusom központi eleme, azzal a céllal, hogy egy működőképes alkalmazást hozzunk létre a befektetési hozamok maximalizálására. A feladat magában foglalta a matematikai modellezést, a szoftveres implementációt <matlabLink>MATLAB</matlabLink>-ban, valamint egy összehasonlító elemzést egy alternatív, Excel VBA és a Solver kiegészítő segítségével készült megoldással."
+                                },
+                                objective: {
+                                    title: "A Probléma és a Célkitűzés",
+                                    description: "Egy olyan robusztus modell létrehozása, amely túllép az egyszerű \"vedd olcsón, add drágán\" logikán, és képes kezelni azokat az egymással összefüggő korlátokat, amelyekkel a valós befektetők szembesülnek, így maximalizálva a potenciális profitot.",
+                                    expanded_description: "A cél a részvényportfólió teljes profitjának maximalizálása volt, a következő korlátok figyelembevételével:",
+                                    bullet_1: "<subtitle>Teljes költségvetés:</subtitle> Egy szigorú felső korlát a teljes befektethető tőkére.",
+                                    bullet_2: "<subtitle>Részvényenkénti minimális befektetés:</subtitle> Előírás, hogy bizonyos részvényekbe egy minimális pénzösszeget be kell fektetni a diverzifikáció érdekében.",
+                                    bullet_3: "<subtitle>Részvényenkénti maximális darabszám:</subtitle> Egy felső korlát egy adott részvényből megvásárolható darabszámra.",
+                                    bullet_4: "<subtitle>Tranzakciós jutalékok:</subtitle> Mind a vételi, mind az eladási jutalékok a tranzakció értékének százalékában lettek figyelembe véve, befolyásolva a nettó profitot."
+                                },
+                                tech: {
+                                    title: "Technikai Megoldás és Implementáció",
+                                    description: "A problémát egy Vegyes Egészértékű Lineáris Programozási (MILP) problémaként modelleztük, és a <matlabLink>MATLAB</matlabLink> Optimization Toolbox-ával valósítottuk meg, annak ereje és az egészértékű korlátok precíz kezelése miatt.",
+                                    bullet_1: "<subtitle>Matematikai modellezés:</subtitle> A projekt magját a pénzügyi követelmények matematikai modellé alakítása jelentette. A \"célfüggvényt\" a profit maximalizálására definiáltuk, melyet egy sor, a befektető szabályait reprezentáló lineáris egyenlőtlenségi korlátnak vetettünk alá.",
+                                    bullet_2: "<subtitle>MATLAB implementáció:</subtitle> A MATLAB Optimization Toolbox-át, azon belül is az <code>intlinprog</code> függvényt használtam, amely egy hatékony, kifejezetten MILP problémákra tervezett megoldó, ahol a változóknak (mint a részvények száma) egész számoknak kell lenniük.",
+                                    bullet_3: "<subtitle>Összehasonlító elemzés:</subtitle> A MATLAB megoldás teljesítményét összevetettük egy alternatív, <bold>Excelben, a Solver kiegészítő és VBA</bold> segítségével épített modellel is. Ez értékes betekintést nyújtott a különböző technikai megközelítések teljesítményébe, skálázhatóságába és a modellezés egyszerűségébe ugyanazon probléma esetén."
+                                },
+                                keyFeature: {
+                                    title: "Kiemelt Funkció: Érzékenységi Analízis",
+                                    description: "Az eszköz nem csupán egyetlen választ ad, hanem vizualizálja is, hogyan változik az optimális stratégia és a potenciális profit a piaci feltételek változásával.",
+                                    expanded_p1: "Az alkalmazás két kulcsfontosságú grafikont képes generálni bármely adott részvényre, amelyek elengedhetetlen betekintést nyújtanak a befektetés stabilitásába:",
+                                    bullet_1: "<subtitle>Profit vs. Részvényár:</subtitle> Ez a grafikon azt mutatja, hogyan változna a teljes portfólió profitja, ha egy adott részvény vételára más lenne, felfedve, hogy melyik árpont felett már nem éri meg az adott részvényt bevenni az optimális megoldásba.",
+                                    bullet_2: "<subtitle>Optimális darabszám vs. Részvényár:</subtitle> Ez a grafikon azt vizualizálja, hogy a modell hány darab részvényt javasol megvételre a különböző árpontokon.",
+                                    expanded_p2: "Ez az analízis egy egyszerű kalkulátorból egy valódi <bold>döntéstámogató rendszerré</bold> emeli az alkalmazást, lehetővé téve a felhasználó számára, hogy megértse a stratégiájával járó kockázatot és volatilitást."
+                                }
+                            }
+                        }
+                    },
+                },
+                workInProgress: {
+                    title: "Folyamatban lévő projektek",
+                    GAnki: {
+                        title: "GAnki - MI-vel Támogatott Ismétléses Tanulási Rendszer",
+                        status: "Jelenlegi Állapot: P0: Csak specifikáció",
+                        overview: {
+                            title: "Projekt Áttekintés",
+                            what: "<subtitle>Mi ez:</subtitle> Egy intelligens, új generációs tanulókártya alkalmazás, amely egy nagy nyelvi modellt (pl. <geminiLink>Google Gemini</geminiLink>) használ, hogy objektív, MI-alapú visszajelzést adjon a felhasználó által adott válaszokra.",
+                            why: "<subtitle>Miért:</subtitle> Hogy megoldja a hagyományos, időzített ismétlésen alapuló rendszerek (SRS), mint például az <ankiLink>Anki</ankiLink>, alapvető problémáját: a megbízhatatlan, szubjektív önértékelést. Ez nem hatékony tanuláshoz és a tudás hamis illúziójához vezet.",
+                            how: "<subtitle>Hogyan:</subtitle> Egy full-stack alkalmazás, amely egy <reactLink>React</reactLink>/<typeScriptLink>TypeScript</typeScriptLink> frontendből és egy biztonságos <dotnetLink>.NET</dotnetLink> backendből áll. A backend egy közvetítőként (proxy) működik, amely a felhasználó válaszát és a kártya kontextusát elküldi a <geminiLink>Gemini</geminiLink> API-nak kiértékelésre, majd az objektív visszajelzést visszaküldi a felhasználónak."
+                        },
+                        deepDive: {
+                            title: "Részletes Technikai Bemutató",
+                            coreFeatures: {
+                                title: "Alapvető Funkciók (MVP)",
+                                description: "A Minimum Viable Product (MVP) tartalmazza a biztonságos felhasználói hitelesítést, a tanulókártya paklik teljes körű CRUD kezelését, valamint egy MI-alapú gyakorló felületet, amely objektív visszajelzést ad és javaslatot tesz a következő ismétlési időpontra.",
+                                bullet_1: {
+                                    title: "Felhasználó- és Paklikezelés:",
+                                    bullet_1: "Biztonságos felhasználói hitelesítés (regisztráció, bejelentkezés, kijelentkezés).",
+                                    bullet_2: "Szabványos CRUD (Create, Read, Update, Delete) funkcionalitás a paklikra és a kártyákra."
+                                },
+                                bullet_2: {
+                                    title: "Kártya Struktúra:",
+                                    bullet_1: "Minden kártya négy elsődleges adatmezőt tartalmaz: <code>front</code> (kérdés), <code>back</code> (ideális válasz/kulcsszavak), <code>truths</code> (a felhasználó által megadott alapigazságok a többértelmű témákhoz és a kontextus megalapozásához), és <code>observations</code> (a felhasználó személyes jegyzetei)."
+                                },
+                                bullet_3: {
+                                    title: "MI-alapú Gyakorlás:",
+                                    bullet_1: "A gyakorló felület a kártya <code>front</code> (előlapját) és egy szöveges beviteli mezőt jelenít meg a felhasználó válaszának.",
+                                    bullet_2: "A válasz elküldése után az adatokat egy biztonságos backenden keresztül továbbítjuk a Gemini API-nak.",
+                                    bullet_3: "Az MI feladata lesz a válasz helyességének kiértékelése, tömör visszajelzés adása, és egy ismétlési időköz kategória javaslata (pl. \"Újra\", \"Nehéz\", \"Normál\", \"Könnyű\")."
+                                },
+                                bullet_4: {
+                                    title: "API Kulcs Kezelés:",
+                                    bullet_1: "A felhasználóknak meg kell adniuk a saját Google AI Studio API kulcsukat egy biztonságos beállítási panelen a kiértékelő funkció működtetéséhez."
+                                }
+                            },
+                            architecture: {
+                                title: "Tervezett Technikai Architektúra",
+                                description: "Egy full-stack alkalmazás, amely egy <reactLink>React</reactLink>/<typeScriptLink>TypeScript</typeScriptLink> frontendből, egy biztonságos <dotnetLink>.NET</dotnetLink> backend API-ból (amely közvetítőként szolgál az összes <geminiLink>Gemini</geminiLink> API hívásnál), és egy relációs <postgresLink>PostgreSQL</postgresLink> adatbázisból áll.",
+                                bullet_1: {
+                                    title: "Frontend:",
+                                    bullet_1: "<subtitle>Keretrendszer:</subtitle> <reactLink>React</reactLink> <typeScriptLink>TypeScript</typeScriptLink>-tel (<viteLink>Vite</viteLink> + <SWCLink>SWC</SWCLink> segítségével).",
+                                    bullet_2: "<subtitle>Stílus:</subtitle> <tailwindLink>Tailwind CSS</tailwindLink> a gyors, szisztematikus UI fejlesztéshez.",
+                                    bullet_3: "<subtitle>Adatlekérdezés:</subtitle> <code>axios</code> a REST API kommunikáció kezelésére."
+                                },
+                                bullet_2: {
+                                    title: "Backend:",
+                                    bullet_1: "<subtitle>Keretrendszer:</subtitle> Egy robusztus <dotnetLink>.NET</dotnetLink> API, amely felelős a felhasználói hitelesítésért, az adatbázis műveletekért, és biztonságos közvetítőként (proxy) működik az összes <geminiLink>Gemini</geminiLink> API hívásnál."
+                                },
+                                bullet_3: {
+                                    title: "Adatbázis:",
+                                    bullet_1: "<subtitle>Típus:</subtitle> Egy relációs (SQL) adatbázis, mint a <postgresLink>PostgreSQL</postgresLink>, a felhasználók, paklik és kártyák erősen strukturált és relációs jellege miatt."
+                                }
+                            },
+                            riskAnalysis: {
+                                title: "Kockázatelemzés és Kockázatcsökkentés",
+                                description: "Az elsődlegesen azonosított kockázatok az LLM hallucináció, az API késleltetés és az API költség. Ezeket fejlett prompt engineering, optimista UI minták és egy \"hozd a saját kulcsod\" modell alkalmazásával csökkentjük az MVP fázisban.",
+                                bullet_1: {
+                                    title: "Elsődleges kockázat: LLM Hallucináció / Pontatlan kiértékelések.",
+                                    bullet_1: "<subtitle>Kockázatcsökkentés:</subtitle> Az MI-nek küldött promptot erősen megalapozzuk a kártya <code>front</code>, <code>back</code> és a felhasználó által definiált <code>truths</code> mezőivel. A backend valós idejű Google keresési eredményekkel is kiegészíti a promptot a további kontextus érdekében. A felhasználónak mindig lehetősége lesz felülbírálni az MI javaslatát."
+                                },
+                                bullet_2: {
+                                    title: "Másodlagos kockázat: API Késleltetés (Latency).",
+                                    bullet_1: "<subtitle>Kockázatcsökkentés:</subtitle> A UI egy optimista, nem-blokkoló felépítést fog implementálni, egyértelmű töltési állapottal, amíg az MI válaszára várunk, ezzel kezelve a felhasználói elvárásokat."
+                                },
+                                bullet_3: {
+                                    title: "Harmadlagos kockázat: API Költség és Használati Limitek.",
+                                    bullet_1: "<subtitle>Kockázatcsökkentés (MVP):</subtitle> Mivel a felhasználóknak saját API kulcsot kell megadniuk, ez a kockázat lekerül az alkalmazás tulajdonosának válláról.",
+                                    bullet_2: "<subtitle>Kockázatcsökkentés (Jövő):</subtitle> Egy esetleges \"ingyenes próbaidőszak\" funkció szigorú szerveroldali limitálást és használati monitorozást igényelne."
+                                }
+                            },
+                            devPlan: {
+                                title: "Fázisokra Bontott Fejlesztési Terv",
+                                description: "A projekt egy pragmatikus, iteratív fejlesztési tervet követ: először egy teljes \"buta\" verzió megépítése hagyományos önértékeléssel, majd erre épül rá a backend és a \"zseni\" MI funkciók.",
+                                bullet_1: "<subtitle>1. Fázis - A \"buta\" klón:</subtitle> Az alap frontend alkalmazás megépítése, teljes CRUD funkcionalitással a paklikra és kártyákra, hagyományos önértékelő felülettel.",
+                                bullet_2: "<subtitle>2. Fázis - Backend és Adatbázis:</subtitle> Az adatbázis séma felállítása és a backend API végpontok megépítése a felhasználói hitelesítéshez és a kártyakezeléshez.",
+                                bullet_3: "<subtitle>3. Fázis - Integráció:</subtitle> A frontend összekötése a backenddel, a helyi állapotkezelés felváltása valós API hívásokkal.",
+                                bullet_4: "<subtitle>4. Fázis - A \"zseni\" funkció:</subtitle> A Gemini API integráció implementálása. A prompt engineering logika és az új gyakorló felület megépítése.",
+                                bullet_5: "<subtitle>5. Fázis - Telepítés és Finomhangolás:</subtitle> A teljes stack telepítése éles környezetbe és end-to-end tesztelés végrehajtása."
+                            }
+                        }
+                    },
+                    dealTracker: {
+                        title: "Vinted Árfigyelő és Véleménykérő",
+                        status: "Jelenlegi Állapot: P0.5: Scraper, front- és back-end váz elkészült",
+                        overview: {
+                            title: "Projekt Áttekintés",
+                            what: "<subtitle>Mi ez:</subtitle> Egy személyre szabott, saját hosztolású webalkalmazás, amely automatikusan figyeli a Vinted termékeket, e-mail értesítést küld árcsökkenés esetén, és egy egyedi megosztási funkciót biztosít a barátok véleményének kikérésére vásárlás előtt.",
+                            why: "<subtitle>Miért:</subtitle> A projekt egy figyelmes ajándékként készült egy barátomnak, hogy megoldja az online ajánlatok kézi követésének valós frusztrációját. Az etikus web scraping technikai kihívását célozza meg a modern bot-ellenes védelmekkel szemben, ahol a kereskedelmi eszközök gyakran kudarcot vallanak.",
+                            how: "<subtitle>Hogyan:</subtitle> Egy full-stack alkalmazás React frontenddel és <dotnetLink>.NET</dotnetLink>/<pythonLink>Python</pythonLink> backenddel. A kulcsfontosságú architekturális döntés egy pehelysúlyú scraper, amely egy <bold>helyi otthoni szerverről</bold> fut, lakossági IP címet és valósághű böngésző automatizálást (<playwrightLink>Playwright</playwrightLink> segítségével) használva, hogy gyakorlatilag észrevehetetlen maradjon."
+                        },
+                        deepDive: {
+                            title: "Részletes Technikai Bemutató",
+                            coreFeatures: {
+                                title: "Alapvető Funkciók (MVP)",
+                                description: "Az alkalmazás lehetővé teszi a felhasználó számára, hogy URL alapján kövessen Vinted termékeket, megtekintse az ártörténetet, automatikus e-mail értesítéseket kapjon árcsökkenés esetén, és egy egyedi \"Véleménykérő\" funkcióval zökkenőmentesen gyűjtsön visszajelzéseket a barátaitól.",
+                                bullet_1: "<subtitle>Termékkövetés:</subtitle> Termékek hozzáadása URL alapján a név, kép és ár automatikus követéséhez. Egy központi irányítópult jeleníti meg az összes terméket, egy részletes nézet pedig a teljes ártörténetet mutatja grafikonon.",
+                                bullet_2: "<subtitle>Árfigyelés és Értesítések:</subtitle> Egy időzített szkript fut helyben egy otthoni szerveren, hogy ellenőrizze az árváltozásokat. Ha csökkenést észlel, egy formázott e-mail értesítést küld egy szolgáltatáson, mint a <sendGridLink>SendGrid</sendGridLink>, keresztül. TODO expand this section",
+                                bullet_3: {
+                                    title: "A \"Véleménykérő\":",
+                                    bullet_1: "Egyedi, megosztható link generálása bármely követett termékhez.",
+                                    bullet_2: "A link egy publikus oldalra vezet, ahol a barátok megtekinthetik a terméket és hozzászólásokat hagyhatnak, amelyek azután összesítve megjelennek a fő alkalmazásban a felhasználó számára."
+                                }
+                            },
+                            architecture: {
+                                title: "Technikai Architektúra",
+                                description: "Egy függetlenített (decoupled) architektúra, amely egy <reactLink>React</reactLink> frontendet tartalmaz a <vercelLink>Vercel</vercelLink>-en, egy <dockerLink>Docker</dockerLink> konténerbe zárt backend API-t a <digitalOceanLink>DigitalOcean</digitalOceanLink>-ön, és egy egyedi, helyileg hosztolt scrapert a hatékonyság és az IP-blokkolások elkerülése érdekében.",
+                                bullet_1: "<subtitle>Frontend:</subtitle> <reactLink>React</reactLink> <typeScriptLink>(TypeScript)</typeScriptLink> <tailwindLink>Tailwind CSS</tailwindLink>-szel, a <vercelLink>Vercel</vercelLink>-en telepítve.",
+                                bullet_2: "<subtitle>Backend API:</subtitle> <dotnetLink>.NET</dotnetLink> vagy <pythonLink>Python</pythonLink> (<fastAPILink>FastAPI</fastAPILink>/<flaskLink>Flask</flaskLink> javasolt a stack egyszerűsége miatt), <dockerLink>Docker</dockerLink> konténerként telepítve a DigitalOcean-re.",
+                                bullet_3: "<subtitle>Adatbázis:</subtitle> <mongoDBLink>MongoDB</mongoDBLink> (egy ingyenes cluster használatával), ahol a Vinted termék URL-je szolgál egyedi <code>_id</code>-ként minden dokumentumhoz.",
+                                bullet_4: "<subtitle>A Scraper:</subtitle> A rendszer magja. Egy dedikált <bold>otthoni szerveren</bold> (pl. egy újrahasznosított laptopon) fut egy cron job segítségével. Ez biztosítja, hogy a scraper a nap 24 órájában egy <bold>lakossági IP címről</bold> működjön, így a forgalma hiteles felhasználói tevékenységnek tűnik."
+                            },
+                            riskAnalysis: {
+                                title: "Kockázatelemzés és Kockázatcsökkentés",
+                                description: "Az elsődleges kockázatok a scraper-ellenes intézkedések és a scraper törékenysége. Ezeket úgy csökkentjük, hogy a scraper egy lakossági IP-címről fut valósághű automatizálással, valamint robusztus hibakezelést és értesítéseket implementálunk.",
+                                bullet_1: {
+                                    title: "Elsődleges kockázat: Scraper-ellenes védelem (pl. Cloudflare).",
+                                    bullet_1: "<subtitle>Kockázatcsökkentés:</subtitle> A scraper futtatása lakossági IP-címről, valódi böngészőprofillal a <playwrightLink>Playwright</playwrightLink> segítségével. Tiszteletteljes késleltetések és valósághű User-Agent implementálása az emberi viselkedés utánzására."
+                                },
+                                bullet_2: {
+                                    title: "Másodlagos kockázat: A Scraper törékenysége.",
+                                    bullet_1: "<subtitle>Kockázatcsökkentés:</subtitle> A scraper elromlik, ha a Vinted megváltoztatja az oldalának elrendezését. Robusztus hibakezelés és naplózás implementálása. A szkript úgy lesz beállítva, hogy értesítést küldjön az adminisztrátornak, ha a scraping egymás után többször meghiúsul."
+                                },
+                                bullet_3: {
+                                    title: "Harmadlagos kockázat: Etikai megfontolások és lábnyom.",
+                                    bullet_1: "<subtitle>Kockázatcsökkentés:</subtitle> A projekt hatóköre (alacsony gyakoriságú, személyes használat, egyfelhasználós forgalom) úgy van kialakítva, hogy megkülönböztethetetlen legyen a kézi böngészéstől, és etikusan működjön, nem okozva érzékelhető terhelést a Vinted szervereinek."
+                                }
+                            },
+                            availability: {
+                                title: "Megjegyzés az Elérhetőségről",
+                                description: "\"Használhatom ezt?\" Megtisztelő a kérdés! Íme, miért rejlik ennek az eszköznek a varázsa abban, hogy egy privát, egyedi megoldás.",
+                                expanded_p1: "A projekt titkos összetevője az etikus, \"radar alatt repülő\" filozófiája. A scraper hatékonysága az architektúrájából fakad: egyetlen, lakossági IP-címről fut, és pontosan úgy viselkedik, mint egy valódi ember, aki naponta manuálisan ellenőriz néhány terméket.",
+                                expanded_p2: "Ezt egy nyilvános szolgáltatássá skálázni azonnal megváltoztatná ezt a lábnyomot, megszüntetve a tervezésének lényegét és átlépve egy etikai határt.",
+                                expanded_p3: "Ebből az okból kifolyólag az marad, aminek mindig is szánták: egy egyedi ajándék."
+                            },
+                            devPlan: {
+                                title: "Fázisokra Bontott Fejlesztési Terv",
+                                description: "A fejlesztés fázisokra van bontva, hogy először a legkockázatosabb komponenst, a scraper megépítését kezeljük. A további fázisok a backend, a frontend és a végső integráció hozzáadását tartalmazzák.",
+                                bullet_1: "<subtitle>1. Fázis: Scraper fejlesztés:</subtitle> A központi <pythonLink>Python</pythonLink>/<playwrightLink>Playwright</playwrightLink> szkript megírása és tesztelése egy élő Vinted oldal feldolgozására.",
+                                bullet_2: "<subtitle>2. Fázis: Backend és Adatbázis:</subtitle> A <mongoDBLink>MongoDB</mongoDBLink> felállítása és az alapvető CRUD API végpontok megépítése a termékekhez.",
+                                bullet_3: "<subtitle>3. Fázis: Frontend fejlesztés:</subtitle> A fő irányítópult és a termék részletes nézeteinek megépítése.",
+                                bullet_4: "<subtitle>4. Fázis: Integráció és Alaplogika:</subtitle> Az összes komponens összekötése és az e-mail értesítési szolgáltatás implementálása.",
+                                bullet_5: "<subtitle>5. Fázis: Végső funkciók és Telepítés:</subtitle> A \"Véleménykérő\" megosztási funkció megépítése és a teljes stack telepítése."
+                            }
+                        }
+                    },
+                    DSAShowcase: {
+                        title: "Grind75 - Interaktív Adatszerkezetek és Algoritmusok Bemutató",
+                        status: "Jelenlegi Állapot: P0: Csak specifikáció",
+                        overview: {
+                            title: "Projekt Áttekintés",
+                            what: "<subtitle>Mi ez:</subtitle> A Grind75 listán szereplő Adatszerkezetek és Algoritmusok problémáira adott megoldásaim adatvezérelt, interaktív felfedezése. Ez nem csupán egy kódlista; ez egy eszköz a különböző algoritmikus megközelítések futtatására, teljesítménymérésére és vizualizálására.",
+                            why: "<subtitle>Miért:</subtitle> Hogy a számítástudományi alapok mélyebb megértését demonstráljam, ami túlmutat az egyszerű helyességen. A cél, hogy vizuálisan is bemutassam az optimális megoldások mögötti \"miért\"-et – kézzelfogható módon szemléltetve az idő- és tárhelykomplexitás gyakorlati hatását.",
+                            how: "<subtitle>Hogyan:</subtitle> Egy önálló, <reactLink>React</reactLink> és <typeScriptLink>TypeScript</typeScriptLink> alapú frontend komponens. Lehetővé teszi a felhasználók számára, hogy a megoldásokat közvetlenül a böngészőben futtassák egyedi bemenetekkel. A teljesítményadatokat interaktív grafikonok (olyan könyvtárakkal, mint a <plotlyLink>Plotly</plotlyLink> vagy a <threejsLink>Three.js</threejsLink>) jelenítik meg, amelyek összehasonlítják a brute-force és az optimalizált megoldások mért teljesítményét."
+                        },
+                        deepDive: {
+                            title: "Részletes Technikai Bemutató",
+                            coreFeatures: {
+                                title: "Alapvető Funkciók",
+                                description: "A projektet oktatási eszköznek tervezték, amely élő kódfuttatást, összehasonlító teljesítményelemzést, valamint a teljesítménymutatók és a lefedett témakörök adatvizualizációját is tartalmazza.",
+                                bullet_1: "<subtitle>Interaktív Kódfuttatás (MVP):</subtitle> A felhasználók kiválaszthatnak egy problémát és a hozzá tartozó <javascriptLink>JavaScript</javascriptLink>/<typeScriptLink>TypeScript</typeScriptLink> megoldást közvetlenül az oldalon futtathatják. Egy felület lehetővé teszi a bemeneti értékek módosítását a különböző peremesetek tesztelésére.",
+                                bullet_2: "<subtitle>Összehasonlító Teljesítményelemzés (V1.5):</subtitle> A kulcsfontosságú problémákhoz a bemutató több megoldást is tartalmazni fog (pl. brute-force, egy-menetes, optimális). A komponens benchmark adatokat jelenít meg, amelyek bemutatják a drámai teljesítménykülönbségeket ezen megközelítések között.",
+                                bullet_3: {
+                                    title: "Adatvizualizáció (V2.0):",
+                                    bullet_1: "<subtitle>Teljesítménygrafikonok:</subtitle> Interaktív vizualizációk fogják ábrázolni a teljesítménykülönbségeket, vizuálisan intuitívvá téve az olyan koncepciókat, mint az O(n²) vs. O(n).",
+                                    bullet_2: "<subtitle>Tematikus Gondolattérkép:</subtitle> Egy kreatív vizualizáció fogja feltérképezni a lefedett témákat (pl. Tömbök, Fák, Dinamikus Programozás), bemutatva a különböző adatszerkezeti és algoritmikus koncepciók közötti kapcsolatokat."
+                                }
+                            },
+                            architecture: {
+                                title: "Technikai Architektúra és Megközelítés",
+                                description: "Az egyszerűség és a sebesség érdekében egy önálló, csak frontend architektúrát választottam. Minden logika és adat a kliens oldalon van tárolva, így ebben az esetben nincs szükség backendre vagy adatbázisra.",
+                                bullet_1: {
+                                    title: "<subtitle>Stack:</subtitle> <reactLink>React</reactLink>, <typeScriptLink>TypeScript</typeScriptLink>, és <tailwindLink>Tailwind CSS</tailwindLink> használatával készült, hogy összhangban maradjon a fő portfólióval. A <framerMotionLink>Framer Motion</framerMotionLink> lesz felelős a UI animációkért.",
+                                    bullet_1: "<subtitle>Vizualizációs Könyvtárak:</subtitle> Erőteljes, de pehelysúlyú könyvtárak kutatása, mint a <plotlyLink>Plotly.js</plotlyLink> 2D grafikonokhoz és esetleg a <threejsLink>Three.js</threejsLink> az ambiciózusabb 3D gondolattérkép vizualizációhoz.",
+                                    bullet_2: "<subtitle>Kódfuttatás:</subtitle> Mivel a megoldások JS/TS nyelven vannak, natívan futtathatók a böngészőben külön online fordító nélkül, ami jelentősen leegyszerűsíti az architektúrát.",
+                                    bullet_3: "<subtitle>Adattárolás:</subtitle> A teljesítménymérési eredményeket tartalmazó egyetlen JSON vagy CSV fájl az oldallal együtt lesz csomagolva. Ez egy pehelysúlyú megoldás, amely elkerüli egy adatbázis többletköltségét egy alapvetően statikus, csak olvasható adat esetében."
+                                }
+                            },
+                            riskAnalysis: {
+                                title: "Kockázatelemzés és Kockázatcsökkentés",
+                                description: "Az elsődleges kockázatok a fő portfólió oldalának lehetséges teljesítményromlása, valamint a jó felhasználói élmény biztosítása egy kód-intenzív komponens esetében mobil eszközökön.",
+                                bullet_1: {
+                                    title: "Elsődleges kockázat: Teljesítményhatás a fő portfólióra.",
+                                    bullet_1: "<subtitle>Kockázatcsökkentés:</subtitle> A megoldás komponensei úgy lesznek tervezve, hogy kölcsönösen kizárják egymást; egy probléma kódjának futtatása különálló művelet lesz, és több megoldás nem fog egyszerre futni. A komponensek és a vizualizációs könyvtárak kódfelbontással (code-splitting) és késleltetve (lazy-load) lesznek betöltve, hogy minimalizálják a kezdeti oldalbetöltésre gyakorolt hatást."
+                                },
+                                bullet_2: {
+                                    title: "Másodlagos kockázat: Mobil felhasználói élmény.",
+                                    bullet_1: "<subtitle>Kockázatcsökkentés:</subtitle> A kód megjelenítése kis képernyőkön eleve problémás. A komponens mobil verziója valószínűleg egy egyszerűsített felülettel fog rendelkezni. Egy szabadon szerkeszthető beviteli mező helyett egy legördülő menüt használhat előre kiválasztott tesztesetekkel, hogy fizikai billentyűzet nélkül is biztosítsa a használhatóságot."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 };
