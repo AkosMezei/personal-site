@@ -23,8 +23,7 @@ function ExpandableDiv({
     expandedContent?: ReactNode,
     orientation?: "left" | "right" | "center"
 }) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [_isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const divRef = useRef<HTMLDivElement>(null);
     const [mouseDownTarget, setMouseDownTarget] = useState<EventTarget | null>(null);
 
@@ -83,7 +82,7 @@ function ExpandableDiv({
         <div ref={divRef}
              onMouseDown={handleMouseDown}
              onMouseUp={handleMouseUp}
-             className={`w-auto rounded-2xl p-3  m-3 ${theme === 'dark' ? "bg-black/10 " : "bg-lightDivBackground/50 "} ${isExpanded ? "":"hover:cursor-pointer"}`}> {/*this is the motherfucker that refuses to update*/}
+             className={`w-auto rounded-2xl ${isMobile?"p-1  m-1":"p-3  m-3"} ${theme === 'dark' ? "bg-black/10 " : "bg-lightDivBackground/50 "} ${isExpanded ? "":"hover:cursor-pointer"}`}> {/*this is the motherfucker that refuses to update*/}
 
             {orientation == "left" && (
                 <div className="flex flex-row items-center justify-between">
@@ -95,7 +94,7 @@ function ExpandableDiv({
                             animate="animate"
                             exit="exit"
                             transition={{ duration: 0.3 }}
-                            className="text-3xl font-bold"
+                            className={`${isMobile?"text-xl":"text-3xl"}  font-bold`}
                         >
                             {title}
                         </motion.h1>
@@ -115,7 +114,7 @@ function ExpandableDiv({
                             animate="animate"
                             exit="exit"
                             transition={{ duration: 0.3 }}
-                            className="text-3xl font-bold"
+                            className={`${isMobile?"text-xl":"text-3xl"}  font-bold`}
                         >
                             {title}
                         </motion.h1>
@@ -134,7 +133,7 @@ function ExpandableDiv({
                             animate="animate"
                             exit="exit"
                             transition={{ duration: 0.3 }}
-                            className="text-3xl font-bold"
+                            className={`${isMobile?"text-xl":"text-3xl"}  font-bold`}
                         >
                             {title}
                         </motion.h1>
