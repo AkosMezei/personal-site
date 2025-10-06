@@ -1,15 +1,24 @@
 ﻿import { useBackgroundContext } from '../Contexts/BackgroundContext.tsx';
 import { Moon, Sun, Palette, BugOff, BugPlay } from 'lucide-react';
-import {useLanguageContext} from "../Contexts/LanguageContext.tsx";
 import flagEN from "../assets/Flag_of_the_United_Kingdom.svg.jpg"
 import flagHU from "../assets/128px-Flag_of_Hungary.svg.jpg"
 import {useEffect, useState} from "react";
 import {AnimatePresence, motion} from "motion/react";
 import {useThemeSettingsContext} from "../Contexts/ThemeSettingsContext.tsx";
 import {useWeatherContext} from "../Contexts/WeatherContext.tsx"
+import {useTranslation} from "react-i18next";
 import {MOBILE_BREAKPOINT_PX} from "../data/constants.ts";
 
 function Header() {
+
+    //TODO get language preferences from TT site, localstorage etc stuffs, save it to context
+
+    const {i18n} = useTranslation();
+
+    const handleLanguageChange = () => {
+        const newLang = i18n.language === 'en' ? 'hu' : 'en';
+        i18n.changeLanguage(newLang);
+    };
 
     const {weatherCategory} = useWeatherContext()
 
@@ -36,7 +45,7 @@ function Header() {
     
     const { theme, toggleTheme } = useBackgroundContext();
     
-    const { language, toggleLanguage } = useLanguageContext() //TODO get language preferences from TT site, localstorage etc stuffs, save it to context
+
     
     return (
         <header className={`fixed top-0 w-full z-50 backdrop-blur-sm ${
@@ -55,8 +64,8 @@ function Header() {
                         <span className="me-3 text-sm font-medium text-gray-900 dark:text-gray-300"> <img alt="English flag" className="rounded-full max-w-10" src={flagEN}/> </span>
                         <input
                             type="checkbox"
-                            checked={language === "HU"}
-                            onChange={toggleLanguage}
+                            checked={i18n.language === "hu"}
+                            onChange={handleLanguageChange}
                             className="sr-only peer"
                         />
                         <div

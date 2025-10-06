@@ -2,10 +2,8 @@
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {AnimatePresence, motion} from "motion/react";
 import { useBackgroundContext } from "../Contexts/BackgroundContext.tsx";
-import { useLanguageContext } from "../Contexts/LanguageContext.tsx";
 import {MOBILE_BREAKPOINT_PX} from "../data/constants.ts";
-
-
+import { useTranslation } from "react-i18next";
 
 const textVariants = {
     initial: { opacity: 0, filter: "blur(10px)" },
@@ -83,7 +81,7 @@ function ExpandableDiv({
     }, []);
 
     const { theme } = useBackgroundContext();
-    const { language } = useLanguageContext();
+    const { i18n } = useTranslation();
 
     const [isExpanded, setIsExpanded] = useState(false);
     const [imageIsExpanded, setImageIsExpanded] = useState(false);
@@ -104,7 +102,7 @@ function ExpandableDiv({
                 <div className="flex flex-row items-center justify-between">
                     <AnimatePresence mode="wait">
                         <motion.h1
-                            key={`title-${language}`}
+                            key={`title-${i18n.language}`}
                             variants={textVariants}
                             initial="initial"
                             animate="animate"
@@ -124,7 +122,7 @@ function ExpandableDiv({
                     {isExpanded ? (<ChevronUp/>) : (<ChevronDown/>)}
                     <AnimatePresence mode="wait">
                         <motion.h1
-                            key={`title-${language}`}
+                            key={`title-${i18n.language}`}
                             variants={textVariants}
                             initial="initial"
                             animate="animate"
@@ -143,7 +141,7 @@ function ExpandableDiv({
                     {isExpanded ? (<ChevronUp/>) : (<ChevronDown/>)}
                     <AnimatePresence mode="popLayout">
                         <motion.h1
-                            key={`title-${language}`}
+                            key={`title-${i18n.language}`}
                             variants={textVariants}
                             initial="initial"
                             animate="animate"
@@ -162,7 +160,7 @@ function ExpandableDiv({
                 <div className="flex flex-row items-center justify-between">
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={`default-content-${language}`}
+                            key={`default-content-${i18n.language}`}
                             variants={textVariants}
                             initial="initial"
                             animate="animate"
@@ -179,7 +177,7 @@ function ExpandableDiv({
                 <div className="flex flex-row items-center justify-end">
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={`default-content-${language}`}
+                            key={`default-content-${i18n.language}`}
                             variants={textVariants}
                             initial="initial"
                             animate="animate"
@@ -196,7 +194,7 @@ function ExpandableDiv({
                 <div className="flex flex-row items-center justify-center">
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={`default-content-${language}`}
+                            key={`default-content-${i18n.language}`}
                             variants={textVariants}
                             initial="initial"
                             animate="animate"
@@ -228,7 +226,7 @@ function ExpandableDiv({
                                 <div className="flex flex-row items-center justify-between">
                                     <AnimatePresence mode="wait">
                                         <motion.div
-                                            key={`expanded-content-${language}`}
+                                            key={`expanded-content-${i18n.language}`}
                                             variants={textVariants}
                                             initial="initial"
                                             animate="animate"
@@ -275,7 +273,7 @@ function ExpandableDiv({
                                     </motion.div>
                                     <AnimatePresence mode="wait">
                                         <motion.div
-                                            key={`expanded-content-${language}`}
+                                            key={`expanded-content-${i18n.language}`}
                                             variants={textVariants}
                                             initial="initial"
                                             animate="animate"
@@ -306,7 +304,7 @@ function ExpandableDiv({
                                     )}
                                     <AnimatePresence mode="wait">
                                         <motion.div
-                                            key={`expanded-content-${language}`}
+                                            key={`expanded-content-${i18n.language}`}
                                             variants={textVariants}
                                             initial="initial"
                                             animate="animate"

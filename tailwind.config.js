@@ -27,6 +27,7 @@ export default {
         matlab: '#e67e22',
         geminiStart: '#4285f4', // Google Blue
         geminiEnd: '#9b72cb',   // Purple
+        playwright: '#2EAD33',
 
         lightDivBackground: '#CCD5AE',
         lightDivHoverBackground: '#D4A373',
