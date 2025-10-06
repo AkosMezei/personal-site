@@ -4,6 +4,7 @@ import {AnimatePresence, motion} from "motion/react";
 import { useBackgroundContext } from "../Contexts/BackgroundContext.tsx";
 import {MOBILE_BREAKPOINT_PX} from "../data/constants.ts";
 import { useTranslation } from "react-i18next";
+import type { ReactNode } from "react";
 
 const textVariants = {
     initial: { opacity: 0, filter: "blur(10px)" },
@@ -12,25 +13,18 @@ const textVariants = {
 };
 
 function ExpandableDiv({
-                           image = null,
-                           imageLocation = "default",
-                           preloadOnHover = () => {},
                            title = "Default Title",
                            defaultContent = "Default Content",
                            expandedContent = "Expanded Content",
                            orientation = "left"
                        }: {
-    image?: any | null,
-    imageLocation?: "top" | "default",
-    preloadOnHover?: () => void,
-    expandImage?: boolean,
     title?: string,
-    defaultContent?: any,
-    expandedContent?: any,
+    defaultContent?: ReactNode,
+    expandedContent?: ReactNode,
     orientation?: "left" | "right" | "center"
 }) {
-
-    const [isMobile, setIsMobile] = useState(false);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [_isMobile, setIsMobile] = useState(false);
     const divRef = useRef<HTMLDivElement>(null);
     const [mouseDownTarget, setMouseDownTarget] = useState<EventTarget | null>(null);
 
@@ -84,18 +78,11 @@ function ExpandableDiv({
     const { i18n } = useTranslation();
 
     const [isExpanded, setIsExpanded] = useState(false);
-    const [imageIsExpanded, setImageIsExpanded] = useState(false);
-
-    function expandImage(e: { stopPropagation: () => void; }){
-        e.stopPropagation()
-        setImageIsExpanded(!imageIsExpanded);
-    }
 
     return (
         <div ref={divRef}
              onMouseDown={handleMouseDown}
              onMouseUp={handleMouseUp}
-             onMouseEnter={preloadOnHover}
              className={`w-auto rounded-2xl p-3  m-3 ${theme === 'dark' ? "bg-black/10 hover:bg-gray-500/5" : "bg-lightDivBackground/50 hover:bg-lightDivHoverBackground/10"}`}> {/*this is the motherfucker that refuses to update*/}
 
             {orientation == "left" && (
@@ -236,41 +223,11 @@ function ExpandableDiv({
                                             {expandedContent}
                                         </motion.div>
                                     </AnimatePresence>
-                                    <motion.div
-                                        whileHover={{
-                                            scale: imageIsExpanded ? 0.98 : 1.1,
-                                            transformOrigin: "bottom right"
-                                        }}
-                                        animate={{
-                                            width: imageIsExpanded
-                                                ? (isMobile ? "100vw" : "40vw")
-                                                : (isMobile ? "40vw" : "20vw")
-                                        }}
-                                        initial={{transformOrigin: "bottom right"}}
-                                        transition={{duration: 0.2, ease: "easeInOut"}}
-                                    >
-                                        <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
-                                    </motion.div>
                                 </div>
                             )}
 
                             {orientation == "right" && (
                                 <div className="flex flex-row items-center justify-between text-right">
-                                    <motion.div
-                                        whileHover={{
-                                            scale: imageIsExpanded ? 0.98 : 1.1,
-                                            transformOrigin: "bottom left"
-                                        }}
-                                        animate={{
-                                            width: imageIsExpanded
-                                                ? (isMobile ? "250vw" : "80vw")
-                                                : (isMobile ? "40vw" : "30vw")
-                                        }}
-                                        initial={{transformOrigin: "bottom left"}}
-                                        transition={{duration: 0.2, ease: "easeInOut"}}
-                                    >
-                                        <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
-                                    </motion.div>
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={`expanded-content-${i18n.language}`}
@@ -288,20 +245,6 @@ function ExpandableDiv({
 
                             {orientation == "center" && (
                                 <div className="flex flex-col items-center justify-center">
-                                    {imageLocation == "top" && (
-                                        <motion.div
-                                            whileHover={{scale: imageIsExpanded? 0.98 : 1.1, transformOrigin: ""}}
-                                            animate={{
-                                                width: imageIsExpanded
-                                                    ? (isMobile ? "80vw" : "50vw")
-                                                    : (isMobile ? "40vw" : "20vw")
-                                            }}
-                                            initial={{transformOrigin: ""}}
-                                            transition={{duration: 0.2, ease: "easeInOut"}}
-                                        >
-                                            <img className="rounded-2xl w-full mt-5" src={image} onClick={expandImage}/>
-                                        </motion.div>
-                                    )}
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={`expanded-content-${i18n.language}`}
@@ -315,20 +258,6 @@ function ExpandableDiv({
                                             {expandedContent}
                                         </motion.div>
                                     </AnimatePresence>
-                                    {imageLocation == "default" && (
-                                        <motion.div
-                                            whileHover={{scale: imageIsExpanded? 0.98 : 1.1, transformOrigin: "bottom right"}}
-                                            animate={{
-                                                width: imageIsExpanded
-                                                    ? (isMobile ? "100vw" : "40vw")
-                                                    : (isMobile ? "40vw" : "20vw")
-                                            }}
-                                            initial={{transformOrigin: "bottom right"}}
-                                            transition={{duration: 0.2, ease: "easeInOut"}}
-                                        >
-                                            <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
-                                        </motion.div>
-                                    )}
                                 </div>
                             )}
 

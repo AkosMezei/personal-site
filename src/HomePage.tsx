@@ -6,13 +6,11 @@
 //TODO fix centered titles inside projects not being centered on mobile
 //TODO add hrefs to tech stack in about me
 
-import uni from "../src/assets/sapientia.jpg"
-import highschool from "../src/assets/salamon.png" //TODO resize, remove top
 import ExpandableDiv from "./Components/ExpandableDiv.tsx";
-import {preload} from "react-dom";
 import MessageBox from "./Components/MessageBox.tsx";
 import { motion } from "motion/react";
 import { useTranslation, Trans } from "react-i18next";
+import {SectionDivider} from "./Components/SectionDivider.tsx";
 
 function HomePage() {
 
@@ -81,8 +79,6 @@ function HomePage() {
                                    <div className="w-full">
                                        <ExpandableDiv
                                            title={t('education.highSchool.title')}
-                                           image={highschool}
-                                           preloadOnHover={() => preload(highschool, {as: "image"})}
                                            orientation="left"
                                            defaultContent={
                                                <p> {t('education.highSchool.dates')} </p>
@@ -93,8 +89,6 @@ function HomePage() {
                                        />
                                        <ExpandableDiv
                                            title={t('education.university.title')}
-                                           image={uni}
-                                           preloadOnHover={() => preload(uni, {as: "image"})}
                                            orientation="right"
                                            defaultContent={
                                                <p> {t('education.university.dates')} </p>
@@ -197,8 +191,9 @@ function HomePage() {
                     </div>
                 }
                 />
-                <h1> {t('projects.title')} </h1>
-                <p> {t('projects.description')} </p>
+
+                <SectionDivider title={t('projects.title')} content={t('projects.description')}/>
+
                 <ExpandableDiv
                     title={t('projects.featured.title')}
                     orientation="center"
