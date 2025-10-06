@@ -12,7 +12,6 @@ import ExpandableDiv from "./Components/ExpandableDiv.tsx";
 import {preload} from "react-dom";
 import MessageBox from "./Components/MessageBox.tsx";
 import { motion } from "motion/react";
-//import { useTranslation } from "./Hooks/useTranslation.ts";
 import { useTranslation, Trans } from "react-i18next";
 
 function HomePage() {
