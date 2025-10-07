@@ -6,22 +6,32 @@ import {MOBILE_BREAKPOINT_PX} from "../data/constants.ts";
 import { useTranslation } from "react-i18next";
 import type { ReactNode } from "react";
 
+//TODO make links stand out more on mobile somehow
+
 const textVariants = {
     initial: { opacity: 0, filter: "blur(10px)" },
     animate: { opacity: 1, filter: "blur(0px)" },
     exit: { opacity: 0, filter: "blur(10px)" }
 };
 
+const light_hoverTitleColor = "text-sky-600";
+const dark_hoverTitleColor = "text-sky-400";
+
+const light_bgColor = "bg-lightDivBackground/25";
+const dark_bgColor = "bg-black/20";
+
 function ExpandableDiv({
                            title = "Default Title",
                            defaultContent = "Default Content",
                            expandedContent = "Expanded Content",
-                           orientation = "left"
+                           orientation = "left",
+                            isSectionBreak = false,
                        }: {
     title?: string,
     defaultContent?: ReactNode,
     expandedContent?: ReactNode,
-    orientation?: "left" | "right" | "center"
+    orientation?: "left" | "right" | "center",
+    isSectionBreak?: boolean,
 }) {
     const [isMobile, setIsMobile] = useState(false);
     const divRef = useRef<HTMLDivElement>(null);
@@ -42,6 +52,8 @@ function ExpandableDiv({
     function handleMouseDown(e: React.MouseEvent) {
         // Store the target element where the mouse was pressed
         setMouseDownTarget(e.target);
+        const selection = window.getSelection();
+        selectionExistsOnMouseDown.current = !!(selection && selection.toString().length > 0);
     }
 
     function handleMouseUp(e: React.MouseEvent) {
@@ -52,7 +64,12 @@ function ExpandableDiv({
             if ((target as HTMLElement).tagName === 'IMG') {
                 return;
             }
-            
+
+            if (selectionExistsOnMouseDown.current) {
+                selectionExistsOnMouseDown.current = false; //reset for the next click
+                return;
+            }
+
             // Check if the user has selected any text
             const selection = window.getSelection();
             const hasTextSelection = selection && selection.toString().length > 0;
@@ -90,11 +107,19 @@ function ExpandableDiv({
 
     const [isExpanded, setIsExpanded] = useState(false);
 
+    const titleClassName = `${isMobile?"text-xl":"text-3xl"} font-bold transition-colors duration-300 cursor-pointer ${isHovered || isExpanded? `${theme === 'dark'? dark_hoverTitleColor : light_hoverTitleColor }` : ''}`;
+
     return (
         <div ref={divRef}
              onMouseDown={handleMouseDown}
              onMouseUp={handleMouseUp}
-             className={`w-auto rounded-2xl ${isMobile?"p-1  m-1":"p-3  m-3"} ${theme === 'dark' ? "bg-black/10 " : "bg-lightDivBackground/50 "} ${isExpanded ? "":"hover:cursor-pointer"}`}> {/*this is the motherfucker that refuses to update*/}
+             onMouseEnter={handleMouseEnter}
+             onMouseLeave={handleMouseLeave}
+             className={`w-auto rounded-2xl transition-all duration-300 hover:outline hover:outline-1 outline-none backdrop-blur-xs
+             ${isMobile?"p-1  m-1":"p-3  m-3"} 
+             ${theme === 'dark' ? `${isSectionBreak ? "bg-gray-800/30" : `${dark_bgColor} `} hover:outline-sky-400/50` : `${isSectionBreak ? "bg-lightDivBackground/50" : `${light_bgColor}`} hover:outline-sky-600/50`} 
+             ${isExpanded ? `${theme === 'dark'? "outline-sky-400/50 outline-1 outline-none":"outline-sky-600/50 outline-1 outline-none"}`:"hover:cursor-pointer"}
+             `}>
 
             {orientation == "left" && (
                 <div className="flex flex-row items-center justify-between">
@@ -106,7 +131,7 @@ function ExpandableDiv({
                             animate="animate"
                             exit="exit"
                             transition={{ duration: 0.3 }}
-                            className={`${isMobile?"text-xl":"text-3xl"}  font-bold`}
+                            className={titleClassName}
                         >
                             {title}
                         </motion.h1>
@@ -126,7 +151,7 @@ function ExpandableDiv({
                             animate="animate"
                             exit="exit"
                             transition={{ duration: 0.3 }}
-                            className={`${isMobile?"text-xl":"text-3xl"}  font-bold`}
+                            className={titleClassName}
                         >
                             {title}
                         </motion.h1>
@@ -145,7 +170,7 @@ function ExpandableDiv({
                             animate="animate"
                             exit="exit"
                             transition={{ duration: 0.3 }}
-                            className={`${isMobile?"text-xl":"text-3xl"}  font-bold`}
+                            className={titleClassName}
                         >
                             {title}
                         </motion.h1>
