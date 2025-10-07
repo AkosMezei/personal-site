@@ -13,10 +13,12 @@
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.8.2",
+    "i18next": "^25.5.3",
     "lucide-react": "^0.475.0",
     "motion": "^12.4.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-i18next": "^16.0.0",
     "react-textarea-autosize": "^8.5.7"
   },
   "devDependencies": {

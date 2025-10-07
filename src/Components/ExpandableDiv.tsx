@@ -2,10 +2,11 @@
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {AnimatePresence, motion} from "motion/react";
 import { useBackgroundContext } from "../Contexts/BackgroundContext.tsx";
-import { useLanguageContext } from "../Contexts/LanguageContext.tsx";
 import {MOBILE_BREAKPOINT_PX} from "../data/constants.ts";
+import { useTranslation } from "react-i18next";
+import type { ReactNode } from "react";
 
-
+//TODO make links stand out more on mobile somehow
 
 const textVariants = {
     initial: { opacity: 0, filter: "blur(10px)" },
@@ -13,32 +14,46 @@ const textVariants = {
     exit: { opacity: 0, filter: "blur(10px)" }
 };
 
+const light_hoverTitleColor = "text-sky-600";
+const dark_hoverTitleColor = "text-sky-400";
+
+const light_bgColor = "bg-lightDivBackground/25";
+const dark_bgColor = "bg-black/20";
+
 function ExpandableDiv({
-                           image = null,
-                           imageLocation = "default",
-                           preloadOnHover = () => {},
                            title = "Default Title",
                            defaultContent = "Default Content",
                            expandedContent = "Expanded Content",
-                           orientation = "left"
+                           orientation = "left",
+                            isSectionBreak = false,
                        }: {
-    image?: any | null,
-    imageLocation?: "top" | "default",
-    preloadOnHover?: () => void,
-    expandImage?: boolean,
     title?: string,
-    defaultContent?: any,
-    expandedContent?: any,
-    orientation?: "left" | "right" | "center"
+    defaultContent?: ReactNode,
+    expandedContent?: ReactNode,
+    orientation?: "left" | "right" | "center",
+    isSectionBreak?: boolean,
 }) {
-
     const [isMobile, setIsMobile] = useState(false);
     const divRef = useRef<HTMLDivElement>(null);
     const [mouseDownTarget, setMouseDownTarget] = useState<EventTarget | null>(null);
 
+    const selectionExistsOnMouseDown = useRef(false);
+
+    const [isHovered, setIsHovered] = useState(false);
+
+    function handleMouseEnter() {
+        setIsHovered(true);
+    }
+
+    function handleMouseLeave() {
+        setIsHovered(false);
+    }
+
     function handleMouseDown(e: React.MouseEvent) {
         // Store the target element where the mouse was pressed
         setMouseDownTarget(e.target);
+        const selection = window.getSelection();
+        selectionExistsOnMouseDown.current = !!(selection && selection.toString().length > 0);
     }
 
     function handleMouseUp(e: React.MouseEvent) {
@@ -49,7 +64,12 @@ function ExpandableDiv({
             if ((target as HTMLElement).tagName === 'IMG') {
                 return;
             }
-            
+
+            if (selectionExistsOnMouseDown.current) {
+                selectionExistsOnMouseDown.current = false; //reset for the next click
+                return;
+            }
+
             // Check if the user has selected any text
             const selection = window.getSelection();
             const hasTextSelection = selection && selection.toString().length > 0;
@@ -83,34 +103,35 @@ function ExpandableDiv({
     }, []);
 
     const { theme } = useBackgroundContext();
-    const { language } = useLanguageContext();
+    const { i18n } = useTranslation();
 
     const [isExpanded, setIsExpanded] = useState(false);
-    const [imageIsExpanded, setImageIsExpanded] = useState(false);
 
-    function expandImage(e: { stopPropagation: () => void; }){
-        e.stopPropagation()
-        setImageIsExpanded(!imageIsExpanded);
-    }
+    const titleClassName = `${isMobile?"text-xl":"text-3xl"} font-bold transition-colors duration-300 cursor-pointer ${isHovered || isExpanded? `${theme === 'dark'? dark_hoverTitleColor : light_hoverTitleColor }` : ''}`;
 
     return (
         <div ref={divRef}
              onMouseDown={handleMouseDown}
              onMouseUp={handleMouseUp}
-             onMouseEnter={preloadOnHover}
-             className={`w-auto rounded-2xl p-3  m-3 ${theme === 'dark' ? "bg-black/10 hover:bg-gray-500/5" : "bg-lightDivBackground/50 hover:bg-lightDivHoverBackground/10"}`}> {/*this is the motherfucker that refuses to update*/}
+             onMouseEnter={handleMouseEnter}
+             onMouseLeave={handleMouseLeave}
+             className={`w-auto rounded-2xl transition-all duration-300 hover:outline hover:outline-1 outline-none backdrop-blur-xs
+             ${isMobile?"p-1  m-1":"p-3  m-3"} 
+             ${theme === 'dark' ? `${isSectionBreak ? "bg-gray-800/30" : `${dark_bgColor} `} hover:outline-sky-400/50` : `${isSectionBreak ? "bg-lightDivBackground/50" : `${light_bgColor}`} hover:outline-sky-600/50`} 
+             ${isExpanded ? `${theme === 'dark'? "outline-sky-400/50 outline-1 outline-none":"outline-sky-600/50 outline-1 outline-none"}`:"hover:cursor-pointer"}
+             `}>
 
             {orientation == "left" && (
                 <div className="flex flex-row items-center justify-between">
                     <AnimatePresence mode="wait">
                         <motion.h1
-                            key={`title-${language}`}
+                            key={`title-${i18n.language}`}
                             variants={textVariants}
                             initial="initial"
                             animate="animate"
                             exit="exit"
                             transition={{ duration: 0.3 }}
-                            className="text-3xl font-bold"
+                            className={titleClassName}
                         >
                             {title}
                         </motion.h1>
@@ -124,13 +145,13 @@ function ExpandableDiv({
                     {isExpanded ? (<ChevronUp/>) : (<ChevronDown/>)}
                     <AnimatePresence mode="wait">
                         <motion.h1
-                            key={`title-${language}`}
+                            key={`title-${i18n.language}`}
                             variants={textVariants}
                             initial="initial"
                             animate="animate"
                             exit="exit"
                             transition={{ duration: 0.3 }}
-                            className="text-3xl font-bold"
+                            className={titleClassName}
                         >
                             {title}
                         </motion.h1>
@@ -143,13 +164,13 @@ function ExpandableDiv({
                     {isExpanded ? (<ChevronUp/>) : (<ChevronDown/>)}
                     <AnimatePresence mode="popLayout">
                         <motion.h1
-                            key={`title-${language}`}
+                            key={`title-${i18n.language}`}
                             variants={textVariants}
                             initial="initial"
                             animate="animate"
                             exit="exit"
                             transition={{ duration: 0.3 }}
-                            className="text-3xl font-bold"
+                            className={titleClassName}
                         >
                             {title}
                         </motion.h1>
@@ -162,7 +183,7 @@ function ExpandableDiv({
                 <div className="flex flex-row items-center justify-between">
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={`default-content-${language}`}
+                            key={`default-content-${i18n.language}`}
                             variants={textVariants}
                             initial="initial"
                             animate="animate"
@@ -179,7 +200,7 @@ function ExpandableDiv({
                 <div className="flex flex-row items-center justify-end">
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={`default-content-${language}`}
+                            key={`default-content-${i18n.language}`}
                             variants={textVariants}
                             initial="initial"
                             animate="animate"
@@ -196,7 +217,7 @@ function ExpandableDiv({
                 <div className="flex flex-row items-center justify-center">
                     <AnimatePresence mode="wait">
                         <motion.div
-                            key={`default-content-${language}`}
+                            key={`default-content-${i18n.language}`}
                             variants={textVariants}
                             initial="initial"
                             animate="animate"
@@ -228,7 +249,7 @@ function ExpandableDiv({
                                 <div className="flex flex-row items-center justify-between">
                                     <AnimatePresence mode="wait">
                                         <motion.div
-                                            key={`expanded-content-${language}`}
+                                            key={`expanded-content-${i18n.language}`}
                                             variants={textVariants}
                                             initial="initial"
                                             animate="animate"
@@ -238,44 +259,14 @@ function ExpandableDiv({
                                             {expandedContent}
                                         </motion.div>
                                     </AnimatePresence>
-                                    <motion.div
-                                        whileHover={{
-                                            scale: imageIsExpanded ? 0.98 : 1.1,
-                                            transformOrigin: "bottom right"
-                                        }}
-                                        animate={{
-                                            width: imageIsExpanded
-                                                ? (isMobile ? "100vw" : "40vw")
-                                                : (isMobile ? "40vw" : "20vw")
-                                        }}
-                                        initial={{transformOrigin: "bottom right"}}
-                                        transition={{duration: 0.2, ease: "easeInOut"}}
-                                    >
-                                        <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
-                                    </motion.div>
                                 </div>
                             )}
 
                             {orientation == "right" && (
-                                <div className="flex flex-row items-center justify-between text-right">
-                                    <motion.div
-                                        whileHover={{
-                                            scale: imageIsExpanded ? 0.98 : 1.1,
-                                            transformOrigin: "bottom left"
-                                        }}
-                                        animate={{
-                                            width: imageIsExpanded
-                                                ? (isMobile ? "250vw" : "80vw")
-                                                : (isMobile ? "40vw" : "30vw")
-                                        }}
-                                        initial={{transformOrigin: "bottom left"}}
-                                        transition={{duration: 0.2, ease: "easeInOut"}}
-                                    >
-                                        <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
-                                    </motion.div>
+                                <div className="flex flex-row items-center justify-between">
                                     <AnimatePresence mode="wait">
                                         <motion.div
-                                            key={`expanded-content-${language}`}
+                                            key={`expanded-content-${i18n.language}`}
                                             variants={textVariants}
                                             initial="initial"
                                             animate="animate"
@@ -290,23 +281,9 @@ function ExpandableDiv({
 
                             {orientation == "center" && (
                                 <div className="flex flex-col items-center justify-center">
-                                    {imageLocation == "top" && (
-                                        <motion.div
-                                            whileHover={{scale: imageIsExpanded? 0.98 : 1.1, transformOrigin: ""}}
-                                            animate={{
-                                                width: imageIsExpanded
-                                                    ? (isMobile ? "80vw" : "50vw")
-                                                    : (isMobile ? "40vw" : "20vw")
-                                            }}
-                                            initial={{transformOrigin: ""}}
-                                            transition={{duration: 0.2, ease: "easeInOut"}}
-                                        >
-                                            <img className="rounded-2xl w-full mt-5" src={image} onClick={expandImage}/>
-                                        </motion.div>
-                                    )}
                                     <AnimatePresence mode="wait">
                                         <motion.div
-                                            key={`expanded-content-${language}`}
+                                            key={`expanded-content-${i18n.language}`}
                                             variants={textVariants}
                                             initial="initial"
                                             animate="animate"
@@ -317,20 +294,6 @@ function ExpandableDiv({
                                             {expandedContent}
                                         </motion.div>
                                     </AnimatePresence>
-                                    {imageLocation == "default" && (
-                                        <motion.div
-                                            whileHover={{scale: imageIsExpanded? 0.98 : 1.1, transformOrigin: "bottom right"}}
-                                            animate={{
-                                                width: imageIsExpanded
-                                                    ? (isMobile ? "100vw" : "40vw")
-                                                    : (isMobile ? "40vw" : "20vw")
-                                            }}
-                                            initial={{transformOrigin: "bottom right"}}
-                                            transition={{duration: 0.2, ease: "easeInOut"}}
-                                        >
-                                            <img className="rounded-2xl w-full" src={image} onClick={expandImage}/>
-                                        </motion.div>
-                                    )}
                                 </div>
                             )}
 
