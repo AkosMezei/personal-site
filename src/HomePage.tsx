@@ -141,8 +141,8 @@ function HomePage() {
                             orientation="center"
                             defaultContent={
                                 <div>
-                                    <div className="mr-2">{t('experience.woodworking.company')}</div>
-                                    <div>{t('experience.woodworking.dates')}</div>
+                                    <div className="mr-2 text-center">{t('experience.woodworking.company')}</div>
+                                    <div className="text-center">{t('experience.woodworking.dates')}</div>
                                 </div>
                             }
                             expandedContent={
@@ -164,8 +164,8 @@ function HomePage() {
                             orientation="center"
                             defaultContent={
                                 <div>
-                                    <div className="mr-2">{t('experience.internship.company')}</div>
-                                    <div>{t('experience.internship.dates')}</div>
+                                    <div className="mr-2 text-center">{t('experience.internship.company')}</div>
+                                    <div className="text-center">{t('experience.internship.dates')}</div>
                                 </div>
                             }
                             expandedContent={
