@@ -49,8 +49,8 @@
             internship: {
                 title: "Web Content Intern",
                 company: "Octopus Digital",
-                bullet_1: "Managed and updated content for an enterprise website, using the **Umbraco CMS** to ensure content integrity and alignment with project goals.",
-                bullet_2: "Used Figma as the single source of truth to update and populate content in the Umbraco CMS, ensuring a 1:1 consistency between the design mockups and the live site.",
+                bullet_1: "Managed and updated content for an enterprise website, using the <umbracoLink>Umbraco CMS</umbracoLink> to ensure content integrity and alignment with project goals.",
+                bullet_2: "Used Figma as the single source of truth to update and populate content in the <umbracoLink>Umbraco CMS</umbracoLink>, ensuring a 1:1 consistency between the design mockups and the live site.",
                 bullet_3: "Operated within a professional development environment, gaining valuable insight into the maintenance and operational lifecycle of a commercial web application.",
                 dates: "April 2024 – August 2024",
             }
@@ -160,7 +160,7 @@
                             description: "The problem was modeled as a Mixed-Integer Linear Programming (MILP) problem and implemented using <matlabLink>MATLAB's</matlabLink> Optimization Toolbox, chosen for its power and precision in handling integer constraints.",
                             bullet_1: "<subtitle>Mathematical Modeling:</subtitle> The core of the project was translating the financial requirements into a mathematical model. The \"objective function\" was defined to maximize profit, and this was subjected to a series of linear inequality constraints representing the investor's rules.",
                             bullet_2: "<subtitle>MATLAB Implementation:</subtitle> I leveraged MATLAB's Optimization Toolbox, specifically the <code>intlinprog</code> function, which is a powerful solver designed for MILP problems where variables (like the number of shares) must be whole numbers.",
-                            bullet_3: "<subtitle>Comparative Analysis:</subtitle> The MATLAB solution was also benchmarked against an alternative model built in <bold>Excel using the Solver add-in and VBA<bold>. This provided valuable insights into the performance, scalability, and ease of modeling of the different technical approaches to the same problem.",
+                            bullet_3: "<subtitle>Comparative Analysis:</subtitle> The MATLAB solution was also benchmarked against an alternative model built in <bold>Excel using the Solver add-in and VBA</bold>. This provided valuable insights into the performance, scalability, and ease of modeling of the different technical approaches to the same problem.",
                         },
                         keyFeature: {
                             title: "Key Feature: Sensitivity Analysis",
@@ -436,8 +436,8 @@
                 internship: {
                     title: "Webtartalom-kezelő gyakornok",
                     company: "Octopus Digital",
-                    bullet_1: "Nagyvállalati weboldal tartalmának kezelése és frissítése az **Umbraco CMS** segítségével, a tartalmi integritás és a projektcéloknak való megfelelés biztosítása.",
-                    bullet_2: "A Figma használata mint \"egyedüli hiteles forrás\" (single source of truth) a tartalmak frissítéséhez az Umbraco CMS-ben, biztosítva a design tervek és az éles weboldal közötti 1:1 arányú megegyezést.",
+                    bullet_1: "Nagyvállalati weboldal tartalmának kezelése és frissítése az <ubracoLink>Umbraco CMS</ubracoLink> segítségével, a tartalmi integritás és a projektcéloknak való megfelelés biztosítása.",
+                    bullet_2: "A Figma használata mint \"egyedüli hiteles forrás\" (single source of truth) a tartalmak frissítéséhez az <umbracoLink>Umbraco CMS</umbracoLink>-ben, biztosítva a design tervek és az éles weboldal közötti 1:1 arányú megegyezést.",
                     bullet_3: "Professzionális fejlesztői környezetben dolgozva értékes betekintést nyertem egy kereskedelmi webalkalmazás karbantartási és működési életciklusába.",
                     dates: "2024. április – 2024. augusztus"
                 }
