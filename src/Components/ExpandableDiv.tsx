@@ -35,6 +35,8 @@ function ExpandableDiv({
     const divRef = useRef<HTMLDivElement>(null);
     const [mouseDownTarget, setMouseDownTarget] = useState<EventTarget | null>(null);
 
+    const contentId = `expandable-content-${title.replace(/\s+/g, '-').toLowerCase()}`;
+
     const selectionExistsOnMouseDown = useRef(false);
 
     const [isHovered, setIsHovered] = useState(false);
@@ -80,11 +82,18 @@ function ExpandableDiv({
             // Check if the click was within our component
             if (divRef.current.contains(target)) {
                 e.stopPropagation();
-                setIsExpanded(!isExpanded);
+                setIsExpanded(prev => !prev);
             }
         }
     }
-    
+
+    function handleKeyDown(e: React.KeyboardEvent) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setIsExpanded(prev => !prev);
+        }
+    }
+
     useEffect(() => {
         const checkIfMobile = () => {
             setIsMobile(window.innerWidth < MOBILE_BREAKPOINT_PX);
@@ -113,7 +122,12 @@ function ExpandableDiv({
              onMouseUp={handleMouseUp}
              onMouseEnter={handleMouseEnter}
              onMouseLeave={handleMouseLeave}
-             className={`w-auto rounded-2xl transition-all duration-300 hover:outline hover:outline-1 outline-none backdrop-blur-xs
+             tabIndex={0}
+             onKeyDown={handleKeyDown}
+             role="button"
+             aria-expanded={isExpanded}
+             aria-controls={contentId}
+             className={`w-auto rounded-2xl transition-all duration-300 hover:outline hover:outline-1 outline-none backdrop-blur-xs focus:ring-2 focus:ring-blue-500
              ${isMobile?"p-1  m-1":"p-3  m-3"} 
              ${theme === 'dark' ? `${isSectionBreak ? "bg-gray-800/30" : `${dark_bgColor} `} hover:outline-sky-400/50` : `${isSectionBreak ? "bg-lightDivBackground/50" : `${light_bgColor}`} hover:outline-sky-600/50`} 
              ${isExpanded ? `${theme === 'dark'? "outline-sky-400/50 outline-1 outline-none":"outline-sky-600/50 outline-1 outline-none"}`:"hover:cursor-pointer"}
@@ -231,6 +245,7 @@ function ExpandableDiv({
             <AnimatePresence>
                 {isExpanded && (
                     <motion.div
+                        id={contentId}
                         initial={{height: 0, opacity: 0}}
                         animate={{height: "auto", opacity: 1}}
                         exit={{height: 0, opacity: 0}}
