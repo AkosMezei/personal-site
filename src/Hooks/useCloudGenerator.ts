@@ -59,7 +59,6 @@ export function useCloudGenerator(weatherCategory:WeatherCategory) {
                     currentClouds.push(generateMediumCloud("medium"))
                     currentClouds.push(generateMediumCloud("medium"))
                     currentClouds.push(generateLongCloud("medium"))
-                    //TODO maybe change this to a more elegant way of setting relative cloud size amounts
                 }
                 setClouds(currentClouds)
                 break;

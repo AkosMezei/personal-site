@@ -10,7 +10,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
  * @property {string} lon - The longitude coordinate.
  * @see {@link https://en.wikipedia.org/wiki/Geographic_coordinate_system}
  */
-//TODO: maybe change lat, lon to number instead of string for better type safety
+
 type LocationWithCoords = {
     lat: string,
     lon: string
@@ -259,7 +259,6 @@ export default async function handler(request: VercelRequest, response: VercelRe
             }
         }
 
-        //TODO make these two handle all cases, this is just quickly thrown together to kinda somewhat mostly work
 
         // --- OpenWeatherMap ---
         // @see https://openweathermap.org/weather-conditions

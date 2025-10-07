@@ -6,8 +6,6 @@ import {MOBILE_BREAKPOINT_PX} from "../data/constants.ts";
 import { useTranslation } from "react-i18next";
 import type { ReactNode } from "react";
 
-//TODO make links stand out more on mobile somehow
-
 const textVariants = {
     initial: { opacity: 0, filter: "blur(10px)" },
     animate: { opacity: 1, filter: "blur(0px)" },

@@ -110,7 +110,7 @@
                             multiLanguageSupport: {
                                 title: "Multi-Language Support",
                                 description: "The portfolio supports multiple languages through a custom-built, lightweight translation system.",
-                                bullet_1: "All text content is loaded from simple JSON files, making the system easy to manage and extend. ---TODO change this to reflect the new i18n system", //TODO rewrite this part to mention transitioning to i18n
+                                bullet_1: "All text content is loaded from simple JSON files, making the system easy to manage and extend. ---TODO change this to reflect the new i18n system",
                             }
                         }
                     },
@@ -277,7 +277,7 @@
                             title: "Core Features (MVP)",
                             description: "The application allows a user to track Vinted items by URL, view price history, receive automated email alerts on price drops, and use a unique \"Opinion Getter\" to seamlessly collect feedback from friends.",
                             bullet_1: "<subtitle>Item Tracking:</subtitle> Add items via URL for automatic tracking of name, image, and price. A central dashboard displays all items, and a detailed view shows a full price history chart.",
-                            bullet_2: "<subtitle>Price Monitoring & Alerts:</subtitle> A scheduled script runs locally on a home server to check for price updates. If a drop is detected, a formatted email alert is sent via a service like <sendGridLink>SendGrid.</sendGridLink> TODO expand this section", //TODO expand this section, specs go into more detail
+                            bullet_2: "<subtitle>Price Monitoring & Alerts:</subtitle> A scheduled script runs locally on a home server to check for price updates. If a drop is detected, a formatted email alert is sent via a service like <sendGridLink>SendGrid.</sendGridLink> TODO expand this section",
                             bullet_3: {
                                 title: "The \"Opinion Getter\":",
                                 bullet_1: "Generate a unique, shareable link for any tracked item.",
