@@ -1,6 +1,4 @@
-﻿//TODO if the number of lines is different between languages, the language change is jagged af
-
-import ExpandableDiv from "./Components/ExpandableDiv.tsx";
+﻿import ExpandableDiv from "./Components/ExpandableDiv.tsx";
 import MessageBox from "./Components/MessageBox.tsx";
 import { motion } from "motion/react";
 import { useTranslation, Trans } from "react-i18next";
@@ -39,7 +37,7 @@ function HomePage() {
         subtitle: <strong className="font-semibold text-gray-900 dark:text-slate-100 mr-2" />,
         code: <code className="font-mono text-nowrap bg-slate-200 dark:bg-slate-700/80 text-sky-600 dark:text-sky-300 px-1 py-0.5 rounded-md text-sm" />,
     }
-    //TODO rewrite to either use theme or make dark: in css use theme
+
     return (
         <div className="mx-2 py-16 lg:w-3/5 ml-auto mr-auto">
             <motion.div layout transition={{layout: {duration: 0.5, ease: "easeInOut"}}}>

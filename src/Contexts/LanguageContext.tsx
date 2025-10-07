@@ -30,5 +30,3 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         </LanguageContext.Provider>
     );
 }
-
-//TODO get initial language, yoink it from my other site

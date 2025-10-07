@@ -1,5 +1,4 @@
-﻿//TODO math.random gave me way too high of precision, change them to 2-3 fractional digits so it's more readable and the filesize is smaller
-export const STAR_DATA = [
+﻿export const STAR_DATA = [
     {
         "size": 2.4095440321636232,
         "opacity": 0.5265906041692592,

@@ -55,7 +55,6 @@ function pickRandomCloud(clouds: string[]){
 function randomBetween(min: number, max: number){
     return min + Math.random() * (max - min);
 }
-//TODO fine tune numbers to make different cloud sizes more distinct
 export const cloudConfig: Record<CloudSizeType, CloudSizeConfig> = {
     small: {
         imagePool: smallClouds,

@@ -87,7 +87,7 @@ function MessageBox(){
                 });
                 const newChatId = response.data.id;
                 localStorage.setItem("chatId", newChatId);
-                sessionStorage.setItem("chatId", newChatId); //TODO implement trying to get this as a fallback when localstorage doesn't work
+                sessionStorage.setItem("chatId", newChatId);
                 return newChatId;
             } catch (error) {
                 console.log(error);

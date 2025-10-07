@@ -11,8 +11,6 @@ import {MOBILE_BREAKPOINT_PX} from "../data/constants.ts";
 
 function Header() {
 
-    //TODO get language preferences from TT site, localstorage etc stuffs, save it to context
-
     const {i18n} = useTranslation();
 
     const handleLanguageChange = () => {
