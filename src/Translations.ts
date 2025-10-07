@@ -436,7 +436,7 @@
                 internship: {
                     title: "Webtartalom-kezelő gyakornok",
                     company: "Octopus Digital",
-                    bullet_1: "Nagyvállalati weboldal tartalmának kezelése és frissítése az <ubracoLink>Umbraco CMS</ubracoLink> segítségével, a tartalmi integritás és a projektcéloknak való megfelelés biztosítása.",
+                    bullet_1: "Nagyvállalati weboldal tartalmának kezelése és frissítése az <umbracoLink>Umbraco CMS</umbracoLink> segítségével, a tartalmi integritás és a projektcéloknak való megfelelés biztosítása.",
                     bullet_2: "A Figma használata mint \"egyedüli hiteles forrás\" (single source of truth) a tartalmak frissítéséhez az <umbracoLink>Umbraco CMS</umbracoLink>-ben, biztosítva a design tervek és az éles weboldal közötti 1:1 arányú megegyezést.",
                     bullet_3: "Professzionális fejlesztői környezetben dolgozva értékes betekintést nyertem egy kereskedelmi webalkalmazás karbantartási és működési életciklusába.",
                     dates: "2024. április – 2024. augusztus"
