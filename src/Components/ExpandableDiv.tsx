@@ -27,6 +27,18 @@ function ExpandableDiv({
     const divRef = useRef<HTMLDivElement>(null);
     const [mouseDownTarget, setMouseDownTarget] = useState<EventTarget | null>(null);
 
+    const selectionExistsOnMouseDown = useRef(false);
+
+    const [isHovered, setIsHovered] = useState(false);
+
+    function handleMouseEnter() {
+        setIsHovered(true);
+    }
+
+    function handleMouseLeave() {
+        setIsHovered(false);
+    }
+
     function handleMouseDown(e: React.MouseEvent) {
         // Store the target element where the mouse was pressed
         setMouseDownTarget(e.target);
@@ -226,7 +238,7 @@ function ExpandableDiv({
                             )}
 
                             {orientation == "right" && (
-                                <div className="flex flex-row items-center justify-between text-right">
+                                <div className="flex flex-row items-center justify-between">
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={`expanded-content-${i18n.language}`}
