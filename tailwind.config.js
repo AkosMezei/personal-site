@@ -28,6 +28,7 @@ export default {
         geminiStart: '#4285f4', // Google Blue
         geminiEnd: '#9b72cb',   // Purple
         playwright: '#2EAD33',
+        umbraco: '#283a97',
 
         lightDivBackground: '#CCD5AE',
         lightDivHoverBackground: '#D4A373',
@@ -53,6 +54,9 @@ export default {
           DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
           foreground: 'rgb(var(--accent-foreground) / <alpha-value>)'
         }
+      },
+      backdropBlur: {
+        'xs': '2px',
       }
     },
   },
