@@ -90,6 +90,7 @@ function ExpandableDiv({
     function handleKeyDown(e: React.KeyboardEvent) {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
+            e.stopPropagation();
             setIsExpanded(prev => !prev);
         }
     }
