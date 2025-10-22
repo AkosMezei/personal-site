@@ -93,11 +93,9 @@ export default async function handler(request: VercelRequest, response: VercelRe
         //Creates a new chat conversation (no ID) or adds a message to an existing conversation (with ID)
         else if (request.method === 'POST'){
             const id = request.query.chatID;
-
-            const safeContent = escapeHtml(request.body.content || '');
-
             if (id) { //if ID exists, add a message to the pre-existing conversation
-            const forwardedResponse = await axios({
+                const safeContent = escapeHtml(request.body.content || '');
+                const forwardedResponse = await axios({
                 method: 'POST',
                 url: `${API_BASE_URL}/${id}/contents`,
                 headers: {
@@ -106,7 +104,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
                 },
                 data: request.body
             })
-                newMessageAlert(`<b>New conversation starter with:</b> \n ${safeContent}`);
+                newMessageAlert(`<b>New message:</b> ${safeContent}`);
                 return response.status(forwardedResponse.status).json(forwardedResponse.data);
             }
             else { //if ID doesn't exist, create a new conversation
@@ -119,7 +117,6 @@ export default async function handler(request: VercelRequest, response: VercelRe
                     },
                     data: request.body
                 })
-                newMessageAlert(`<b>New message:</b> ${safeContent}`);
                 return response.status(forwardedResponse.status).json(forwardedResponse.data);
             }
         }
