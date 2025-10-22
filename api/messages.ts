@@ -16,6 +16,25 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 const API_BASE_URL = "https://personal-messaging-api-96o2v.ondigitalocean.app/api/messages"
 const API_KEY = process.env.MESSAGING_API_KEY;
 
+/** Constants for the telegram bot that sends message alerts*/
+const CHAT_ID = process.env.CHAT_ID;
+const BOT_TOKEN = process.env.BOT_TOKEN;
+const TELEGRAM_API_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`
+
+/**
+ * Escapes special HTML characters in a string to prevent injection.
+ * @param {string} str The string to escape.
+ * @returns {string} The escaped string, safe for HTML rendering.
+ */
+function escapeHtml(str: string): string {
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 /**
  * Handles incoming HTTP requests and forwards them to the appropriate endpoint
  * of the Personal Messaging API.
@@ -35,11 +54,29 @@ export default async function handler(request: VercelRequest, response: VercelRe
         return response.status(500).json({error: "Messaging API key not found, server configuration error."});
     }
 
+    /**
+     * Fire and forget telegram message alert
+     * @param message the message to send, html formatted
+     */
+    const newMessageAlert = async (message:string) =>{
+        const payload = {
+            chat_id: CHAT_ID,
+            text: message,
+            parse_mode: "HTML"
+        }
+        try {
+            await axios.post(TELEGRAM_API_URL, payload);
+        } catch (error) {
+            console.error("Error sending message to telegram bot:", error);
+        }
+    }
+
     try{
         //Fetches all messages for a specific chat.
         if (request.method === 'GET'){
             console.log("GET request received");
             const id = request.query.chatID;
+
             if (!id) {
                 return response.status(400).json({error: "No ID provided"});
             }
@@ -56,7 +93,10 @@ export default async function handler(request: VercelRequest, response: VercelRe
         //Creates a new chat conversation (no ID) or adds a message to an existing conversation (with ID)
         else if (request.method === 'POST'){
             const id = request.query.chatID;
-            if (id) { //if ID doesn't exist, create a new conversation
+
+            const safeContent = escapeHtml(request.body.content || '');
+
+            if (id) { //if ID exists, add a message to the pre-existing conversation
             const forwardedResponse = await axios({
                 method: 'POST',
                 url: `${API_BASE_URL}/${id}/contents`,
@@ -66,10 +106,10 @@ export default async function handler(request: VercelRequest, response: VercelRe
                 },
                 data: request.body
             })
+                newMessageAlert(`<b>New conversation starter with:</b> \n ${safeContent}`);
                 return response.status(forwardedResponse.status).json(forwardedResponse.data);
-
             }
-            else { //if ID exists, add a message to the pre-existing conversation
+            else { //if ID doesn't exist, create a new conversation
                 const forwardedResponse = await axios({
                     method: 'POST',
                     url: API_BASE_URL,
@@ -79,6 +119,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
                     },
                     data: request.body
                 })
+                newMessageAlert(`<b>New message:</b> ${safeContent}`);
                 return response.status(forwardedResponse.status).json(forwardedResponse.data);
             }
         }
