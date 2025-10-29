@@ -129,7 +129,7 @@ function ExpandableDiv({
              onMouseLeave={handleMouseLeave}
              tabIndex={0}
              onKeyDown={handleKeyDown}
-             role="button"
+             aria-role="button"
              aria-expanded={isExpanded}
              aria-controls={contentId}
              className={`w-auto rounded-2xl transition-all duration-300 hover:outline hover:outline-1 outline-none backdrop-blur-xs focus:ring-2 focus:ring-blue-500
@@ -153,13 +153,13 @@ function ExpandableDiv({
                             {title}
                         </motion.h1>
                     </AnimatePresence>
-                    {isExpanded ? (<ChevronUp/>) : (<ChevronDown/>)}
+                    {isExpanded ? (<ChevronUp className="cursor-pointer"/>) : (<ChevronDown/>)}
                 </div>
             )}
 
             {orientation == "right" && (
                 <div className="flex flex-row items-center justify-between">
-                    {isExpanded ? (<ChevronUp/>) : (<ChevronDown/>)}
+                    {isExpanded ? (<ChevronUp className="cursor-pointer"/>) : (<ChevronDown/>)}
                     <AnimatePresence mode="wait">
                         <motion.h1
                             key={`title-${i18n.language}`}
@@ -178,7 +178,7 @@ function ExpandableDiv({
 
             {orientation == "center" && (
                 <div className="flex flex-row items-center justify-between">
-                    {isExpanded ? (<ChevronUp/>) : (<ChevronDown/>)}
+                    {isExpanded ? (<ChevronUp className="cursor-pointer"/>) : (<ChevronDown/>)}
                     <AnimatePresence mode="popLayout">
                         <motion.h1
                             key={`title-${i18n.language}`}
@@ -192,7 +192,7 @@ function ExpandableDiv({
                             {title}
                         </motion.h1>
                     </AnimatePresence>
-                    {isExpanded ? (<ChevronUp/>) : (<ChevronDown/>)}
+                    {isExpanded ? (<ChevronUp className="cursor-pointer"/>) : (<ChevronDown/>)}
                 </div>
             )}
 
