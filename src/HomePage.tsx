@@ -564,7 +564,7 @@ function HomePage() {
                                                                 <li>
                                                                     <h1><strong>{t('projects.workInProgress.GAnki.deepDive.coreFeatures.bullet_3.title')}</strong></h1>
                                                                     <ul>
-                                                                        <li><Trans i18nKey='projects.workInProgress.GAnki.deepDive.coreFeatures.bullet_3.bullet_1'components={styledComponents} /></li>
+                                                                        <li><Trans i18nKey='projects.workInProgress.GAnki.deepDive.coreFeatures.bullet_3.bullet_1' components={styledComponents} /></li>
                                                                         <li>{t('projects.workInProgress.GAnki.deepDive.coreFeatures.bullet_3.bullet_2')}</li>
                                                                         <li>{t('projects.workInProgress.GAnki.deepDive.coreFeatures.bullet_3.bullet_3')}</li>
                                                                     </ul>
