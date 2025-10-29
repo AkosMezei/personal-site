@@ -358,9 +358,7 @@
                             title: "Technical Architecture & Approach",
                             description: "A self-contained, frontend-only architecture was chosen for simplicity and speed. All logic and data are stored client-side, eliminating the need for a backend or database for this use case.",
                             bullet_1: {
-                                title: "<subtitle>Stack:</subtitle> Built with <reactLink>React</reactLink>, <typeScriptLink" +
-                                    ">TypeScript</typeScriptLink" +
-                                    ">, and <tailwindLink>Tailwind CSS</tailwindLink> to remain consistent with the main portfolio. <framerMotionLink>Framer Motion</framerMotionLink> will be used for UI animations.",
+                                title: "<subtitle>Stack:</subtitle> Built with <reactLink>React</reactLink>, <typeScriptLink>TypeScript</typeScriptLink>, and <tailwindLink>Tailwind CSS</tailwindLink> to remain consistent with the main portfolio. <framerMotionLink>Framer Motion</framerMotionLink> will be used for UI animations.",
                                 bullet_1: "<subtitle>Visualization Libraries:</subtitle> Researching powerful but lightweight libraries like <plotlyLink>Plotly.js</plotlyLink> for 2D charts and potentially <threejsLink>Three.js</threejsLink> for the more ambitious 3D mind-map visualization.",
                                 bullet_2: "<subtitle>Code Execution:</subtitle> Since the solutions are in JS/TS, they can be run natively in the browser without requiring a separate online compiler, which significantly simplifies the architecture.",
                                 bullet_3: "<subtitle>Data Storage:</subtitle> A single JSON or CSV file containing benchmark results will be bundled with the site. This is a lightweight solution that avoids the overhead of a database for what is essentially static, read-only data.",

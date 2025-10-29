@@ -33,6 +33,8 @@ function HomePage() {
         playwrightLink: <a href="https://playwright.dev" target="_blank" className="hover:text-playwright font-bold text-nowrap" />,
         umbracoLink: <a href="https://umbraco.com" target="_blank" className="hover:text-umbraco font-bold text-nowrap" />,
         ankiLink: <a href="https://apps.ankiweb.net/" target="_blank" className="hover:text-anki font-bold text-nowrap" />,
+        SWCLink: <a href="https://swc.rs" target="_blank" className="hover:bg-gradient-to-r hover:from-swcStart hover:to-swcEnd hover:text-transparent hover:bg-clip-text font-bold text-nowrap" />,
+        sendGridLink: <a href="https://sendgrid.com" target="_blank" className="hover:text-sendGrid font-bold text-nowrap" />,
         name: <strong className="font-semibold text-gray-900 dark:text-slate-100" />,
         bold: <strong />,
         subtitle: <strong className="font-semibold text-gray-900 dark:text-slate-100 mr-2" />,
@@ -556,13 +558,13 @@ function HomePage() {
                                                                 <li>
                                                                     <h1><strong>{t('projects.workInProgress.GAnki.deepDive.coreFeatures.bullet_2.title')}</strong></h1>
                                                                     <ul>
-                                                                        <li>{t('projects.workInProgress.GAnki.deepDive.coreFeatures.bullet_2.bullet_1')}</li>
+                                                                        <li><Trans i18nKey='projects.workInProgress.GAnki.deepDive.coreFeatures.bullet_2.bullet_1' components={styledComponents} /></li>
                                                                     </ul>
                                                                 </li>
                                                                 <li>
                                                                     <h1><strong>{t('projects.workInProgress.GAnki.deepDive.coreFeatures.bullet_3.title')}</strong></h1>
                                                                     <ul>
-                                                                        <li>{t('projects.workInProgress.GAnki.deepDive.coreFeatures.bullet_3.bullet_1')}</li>
+                                                                        <li><Trans i18nKey='projects.workInProgress.GAnki.deepDive.coreFeatures.bullet_3.bullet_1'components={styledComponents} /></li>
                                                                         <li>{t('projects.workInProgress.GAnki.deepDive.coreFeatures.bullet_3.bullet_2')}</li>
                                                                         <li>{t('projects.workInProgress.GAnki.deepDive.coreFeatures.bullet_3.bullet_3')}</li>
                                                                     </ul>
@@ -814,7 +816,7 @@ function HomePage() {
                                                         expandedContent={
                                                             <ul>
                                                                 <li>
-                                                                    <h1><strong>{t('projects.workInProgress.DSAShowcase.deepDive.architecture.bullet_1.title')}</strong></h1>
+                                                                    <h1><Trans i18nKey='projects.workInProgress.DSAShowcase.deepDive.architecture.bullet_1.title' components={styledComponents} /></h1>
                                                                     <ul>
                                                                         <li><Trans i18nKey="projects.workInProgress.DSAShowcase.deepDive.architecture.bullet_1.bullet_1" components={styledComponents} /></li>
                                                                         <li><Trans i18nKey="projects.workInProgress.DSAShowcase.deepDive.architecture.bullet_1.bullet_2" components={styledComponents} /></li>

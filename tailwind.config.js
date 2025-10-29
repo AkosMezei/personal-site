@@ -29,6 +29,9 @@ export default {
         geminiEnd: '#9b72cb',   // Purple
         playwright: '#2EAD33',
         umbraco: '#283a97',
+        swcStart:'#a26f60',
+        swcEnd:'#f8ea46',
+        sendGrid: '#f22f46',
 
         lightDivBackground: '#CCD5AE',
         lightDivHoverBackground: '#D4A373',
