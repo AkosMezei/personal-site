@@ -32,6 +32,7 @@ function HomePage() {
         SPALink: <a href="https://developer.mozilla.org/en-US/docs/Glossary/SPA" target="_blank" className="font-semibold italic hover:underline text-nowrap" />,
         playwrightLink: <a href="https://playwright.dev" target="_blank" className="hover:text-playwright font-bold text-nowrap" />,
         umbracoLink: <a href="https://umbraco.com" target="_blank" className="hover:text-umbraco font-bold text-nowrap" />,
+        ankiLink: <a href="https://apps.ankiweb.net/" target="_blank" className="hover:text-anki font-bold text-nowrap" />,
         name: <strong className="font-semibold text-gray-900 dark:text-slate-100" />,
         bold: <strong />,
         subtitle: <strong className="font-semibold text-gray-900 dark:text-slate-100 mr-2" />,
