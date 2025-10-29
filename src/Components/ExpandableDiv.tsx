@@ -58,6 +58,10 @@ function ExpandableDiv({
 
     function handleMouseUp(e: React.MouseEvent) {
         // Only toggle if mouse down and mouse up occurred on the same element
+        const target = e.target as HTMLElement;
+        if (target.closest('a')) { //check if the click target is a link, if it is, don't collapse the div
+            return;
+        }
         if (divRef.current && mouseDownTarget === e.target) {
             const target = e.target as Node;
 
