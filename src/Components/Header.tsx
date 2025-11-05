@@ -117,7 +117,7 @@ function Header() {
                             </div>
                             <div className="h-fit ml-5 m-1 p-1">
                                 <motion.div whileHover={{scale:1.2}} className="inline-block w-[220px]">
-                                    <a href="tel:+40751780098" className="text-center"> <Mail className="inline"/> {isEmailCopied? "Copied!" : "akosmezei1@gmail.com"} </a>
+                                    <a href="mailto:akosmezei1@gmail.com" className="text-center"> <Mail className="inline"/> {isEmailCopied? "Copied!" : "akosmezei1@gmail.com"} </a>
                                 </motion.div>
                                 <motion.div role="button" whileHover={{scale:1.2}} className="inline-block" onClick={() => setIsEmailCopied(true)}>
                                     <Copy className="ml-4 inline-block"/>
@@ -129,7 +129,6 @@ function Header() {
                 }
                     <AnimatePresence>
                         {isContactInfoExpanded && isMobile &&
-
                             <>
                                 {
                                     createPortal(
@@ -157,7 +156,7 @@ function Header() {
                                                     </div>
                                                     <div className="h-fit ml-5 m-1 p-1">
                                                         <div className="inline-block">
-                                                            <a href="tel:+40751780098" className="text-center"> <Mail className="inline"/> {isEmailCopied? "Copied!" : "akosmezei1@gmail.com"} </a>
+                                                            <a href="mailto:akosmezei1@gmail.com" className="text-center"> <Mail className="inline"/> {isEmailCopied? "Copied!" : "akosmezei1@gmail.com"} </a>
                                                         </div>
                                                         <div role="button" className="inline-block" onClick={() => setIsEmailCopied(true)}>
                                                             <Copy className="ml-4 inline-block"/>
