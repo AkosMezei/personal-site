@@ -37,6 +37,22 @@ function Header() {
     const [isEmailCopied, setIsEmailCopied] = useState<boolean>(false)
 
     useEffect(() => {
+        if (isContactInfoExpanded && isMobile) {
+            const scrollBarWidth = window.innerWidth - document.body.clientWidth;
+            document.body.style.paddingRight = `${scrollBarWidth}px`; //add scroll bar width to padding to body when modal is open, to prevent content shift
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+            document.body.style.paddingRight = "0px";
+        }
+
+        return () => {
+            document.body.style.overflow = "unset";
+            document.body.style.paddingRight = "0px";
+        }
+    }, [isContactInfoExpanded]);
+
+    useEffect(() => {
         if (isPhoneCopied) {
             navigator.clipboard.writeText("+40751780098");
             const timeout = setTimeout(() => {
@@ -138,7 +154,7 @@ function Header() {
                                                         exit={{ opacity: 0 }}
                                                         className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center z-50" onClick={() => setIsContactInfoExpanded(false)}
                                             >
-                                                <div className={`flex flex-col justify-between w-fit h-1/4 m-auto items-center text-white font-semibold ${theme === 'dark'? "bg-black/70" : "bg-black/70" } rounded-2xl p-5`} onClick={(e)=> e.stopPropagation()}>
+                                                <div className={`flex flex-col justify-between w-fit min-h-fit m-auto items-center text-white font-semibold ${theme === 'dark'? "bg-black/70" : "bg-black/70" } rounded-2xl p-10`} onClick={(e)=> e.stopPropagation()}>
                                                     <a className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="https://github.com/AkosMezei">
                                                         <img alt="Github Icon" className="h-6 inline" src={GitHub_Mark_White}/>
                                                         <img alt="Github Logo" className="h-6 inline" src={GitHub_Logo_White}/>
