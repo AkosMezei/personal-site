@@ -65,7 +65,7 @@ function HomePage() {
     }
 
     return (
-        <div className="mx-2 py-16 lg:w-3/5 ml-auto mr-auto">
+        <div className="mx-2 py-20 lg:w-3/5 ml-auto mr-auto">
             <motion.div layout transition={{layout: {duration: 0.5, ease: "easeInOut"}}}>
                 <ExpandableDiv title={t('aboutMe.title')}
                                orientation="center"
