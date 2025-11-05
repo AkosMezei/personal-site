@@ -10,7 +10,11 @@ import addNewItemModal from "/addNewItemModal.png"
 import feedbackPage from "/feedbackPage.png"
 
 
-const projectImages = [{src: MainPageShowcase, alt: "Placeholder Image"}, {src: addNewItemModal, alt: "Placeholder Image"}, {src: feedbackPage, alt: "Placeholder Image"}];
+const projectImages = [
+    {src: MainPageShowcase, alt: "Image showing the main page of the Vinted Deal Tracker project."},
+    {src: addNewItemModal, alt: "Image showing the \"add new item\" modal of the Vinted Deal Tracker project."},
+    {src: feedbackPage, alt: "Image showing the feedback page of the Vinted Deal Tracker project."}
+];
 
 function HomePage() {
 
