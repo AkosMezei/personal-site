@@ -122,7 +122,7 @@ function ExpandableDiv({
     const titleClassName = `${isMobile?"text-xl":"text-3xl"} font-bold transition-colors duration-300 cursor-pointer ${isHovered || isExpanded? `${theme === 'dark'? dark_hoverTitleColor : light_hoverTitleColor }` : ''}`;
 
     return (
-        <div ref={divRef}
+        <motion.div layout ref={divRef}
              onMouseDown={handleMouseDown}
              onMouseUp={handleMouseUp}
              onMouseEnter={handleMouseEnter}
@@ -319,7 +319,7 @@ function ExpandableDiv({
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div>
+        </motion.div>
     )
 }
 
