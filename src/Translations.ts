@@ -44,7 +44,7 @@
                 bullet_1: "Translated abstract ideas into detailed designs and then into high-quality, finished products, managing the full project lifecycle from concept to delivery.",
                 bullet_2: "Developed a foundational 'measure twice, cut once' mentality, applying a high standard for precision and attention to detail that directly translates to writing clean, bug-resistant code.",
                 bullet_3: "Managed projects from raw material selection through to final assembly, honing skills in process adherence, problem-solving, and delivering on strict project requirements.",
-                dates: "TODO",
+                dates: "Ongoing",
             },
             internship: {
                 title: "Web Content Intern",
@@ -60,6 +60,70 @@
             description: "I believe the best way to demonstrate skill is to build tangible solutions. Each project below is a case study in solving a real-world problem, from enhancing personal productivity to creating professional-grade web applications. You'll find my featured projects first, followed by a look into what I'm currently building.",
             featured: {
                 title: "Featured Projects",
+                dealTracker: {
+                    title: "Vinted Deal Tracker & Opinion Getter",
+                    status: "Current Status: Completed & In Use",
+                    overview: {
+                        title: "Project Overview",
+                        what: "<subtitle>What:</subtitle> A full-stack, private web application designed to be the ultimate companion for a savvy Vinted shopper. It automates tracking desired items, provides intelligent price drop alerts via Telegram, and features a unique \"Opinion Getter\" system for gathering friends' feedback. The entire experience is packaged as an installable Progressive Web App (PWA) with native mobile sharing integration.",
+                        why: "<subtitle>Why:</subtitle> Built as a personalized gift, this project addresses the real-world frustration of manually checking a list of items for price changes. It was an exercise in tackling the difficult technical challenge of <bold>ethical, low-footprint web scraping</bold> against modern anti-bot measures where commercial tools often fail or are blocked.",
+                        how: "<subtitle>How:</subtitle> A full-stack application with a <reactLink>React</reactLink> frontend and a <dotnetLink>.NET</dotnetLink> backend, supported by a <pythonLink>Python</pythonLink> scraper. The key architectural decision is a sophisticated scraper that runs from a <bold>local home server</bold>, using a residential IP and realistic browser automation (via <playwrightLink>Playwright</playwrightLink>) to remain virtually undetectable."
+                    },
+                    deepDive: {
+                        title: "Technical Deep Dive",
+                        coreFeatures: {
+                            title: "Core Features",
+                            description: "The final application delivers on the initial vision and adds several layers of polish, focusing on a seamless user experience and intelligent automation.",
+                            bullet_1: "<subtitle>Seamless Item Tracking:</subtitle> Users can add items by pasting a URL or using their phone's native \"Share\" functionality to the PWA. The dashboard displays all tracked items, with animated backgrounds providing at-a-glance status indicators for price drops or high friend ratings.",
+                            bullet_2: "<subtitle>Intelligent Monitoring & Alerts:</subtitle> The Python scraper runs on a randomized schedule, checking for price updates and item availability. Instead of generic emails, a custom Telegram bot sends context-aware notifications with a unique, humorous tone tailored to the item's category.",
+                            bullet_3: {
+                                title: "The \"Opinion Getter,\" Perfected:",
+                                bullet_1: "A unique, shareable link for each item is enhanced by a <bold>Vercel Edge Function</bold> with <bold>Upstash Redis</bold> caching, which serves dynamic Open Graph (OG) tags. This ensures shared links display a rich, compelling preview on social platforms.",
+                                bullet_2: "The link leads to a public page where friends can leave comments and a 1-10 star rating without an account. Feedback is aggregated directly into the main application's item view."
+                            }
+                        },
+                        architecture: {
+                            title: "Technical Architecture",
+                            description: "A decoupled architecture featuring a <reactLink>React</reactLink> PWA on <vercelLink>Vercel</vercelLink>, a <dockerLink>Dockerized</dockerLink> backend on <digitalOceanLink>DigitalOcean</digitalOceanLink>, and a unique, locally hosted scraper to ensure effectiveness and avoid IP blocks.",
+                            bullet_1: "<subtitle>Frontend:</subtitle> A modern <reactLink>React</reactLink> (<typeScriptLink>TypeScript</typeScriptLink>) app built with Vite and <tailwindLink>Tailwind CSS</tailwindLink>, deployed on <vercelLink>Vercel</vercelLink>. It functions as a fully installable <bold>PWA</bold>, with its service worker enabling native 'Share' integration via the manifest's <code>share_target</code>.",
+                            bullet_2: "<subtitle>Backend API:</subtitle> A robust <dotnetLink>.NET</dotnetLink> Web API handles the core business logic. It's containerized with <dockerLink>Docker</dockerLink> and deployed on a DigitalOcean Droplet for reliability.",
+                            bullet_3: "<subtitle>Database:</subtitle> A free-tier <mongoDBLink>MongoDB Atlas</mongoDBLink> cluster serves as the database, with the canonical Vinted item URL used as the unique <code>_id</code> for each document.",
+                            bullet_4: "<subtitle>The Undetectable Scraper:</subtitle> The system's core. It runs as a scheduled <pythonLink>Python</pythonLink> job on a dedicated <bold>home server</bold>, leveraging a <bold>residential IP</bold> and a custom <code>HumanSimulator</code> class to perfectly mimic real user behavior, making its traffic virtually indistinguishable from manual activity."
+                        },
+                        riskAnalysis: {
+                            title: "Risk Analysis & Mitigation",
+                            description: "The primary risks were anti-scraping measures and scraper brittleness. These were successfully mitigated by a human-centric scraper design and robust error handling.",
+                            bullet_1: {
+                                title: "Primary Risk: Anti-Scraping (e.g., Cloudflare).",
+                                bullet_1: "<subtitle>Mitigation:</subtitle> The combination of a residential IP, a persistent browser profile via <playwrightLink>Playwright</playwrightLink>, and the custom <code>HumanSimulator</code> class proved highly effective against Vinted's anti-bot measures."
+                            },
+                            bullet_2: {
+                                title: "Secondary Risk: Scraper Brittleness.",
+                                bullet_1: "<subtitle>Mitigation:</subtitle> The script was built with robust error handling and a retry queue. A high failure rate across a run triggers a Telegram alert to the administrator, flagging that Vinted's site layout may have changed."
+                            },
+                            bullet_3: {
+                                title: "Ethical Considerations & Footprint.",
+                                bullet_1: "<subtitle>Mitigation:</subtitle> The project was designed from the ground up to be ethical. The low-frequency, single-user traffic is negligible and causes no discernible strain on Vinted's servers."
+                            }
+                        },
+                        availability: {
+                            title: "A Note on Availability",
+                            description: "\"Can I use this?\" I'm flattered you asked! Here's why the magic of this tool relies on it being a private, one-of-a-kind solution.",
+                            expanded_p1: "The secret sauce of this project is its ethical, \"fly under the radar\" ethos. The scraper's effectiveness comes from its architecture: it runs from a single, residential IP address and behaves exactly like a real person manually checking a few items a day.",
+                            expanded_p2: "Scaling this into a public service would instantly change that footprint, defeating the very purpose of its design and crossing an ethical boundary.",
+                            expanded_p3: "For that reason, it will remain what it was always meant to be: a one-of-a-kind gift."
+                        },
+                        devPlan: {
+                            title: "Phased Development Retrospective",
+                            description: "Development was phased to tackle the highest-risk component first, ensuring the core scraping mechanism was viable before building the surrounding application.",
+                            bullet_1: "<subtitle>Phase 1: Scraper Development:</subtitle> The core <pythonLink>Python</pythonLink>/<playwrightLink>Playwright</playwrightLink> script was written and tested, successfully parsing live Vinted pages and implementing the <code>HumanSimulator</code>.",
+                            bullet_2: "<subtitle>Phase 2: Backend & Database:</subtitle> <mongoDBLink>MongoDB</mongoDBLink> was configured and the core CRUD API endpoints were built using <dotnetLink>.NET</dotnetLink>.",
+                            bullet_3: "<subtitle>Phase 3: Frontend Development:</subtitle> The main dashboard, item modals, and feedback pages were built in <reactLink>React</reactLink>.",
+                            bullet_4: "<subtitle>Phase 4: Integration & Core Logic:</subtitle> All components were connected, and the custom Telegram notification service was implemented.",
+                            bullet_5: "<subtitle>Phase 5: Final Features & Deployment:</subtitle> The \"Opinion Getter\" sharing feature, PWA functionality, and Vercel Edge function for OG tags were implemented before deploying the full stack."
+                        }
+                    }
+                },
                 portfolio: {
                     title: "Personal Portfolio & Digital Résumé",
                     description: "The dynamic, interactive site you're currently on.",
@@ -105,7 +169,7 @@
                             interactiveTechLinks: {
                                 title: "Interactive Tech Links",
                                 description: "Throughout the site's text, mentions of specific technologies are interactive links that dynamically change color to match official branding on hover.",
-                                bullet_1: "On hover, they dynamically change color to match the official branding of the technology—for instance, Vite displays its signature gradient. These links lead directly to the technologies' official websites.",
+                                bullet_1: "On hover, they dynamically change color to match the official branding of the technology—for instance, <viteLink>Vite</viteLink> displays its signature gradient. These links lead directly to the technologies' official websites.",
                             },
                             multiLanguageSupport: {
                                 title: "Multi-Language Support",
@@ -262,72 +326,6 @@
                         }
                     }
                 },
-                dealTracker: {
-                    title: "Vinted Deal Tracker & Opinion Getter",
-                    status: "Current Status: P0.5: Scraper, front- and back-end scaffolded",
-                    overview: {
-                        title: "Project Overview",
-                        what: "<subtitle>What:</subtitle> A personalized, self-hosted web application that automatically tracks Vinted items, sends email alerts on price drops, and provides a unique sharing feature for gathering friends' opinions before a purchase.",
-                        why: "<subtitle>Why:</subtitle> This project was built as a thoughtful gift for a friend, designed to solve the real-world frustration of manually tracking online deals. It tackles the technical challenge of ethical web scraping against modern anti-bot measures where commercial tools often fail.",
-                        how: "<subtitle>How:</subtitle> A full-stack application with a React frontend and a <dotnetLink>.NET</dotnetLink>/<pythonLink>Python</pythonLink> backend. The key architectural decision is a lightweight scraper that runs from a <bold>local home server</bold>, using a residential IP and realistic browser automation (via <playwrightLink>Playwright</playwrightLink>) to remain virtually undetectable.",
-                    },
-                    deepDive: {
-                        title: "Technical Deep Dive",
-                        coreFeatures: {
-                            title: "Core Features (MVP)",
-                            description: "The application allows a user to track Vinted items by URL, view price history, receive automated email alerts on price drops, and use a unique \"Opinion Getter\" to seamlessly collect feedback from friends.",
-                            bullet_1: "<subtitle>Item Tracking:</subtitle> Add items via URL for automatic tracking of name, image, and price. A central dashboard displays all items, and a detailed view shows a full price history chart.",
-                            bullet_2: "<subtitle>Price Monitoring & Alerts:</subtitle> A scheduled script runs locally on a home server to check for price updates. If a drop is detected, a formatted email alert is sent via a service like <sendGridLink>SendGrid.</sendGridLink> TODO expand this section",
-                            bullet_3: {
-                                title: "The \"Opinion Getter\":",
-                                bullet_1: "Generate a unique, shareable link for any tracked item.",
-                                bullet_2: "The link leads to a public page where friends can view the item and leave comments, which are then aggregated back into the main application for the user to review.",
-                            },
-                        },
-                        architecture: {
-                            title: "Technical Architecture",
-                            description: "A decoupled architecture featuring a <reactLink>React</reactLink> frontend on <vercelLink>Vercel</vercelLink>, a <dockerLink>Dockerized</dockerLink> backend API on <digitalOceanLink>DigitalOcean</digitalOceanLink>, and a unique, locally hosted scraper to ensure effectiveness and avoid IP blocks.",
-                            bullet_1: "<subtitle>Frontend:</subtitle> <reactLink>React</reactLink> <typeScriptLink" +
-                                ">(TypeScript)</typeScriptLink" +
-                                "> with <tailwindLink>Tailwind CSS</tailwindLink>, deployed on <vercelLink>Vercel.</vercelLink>",
-                            bullet_2: "<subtitle>Backend API:</subtitle> <dotnetLink>.NET</dotnetLink> or <pythonLink>Python</pythonLink> (<fastAPILink>FastAPI</fastAPILink>/<flaskLink>Flask</flaskLink> recommended for stack simplicity), deployed as a <dockerLink>Docker</dockerLink> container on DigitalOcean.",
-                            bullet_3: "<subtitle>Database:</subtitle> <mongoDBLink>MongoDB</mongoDBLink> (using a free-tier cluster), with the Vinted item URL serving as the unique <code>_id</code> for each document.",
-                            bullet_4: "<subtitle>The Scraper:</subtitle> The core of the system. It runs on a dedicated <bold>home server</bold> (e.g., a repurposed laptop) via a cron job. This ensures the scraper operates 24/7 from a <bold>residential IP address</bold>, making its traffic appear as authentic user activity.",
-                        },
-                        riskAnalysis: {
-                            title: "Risk Analysis & Mitigation",
-                            description: "The primary risks are anti-scraping measures and scraper brittleness. These are mitigated by running the scraper from a residential IP with realistic automation, and by implementing robust error handling and notifications.",
-                            bullet_1: {
-                                title: "Primary Risk: Anti-Scraping (e.g., Cloudflare).",
-                                bullet_1: "<subtitle>Mitigation:</subtitle> Run the scraper from a residential IP using a real browser profile via <playwrightLink>Playwright</playwrightLink>. Implement respectful delays and a realistic User-Agent to mimic human behavior.",
-                            },
-                            bullet_2: {
-                                title: "Secondary Risk: Scraper Brittleness.",
-                                bullet_1: "<subtitle>Mitigation:</subtitle> The scraper will break if Vinted changes its site layout. Implement robust error handling and logging. The script will be configured to send a notification to the admin if scraping fails consecutively.",
-                            },
-                            bullet_3: {
-                                title: "Tertiary Risk: Ethical Considerations & Footprint.",
-                                bullet_1: "<subtitle>Mitigation:</subtitle> The project's scope (low-frequency, personal use, single-user traffic) is designed to be indistinguishable from manual browsing and operates ethically, causing no discernible strain on Vinted's servers.",
-                            },
-                        },
-                        availability: {
-                          title: "A Note on Availability",
-                          description: "\"Can I use this?\" I'm flattered you asked! Here's why the magic of this tool relies on it being a private, one-of-a-kind solution.",
-                          expanded_p1: "The secret sauce of this project is its ethical, \"fly under the radar\" ethos. The scraper's effectiveness comes from its architecture: it runs from a single, residential IP address and behaves exactly like a real person manually checking a few items a day. ",
-                          expanded_p2: "Scaling this into a public service would instantly change that footprint, defeating the very purpose of its design and crossing an ethical boundary. ",
-                          expanded_p3: "For that reason, it will remain what it was always meant to be: an one-of-a-kind gift.",
-                        },
-                        devPlan: {
-                            title: "Phased Development Plan",
-                            description: "Development is phased to tackle the highest-risk component first: building the scraper. Subsequent phases add the backend, frontend, and final integration.",
-                            bullet_1: "<subtitle>Phase 1: Scraper Development:</subtitle> Write and test the core <pythonLink>Python</pythonLink>/<playwrightLink>Playwright</playwrightLink> script to parse a live Vinted page.",
-                            bullet_2: "<subtitle>Phase 2: Backend & Database:</subtitle> Set up <mongoDBLink>MongoDB</mongoDBLink> and build the core CRUD API endpoints for items.",
-                            bullet_3: "<subtitle>Phase 3: Frontend Development:</subtitle> Build the main dashboard and item detail views.",
-                            bullet_4: "<subtitle>Phase 4: Integration & Core Logic:</subtitle> Connect all components and implement the email notification service.",
-                            bullet_5: "<subtitle>Phase 5: Final Features & Deployment:</subtitle> Build the \"Opinion Getter\" sharing feature and deploy the full stack.",
-                        }
-                    }
-                },
                 DSAShowcase: {
                     title: "Grind75 - An Interactive DS&A Showcase",
                     status: "Current Status: P0: Spec Sheet Only",
@@ -445,6 +443,72 @@
                 description: "Hiszem, hogy a tudás bemutatásának legjobb módja a kézzelfogható megoldások építése. Minden alábbi projekt egy esettanulmány egy valós probléma megoldására, a személyes produktivitás növelésétől a professzionális szintű webalkalmazások készítéséig. Először a kiemelt projektjeim láthatók, melyeket egy betekintés követ abba, amin jelenleg dolgozom.",
                 featured: {
                     title: "Kiemelt Projektek",
+
+                    dealTracker: {
+                        title: "Vinted Árfigyelő & Véleménykérő",
+                        status: "Jelenlegi Státusz: Elkészült és Használatban Van",
+                        overview: {
+                            title: "A Projekt Áttekintése",
+                            what: "<subtitle>Mi ez?:</subtitle> Egy full-stack, privát webalkalmazás, amelyet a Vintedet tudatosan használó vásárlók tökéletes társának terveztek. Automatizálja a kívánt termékek követését, intelligens árcsökkenési értesítéseket küld Telegramon keresztül, és egy egyedi „Véleménykérő” rendszerrel rendelkezik a barátok visszajelzéseinek összegyűjtésére. A teljes élmény egy telepíthető Progresszív Webalkalmazásként (PWA) van csomagolva, natív mobil megosztási integrációval.",
+                            why: "<subtitle>Miért?:</subtitle> Személyre szabott ajándékként készült, ez a projekt arra a valós frusztrációra ad választ, amit egy terméklista kézi ellenőrzése jelent az árak változása miatt. A projekt egyben egy gyakorlat is volt, amely a <bold>etikus, alacsony lábnyomú web-scraping</bold> nehéz technikai kihívását célozta meg a modern bot-ellenes védelmekkel szemben, ahol a kereskedelmi eszközök gyakran elbuknak vagy letiltásra kerülnek.",
+                            how: "<subtitle>Hogyan?:</subtitle> Egy full-stack alkalmazás, amely egy <reactLink>React</reactLink> frontendből és egy <dotnetLink>.NET</dotnetLink> backendből áll, amit egy <pythonLink>Python</pythonLink> scraper támogat. A legfontosabb architekturális döntés egy kifinomult scraper, amely egy <bold>helyi otthoni szerverről</bold> fut, lakossági IP-címet és valósághű böngésző-automatizálást használva (a <playwrightLink>Playwright</playwrightLink> segítségével), hogy gyakorlatilag észrevehetetlen maradjon."
+                        },
+                        deepDive: {
+                            title: "Technikai Részletek",
+                            coreFeatures: {
+                                title: "Főbb Funkciók",
+                                description: "A kész alkalmazás megvalósítja az eredeti elképzelést, és számos finomítást ad hozzá, a zökkenőmentes felhasználói élményre és az intelligens automatizálásra összpontosítva.",
+                                bullet_1: "<subtitle>Zökkenőmentes Termékkövetés:</subtitle> A felhasználók URL beillesztésével vagy a telefonjuk natív „Megosztás” funkciójával adhatnak hozzá termékeket a PWA-hoz. A vezérlőpult megjeleníti az összes követett terméket, ahol animált hátterek jelzik egy pillantás alatt az állapotot, például az árcsökkenést vagy a barátoktól kapott magas értékeléseket.",
+                                bullet_2: "<subtitle>Intelligens Figyelés és Értesítések:</subtitle> A Python scraper véletlenszerű ütemezés szerint fut, ellenőrizve az árváltozásokat és a termékek elérhetőségét. Általános e-mailek helyett egy egyedi Telegram bot küld kontextus-érzékeny értesítéseket, egyedi, humoros hangnemben, a termék kategóriájára szabva.",
+                                bullet_3: {
+                                    title: "A „Véleménykérő” tökéletesítve:",
+                                    bullet_1: "Minden termékhez egy egyedi, megosztható link tartozik, amelyet egy <bold>Vercel Edge Function</bold> és <bold>Upstash Redis</bold> gyorsítótárazás tesz jobbá, ami dinamikus Open Graph (OG) tageket szolgáltat. Ez biztosítja, hogy a megosztott linkek gazdag és meggyőző előnézeti képet jelenítsenek meg a közösségi platformokon.",
+                                    bullet_2: "A link egy publikus oldalra vezet, ahol a barátok bejelentkezés nélkül hagyhatnak megjegyzéseket és 1-10-ig terjedő csillagos értékelést. A visszajelzések közvetlenül az alkalmazás fő felületén, a termék nézetében összegződnek."
+                                }
+                            },
+                            architecture: {
+                                title: "Technikai Architektúra",
+                                description: "Egy szétválasztott (decoupled) architektúra, amely egy <vercelLink>Vercelen</vercelLink> futó <reactLink>React</reactLink> PWA-t, egy <digitalOceanLink>DigitalOceanon</digitalOceanLink> lévő <dockerLink>Dockerizált</dockerLink> backendet, és egy egyedi, helyileg hosztolt scrapert tartalmaz a hatékonyság és az IP-blokkolások elkerülése érdekében.",
+                                bullet_1: "<subtitle>Frontend:</subtitle> Egy modern <reactLink>React</reactLink> (<typeScriptLink>TypeScript</typeScriptLink>) alkalmazás, amely Vite-tal és <tailwindLink>Tailwind CSS</tailwindLink>-szel készült, és a <vercelLink>Vercelen</vercelLink> van telepítve. Teljes mértékben telepíthető <bold>PWA</bold>-ként funkcionál, a service workere pedig lehetővé teszi a natív „Megosztás” integrációt a manifest <code>share_target</code> tulajdonságán keresztül.",
+                                bullet_2: "<subtitle>Backend API:</subtitle> Egy robusztus <dotnetLink>.NET</dotnetLink> Web API kezeli a központi üzleti logikát. <dockerLink>Docker</dockerLink> konténerben fut, és egy DigitalOcean Dropleten van telepítve a megbízhatóság érdekében.",
+                                bullet_3: "<subtitle>Adatbázis:</subtitle> Adatbázisként egy ingyenes <mongoDBLink>MongoDB Atlas</mongoDBLink> cluster szolgál, ahol a kanonikus Vinted termék URL-címe az egyes dokumentumok egyedi <code>_id</code>-ja.",
+                                bullet_4: "<subtitle>Az Észrevehetetlen Scraper:</subtitle> A rendszer magja. Ütemezett <pythonLink>Python</pythonLink> feladatként fut egy dedikált <bold>otthoni szerveren</bold>, kihasználva a <bold>lakossági IP-címet</bold> és egy egyedi <code>HumanSimulator</code> osztályt, hogy tökéletesen utánozza a valódi felhasználói viselkedést, így a forgalma gyakorlatilag megkülönböztethetetlen a manuális tevékenységtől."
+                            },
+                            riskAnalysis: {
+                                title: "Kockázatelemzés és Kockázatcsökkentés",
+                                description: "Az elsődleges kockázatokat a scraping-ellenes intézkedések és a scraper sebezhetősége jelentették. Ezeket sikeresen kezeltük egy emberszerű scraper dizájnnal és robusztus hibakezeléssel.",
+                                bullet_1: {
+                                    title: "Elsődleges Kockázat: Scraping-ellenes Védelem (pl. Cloudflare).",
+                                    bullet_1: "<subtitle>Kockázatcsökkentés:</subtitle> A lakossági IP-cím, a <playwrightLink>Playwright</playwrightLink> által biztosított perzisztens böngészőprofil és az egyedi <code>HumanSimulator</code> osztály kombinációja rendkívül hatékonynak bizonyult a Vinted bot-ellenes intézkedéseivel szemben."
+                                },
+                                bullet_2: {
+                                    title: "Másodlagos Kockázat: A Scraper Sebezhetősége.",
+                                    bullet_1: "<subtitle>Kockázatcsökkentés:</subtitle> A szkript robusztus hibakezeléssel és újrapróbálkozási sorral készült. Ha egy futás során magas a hibaarány, egy Telegram értesítést küld az adminisztrátornak, jelezve, hogy a Vinted oldalának szerkezete megváltozhatott."
+                                },
+                                bullet_3: {
+                                    title: "Etikai Megfontolások és Lábnyom.",
+                                    bullet_1: "<subtitle>Kockázatcsökkentés:</subtitle> A projektet az alapoktól kezdve etikusan terveztük. Az alacsony gyakoriságú, egyfelhasználós forgalom elhanyagolható, és nem okoz érzékelhető terhelést a Vinted szerverein."
+                                }
+                            },
+                            availability: {
+                                title: "Megjegyzés az Elérhetőségről",
+                                description: "„Használhatom én is?” Megtisztelő a kérdés! Íme, miért rejlik ennek az eszköznek a varázsa abban, hogy egy privát, egyedi megoldás.",
+                                expanded_p1: "A projekt titkos összetevője az etikus, „radar alatt repülő” szemléletmód. A scraper hatékonysága az architektúrájából fakad: egyetlen lakossági IP-címről fut, és pontosan úgy viselkedik, mint egy valódi személy, aki manuálisan ellenőriz néhány terméket naponta.",
+                                expanded_p2: "Ha ezt egy nyilvános szolgáltatássá skáláznánk, az azonnal megváltoztatná ezt a lábnyomot, meghiúsítva a tervezésének legfőbb célját és átlépve egy etikai határt.",
+                                expanded_p3: "Ebből az okból kifolyólag az marad, aminek mindig is szánták: egy egyedi ajándék."
+                            },
+                            devPlan: {
+                                title: "Fázisokra Bontott Fejlesztés Visszatekintése",
+                                description: "A fejlesztés fázisokra volt bontva, hogy először a legmagasabb kockázatú komponenst kezeljük, biztosítva a központi scraping mechanizmus életképességét, mielőtt a köré épülő alkalmazást létrehoznánk.",
+                                bullet_1: "<subtitle>1. Fázis: Scraper Fejlesztése:</subtitle> A központi <pythonLink>Python</pythonLink>/<playwrightLink>Playwright</playwrightLink> szkript megírása és tesztelése, sikeresen feldolgozva az élő Vinted oldalakat és implementálva a <code>HumanSimulator</code>-t.",
+                                bullet_2: "<subtitle>2. Fázis: Backend és Adatbázis:</subtitle> A <mongoDBLink>MongoDB</mongoDBLink> konfigurálása és a központi CRUD API végpontok létrehozása <dotnetLink>.NET</dotnetLink> használatával.",
+                                bullet_3: "<subtitle>3. Fázis: Frontend Fejlesztés:</subtitle> A fő vezérlőpult, a termék modálok és a visszajelzési oldalak elkészítése <reactLink>React</reactLink>-ben.",
+                                bullet_4: "<subtitle>4. Fázis: Integráció és Központi Logika:</subtitle> Az összes komponens összekapcsolása és az egyedi Telegram értesítési szolgáltatás implementálása.",
+                                bullet_5: "<subtitle>5. Fázis: Végső Funkciók és Telepítés:</subtitle> A „Véleménykérő” megosztási funkció, a PWA funkcionalitás és az OG tagekhez szükséges Vercel Edge function implementálása, majd a teljes stack telepítése."
+                            }
+                        }
+                    },
+
                     portfolio: {
                         title: "Személyes Portfólió és Digitális Önéletrajz",
                         description: "A dinamikus, interaktív weboldal, amelyet éppen böngészel.",
@@ -634,70 +698,6 @@
                                 bullet_3: "<subtitle>3. Fázis - Integráció:</subtitle> A frontend összekötése a backenddel, a helyi állapotkezelés felváltása valós API hívásokkal.",
                                 bullet_4: "<subtitle>4. Fázis - A \"zseni\" funkció:</subtitle> A Gemini API integráció implementálása. A prompt engineering logika és az új gyakorló felület megépítése.",
                                 bullet_5: "<subtitle>5. Fázis - Telepítés és Finomhangolás:</subtitle> A teljes stack telepítése éles környezetbe és end-to-end tesztelés végrehajtása."
-                            }
-                        }
-                    },
-                    dealTracker: {
-                        title: "Vinted Árfigyelő és Véleménykérő",
-                        status: "Jelenlegi Állapot: P0.5: Scraper, front- és back-end váz elkészült",
-                        overview: {
-                            title: "Projekt Áttekintés",
-                            what: "<subtitle>Mi ez:</subtitle> Egy személyre szabott, saját hosztolású webalkalmazás, amely automatikusan figyeli a Vinted termékeket, e-mail értesítést küld árcsökkenés esetén, és egy egyedi megosztási funkciót biztosít a barátok véleményének kikérésére vásárlás előtt.",
-                            why: "<subtitle>Miért:</subtitle> A projekt egy figyelmes ajándékként készült egy barátomnak, hogy megoldja az online ajánlatok kézi követésének valós frusztrációját. Az etikus web scraping technikai kihívását célozza meg a modern bot-ellenes védelmekkel szemben, ahol a kereskedelmi eszközök gyakran kudarcot vallanak.",
-                            how: "<subtitle>Hogyan:</subtitle> Egy full-stack alkalmazás React frontenddel és <dotnetLink>.NET</dotnetLink>/<pythonLink>Python</pythonLink> backenddel. A kulcsfontosságú architekturális döntés egy pehelysúlyú scraper, amely egy <bold>helyi otthoni szerverről</bold> fut, lakossági IP címet és valósághű böngésző automatizálást (<playwrightLink>Playwright</playwrightLink> segítségével) használva, hogy gyakorlatilag észrevehetetlen maradjon."
-                        },
-                        deepDive: {
-                            title: "Részletes Technikai Bemutató",
-                            coreFeatures: {
-                                title: "Alapvető Funkciók (MVP)",
-                                description: "Az alkalmazás lehetővé teszi a felhasználó számára, hogy URL alapján kövessen Vinted termékeket, megtekintse az ártörténetet, automatikus e-mail értesítéseket kapjon árcsökkenés esetén, és egy egyedi \"Véleménykérő\" funkcióval zökkenőmentesen gyűjtsön visszajelzéseket a barátaitól.",
-                                bullet_1: "<subtitle>Termékkövetés:</subtitle> Termékek hozzáadása URL alapján a név, kép és ár automatikus követéséhez. Egy központi irányítópult jeleníti meg az összes terméket, egy részletes nézet pedig a teljes ártörténetet mutatja grafikonon.",
-                                bullet_2: "<subtitle>Árfigyelés és Értesítések:</subtitle> Egy időzített szkript fut helyben egy otthoni szerveren, hogy ellenőrizze az árváltozásokat. Ha csökkenést észlel, egy formázott e-mail értesítést küld egy szolgáltatáson, mint a <sendGridLink>SendGrid</sendGridLink>, keresztül. TODO expand this section",
-                                bullet_3: {
-                                    title: "A \"Véleménykérő\":",
-                                    bullet_1: "Egyedi, megosztható link generálása bármely követett termékhez.",
-                                    bullet_2: "A link egy publikus oldalra vezet, ahol a barátok megtekinthetik a terméket és hozzászólásokat hagyhatnak, amelyek azután összesítve megjelennek a fő alkalmazásban a felhasználó számára."
-                                }
-                            },
-                            architecture: {
-                                title: "Technikai Architektúra",
-                                description: "Egy függetlenített (decoupled) architektúra, amely egy <reactLink>React</reactLink> frontendet tartalmaz a <vercelLink>Vercel</vercelLink>-en, egy <dockerLink>Docker</dockerLink> konténerbe zárt backend API-t a <digitalOceanLink>DigitalOcean</digitalOceanLink>-ön, és egy egyedi, helyileg hosztolt scrapert a hatékonyság és az IP-blokkolások elkerülése érdekében.",
-                                bullet_1: "<subtitle>Frontend:</subtitle> <reactLink>React</reactLink> <typeScriptLink>(TypeScript)</typeScriptLink> <tailwindLink>Tailwind CSS</tailwindLink>-szel, a <vercelLink>Vercel</vercelLink>-en telepítve.",
-                                bullet_2: "<subtitle>Backend API:</subtitle> <dotnetLink>.NET</dotnetLink> vagy <pythonLink>Python</pythonLink> (<fastAPILink>FastAPI</fastAPILink>/<flaskLink>Flask</flaskLink> javasolt a stack egyszerűsége miatt), <dockerLink>Docker</dockerLink> konténerként telepítve a DigitalOcean-re.",
-                                bullet_3: "<subtitle>Adatbázis:</subtitle> <mongoDBLink>MongoDB</mongoDBLink> (egy ingyenes cluster használatával), ahol a Vinted termék URL-je szolgál egyedi <code>_id</code>-ként minden dokumentumhoz.",
-                                bullet_4: "<subtitle>A Scraper:</subtitle> A rendszer magja. Egy dedikált <bold>otthoni szerveren</bold> (pl. egy újrahasznosított laptopon) fut egy cron job segítségével. Ez biztosítja, hogy a scraper a nap 24 órájában egy <bold>lakossági IP címről</bold> működjön, így a forgalma hiteles felhasználói tevékenységnek tűnik."
-                            },
-                            riskAnalysis: {
-                                title: "Kockázatelemzés és Kockázatcsökkentés",
-                                description: "Az elsődleges kockázatok a scraper-ellenes intézkedések és a scraper törékenysége. Ezeket úgy csökkentjük, hogy a scraper egy lakossági IP-címről fut valósághű automatizálással, valamint robusztus hibakezelést és értesítéseket implementálunk.",
-                                bullet_1: {
-                                    title: "Elsődleges kockázat: Scraper-ellenes védelem (pl. Cloudflare).",
-                                    bullet_1: "<subtitle>Kockázatcsökkentés:</subtitle> A scraper futtatása lakossági IP-címről, valódi böngészőprofillal a <playwrightLink>Playwright</playwrightLink> segítségével. Tiszteletteljes késleltetések és valósághű User-Agent implementálása az emberi viselkedés utánzására."
-                                },
-                                bullet_2: {
-                                    title: "Másodlagos kockázat: A Scraper törékenysége.",
-                                    bullet_1: "<subtitle>Kockázatcsökkentés:</subtitle> A scraper elromlik, ha a Vinted megváltoztatja az oldalának elrendezését. Robusztus hibakezelés és naplózás implementálása. A szkript úgy lesz beállítva, hogy értesítést küldjön az adminisztrátornak, ha a scraping egymás után többször meghiúsul."
-                                },
-                                bullet_3: {
-                                    title: "Harmadlagos kockázat: Etikai megfontolások és lábnyom.",
-                                    bullet_1: "<subtitle>Kockázatcsökkentés:</subtitle> A projekt hatóköre (alacsony gyakoriságú, személyes használat, egyfelhasználós forgalom) úgy van kialakítva, hogy megkülönböztethetetlen legyen a kézi böngészéstől, és etikusan működjön, nem okozva érzékelhető terhelést a Vinted szervereinek."
-                                }
-                            },
-                            availability: {
-                                title: "Megjegyzés az Elérhetőségről",
-                                description: "\"Használhatom ezt?\" Megtisztelő a kérdés! Íme, miért rejlik ennek az eszköznek a varázsa abban, hogy egy privát, egyedi megoldás.",
-                                expanded_p1: "A projekt titkos összetevője az etikus, \"radar alatt repülő\" filozófiája. A scraper hatékonysága az architektúrájából fakad: egyetlen, lakossági IP-címről fut, és pontosan úgy viselkedik, mint egy valódi ember, aki naponta manuálisan ellenőriz néhány terméket.",
-                                expanded_p2: "Ezt egy nyilvános szolgáltatássá skálázni azonnal megváltoztatná ezt a lábnyomot, megszüntetve a tervezésének lényegét és átlépve egy etikai határt.",
-                                expanded_p3: "Ebből az okból kifolyólag az marad, aminek mindig is szánták: egy egyedi ajándék."
-                            },
-                            devPlan: {
-                                title: "Fázisokra Bontott Fejlesztési Terv",
-                                description: "A fejlesztés fázisokra van bontva, hogy először a legkockázatosabb komponenst, a scraper megépítését kezeljük. A további fázisok a backend, a frontend és a végső integráció hozzáadását tartalmazzák.",
-                                bullet_1: "<subtitle>1. Fázis: Scraper fejlesztés:</subtitle> A központi <pythonLink>Python</pythonLink>/<playwrightLink>Playwright</playwrightLink> szkript megírása és tesztelése egy élő Vinted oldal feldolgozására.",
-                                bullet_2: "<subtitle>2. Fázis: Backend és Adatbázis:</subtitle> A <mongoDBLink>MongoDB</mongoDBLink> felállítása és az alapvető CRUD API végpontok megépítése a termékekhez.",
-                                bullet_3: "<subtitle>3. Fázis: Frontend fejlesztés:</subtitle> A fő irányítópult és a termék részletes nézeteinek megépítése.",
-                                bullet_4: "<subtitle>4. Fázis: Integráció és Alaplogika:</subtitle> Az összes komponens összekötése és az e-mail értesítési szolgáltatás implementálása.",
-                                bullet_5: "<subtitle>5. Fázis: Végső funkciók és Telepítés:</subtitle> A \"Véleménykérő\" megosztási funkció megépítése és a teljes stack telepítése."
                             }
                         }
                     },
