@@ -17,6 +17,8 @@ function MessageBox(){
 
     const [isExpanded, setIsExpanded] = useState(false);
 
+    const [shouldAnimate, setShouldAnimate] = useState(true);
+
     const [messages, setMessages] = useState<Message[]>([]);
 
     const [inputMessage, setInputMessage] = useState('');
@@ -154,10 +156,12 @@ function MessageBox(){
 
     const handleExpandToggle = (e: React.MouseEvent) => {
         e.stopPropagation();
+        if (shouldAnimate) {
+            setShouldAnimate(false);
+        }
         setIsExpanded(!isExpanded);
     };
-    
-    
+
     return (
         <div>
             <AnimatePresence>
@@ -205,9 +209,18 @@ function MessageBox(){
                     </motion.div>
                 )}
             </AnimatePresence>
-            <button onClick={handleExpandToggle} className="absolute p-2 right-3 bottom-1 bg-white/10 rounded-full">
+            <motion.button
+                whileHover={{scale:1.2}}
+                whileTap={{ scale: 0.9 }}
+                onClick={handleExpandToggle}
+                className="absolute p-2 right-3 bottom-1 bg-white/10 rounded-full"
+                animate={shouldAnimate? {scale: [1, 1.3, 1, 1.3, 1]} : {scale:1}}
+                transition={shouldAnimate? {
+                    duration:1, repeat: Infinity, repeatDelay: 5, delay: 30,
+                } : {duration:0.2}}
+            >
                 <MessageCircle />
-            </button>
+            </motion.button>
         </div>
     );
 }
