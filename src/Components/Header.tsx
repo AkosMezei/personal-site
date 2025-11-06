@@ -116,26 +116,26 @@ function Header() {
                                 transition={{duration: 0.3, ease: "easeInOut"}}
                     >
                         <div className="flex flex-auto justify-between w-full m-auto items-center">
-                            <motion.a whileHover={{scale:1.2}} className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="https://github.com/AkosMezei">
+                            <motion.a whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="https://github.com/AkosMezei">
                                 <img alt="Github Icon" className="h-6 inline" src={theme === 'dark' ? GitHub_Mark_White : GitHub_Mark}/>
                                 <img alt="Github Logo" className="h-6 inline" src={theme === 'dark' ? GitHub_Logo_White : GitHub_Logo}/>
                             </motion.a>
-                            <motion.a whileHover={{scale:1.2}} className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="">
+                            <motion.a whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="www.linkedin.com/in/akos-mezei-501a38253">
                                 <img alt="Linkedin Logo" className="h-6 inline" src={LinkedinLogo}/>
                             </motion.a>
                             <div className="h-fit m-1 p-1">
-                                <motion.div whileHover={{scale:1.2}} className="inline-block w-[160px]">
+                                <motion.div whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="inline-block w-[160px]">
                                     <a href="tel:+40751780098" className="text-center"> <Phone className="inline"/> {isPhoneCopied? "Copied!" : "+40 751 780 098"} </a>
                                 </motion.div>
-                                <motion.div role="button" whileHover={{scale:1.2}} className="inline-block" onClick={() => setIsPhoneCopied(true)}>
+                                <motion.div role="button" whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="inline-block" onClick={() => setIsPhoneCopied(true)}>
                                     <Copy className="ml-4 inline-block"/>
                                 </motion.div>
                             </div>
                             <div className="h-fit ml-5 m-1 p-1">
-                                <motion.div whileHover={{scale:1.2}} className="inline-block w-[220px]">
+                                <motion.div whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="inline-block w-[220px]">
                                     <a href="mailto:akosmezei1@gmail.com" className="text-center"> <Mail className="inline"/> {isEmailCopied? "Copied!" : "akosmezei1@gmail.com"} </a>
                                 </motion.div>
-                                <motion.div role="button" whileHover={{scale:1.2}} className="inline-block" onClick={() => setIsEmailCopied(true)}>
+                                <motion.div role="button" whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="inline-block" onClick={() => setIsEmailCopied(true)}>
                                     <Copy className="ml-4 inline-block"/>
                                 </motion.div>
                             </div>
@@ -154,29 +154,29 @@ function Header() {
                                                         exit={{ opacity: 0 }}
                                                         className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center z-50" onClick={() => setIsContactInfoExpanded(false)}
                                             >
-                                                <div className={`flex flex-col justify-between w-fit min-h-fit m-auto items-center text-white font-semibold ${theme === 'dark'? "bg-black/70" : "bg-black/70" } rounded-2xl p-10`} onClick={(e)=> e.stopPropagation()}>
-                                                    <a className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="https://github.com/AkosMezei">
+                                                <div className={`flex flex-col justify-between w-fit min-w-96 min-h-fit m-auto items-center text-white font-semibold ${theme === 'dark'? "bg-black/70" : "bg-black/70" } rounded-2xl p-10`} onClick={(e)=> e.stopPropagation()}>
+                                                    <motion.a whileTap={{ scale: 0.8 }} className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="https://github.com/AkosMezei">
                                                         <img alt="Github Icon" className="h-6 inline" src={GitHub_Mark_White}/>
                                                         <img alt="Github Logo" className="h-6 inline" src={GitHub_Logo_White}/>
-                                                    </a>
-                                                    <a className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="">
+                                                    </motion.a>
+                                                    <motion.a whileTap={{ scale: 0.8 }} className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="www.linkedin.com/in/akos-mezei-501a38253">
                                                         <img alt="Linkedin Logo" className="h-6 inline" src={LinkedinLogo}/>
-                                                    </a>
+                                                    </motion.a>
                                                     <div className="h-fit m-1 p-1">
-                                                        <div className="inline-block">
+                                                        <motion.div whileTap={{ scale: 0.8 }} className="inline-block">
                                                             <a href="tel:+40751780098" className="text-center"> <Phone className="inline"/> {isPhoneCopied? "Copied!" : "+40 751 780 098"} </a>
-                                                        </div>
-                                                        <div role="button" className="inline-block" onClick={() => setIsPhoneCopied(true)}>
+                                                        </motion.div>
+                                                        <motion.div whileTap={{ scale: 0.8 }} role="button" className="inline-block" onClick={() => setIsPhoneCopied(true)}>
                                                             <Copy className="ml-4 inline-block"/>
-                                                        </div>
+                                                        </motion.div>
                                                     </div>
                                                     <div className="h-fit ml-5 m-1 p-1">
-                                                        <div className="inline-block">
+                                                        <motion.div whileTap={{ scale: 0.8 }} className="inline-block">
                                                             <a href="mailto:akosmezei1@gmail.com" className="text-center"> <Mail className="inline"/> {isEmailCopied? "Copied!" : "akosmezei1@gmail.com"} </a>
-                                                        </div>
-                                                        <div role="button" className="inline-block" onClick={() => setIsEmailCopied(true)}>
+                                                        </motion.div>
+                                                        <motion.div whileTap={{ scale: 0.8 }} role="button" className="inline-block" onClick={() => setIsEmailCopied(true)}>
                                                             <Copy className="ml-4 inline-block"/>
-                                                        </div>
+                                                        </motion.div>
                                                     </div>
                                                 </div>
                                             </motion.div>
