@@ -52,11 +52,9 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
     const secondary: MotionValue<string> = useMotionValue(initialColors.secondary);
     const gradientMidpoint = useMotionValue(calculatedMidpoint);
 
-    const {weatherCategory, isLoading} = useWeatherContext()
+    const {weatherCategory} = useWeatherContext()
 
-    const activeWeather = isLoading ? 'clear' : weatherCategory //clear | cloudy | stormy
-
-    const cloudData = useCloudGenerator(activeWeather);
+    const cloudData = useCloudGenerator(weatherCategory);
 
     useEffect(() => {
         // Get the target colors for the NEW theme
