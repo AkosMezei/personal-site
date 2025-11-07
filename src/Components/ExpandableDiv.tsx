@@ -1,10 +1,10 @@
-﻿import {useEffect, useState, useRef} from "react";
+﻿import {useState, useRef} from "react";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {AnimatePresence, motion} from "motion/react";
 import { useBackgroundContext } from "../Contexts/BackgroundContext.tsx";
-import {MOBILE_BREAKPOINT_PX} from "../data/constants.ts";
 import { useTranslation } from "react-i18next";
 import type { ReactNode } from "react";
+import {useIsMobile} from "../Hooks/useIsMobile.ts";
 
 const textVariants = {
     initial: { opacity: 0, filter: "blur(10px)" },
@@ -31,7 +31,7 @@ function ExpandableDiv({
     orientation?: "left" | "right" | "center",
     isSectionBreak?: boolean,
 }) {
-    const [isMobile, setIsMobile] = useState(false);
+    const isMobile = useIsMobile()
     const divRef = useRef<HTMLDivElement>(null);
     const [mouseDownTarget, setMouseDownTarget] = useState<EventTarget | null>(null);
 
@@ -98,21 +98,6 @@ function ExpandableDiv({
             setIsExpanded(prev => !prev);
         }
     }
-
-    useEffect(() => {
-        const checkIfMobile = () => {
-            setIsMobile(window.innerWidth < MOBILE_BREAKPOINT_PX);
-        };
-
-        // Initial check
-        checkIfMobile();
-
-        // Add event listener
-        window.addEventListener('resize', checkIfMobile);
-
-        // Cleanup
-        return () => window.removeEventListener('resize', checkIfMobile);
-    }, []);
 
     const { theme } = useBackgroundContext();
     const { i18n } = useTranslation();
