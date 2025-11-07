@@ -193,7 +193,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
         apiPromises = providersToCall.map(provider => {
             if (!provider.key)
                 return Promise.reject(new Error(`Provider ${provider.name} requires an API key.`))
-            const requestUrl = provider.url(location, provider.key)
+            const requestUrl = provider.url(location as string, provider.key)
             return axios.get(requestUrl)
                 .then(axiosResponse => ({
                     provider: provider.name,
