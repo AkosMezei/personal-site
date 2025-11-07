@@ -33,6 +33,7 @@ export const ExpandableImage = ({src, alt, }:ExpandableImageProps) => {
             setIsOpened(false);
         }
 
+        history.pushState(null, "");
         document.addEventListener("keydown", handleKeyDown);
         document.addEventListener("popstate", handlePopState);
 
@@ -42,6 +43,9 @@ export const ExpandableImage = ({src, alt, }:ExpandableImageProps) => {
             document.body.style.paddingRight = "0px";
             document.removeEventListener("keydown", handleKeyDown);
             document.removeEventListener("popstate", handlePopState);
+            if (history.state === null) {
+                history.back()
+            }
         }
 
     }, [isOpened]);
@@ -70,7 +74,7 @@ export const ExpandableImage = ({src, alt, }:ExpandableImageProps) => {
                                 >
                                     <motion.div layout onClick={(e) => e.stopPropagation()}>
                                         <TransformWrapper>
-                                            <TransformComponent wrapperClass="!w-auto !h-auto">
+                                            <TransformComponent wrapperClass="!w-auto">
                                                 <motion.img layoutId={src} transition={{duration:0.5}}
                                                             className="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain" src={src}/>
                                             </TransformComponent>
