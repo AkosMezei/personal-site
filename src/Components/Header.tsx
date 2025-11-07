@@ -7,13 +7,13 @@ import {AnimatePresence, motion} from "motion/react";
 import {useThemeSettingsContext} from "../Contexts/ThemeSettingsContext.tsx";
 import {useWeatherContext} from "../Contexts/WeatherContext.tsx"
 import {useTranslation} from "react-i18next";
-import {MOBILE_BREAKPOINT_PX} from "../data/constants.ts";
 import GitHub_Logo from "/GitHub_Logo.png"
 import GitHub_Logo_White from "/GitHub_Logo_White.png"
 import GitHub_Mark from "/github-mark.svg"
 import GitHub_Mark_White from "/github-mark-white.svg"
 import LinkedinLogo from "/LI-Logo.png"
 import {createPortal} from "react-dom";
+import {useIsMobile} from "../Hooks/useIsMobile.ts";
 
 function Header() {
 
@@ -26,7 +26,7 @@ function Header() {
 
     const {weatherCategory} = useWeatherContext()
 
-    const [isMobile, setIsMobile] = useState<boolean>(false);
+    const isMobile = useIsMobile()
     const [isThemeSettingsBarExpanded, setIsThemeSettingsBarExpanded] = useState<boolean>(false)
 
     const [isContactInfoExpanded, setIsContactInfoExpanded] = useState<boolean>(false)
@@ -71,21 +71,6 @@ function Header() {
             return () => clearTimeout(timeout);
         }
     }, [isEmailCopied]);
-
-    useEffect(() => {
-        const checkIfMobile = () => {
-            setIsMobile(window.innerWidth < MOBILE_BREAKPOINT_PX);
-        };
-
-        // Initial check
-        checkIfMobile();
-
-        // Add event listener
-        window.addEventListener('resize', checkIfMobile);
-
-        // Cleanup
-        return () => window.removeEventListener('resize', checkIfMobile);
-    }, []);
     
     const { theme, toggleTheme } = useBackgroundContext();
     
