@@ -34,6 +34,7 @@ export const ExpandableImage = ({src, alt, }:ExpandableImageProps) => {
             document.body.style.overflow = "unset";
             document.body.style.paddingRight = "0px";
             document.removeEventListener("keydown", handleKeyDown);
+            document.removeEventListener("popstate", handlePopState);
         }
 
     }, [isOpened]);
