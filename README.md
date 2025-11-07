@@ -4,76 +4,88 @@ This is the repository for my personal portfolio website, built from the ground 
 
 **[➡️ View the Live Site](https://www.mezeiakos.cv)**
 
-![Screenshot of the portfolio website](./src/assets/cvWebsiteScreenshot.png)
+![Screenshot of the portfolio website](./src/assets/cvWebsiteScreenshotDark.png)
+![Screenshot of the portfolio website](./src/assets/cvWebsiteScreenshotLight.png)
 
 ## About This Project
 
-This website is more than just a digital resume; it's a fully-featured single-page application (SPA) designed to demonstrate a wide range of front-end and back-end development skills. I built every component from scratch (excluding the listed libraries) to prove a deep understanding of core web technologies and modern development patterns.
+This website is a **living demonstration of my full-stack development capabilities**. The goal was to build a site that is not just a document, but a high-performance, full-stack Single-Page Application (SPA) that showcases a wide range of technical skills and architectural patterns—from a polished, animated frontend to a secure, containerized backend API.
 
-The application features a custom, two-tier messaging system, multi-language support, and a theme switcher, all operating without full page reloads and animated for a seamless user experience.
+Every component was built from scratch (excluding the listed libraries) to demonstrate a deep understanding of core web technologies and modern development patterns.
 
 ---
 
 ## Technical Stack
 
-| Category       | Technology                                                                                                                                     |
-|----------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Frontend**   | [React](https://react.dev/) (with Hooks), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/)                           |
-| **Styling**    | [Tailwind CSS](https://tailwindcss.com/)                                                                                                       |
-| **Animation**  | [Framer Motion](https://motion.dev/)                                                                                                           |
-| **API**        | [.NET 8 REST API](https://dotnet.microsoft.com/en-us/) (C#)                                                                                    |
-| **Database**   | [MongoDB](https://www.mongodb.com/)                                                                                                            |
+| Category       | Technology                                                                                                                                    |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| **Frontend**   | [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vitejs.dev/)                           |
+| **Styling**    | [Tailwind CSS](https://tailwindcss.com/)                                                                                                      |
+| **Animation**  | [Framer Motion](https://www.framer.com/motion/)                                                                                               |
+| **API**        | [.NET 8 REST API](https://dotnet.microsoft.com/en-us/) (C#)                                                                                   |
+| **Database**   | [MongoDB](https://www.mongodb.com/)                                                                                                           |
 | **Deployment** | Frontend on [Vercel](https://vercel.com/), API in [Docker](https://www.docker.com/) container on [DigitalOcean](https://www.digitalocean.com/) |
 
 ---
 
-## Key Features & Architecture
+## Architecture & Key Features
 
-### 1. The Portfolio Frontend
+The site is built with a decoupled architecture, consisting of a React frontend, a .NET backend API, and a serverless Backend-for-Frontend (BFF).
 
-The user-facing site is a responsive React SPA built with performance and user experience as top priorities.
+### Frontend
 
-- **Interactive Components:** Features like the nested accordions, theme switcher, and language provider were built from scratch to demonstrate a strong grasp of React state management (useState, useContext) and component lifecycle.
-- **Performance Optimization:** Implements "just-in-time" preloading of images on hover and uses image preloads on hover to prevent layout shifts, ensuring a smooth experience during animations and content expansion.
-- **Fluid Animations:** Leverages Framer Motion for all major UI animations, including layout animations and presence/exit effects, creating a polished and professional feel.
+A high-performance Single-Page Application built with React, TypeScript, and Vite, featuring a responsive UI styled with Tailwind CSS and animated with Framer Motion.
 
-### 2. The Messaging System
+#### **Key Features:**
 
-The portfolio includes a fully functional messaging system, as a demonstration of a complete end-to-end feature.
+*   **Dynamic, Weather-Aware Background:** The background is fully dynamic, changing based on both the time of day and real-world weather conditions.
+    *   **Time-Based Gradients:** Both light and dark themes feature background gradients that smoothly transition between color schemes for morning, midday, evening, and night.
+    *   **Dynamic Weather Effects:** The light theme dynamically generates and animates clouds based on the user's local weather, while the dark theme features a parallax starfield effect.
 
-- **Two-Tier Architecture:** The system is composed of the React front-end and a separate .NET REST API which acts as a gateway for all message-related operations.
-- **NoSQL Database:** MongoDB was deliberately chosen over a traditional SQL database to gain hands-on experience with its document-based model. Each conversation is stored as a single document, containing the chat ID, created_at, updated_at and an embedded array of message objects.
-- **Efficient Chat Creation:** A new chat session is only created in the database on the server-side when a user sends their first message (lazy creation), preventing the creation of empty, unused chat documents. The `chatID` is managed on the client-side using `localStorage` with a fallback to `sessionStorage`.
-- **Administrative Dashboard:** A separate (private) administrative interface was built to view and respond to incoming messages, completing the communication loop.
+*   **Frictionless Messaging UI:** A custom-built, two-way messaging system designed for ease of use. To minimize friction, users can send messages without any sign-up process. A unique `chatID` is generated and stored in `localStorage`, allowing returning users to seamlessly continue their conversations.
+
+*   **Interactive Tech Links:** Throughout the site's text, mentions of technologies are interactive links. On hover, they dynamically change color to match the official branding of the technology—for instance, Vite displays its signature gradient.
+
+*   **Multi-Language Support:** The portfolio supports multiple languages via i18n.
+
+### Backend & Infrastructure
+
+The backend consists of a secure REST API for the messaging system and a serverless function for weather data, both designed for security and scalability.
+
+#### **API Architecture & Technologies:**
+
+*   **Framework:** The messaging system is powered by a REST API built with .NET 8 (C#). It follows a clean architectural pattern with controllers, a dedicated `MessageService` for business logic, and clear data models.
+*   **Database:** MongoDB serves as the NoSQL database. A conversation, including all its messages, is stored as a single document, which is an efficient design for this use case.
+*   **Deployment:** The .NET API is containerized using Docker and deployed on DigitalOcean.
+
+#### **Security & Configuration:**
+
+*   **Authentication & Authorization:** The API is secured using a custom, policy-based system. It uses a custom `ApiKeyHandler` to validate keys in the `X-API-Key` header and defines separate policies for "User" and "Admin" roles for granular endpoint control.
+*   **Configuration Management:** Sensitive data like connection strings and API keys are pulled from environment variables, with fallbacks to local configuration files for development.
+*   **CORS Policy:** A strict Cross-Origin Resource Sharing (CORS) policy is configured to only allow requests from the portfolio's domain and localhost.
+
+#### **Weather Service (Backend-for-Frontend):**
+
+A Vercel serverless function acts as a Backend-for-Frontend (BFF). This was built to securely hide third-party API keys from the client and create a resilient system that doesn’t rely on a single weather provider. It calls multiple weather APIs, normalizes their varied data formats into a single category ("clear," "cloudy," or "stormy"), and returns a consensus result to the frontend.
 
 ---
 
 ## Roadmap & Future Enhancements
 
-This project is actively maintained. Here are some of the key improvements planned, categorized by their primary focus:
+This project is actively maintained. Here are some of the key improvements planned:
 
-## Core Architecture & Security
+### Core Architecture & Security
 
-These enhancements focus on making the application's foundation more robust, secure, and efficient.
+-   **End-to-End Message Encryption (E2EE):** To guarantee user privacy, the plan is to implement E2EE for the chat. This would involve generating a client-side public/private key pair on chat initiation and using it to encrypt message content before it's sent to the API.
+-   **Real-Time Communication with WebSockets:** A significant planned upgrade is to transition to a WebSocket-based connection (likely using SignalR for .NET) to provide true real-time, bidirectional communication.
 
--   **Enhanced API Security (Backend-for-Frontend):** The current architecture involves a client-side API key. The next major step is to implement a **Backend-for-Frontend (BFF)** proxy. This will involve a lightweight server-side component that will receive requests from the React app, securely attach the secret API key on the server, and then forward the request to the main API. This will ensure the API key is never exposed on the client, adhering to security best practices.
+### Frontend & User Experience
 
--   **End-to-End Message Encryption (E2EE):** To guarantee user privacy, the plan is to implement E2EE for the chat. This would involve generating a client-side public/private key pair on chat initiation and using it to encrypt message content before it's sent to the API, ensuring that only the administrator can decrypt and read the messages.
-
--   **Real-Time Communication with WebSockets:** The current chat relies on HTTP polling. A significant planned upgrade is to transition to a WebSocket-based connection (likely using SignalR for .NET) to provide true real-time, bidirectional communication, reduce network overhead, and improve the user experience.
-
-## Frontend & User Experience
-
-These features are focused on improving the client-side experience and adding more interactive elements.
-
--   **Adaptive Performance Monitoring:** To ensure a smooth experience for all users, a client-side performance monitor could be implemented. This system would measure the application's frame rate in real-time. If a sustained drop below a set threshold is detected (indicating the user's device is struggling with animations), a non-intrusive UI element would appear, offering the user the option to disable performance-intensive effects like the starfield animation with a single click. This setting would be persisted in localStorage.
-
--   **Manual Theme Override:** A user control could be added to allow for manual selection of the four time-based background themes (dawn, day, dusk, night), overriding the automatic time detection to let users explore all visual styles.
----
-
-## Transparency notice
-
--   **AI** was used to format the translation file because while I regret the way I set it up and is a giant hassle to add content, with AI it's quick and mostly foolproof to format content I wrote to fit it.
--   **AI** was also used to comment some parts of code, mostly comments that mark different sections of content on site.
+-   **Adaptive Performance Monitoring:** Implement a client-side performance monitor that measures the frame rate. If a sustained drop is detected, a non-intrusive UI element will appear, offering the user the option to disable performance-intensive effects.
 
 ---
+
+## Transparency Notice
+
+-   **AI** was used to format the translation file.
+-   **AI** was also used to comment parts of code.
