@@ -15,39 +15,35 @@ export const ExpandableImage = ({src, alt, }:ExpandableImageProps) => {
 
     useEffect(() => {
         if (isOpened) {
-            const scrollBarWidth = window.innerWidth - document.body.clientWidth;
-            document.body.style.paddingRight = `${scrollBarWidth}px`; //add scroll bar width to padding to body when modal is open, to prevent content shift
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "unset";
-            document.body.style.paddingRight = "0px";
-        }
+            if (history.state?.modal !== "open") {
+                history.pushState({ modal: "open" }, "");
+            }
 
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key === "Escape") {
+            const scrollBarWidth = window.innerWidth - document.body.clientWidth;
+            document.body.style.paddingRight = `${scrollBarWidth}px`;
+            document.body.style.overflow = "hidden";
+
+            const handleKeyDown = (event: KeyboardEvent) => {
+                if (event.key === "Escape") {
+                    history.back();
+                }
+            }
+
+            const handlePopState = () => {
                 setIsOpened(false);
             }
+
+            document.addEventListener("keydown", handleKeyDown);
+            window.addEventListener("popstate", handlePopState);
+
+            return () => {
+                document.removeEventListener("keydown", handleKeyDown);
+                window.removeEventListener("popstate", handlePopState);
+
+                document.body.style.overflow = "unset";
+                document.body.style.paddingRight = "0px";
+            };
         }
-
-        const handlePopState = () => {
-            setIsOpened(false);
-        }
-
-        history.pushState(null, "");
-        document.addEventListener("keydown", handleKeyDown);
-        document.addEventListener("popstate", handlePopState);
-
-
-        return () => {
-            document.body.style.overflow = "unset";
-            document.body.style.paddingRight = "0px";
-            document.removeEventListener("keydown", handleKeyDown);
-            document.removeEventListener("popstate", handlePopState);
-            if (history.state === null) {
-                history.back()
-            }
-        }
-
     }, [isOpened]);
 
     return (
