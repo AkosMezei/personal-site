@@ -1,6 +1,7 @@
 ﻿import {AnimatePresence, motion} from "motion/react";
 import {useEffect, useState} from "react";
 import {createPortal} from "react-dom";
+import {TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
 
 type ExpandableImageProps = {
     src:string,
@@ -28,12 +29,19 @@ export const ExpandableImage = ({src, alt, }:ExpandableImageProps) => {
             }
         }
 
+        const handlePopState = () => {
+            setIsOpened(false);
+        }
+
         document.addEventListener("keydown", handleKeyDown);
+        document.addEventListener("popstate", handlePopState);
+
 
         return () => {
             document.body.style.overflow = "unset";
             document.body.style.paddingRight = "0px";
             document.removeEventListener("keydown", handleKeyDown);
+            document.removeEventListener("popstate", handlePopState);
         }
 
     }, [isOpened]);
@@ -60,8 +68,14 @@ export const ExpandableImage = ({src, alt, }:ExpandableImageProps) => {
                                     exit={{ opacity: 0 }}
                                     className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center z-50" onClick={() => setIsOpened(false)}
                                 >
-                                    <motion.img layoutId={src} transition={{duration:0.5}} onClick={(e) => e.stopPropagation()}
-                                                className="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain" src={src}/>
+                                    <motion.div layout onClick={(e) => e.stopPropagation()}>
+                                        <TransformWrapper>
+                                            <TransformComponent wrapperClass="!w-auto !h-auto">
+                                                <motion.img layoutId={src} transition={{duration:0.5}}
+                                                            className="max-h-[90vh] max-w-[90vw] rounded-2xl object-contain" src={src}/>
+                                            </TransformComponent>
+                                        </TransformWrapper>
+                                    </motion.div>
                                 </motion.div>
                             }
                         </AnimatePresence>,
