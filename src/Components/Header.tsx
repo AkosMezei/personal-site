@@ -191,7 +191,7 @@ function Header() {
 
                 </AnimatePresence>
                 <div className="flex">
-                    <label className="inline-flex items-center cursor-pointer">
+                    <label className="inline-flex items-center cursor-pointer" role="switch" aria-checked={i18n.language === "en"}>
                         <span className="me-3 text-sm font-medium text-gray-900 dark:text-gray-300"> <img alt="English flag" className="rounded-full max-w-10" src={flagEN}/> </span>
                         <input
                             type="checkbox"
@@ -200,7 +200,15 @@ function Header() {
                             className="sr-only peer"
                         />
                         <div
-                            className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600"></div>
+                            className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700
+                            peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full
+                            peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px]
+                            after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full
+                            after:h-5 after:w-5 after:transition-all dark:border-gray-600
+
+                            peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-sky-500 dark:peer-focus:ring-sky-800 peer-focus:ring-offset-2 peer-focus:ring-offset-white
+                            "
+                        ></div>
                         <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> <img alt="Hungarian flag" className="rounded-full max-w-10" src={flagHU}/> </span>
                     </label>
                     <button
