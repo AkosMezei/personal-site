@@ -106,8 +106,10 @@ export const WeatherProvider = ({children}:{children:ReactNode}) => {
                 }
             }
         }
-        getWeatherData();
-    }, []);
+        if (weatherMode !== 'manual') {
+            getWeatherData();
+        }
+    }, [weatherMode, manualWeather]);
 
     const value = {weatherCategory, isLoading, error};
 
