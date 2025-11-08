@@ -105,7 +105,7 @@ function Header() {
                                 <img alt="Github Icon" className="h-6 inline" src={theme === 'dark' ? GitHub_Mark_White : GitHub_Mark}/>
                                 <img alt="Github Logo" className="h-6 inline" src={theme === 'dark' ? GitHub_Logo_White : GitHub_Logo}/>
                             </motion.a>
-                            <motion.a whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="www.linkedin.com/in/akos-mezei-501a38253">
+                            <motion.a whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="https://www.linkedin.com/in/akos-mezei-501a38253/">
                                 <img alt="Linkedin Logo" className="h-6 inline" src={LinkedinLogo}/>
                             </motion.a>
                             <div className="h-fit m-1 p-1">
@@ -144,7 +144,7 @@ function Header() {
                                                         <img alt="Github Icon" className="h-6 inline" src={GitHub_Mark_White}/>
                                                         <img alt="Github Logo" className="h-6 inline" src={GitHub_Logo_White}/>
                                                     </motion.a>
-                                                    <motion.a whileTap={{ scale: 0.8 }} className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="www.linkedin.com/in/akos-mezei-501a38253">
+                                                    <motion.a whileTap={{ scale: 0.8 }} className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="https://www.linkedin.com/in/akos-mezei-501a38253/">
                                                         <img alt="Linkedin Logo" className="h-6 inline" src={LinkedinLogo}/>
                                                     </motion.a>
                                                     <div className="h-fit m-1 p-1">
