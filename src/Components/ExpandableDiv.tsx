@@ -4,7 +4,6 @@ import {AnimatePresence, motion} from "motion/react";
 import { useBackgroundContext } from "../Contexts/BackgroundContext.tsx";
 import { useTranslation } from "react-i18next";
 import type { ReactNode } from "react";
-import {useIsMobile} from "../Hooks/useIsMobile.ts";
 
 const textVariants = {
     initial: { opacity: 0, filter: "blur(10px)" },
@@ -33,7 +32,6 @@ function ExpandableDiv({
     isSectionBreak?: boolean,
     shouldBlur?: boolean,
 }) {
-    const isMobile = useIsMobile()
     const divRef = useRef<HTMLDivElement>(null);
     const [mouseDownTarget, setMouseDownTarget] = useState<EventTarget | null>(null);
 
@@ -106,7 +104,7 @@ function ExpandableDiv({
 
     const [isExpanded, setIsExpanded] = useState(false);
 
-    const titleClassName = `${isMobile?"text-xl":"text-3xl"} font-bold transition-colors duration-300 cursor-pointer ${isHovered || isExpanded? `${theme === 'dark'? dark_hoverTitleColor : light_hoverTitleColor }` : ''}`;
+    const titleClassName = `text-xl md:text-3xl font-bold transition-colors duration-300 cursor-pointer ${isHovered || isExpanded? `${theme === 'dark'? dark_hoverTitleColor : light_hoverTitleColor }` : ''}`;
 
     return (
         <motion.div ref={divRef}
@@ -120,7 +118,7 @@ function ExpandableDiv({
              aria-expanded={isExpanded}
              aria-controls={contentId}
              className={`w-auto rounded-2xl transition-all duration-300 hover:outline hover:outline-1 outline-none ${shouldBlur? "backdrop-blur-xs" : ""} focus:ring-2 focus:ring-blue-500
-             ${isMobile?"p-1  m-1 mt-2":"p-3  m-3"} 
+             p-1  m-1 mt-2 md:p-3  md:m-3
              ${theme === 'dark' ? `${isSectionBreak ? "bg-gray-800/30" : `${dark_bgColor} `} hover:outline-sky-400/50` : `${isSectionBreak ? "bg-lightDivBackground/50" : `${light_bgColor}`} hover:outline-sky-600/50`} 
              ${isExpanded ? `${theme === 'dark'? "outline-sky-400/50 outline-1 outline-none":"outline-sky-600/50 outline-1 outline-none"}`:"hover:cursor-pointer"}
              `}>
@@ -238,14 +236,15 @@ function ExpandableDiv({
                 {isExpanded && (
                     <motion.div
                         id={contentId}
+                        style={{overflow: "hidden"}}
                         initial={{height: 0, opacity: 0}}
                         animate={{height: "auto", opacity: 1}}
                         exit={{height: 0, opacity: 0}}
                         transition={{duration: 0.3, ease: "easeInOut"}}
                     >
-                        <motion.div initial={{opacity: 0, y: -10}}
+                        <motion.div initial={{opacity: 0, y: -50}}
                                     animate={{opacity: 1, y: 0}}
-                                    exit={{y: -15, opacity: 0, transition: {duration: 0.1}}}
+                                    exit={{y: -50, opacity: 0, transition: {duration: 0.1}}}
                                     transition={{
                                         delay: 0.2
                                     }}>
