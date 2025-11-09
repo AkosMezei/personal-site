@@ -4,7 +4,7 @@ import { motion, LayoutGroup } from "motion/react";
 import { useTranslation, Trans } from "react-i18next";
 import {SectionDivider} from "./Components/SectionDivider.tsx";
 import { ExpandableImage } from "./Components/ExpandableImage.tsx";
-import {useEffect, useState} from "react";
+import {useRef} from "react";
 import MainPageShowcase from "/MainPageShowcase.png"
 import addNewItemModal from "/addNewItemModal.png"
 import feedbackPage from "/feedbackPage.png"
@@ -16,60 +16,61 @@ const projectImages = [
     {src: feedbackPage, alt: "Image showing the feedback page of the Vinted Deal Tracker project."}
 ];
 
+const styledComponents = {
+    reactLink: <a href="https://react.dev" target="_blank" className="hover:text-react font-bold text-nowrap" />,
+    typeScriptLink: <a href="https://www.typescriptlang.org" target="_blank" className="hover:text-typescript font-bold text-nowrap" />,
+    dotnetLink: <a href="https://dotnet.microsoft.com/" target="_blank" className="hover:bg-gradient-to-bl hover:from-dotNetStart hover:from-45% hover:to-dotNetEnd hover:to-80% hover:text-transparent hover:bg-clip-text font-bold text-nowrap" />,
+    viteLink: <a href="https://vite.dev" target="_blank" className="hover:bg-gradient-to-br hover:from-viteStart hover:from-45% hover:via-viteMiddle hover:via-50% hover:to-viteEnd hover:to-80% hover:text-transparent hover:bg-clip-text font-bold text-nowrap" />,
+    tailwindLink: <a href="https://tailwindcss.com" target="_blank" className="hover:text-tailwind font-bold text-nowrap" />,
+    framerMotionLink: <a href="https://motion.dev" target="_blank" className="hover:text-framerMotion font-bold text-nowrap" />,
+    vercelLink: <a href="https://vercel.com/" target="_blank" className="hover:text-black/90 font-bold text-nowrap" />,
+    mongoDBLink: <a href="https://www.mongodb.com" target="_blank" className="hover:text-mongoDB font-bold text-nowrap" />,
+    dockerLink: <a href="https://www.docker.com" target="_blank" className="hover:text-docker font-bold text-nowrap" />,
+    digitalOceanLink: <a href="https://www.digitalocean.com" target="_blank" className="hover:text-digitalOcean font-bold text-nowrap" />,
+    javascriptLink: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" className="hover:text-javascript font-bold text-nowrap" />,
+    pythonLink: <a href="https://www.python.org" target="_blank" className="hover:text-python font-bold text-nowrap" />,
+    fastAPILink: <a href="https://fastapi.tiangolo.com" target="_blank" className="hover:text-fastAPI font-bold text-nowrap" />,
+    flaskLink: <a href="https://flask.palletsprojects.com" target="_blank" className="hover:text-black dark:hover:text-white font-bold text-nowrap" />,
+    postgresLink: <a href="https://www.postgresql.org" target="_blank" className="hover:text-postgres font-bold text-nowrap" />,
+    plotlyLink: <a href="https://plotly.com" target="_blank" className="hover:text-plotly font-bold text-nowrap" />,
+    threejsLink: <a href="https://threejs.org" target="_blank" className="hover:text-black dark:hover:text-white font-bold text-nowrap" />,
+    geminiLink: <a href="https://ai.google.dev/gemini-api" target="_blank" className="hover:bg-gradient-to-r hover:from-geminiStart hover:to-geminiEnd hover:text-transparent hover:bg-clip-text font-bold text-nowrap" />,
+    csharpLink: <a href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank" className="hover:text-dotNetStart font-bold text-nowrap" />,
+    matlabLink: <a href="https://www.mathworks.com/products/matlab.html" target="_blank" className="hover:text-matlab font-bold text-nowrap" />,
+    SPALink: <a href="https://developer.mozilla.org/en-US/docs/Glossary/SPA" target="_blank" className="font-semibold italic hover:underline text-nowrap" />,
+    playwrightLink: <a href="https://playwright.dev" target="_blank" className="hover:text-playwright font-bold text-nowrap" />,
+    umbracoLink: <a href="https://umbraco.com" target="_blank" className="hover:text-umbraco font-bold text-nowrap" />,
+    ankiLink: <a href="https://apps.ankiweb.net/" target="_blank" className="hover:text-anki font-bold text-nowrap" />,
+    SWCLink: <a href="https://swc.rs" target="_blank" className="hover:bg-gradient-to-r hover:from-swcStart hover:to-swcEnd hover:text-transparent hover:bg-clip-text font-bold text-nowrap" />,
+    sendGridLink: <a href="https://sendgrid.com" target="_blank" className="hover:text-sendGrid font-bold text-nowrap" />,
+    name: <strong className="font-semibold text-gray-900 dark:text-slate-100" />,
+    bold: <strong />,
+    subtitle: <strong className="font-semibold text-gray-900 dark:text-slate-100 mr-2" />,
+    code: <code className="font-mono text-nowrap bg-slate-200 dark:bg-slate-700/80 text-sky-600 dark:text-sky-300 px-1 py-0.5 rounded-md text-sm" />,
+}
+
 function HomePage() {
 
-    const [areProjectsClicked, setAreProjectsClicked] = useState(false);
+    const hasPreloadedProjectImages = useRef(false);
 
-    useEffect(() => {
-        if (areProjectsClicked) {
-            projectImages.forEach((image) => {
-                const img = new Image();
+    const handleProjectImageLoad = () => {
+        if (!hasPreloadedProjectImages.current) {
+            projectImages.forEach(image => {
+                const img = new Image()
                 img.src = image.src
             })
+            hasPreloadedProjectImages.current = true;
         }
-    }, [areProjectsClicked]);
+    }
 
     const { t } = useTranslation();
 
-    const styledComponents = {
-        reactLink: <a href="https://react.dev" target="_blank" className="hover:text-react font-bold text-nowrap" />,
-        typeScriptLink: <a href="https://www.typescriptlang.org" target="_blank" className="hover:text-typescript font-bold text-nowrap" />,
-        dotnetLink: <a href="https://dotnet.microsoft.com/" target="_blank" className="hover:bg-gradient-to-bl hover:from-dotNetStart hover:from-45% hover:to-dotNetEnd hover:to-80% hover:text-transparent hover:bg-clip-text font-bold text-nowrap" />,
-        viteLink: <a href="https://vite.dev" target="_blank" className="hover:bg-gradient-to-br hover:from-viteStart hover:from-45% hover:via-viteMiddle hover:via-50% hover:to-viteEnd hover:to-80% hover:text-transparent hover:bg-clip-text font-bold text-nowrap" />,
-        tailwindLink: <a href="https://tailwindcss.com" target="_blank" className="hover:text-tailwind font-bold text-nowrap" />,
-        framerMotionLink: <a href="https://motion.dev" target="_blank" className="hover:text-framerMotion font-bold text-nowrap" />,
-        vercelLink: <a href="https://vercel.com/" target="_blank" className="hover:text-black/90 font-bold text-nowrap" />,
-        mongoDBLink: <a href="https://www.mongodb.com" target="_blank" className="hover:text-mongoDB font-bold text-nowrap" />,
-        dockerLink: <a href="https://www.docker.com" target="_blank" className="hover:text-docker font-bold text-nowrap" />,
-        digitalOceanLink: <a href="https://www.digitalocean.com" target="_blank" className="hover:text-digitalOcean font-bold text-nowrap" />,
-        javascriptLink: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" className="hover:text-javascript font-bold text-nowrap" />,
-        pythonLink: <a href="https://www.python.org" target="_blank" className="hover:text-python font-bold text-nowrap" />,
-        fastAPILink: <a href="https://fastapi.tiangolo.com" target="_blank" className="hover:text-fastAPI font-bold text-nowrap" />,
-        flaskLink: <a href="https://flask.palletsprojects.com" target="_blank" className="hover:text-black dark:hover:text-white font-bold text-nowrap" />,
-        postgresLink: <a href="https://www.postgresql.org" target="_blank" className="hover:text-postgres font-bold text-nowrap" />,
-        plotlyLink: <a href="https://plotly.com" target="_blank" className="hover:text-plotly font-bold text-nowrap" />,
-        threejsLink: <a href="https://threejs.org" target="_blank" className="hover:text-black dark:hover:text-white font-bold text-nowrap" />,
-        geminiLink: <a href="https://ai.google.dev/gemini-api" target="_blank" className="hover:bg-gradient-to-r hover:from-geminiStart hover:to-geminiEnd hover:text-transparent hover:bg-clip-text font-bold text-nowrap" />,
-        csharpLink: <a href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank" className="hover:text-dotNetStart font-bold text-nowrap" />,
-        matlabLink: <a href="https://www.mathworks.com/products/matlab.html" target="_blank" className="hover:text-matlab font-bold text-nowrap" />,
-        SPALink: <a href="https://developer.mozilla.org/en-US/docs/Glossary/SPA" target="_blank" className="font-semibold italic hover:underline text-nowrap" />,
-        playwrightLink: <a href="https://playwright.dev" target="_blank" className="hover:text-playwright font-bold text-nowrap" />,
-        umbracoLink: <a href="https://umbraco.com" target="_blank" className="hover:text-umbraco font-bold text-nowrap" />,
-        ankiLink: <a href="https://apps.ankiweb.net/" target="_blank" className="hover:text-anki font-bold text-nowrap" />,
-        SWCLink: <a href="https://swc.rs" target="_blank" className="hover:bg-gradient-to-r hover:from-swcStart hover:to-swcEnd hover:text-transparent hover:bg-clip-text font-bold text-nowrap" />,
-        sendGridLink: <a href="https://sendgrid.com" target="_blank" className="hover:text-sendGrid font-bold text-nowrap" />,
-        name: <strong className="font-semibold text-gray-900 dark:text-slate-100" />,
-        bold: <strong />,
-        subtitle: <strong className="font-semibold text-gray-900 dark:text-slate-100 mr-2" />,
-        code: <code className="font-mono text-nowrap bg-slate-200 dark:bg-slate-700/80 text-sky-600 dark:text-sky-300 px-1 py-0.5 rounded-md text-sm" />,
-    }
-
     return (
         <div className="mx-2 py-20 lg:w-3/5 ml-auto mr-auto">
-            <motion.div layout transition={{layout: {duration: 0.5, ease: "easeInOut"}}}>
                 <ExpandableDiv title={t('aboutMe.title')}
                                orientation="center"
                                isSectionBreak={true}
+                               shouldBlur={true}
                                defaultContent={
                                    <p className="text-center">
                                        <Trans i18nKey="aboutMe.description" components={styledComponents}/>
@@ -92,6 +93,7 @@ function HomePage() {
 
                 <ExpandableDiv title={t('education.title')}
                                orientation="center"
+                               shouldBlur={true}
                                defaultContent={
                                    <></>
                                }
@@ -155,68 +157,70 @@ function HomePage() {
                                }
                 />
                 <ExpandableDiv
-                title={t('experience.title')}
-                orientation="center"
-                defaultContent={
-                    <></>
-                }
-                expandedContent={
-                    <div>
-                        <ExpandableDiv
-                            title={t('experience.woodworking.title')}
-                            orientation="center"
-                            defaultContent={
-                                <div>
-                                    <div className="mr-2 text-center">{t('experience.woodworking.company')}</div>
-                                    <div className="text-center">{t('experience.woodworking.dates')}</div>
-                                </div>
-                            }
-                            expandedContent={
-                                <ul>
-                                   <li>
-                                       {t('experience.woodworking.bullet_1')}
-                                   </li>
-                                    <li>
-                                        {t('experience.woodworking.bullet_2')}
-                                    </li>
-                                    <li>
-                                        {t('experience.woodworking.bullet_3')}
-                                    </li>
-                                </ul>
-                            }
-                        />
-                        <ExpandableDiv
-                            title={t('experience.internship.title')}
-                            orientation="center"
-                            defaultContent={
-                                <div>
-                                    <div className="mr-2 text-center">{t('experience.internship.company')}</div>
-                                    <div className="text-center">{t('experience.internship.dates')}</div>
-                                </div>
-                            }
-                            expandedContent={
-                                <ul>
-                                    <li>
-                                        <Trans i18nKey="experience.internship.bullet_1" components={styledComponents}/>
-                                    </li>
-                                    <li>
-                                        <Trans i18nKey="experience.internship.bullet_2" components={styledComponents}/>
-                                    </li>
-                                    <li>
-                                        {t('experience.internship.bullet_3')}
-                                    </li>
-                                </ul>
-                            }
-                        />
-                    </div>
-                }
+                    title={t('experience.title')}
+                    orientation="center"
+                    shouldBlur={true}
+                    defaultContent={
+                        <></>
+                    }
+                    expandedContent={
+                        <div>
+                            <ExpandableDiv
+                                title={t('experience.woodworking.title')}
+                                orientation="center"
+                                defaultContent={
+                                    <div>
+                                        <div className="mr-2 text-center">{t('experience.woodworking.company')}</div>
+                                        <div className="text-center">{t('experience.woodworking.dates')}</div>
+                                    </div>
+                                }
+                                expandedContent={
+                                    <ul>
+                                       <li>
+                                           {t('experience.woodworking.bullet_1')}
+                                       </li>
+                                        <li>
+                                            {t('experience.woodworking.bullet_2')}
+                                        </li>
+                                        <li>
+                                            {t('experience.woodworking.bullet_3')}
+                                        </li>
+                                    </ul>
+                                }
+                            />
+                            <ExpandableDiv
+                                title={t('experience.internship.title')}
+                                orientation="center"
+                                defaultContent={
+                                    <div>
+                                        <div className="mr-2 text-center">{t('experience.internship.company')}</div>
+                                        <div className="text-center">{t('experience.internship.dates')}</div>
+                                    </div>
+                                }
+                                expandedContent={
+                                    <ul>
+                                        <li>
+                                            <Trans i18nKey="experience.internship.bullet_1" components={styledComponents}/>
+                                        </li>
+                                        <li>
+                                            <Trans i18nKey="experience.internship.bullet_2" components={styledComponents}/>
+                                        </li>
+                                        <li>
+                                            {t('experience.internship.bullet_3')}
+                                        </li>
+                                    </ul>
+                                }
+                            />
+                        </div>
+                    }
                 />
 
                 <SectionDivider title={t('projects.title')} content={t('projects.description')}/>
-                <div onMouseDown={()=> setAreProjectsClicked(true)}>
+                <div onMouseDown={handleProjectImageLoad}>
                     <ExpandableDiv
                         title={t('projects.featured.title')}
                         orientation="center"
+                        shouldBlur={true}
                         defaultContent={
                             <></>
                         }
@@ -659,6 +663,7 @@ function HomePage() {
                 <ExpandableDiv
                     title={t('projects.workInProgress.title')}
                     orientation="center"
+                    shouldBlur={true}
                     defaultContent={<></>}
                     expandedContent={
                         <div>
@@ -885,9 +890,6 @@ function HomePage() {
                         </div>
                     }
                 />
-
-
-            </motion.div>
             <div className="fixed m-3 right-0 bottom-0">
                 <MessageBox/>
             </div>

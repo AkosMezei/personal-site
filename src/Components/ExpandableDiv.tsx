@@ -1,4 +1,4 @@
-﻿import {useState, useRef} from "react";
+﻿import React, {useState, useRef} from "react";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {AnimatePresence, motion} from "motion/react";
 import { useBackgroundContext } from "../Contexts/BackgroundContext.tsx";
@@ -24,12 +24,14 @@ function ExpandableDiv({
                            expandedContent = "Expanded Content",
                            orientation = "left",
                             isSectionBreak = false,
+                            shouldBlur = false,
                        }: {
     title?: string,
     defaultContent?: ReactNode,
     expandedContent?: ReactNode,
     orientation?: "left" | "right" | "center",
     isSectionBreak?: boolean,
+    shouldBlur?: boolean,
 }) {
     const isMobile = useIsMobile()
     const divRef = useRef<HTMLDivElement>(null);
@@ -107,7 +109,7 @@ function ExpandableDiv({
     const titleClassName = `${isMobile?"text-xl":"text-3xl"} font-bold transition-colors duration-300 cursor-pointer ${isHovered || isExpanded? `${theme === 'dark'? dark_hoverTitleColor : light_hoverTitleColor }` : ''}`;
 
     return (
-        <motion.div layout ref={divRef}
+        <motion.div ref={divRef}
              onMouseDown={handleMouseDown}
              onMouseUp={handleMouseUp}
              onMouseEnter={handleMouseEnter}
@@ -117,8 +119,8 @@ function ExpandableDiv({
              aria-role="button"
              aria-expanded={isExpanded}
              aria-controls={contentId}
-             className={`w-auto rounded-2xl transition-all duration-300 hover:outline hover:outline-1 outline-none backdrop-blur-xs focus:ring-2 focus:ring-blue-500
-             ${isMobile?"p-1  m-1":"p-3  m-3"} 
+             className={`w-auto rounded-2xl transition-all duration-300 hover:outline hover:outline-1 outline-none ${shouldBlur? "backdrop-blur-xs" : ""} focus:ring-2 focus:ring-blue-500
+             ${isMobile?"p-1  m-1 mt-2":"p-3  m-3"} 
              ${theme === 'dark' ? `${isSectionBreak ? "bg-gray-800/30" : `${dark_bgColor} `} hover:outline-sky-400/50` : `${isSectionBreak ? "bg-lightDivBackground/50" : `${light_bgColor}`} hover:outline-sky-600/50`} 
              ${isExpanded ? `${theme === 'dark'? "outline-sky-400/50 outline-1 outline-none":"outline-sky-600/50 outline-1 outline-none"}`:"hover:cursor-pointer"}
              `}>
@@ -308,4 +310,4 @@ function ExpandableDiv({
     )
 }
 
-export default ExpandableDiv;
+export default React.memo(ExpandableDiv);
