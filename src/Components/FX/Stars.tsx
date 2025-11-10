@@ -78,12 +78,11 @@ const ShootingStar = ({top, left, mouseX, mouseY, onComplete}:{top:string; left:
     return (
         <motion.div className="absolute w-5/6"
                     style={{top, left, x, y}}
-                    initial={{ rotate:65, opacity:0 }}
-            animate={{ rotate:40, opacity:[0, 1, 1, 0] }}
+                    initial={{ rotate:70, opacity:0 }}
+            animate={{ rotate:35, opacity:[0, 1, 1, 0] }}
             transition={{
                 duration: 1,
                 times: [0, 0.2, 0.9, 1],
-                delay: 10,
             }}
                     onAnimationComplete={onComplete}
         >
@@ -104,11 +103,11 @@ const ShootingStarController = ({mouseX, mouseY}:{mouseX: MotionValue<number>; m
     });
 
     const resetStar = () => {
-        const delay = 5000 + Math.random() * 10000; //5-15s
+        const delay = 1000 + Math.random() * 9000; //1-10s delay
         setTimeout(() => {
             setPosition({
-                top: 50 + Math.random() * 50,
-                left: Math.random() * 50,
+                top: 50 + Math.random() * 100,
+                left: Math.random() * 80,
                 key:position.key + 1
             })
         }, delay)
