@@ -246,17 +246,18 @@ function Header() {
                                         <button className={`rounded-lg pr-1 pl-1 ${(weatherMode === "manual" && manualWeather === 'stormy') ? "bg-amber-200" : ""}`} onClick={() => {setWeatherMode('manual'); setManualWeather('stormy')}}> Stormy </button>
                                     </div>
                                 }
-                                { theme === "light" &&
                                 <div>
                                     {debugMode ?
                                     (<BugOff className="cursor-pointer" onClick={() => setDebugMode(!debugMode)}/>)
                                     :
                                     (<BugPlay className="cursor-pointer" onClick={() => setDebugMode(!debugMode)}/>)
                                     }
-                                    {debugMode &&
+                                    {debugMode && theme === 'light' &&
                                         <h1> Current weather: {weatherCategory} </h1>
                                     }
                                 </div>
+                                {debugMode &&
+                                    <motion.div animate={{rotate:360}} transition={{repeat: Infinity, duration:1, ease:"linear"}} className="ml-3 w-2 h-2 bg-white m-auto rounded-sm"> </motion.div>
                                 }
                             </div>
                         </div>
