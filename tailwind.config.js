@@ -33,7 +33,7 @@ export default {
         swcEnd:'#f8ea46',
         sendGrid: '#f22f46',
 
-        lightDivBackground: '#CCD5AE',
+        lightDivBackground: '#adf5dc',
         lightDivHoverBackground: '#D4A373',
         background: 'rgb(var(--background) / <alpha-value>)',
         foreground: 'rgb(var(--foreground) / <alpha-value>)',
