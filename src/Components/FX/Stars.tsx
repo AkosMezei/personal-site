@@ -1,4 +1,4 @@
-﻿import { useEffect } from 'react';
+﻿import {useEffect, useState} from 'react';
 import { motion, useMotionValue, useTransform, MotionValue } from 'framer-motion';
 import {STAR_DATA} from "../../data/starData.ts";
 
@@ -29,13 +29,78 @@ const Star = ({top, left, size, opacity, layer, mouseX, mouseY}: {
 
     const finalOpacity = opacity * gradientOpacityFactor;
 
+    const randomCycleDuration = Math.random() * 8 + 7; //from 7 to 15 seconds
+    const randomDelay = Math.random() * 30; //0-30s random start delay
+    const repeatDelay = Math.random() * 10 + 5; //5-15s random repeat delay
+
     return (
         <motion.div
             className="absolute bg-white rounded-full"
-            style={{ top, left, width: size, height: size, opacity: finalOpacity, x, y}}
+            style={{ top, left, width: size, height: size, opacity: 0, x, y}}
+            animate={{opacity:[finalOpacity, 0, 0, finalOpacity]}}
+            transition={{
+                duration: randomCycleDuration,
+                repeat: Infinity,
+                times: [0, 0.2, 0.8, 1],
+                repeatDelay: repeatDelay,
+                delay: randomDelay,
+            }}
         />
     );
 };
+
+const ShootingStar = ({top, left, mouseX, mouseY, onComplete}:{top:string; left:string;
+    mouseX: MotionValue<number>;
+    mouseY: MotionValue<number>;
+    onComplete: () => void;
+}) => {
+
+    const x = useTransform(mouseX, [0, window.innerWidth], [0, -20]);
+    const y = useTransform(mouseY, [0, window.innerHeight], [0, -20])
+
+    return (
+        <motion.div className="absolute w-5/6"
+                    style={{top, left, x, y}}
+                    initial={{ rotate:65, opacity:0 }}
+            animate={{ rotate:40, opacity:[0, 1, 1, 0] }}
+            transition={{
+                duration: 1,
+                times: [0, 0.2, 0.9, 1],
+                delay: 10,
+            }}
+                    onAnimationComplete={onComplete}
+        >
+            <div
+                className="w-[2px] h-8 bg-gradient-to-t from-white via-15% via-white/50 rounded-full"
+            />
+
+        </motion.div>
+    )
+}
+
+const ShootingStarController = ({mouseX, mouseY}:{mouseX: MotionValue<number>; mouseY: MotionValue<number>;}) => {
+    const [position, setPosition] = useState({
+        top: 50 + Math.random() * 50,
+        left: Math.random() * 50,
+        key:0
+    });
+
+    const resetStar = () => {
+        const delay = 5000 + Math.random() * 10000; //5-15s
+        setTimeout(() => {
+            setPosition({
+                top: 50 + Math.random() * 50,
+                left: Math.random() * 50,
+                key:position.key + 1
+            })
+        }, delay)
+    }
+
+    return (
+        <ShootingStar key={position.key} top={`${position.top}%`} left={`${position.left}%`} mouseX={mouseX} mouseY={mouseY} onComplete={resetStar}/>
+    )
+
+}
 
 export const Stars = () => {
     const mouseX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
@@ -65,6 +130,7 @@ export const Stars = () => {
                     mouseY={mouseY}
                 />
             ))}
+            <ShootingStarController mouseX={mouseX} mouseY={mouseY}/>
         </div>
     );
 };
