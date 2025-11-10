@@ -31,7 +31,7 @@ function Header() {
 
     const [isContactInfoExpanded, setIsContactInfoExpanded] = useState<boolean>(false)
 
-    const { timeMode, manualTime, setTimeMode, setManualTime, weatherMode, manualWeather, setWeatherMode, setManualWeather, debugMode, setDebugMode } = useThemeSettingsContext()
+    const { timeMode, manualTime, setTimeMode, setManualTime, weatherMode, manualWeather, setWeatherMode, setManualWeather, debugMode, setDebugMode, disableStars, setDisableStars } = useThemeSettingsContext()
 
     const [isPhoneCopied, setIsPhoneCopied] = useState<boolean>(false)
     const [isEmailCopied, setIsEmailCopied] = useState<boolean>(false)
@@ -256,6 +256,9 @@ function Header() {
                                         <h1> Current weather: {weatherCategory} </h1>
                                     }
                                 </div>
+                                {debugMode &&
+                                    <button onClick={() => setDisableStars(!disableStars)}> {disableStars? "Enable" : "Disable"} Stars </button>
+                                }
                                 {debugMode &&
                                     <motion.div animate={{rotate:360}} transition={{repeat: Infinity, duration:1, ease:"linear"}} className="ml-3 w-2 h-2 bg-white m-auto rounded-sm"> </motion.div>
                                 }

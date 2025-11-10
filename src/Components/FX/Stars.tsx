@@ -1,6 +1,7 @@
 ﻿import {useEffect, useState} from 'react';
 import { motion, useMotionValue, useTransform, MotionValue } from 'framer-motion';
 import {STAR_DATA} from "../../data/starData.ts";
+import {useThemeSettingsContext} from "../../Contexts/ThemeSettingsContext.tsx";
 
 const MAX_OPACITY_FACTOR = 1.0;
 const MIN_OPACITY_FACTOR = 0.3;
@@ -79,6 +80,7 @@ const ShootingStar = ({top, left, mouseX, mouseY, onComplete}:{top:string; left:
 }
 
 const ShootingStarController = ({mouseX, mouseY}:{mouseX: MotionValue<number>; mouseY: MotionValue<number>;}) => {
+
     const [position, setPosition] = useState({
         top: 50 + Math.random() * 50,
         left: Math.random() * 50,
@@ -103,6 +105,9 @@ const ShootingStarController = ({mouseX, mouseY}:{mouseX: MotionValue<number>; m
 }
 
 export const Stars = () => {
+
+    const {disableStars} = useThemeSettingsContext()
+
     const mouseX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
     const mouseY = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
 
@@ -119,6 +124,8 @@ export const Stars = () => {
             window.removeEventListener('mousemove', handleMouseMove);
         };
     }, [mouseX, mouseY]);
+
+    if (disableStars) return;
 
     return (
         <div className="absolute inset-0 overflow-hidden">
