@@ -1,4 +1,4 @@
-﻿import {useEffect, useState} from 'react';
+﻿import {memo, useEffect, useState} from 'react';
 import { motion, useMotionValue, useTransform, MotionValue } from 'framer-motion';
 import {STAR_DATA} from "../../data/starData.ts";
 import {useThemeSettingsContext} from "../../Contexts/ThemeSettingsContext.tsx";
@@ -7,7 +7,7 @@ import {useIsMobile} from "../../Hooks/useIsMobile.ts";
 const MAX_OPACITY_FACTOR = 1.0;
 const MIN_OPACITY_FACTOR = 0.3;
 
-const Star = ({top, left, size, opacity, layer, mouseX, mouseY}: {
+const Star = memo(({top, left, size, opacity, layer, mouseX, mouseY}: {
     top: string | number;
     left: string | number;
     size: number;
@@ -62,7 +62,7 @@ const Star = ({top, left, size, opacity, layer, mouseX, mouseY}: {
             }}
         />
     );
-};
+});
 
 const ShootingStar = ({top, left, mouseX, mouseY, onComplete}:{top:string; left:string;
     mouseX: MotionValue<number>;
