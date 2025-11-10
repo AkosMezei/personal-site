@@ -22,7 +22,7 @@ export const SectionDivider = ({
 
 
     return (
-        <div className={`w-auto rounded-2xl p-3  m-3 ${theme === 'dark' ? "bg-gray-800/30" : "bg-lightDivBackground/50 "}`}>
+        <div className={`w-auto rounded-2xl p-3  m-3 ${theme === 'dark' ? "bg-gray-800/30" : "bg-lightDivBackground/70 "}`}>
             <div className="flex flex-col items-center justify-between">
                 <AnimatePresence mode="popLayout">
                     <motion.h1

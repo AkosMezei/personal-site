@@ -14,9 +14,6 @@ const textVariants = {
 const light_hoverTitleColor = "text-sky-600";
 const dark_hoverTitleColor = "text-sky-400";
 
-const light_bgColor = "bg-lightDivBackground/25";
-const dark_bgColor = "bg-black/20";
-
 function ExpandableDiv({
                            title = "Default Title",
                            defaultContent = "Default Content",
@@ -119,7 +116,7 @@ function ExpandableDiv({
              aria-controls={contentId}
              className={`w-auto rounded-2xl transition-all duration-300 hover:outline hover:outline-1 outline-none ${shouldBlur? "backdrop-blur-xs" : ""} focus:ring-2 focus:ring-blue-500
              p-1  m-1 mt-2 md:p-3  md:m-3
-             ${theme === 'dark' ? `${isSectionBreak ? "bg-gray-800/30" : `${dark_bgColor} `} hover:outline-sky-400/50` : `${isSectionBreak ? "bg-lightDivBackground/50" : `${light_bgColor}`} hover:outline-sky-600/50`} 
+             ${theme === 'dark' ? `${isSectionBreak ? "bg-gray-800/30" : `bg-black/20 `} hover:outline-sky-400/50` : `${isSectionBreak ? "bg-lightDivBackground/70" : `${shouldBlur ? "bg-lightDivBackground/40":"bg-lightDivBackground/10"}`} hover:outline-sky-600/50`} 
              ${isExpanded ? `${theme === 'dark'? "outline-sky-400/50 outline-1 outline-none":"outline-sky-600/50 outline-1 outline-none"}`:"hover:cursor-pointer"}
              `}>
 
