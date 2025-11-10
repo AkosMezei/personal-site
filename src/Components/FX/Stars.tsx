@@ -72,16 +72,20 @@ const ShootingStar = ({top, left, mouseX, mouseY, onComplete}:{top:string; left:
 
     const isMobile = useIsMobile();
 
+    const rotateStart =65 + Math.random() * 10; //from 65 to 75
+    const rotateEnd = 30 + Math.random() * 10; //from 30 to 40
+    const durationDesktop = 0.5 + Math.random(); //from .5 seconds to 1.5 s
+
     const x = useTransform(mouseX, [0, window.innerWidth], isMobile? [0,0] : [0, -20]);
     const y = useTransform(mouseY, [0, window.innerHeight], isMobile? [0,0] : [0, -20])
 
     return (
-        <motion.div className="absolute w-5/6"
+        <motion.div className="absolute w-[150%] md:w-5/6"
                     style={{top, left, x, y}}
-                    initial={{ rotate:70, opacity:0 }}
-            animate={{ rotate:35, opacity:[0, 1, 1, 0] }}
+                    initial={{ rotate:rotateStart, opacity:0 }}
+            animate={{ rotate:rotateEnd, opacity:[0, 1, 1, 0] }}
             transition={{
-                duration: 1,
+                duration: isMobile? 3 : durationDesktop,
                 times: [0, 0.2, 0.9, 1],
             }}
                     onAnimationComplete={onComplete}
@@ -96,6 +100,8 @@ const ShootingStar = ({top, left, mouseX, mouseY, onComplete}:{top:string; left:
 
 const ShootingStarController = ({mouseX, mouseY}:{mouseX: MotionValue<number>; mouseY: MotionValue<number>;}) => {
 
+    const isMobile = useIsMobile();
+
     const [position, setPosition] = useState({
         top: 50 + Math.random() * 50,
         left: Math.random() * 50,
@@ -103,11 +109,11 @@ const ShootingStarController = ({mouseX, mouseY}:{mouseX: MotionValue<number>; m
     });
 
     const resetStar = () => {
-        const delay = 1000 + Math.random() * 9000; //1-10s delay
+        const delay = 3000 + Math.random() * 8000; //3-8s delay
         setTimeout(() => {
             setPosition({
-                top: 50 + Math.random() * 100,
-                left: Math.random() * 80,
+                top: (isMobile ? 25 : 50) + Math.random() * 100,
+                left: Math.random() * (isMobile? 40 : 80),
                 key:position.key + 1
             })
         }, delay)
