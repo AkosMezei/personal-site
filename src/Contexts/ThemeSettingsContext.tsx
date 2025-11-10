@@ -14,6 +14,8 @@ interface ThemeSettingsContextType {
     manualWeather: Weather;
     debugMode: Debug;
     disableStars: boolean;
+    disableStarAnimations: boolean;
+    setDisableStarAnimations: (disable: boolean) => void;
     setDisableStars: (disable: boolean) => void;
     setTimeMode: (mode: Mode) => void;
     setManualTime: (time: Time) => void;
@@ -32,6 +34,7 @@ export const ThemeSettingsProvider = ({children}: {children: ReactNode}) => {
     const [manualWeather, setManualWeather] = useLocalStorage<Weather>("manualWeather", "clear");
     const [debugMode, setDebugMode] = useLocalStorage<Debug>("debugMode", false);
     const [disableStars, setDisableStars] = useLocalStorage<boolean>("disableStars", false);
+    const [disableStarAnimations, setDisableStarAnimations] = useLocalStorage<boolean>("disableStarAnimations", false);
 
     const value = {
         timeMode,
@@ -46,6 +49,8 @@ export const ThemeSettingsProvider = ({children}: {children: ReactNode}) => {
         setDebugMode,
         disableStars,
         setDisableStars,
+        disableStarAnimations,
+        setDisableStarAnimations,
     }
 
     return (

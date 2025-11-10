@@ -2,6 +2,7 @@
 import { motion, useMotionValue, useTransform, MotionValue } from 'framer-motion';
 import {STAR_DATA} from "../../data/starData.ts";
 import {useThemeSettingsContext} from "../../Contexts/ThemeSettingsContext.tsx";
+import {useIsMobile} from "../../Hooks/useIsMobile.ts";
 
 const MAX_OPACITY_FACTOR = 1.0;
 const MIN_OPACITY_FACTOR = 0.3;
@@ -15,9 +16,12 @@ const Star = ({top, left, size, opacity, layer, mouseX, mouseY}: {
     mouseX: MotionValue<number>;
     mouseY: MotionValue<number>;
 }) => {
+
+    const isMobile = useIsMobile();
+
     const parallaxStrength = layer === 1 ? -20 : layer === 2 ? -10 : -5;
-    const x = useTransform(mouseX, [0, window.innerWidth], [0, parallaxStrength]);
-    const y = useTransform(mouseY, [0, window.innerHeight], [0, parallaxStrength])
+    const x = useTransform(mouseX, [0, window.innerWidth], isMobile? [0,0] : [0, parallaxStrength]);
+    const y = useTransform(mouseY, [0, window.innerHeight], isMobile? [0,0] : [0, parallaxStrength])
 
     const numericTop = parseFloat(top as string);
     const numericLeft = parseFloat(left as string);
@@ -29,6 +33,16 @@ const Star = ({top, left, size, opacity, layer, mouseX, mouseY}: {
         (positionSum / 200) * (MAX_OPACITY_FACTOR - MIN_OPACITY_FACTOR);
 
     const finalOpacity = opacity * gradientOpacityFactor;
+
+    const {disableStarAnimations} = useThemeSettingsContext()
+
+    if (disableStarAnimations)
+        return (
+        <motion.div
+            className="absolute bg-white rounded-full"
+            style={{ top, left, width: size, height: size, opacity: finalOpacity, x, y}}
+        />
+    )
 
     const randomCycleDuration = Math.random() * 8 + 7; //from 7 to 15 seconds
     const randomDelay = Math.random() * 30; //0-30s random start delay
@@ -56,8 +70,10 @@ const ShootingStar = ({top, left, mouseX, mouseY, onComplete}:{top:string; left:
     onComplete: () => void;
 }) => {
 
-    const x = useTransform(mouseX, [0, window.innerWidth], [0, -20]);
-    const y = useTransform(mouseY, [0, window.innerHeight], [0, -20])
+    const isMobile = useIsMobile();
+
+    const x = useTransform(mouseX, [0, window.innerWidth], isMobile? [0,0] : [0, -20]);
+    const y = useTransform(mouseY, [0, window.innerHeight], isMobile? [0,0] : [0, -20])
 
     return (
         <motion.div className="absolute w-5/6"
