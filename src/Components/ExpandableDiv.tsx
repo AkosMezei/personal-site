@@ -5,6 +5,18 @@ import { useBackgroundContext } from "../Contexts/BackgroundContext.tsx";
 import { useTranslation } from "react-i18next";
 import type { ReactNode } from "react";
 
+
+/**
+ * An object representing animation states for text elements.
+ *
+ * This object defines the properties for different animation variants, including:
+ * - `initial`: The starting state of the animation, with opacity set to 0 and a blur effect applied.
+ * - `animate`: The active state of the animation, where the text is fully visible with no blur applied.
+ * - `exit`: The end state of the animation, returning to opacity 0 and reapplying the blur effect.
+ *
+ * Each state contains styles to control the opacity and filter for creating a smooth transition effect.
+ * Mainly used for smooth transition when changing the language.
+ */
 const textVariants = {
     initial: { opacity: 0, filter: "blur(10px)" },
     animate: { opacity: 1, filter: "blur(0px)" },
@@ -14,6 +26,35 @@ const textVariants = {
 const light_hoverTitleColor = "text-sky-600";
 const dark_hoverTitleColor = "text-sky-400";
 
+
+/**
+ * A collapsible UI component, often called an "accordion," that toggles between
+ * a collapsed (default) and an expanded state upon user click.
+ *
+ * @param {string} title The title of the component e.g., "About Me"
+ * @param {ReactNode} defaultContent Content to show while the component is not expanded.
+ * @param {ReactNode} expandedContent Content to show when the component is expanded.
+ * @param {"left" | "right" | "center"} orientation Text orientation can be left, right, center.
+ * @param {boolean} isSectionBreak For conditional formatting based on whether the component should also act as a
+ * section break/divider.
+ * @param {boolean} shouldBlur If the component should blur the background.
+ *
+ * @example
+ * // A basic example for a user profile section.
+ * <ExpandableDiv
+ *   title="About Me"
+ *   defaultContent={
+ *     <p>A short and sweet summary about my professional life...</p>
+ *   }
+ *   expandedContent={
+ *     <>
+ *       <p>Here are some more details, including hobbies and interests
+ *          that are only visible when this component is expanded.</p>
+ *       <ContactForm />
+ *     </>
+ *   }
+ * />
+ */
 function ExpandableDiv({
                            title = "Default Title",
                            defaultContent = "Default Content",
@@ -32,7 +73,7 @@ function ExpandableDiv({
     const divRef = useRef<HTMLDivElement>(null);
     const [mouseDownTarget, setMouseDownTarget] = useState<EventTarget | null>(null);
 
-    const contentId = `expandable-content-${title.replace(/\s+/g, '-').toLowerCase()}`;
+    const contentId = `expandable-content-${title.replace(/\s+/g, '-').toLowerCase()}`; //helper for automatic aria labeling based on the title
 
     const selectionExistsOnMouseDown = useRef(false);
 
@@ -50,7 +91,7 @@ function ExpandableDiv({
         // Store the target element where the mouse was pressed
         setMouseDownTarget(e.target);
         const selection = window.getSelection();
-        selectionExistsOnMouseDown.current = !!(selection && selection.toString().length > 0);
+        selectionExistsOnMouseDown.current = !!(selection && selection.toString().length > 0); //check for text selection
     }
 
     function handleMouseUp(e: React.MouseEvent) {
@@ -62,7 +103,7 @@ function ExpandableDiv({
         if (divRef.current && mouseDownTarget === e.target) {
             const target = e.target as Node;
 
-            if ((target as HTMLElement).tagName === 'IMG') {
+            if ((target as HTMLElement).tagName === 'IMG') { //if the target is an image, don't collapse
                 return;
             }
 
@@ -88,7 +129,7 @@ function ExpandableDiv({
         }
     }
 
-    function handleKeyDown(e: React.KeyboardEvent) {
+    function handleKeyDown(e: React.KeyboardEvent) { //a11y, expand/collapse on enter and space key presses
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             e.stopPropagation();
@@ -101,6 +142,7 @@ function ExpandableDiv({
 
     const [isExpanded, setIsExpanded] = useState(false);
 
+    //title formatting pulled out so it's not repeated and consistent
     const titleClassName = `text-xl md:text-3xl font-bold transition-colors duration-300 cursor-pointer ${isHovered || isExpanded? `${theme === 'dark'? dark_hoverTitleColor : light_hoverTitleColor }` : ''}`;
 
     return (
@@ -119,6 +161,8 @@ function ExpandableDiv({
              ${theme === 'dark' ? `${isSectionBreak ? "bg-gray-800/30" : `bg-black/20 `} hover:outline-sky-400/50` : `${isSectionBreak ? "bg-lightDivBackground/70" : `${shouldBlur ? "bg-lightDivBackground/40":"bg-lightDivBackground/10"}`} hover:outline-sky-600/50`} 
              ${isExpanded ? `${theme === 'dark'? "outline-sky-400/50 outline-1 outline-none":"outline-sky-600/50 outline-1 outline-none"}`:"hover:cursor-pointer"}
              `}>
+
+            {/* Title formatting section */}
 
             {orientation == "left" && (
                 <div className="flex flex-row items-center justify-between">
@@ -178,6 +222,8 @@ function ExpandableDiv({
                 </div>
             )}
 
+            {/* Default content formatting section */}
+
             {orientation == "left" && (
                 <div className="flex flex-row items-center justify-between">
                     <AnimatePresence mode="wait">
@@ -229,6 +275,8 @@ function ExpandableDiv({
                 </div>
             )}
 
+            {/* Expanded content formatting section */}
+
             <AnimatePresence>
                 {isExpanded && (
                     <motion.div
@@ -238,13 +286,13 @@ function ExpandableDiv({
                         animate={{height: "auto", opacity: 1}}
                         exit={{height: 0, opacity: 0}}
                         transition={{duration: 0.3, ease: "easeInOut"}}
-                    >
+                    > {/* Content container size change/expansion animation */}
                         <motion.div initial={{opacity: 0, y: -50}}
                                     animate={{opacity: 1, y: 0}}
                                     exit={{y: -50, opacity: 0, transition: {duration: 0.1}}}
                                     transition={{
                                         delay: 0.2
-                                    }}>
+                                    }}> {/* Content animation */}
 
                             {orientation == "left" && (
                                 <div className="flex flex-row items-center justify-between">
