@@ -67,7 +67,12 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
         animate(secondary, newColors.secondary, { duration: 1.0, ease: "easeOut" });
 
         // Update the data-theme attribute
-        document.documentElement.setAttribute('data-theme', theme);
+        const root = document.documentElement;
+        if (theme === 'dark') {
+            root.setAttribute('data-theme', 'dark');
+        } else {
+            root.removeAttribute('data-theme');
+        }
 
     }, [theme, hour]);
 
