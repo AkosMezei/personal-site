@@ -3,6 +3,15 @@ import {useEffect, useState} from "react";
 import {createPortal} from "react-dom";
 import {TransformComponent, TransformWrapper} from "react-zoom-pan-pinch";
 
+/**
+ * Represents the properties for an expandable image component.
+ *
+ * @typedef {Object} ExpandableImageProps
+ * @property {string} src - The source URL of the image.
+ * @property {string} alt - The alternative text for the image, used for accessibility and as fallback content.
+ * @property {string} [maxHeight] - Optional maximum height of the image when expanded. - Currently unused
+ * @property {string} [maxWidth] - Optional maximum width of the image when expanded. - Currently unused
+ */
 type ExpandableImageProps = {
     src:string,
     alt:string,
@@ -16,15 +25,15 @@ export const ExpandableImage = ({src, alt, }:ExpandableImageProps) => {
     useEffect(() => {
         if (isOpened) {
             if (history.state?.modal !== "open") {
-                history.pushState({ modal: "open" }, "");
+                history.pushState({ modal: "open" }, ""); //push modal:open state to history for navigation robustness
             }
 
-            const scrollBarWidth = window.innerWidth - document.body.clientWidth;
-            document.body.style.paddingRight = `${scrollBarWidth}px`;
-            document.body.style.overflow = "hidden";
+            const scrollBarWidth = window.innerWidth - document.body.clientWidth; //calculate the width of the scroll bar
+            document.body.style.paddingRight = `${scrollBarWidth}px`; //add padding equal to the width of the scroll bar
+            document.body.style.overflow = "hidden"; //hide scroll bar
 
             const handleKeyDown = (event: KeyboardEvent) => {
-                if (event.key === "Escape") {
+                if (event.key === "Escape") { //exit modal on escape key press
                     history.back();
                 }
             }
@@ -33,10 +42,10 @@ export const ExpandableImage = ({src, alt, }:ExpandableImageProps) => {
                 setIsOpened(false);
             }
 
-            document.addEventListener("keydown", handleKeyDown);
-            window.addEventListener("popstate", handlePopState);
+            document.addEventListener("keydown", handleKeyDown); //add event listener for the esc key exit
+            window.addEventListener("popstate", handlePopState); //add event listener for popstate, which is used when navigating back
 
-            return () => {
+            return () => { //cleanup
                 document.removeEventListener("keydown", handleKeyDown);
                 window.removeEventListener("popstate", handlePopState);
 
@@ -58,6 +67,7 @@ export const ExpandableImage = ({src, alt, }:ExpandableImageProps) => {
                         layoutId={src}
                         onClick={() => setIsOpened(true)}
             />
+                {/* use createPortal to create a modal that overlays page content  */}
                 {
                     createPortal(
                         <AnimatePresence>
