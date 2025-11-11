@@ -13,9 +13,12 @@ interface Message {
     timestamp?: Date;
 }
 
-function MessageBox(){
+type MessageBoxProps = {
+    isOpen: boolean,
+    onToggle: () => void,
+}
 
-    const [isExpanded, setIsExpanded] = useState(false);
+function MessageBox({isOpen, onToggle}:MessageBoxProps) {
 
     const [shouldAnimate, setShouldAnimate] = useState(true);
 
@@ -59,14 +62,14 @@ function MessageBox(){
     }
 
     useEffect(() => {
-        if (isExpanded) {
+        if (isOpen) {
             // Check if we already have a chat ID from localStorage
             const savedChatId = localStorage.getItem("chatId");
             if (savedChatId) {
                 getMessagesById(savedChatId);
             }
         }
-    }, [isExpanded]);
+    }, [isOpen]);
     
     // Get chat id if exists, if not, request from API
     async function ensureChatId() {
@@ -159,13 +162,13 @@ function MessageBox(){
         if (shouldAnimate) {
             setShouldAnimate(false);
         }
-        setIsExpanded(!isExpanded);
+        onToggle();
     };
 
     return (
         <div>
             <AnimatePresence>
-                {isExpanded && (
+                {isOpen && (
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}

@@ -4,10 +4,12 @@ import { motion, LayoutGroup } from "motion/react";
 import { useTranslation, Trans } from "react-i18next";
 import {SectionDivider} from "./Components/SectionDivider.tsx";
 import { ExpandableImage } from "./Components/ExpandableImage.tsx";
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import MainPageShowcase from "/MainPageShowcase.png"
 import addNewItemModal from "/addNewItemModal.png"
 import feedbackPage from "/feedbackPage.png"
+import {SettingsMenu} from "./Components/SettingsMenu.tsx";
+import {useIsMobile} from "./Hooks/useIsMobile.ts";
 
 
 const projectImages = [
@@ -50,6 +52,25 @@ const styledComponents = {
 }
 
 function HomePage() {
+
+    const isMobile = useIsMobile()
+
+    const [isMessageBoxOpen, setIsMessageBoxOpen] = useState(false);
+    const [isSettingsMenuOpen, setIsSettingsMenuOpen] = useState(false);
+
+    const handleToggleSettings = () => {
+        setIsSettingsMenuOpen((prev) => !prev); //change the state of the settings menu
+        if (!isSettingsMenuOpen && isMobile){ //if the settings menu is closed, so it's about to change to open
+            setIsMessageBoxOpen(false); //close the message box
+        }
+    }
+
+    const handleToggleMessageBox = () => {
+        setIsMessageBoxOpen((prev) => !prev)
+        if (!isMessageBoxOpen && isMobile){ // if the messagebox is closed and about to be opened
+            setIsSettingsMenuOpen(false); //close the settings menu
+        }
+    }
 
     const hasPreloadedProjectImages = useRef(false);
 
@@ -890,9 +911,13 @@ function HomePage() {
                         </div>
                     }
                 />
-            <div className="fixed m-3 right-0 bottom-0">
-                <MessageBox/>
+            <div className="fixed m-3 left-0 bottom-0">
+                <SettingsMenu isOpen={isSettingsMenuOpen} onToggle={handleToggleSettings}/>
             </div>
+            <div className="fixed m-3 right-0 bottom-0">
+                <MessageBox isOpen={isMessageBoxOpen} onToggle={handleToggleMessageBox}/>
+            </div>
+
         </div>
     );
 }

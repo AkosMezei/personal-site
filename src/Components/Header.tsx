@@ -14,7 +14,6 @@ import GitHub_Mark_White from "/github-mark-white.svg"
 import LinkedinLogo from "/LI-Logo.png"
 import {createPortal} from "react-dom";
 import {useIsMobile} from "../Hooks/useIsMobile.ts";
-import {useFPS} from "../Hooks/useFPS.ts";
 
 function Header() {
 
@@ -24,8 +23,6 @@ function Header() {
         const newLang = i18n.language === 'en' ? 'hu' : 'en';
         i18n.changeLanguage(newLang);
     };
-
-    const fps = useFPS()
 
     const {weatherCategory} = useWeatherContext()
 
@@ -264,9 +261,6 @@ function Header() {
                                 }
                                 {debugMode &&
                                     <motion.div animate={{rotate:360}} transition={{repeat: Infinity, duration:1, ease:"linear"}} className="ml-3 w-2 h-2 bg-white m-auto rounded-sm"> </motion.div>
-                                }
-                                {debugMode &&
-                                    <p> Fps: {fps.toFixed(2)} </p>
                                 }
                             </div>
                         </div>
