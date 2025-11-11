@@ -2,12 +2,21 @@
 
 const FRAME_SAMPLES = 60 // number of frames to average over
 
-export const useFPS = () => {
+type UseFPSOptions = {
+    enabled?: boolean;
+}
+
+export const useFPS = ({enabled = true}:UseFPSOptions) => {
     const [fps, setFps] = useState(60)
     const frameTimes = useRef<number[]>([])
     const lastTimestamp = useRef(performance.now())
 
     useEffect(() => {
+       if (!enabled) {
+           frameTimes.current = [] // reset frame times if not enabled, for a "fresh start" when it gets enabled
+           return
+       }
+
         let frameId: number
 
         const measure = (timestamp:number) => {
@@ -30,7 +39,7 @@ export const useFPS = () => {
         frameId = requestAnimationFrame(measure)
 
         return () => cancelAnimationFrame(frameId)
-    }, []);
+    }, [enabled]);
 
     return fps;
 }
