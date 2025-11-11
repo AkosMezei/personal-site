@@ -29,9 +29,11 @@ function Header() {
     const isMobile = useIsMobile()
     const [isThemeSettingsBarExpanded, setIsThemeSettingsBarExpanded] = useState<boolean>(false)
 
-    const [isContactInfoExpanded, setIsContactInfoExpanded] = useState<boolean>(false)
-
     const { timeMode, manualTime, setTimeMode, setManualTime, weatherMode, manualWeather, setWeatherMode, setManualWeather, debugMode, setDebugMode, disableStars, setDisableStars } = useThemeSettingsContext()
+
+    //region Contact info handlers
+
+    const [isContactInfoExpanded, setIsContactInfoExpanded] = useState<boolean>(false)
 
     const [isPhoneCopied, setIsPhoneCopied] = useState<boolean>(false)
     const [isEmailCopied, setIsEmailCopied] = useState<boolean>(false)
@@ -52,6 +54,7 @@ function Header() {
         }
     }, [isContactInfoExpanded]);
 
+    //handler for copying the phone number and changing it back to the phone number after 2 seconds
     useEffect(() => {
         if (isPhoneCopied) {
             navigator.clipboard.writeText("+40751780098");
@@ -62,6 +65,7 @@ function Header() {
         }
     }, [isPhoneCopied]);
 
+    //handler for copying the email address and changing it back to the address after 2 seconds
     useEffect(() => {
         if (isEmailCopied) {
             navigator.clipboard.writeText("akosmezei1@gmail.com")
@@ -71,15 +75,16 @@ function Header() {
             return () => clearTimeout(timeout);
         }
     }, [isEmailCopied]);
-    
-    const { theme, toggleTheme } = useBackgroundContext();
-    
 
+    //endregion
+
+    const { theme, toggleTheme } = useBackgroundContext();
     
     return (
         <header className={`fixed top-0 w-full z-50 backdrop-blur-sm ${
             theme === 'dark' ? 'bg-white/5' : 'bg-gray-900/15'
         }`}>
+            {/* Contact info */}
             <div className="container mx-auto px-4 py-3 flex justify-between items-center ">
                 <div onClick={()=> setIsContactInfoExpanded((prev)=>!prev)} className="cursor-pointer px-2">
                     <h1 className={`text-xl font-bold ${
@@ -93,6 +98,7 @@ function Header() {
                         Contact Info
                     </h2>
                 </div>
+                {/* Contact info expanded - Desktop */}
                 <AnimatePresence>
                 {isContactInfoExpanded && !isMobile &&
                     <motion.div initial={{opacity: 0}}
@@ -128,6 +134,7 @@ function Header() {
 
                     </motion.div>
                 }
+                    {/* Contact info expanded - Mobile - Modal */}
                     <AnimatePresence>
                         {isContactInfoExpanded && isMobile &&
                             <>
@@ -173,9 +180,10 @@ function Header() {
 
                         }
                     </AnimatePresence>
-
                 </AnimatePresence>
+                {/* Settings */}
                 <div className="flex">
+                    {/* Language Toggle */}
                     <label className="inline-flex items-center cursor-pointer" role="switch" aria-checked={i18n.language === "en"}>
                         <span className="me-3 text-sm font-medium text-gray-900 dark:text-gray-300"> <img alt="English flag" className="rounded-full max-w-10" src={flagEN}/> </span>
                         <input
@@ -196,6 +204,7 @@ function Header() {
                         ></div>
                         <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> <img alt="Hungarian flag" className="rounded-full max-w-10" src={flagHU}/> </span>
                     </label>
+                    {/* Theme Toggle */}
                     <button
                         onClick={toggleTheme}
                         className={`${isMobile ? "" : "ml-12"} ml-2 rounded-lg p-2 hover:bg-opacity-20 transition-colors ${
@@ -211,6 +220,7 @@ function Header() {
                             <Moon className="w-5 h-5"/>
                         )}
                     </button>
+                    {/* Theme Settings Toggle - Disabled on Mobile */}
                     {!isMobile &&
                     <button onClick={() => setIsThemeSettingsBarExpanded(!isThemeSettingsBarExpanded)}>
                         <Palette/>
@@ -218,6 +228,7 @@ function Header() {
                     }
                 </div>
             </div>
+            {/* Theme Settings Bar */}
             <AnimatePresence>
                 {isThemeSettingsBarExpanded &&
                     <motion.div
@@ -228,6 +239,7 @@ function Header() {
                     >
                         <div className=""> {/*container for theme settings expanded section, color it here if need be*/}
                             <div className="flex flex-auto justify-evenly pb-2 pt-2 w-4/5 m-auto">
+                                {/* Always Present Theme Toggles - Time Based Dynamic Gradient */}
                                     <div className="flex flex-auto justify-evenly w-1/4 flex-wrap">
                                         <h1> Theme Colors: </h1>
                                         <button className={`rounded-lg pr-1 pl-1 ${timeMode === "dynamic" ? "bg-amber-200" : ""}`} onClick={() => setTimeMode('dynamic')}> Dynamic </button>
@@ -235,8 +247,8 @@ function Header() {
                                         <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 12) ? "bg-amber-200" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(12)}}> Midday </button>
                                         <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 19) ? "bg-amber-200" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(19)}}> Evening </button>
                                         <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 23) ? "bg-amber-200" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(23)}}> Night </button>
-
                                     </div>
+                                {/* Light Theme Specific Toggles - Weather Mode */}
                                 {theme === "light" &&
                                     <div className="flex flex-auto justify-evenly w-1/4 flex-wrap">
                                         <h1> Weather: </h1>
@@ -246,6 +258,7 @@ function Header() {
                                         <button className={`rounded-lg pr-1 pl-1 ${(weatherMode === "manual" && manualWeather === 'stormy') ? "bg-amber-200" : ""}`} onClick={() => {setWeatherMode('manual'); setManualWeather('stormy')}}> Stormy </button>
                                     </div>
                                 }
+                                {/* Debug Mode Toggle */}
                                 <div>
                                     {debugMode ?
                                     (<BugOff className="cursor-pointer" onClick={() => setDebugMode(!debugMode)}/>)
