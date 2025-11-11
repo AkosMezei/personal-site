@@ -1,7 +1,18 @@
 ﻿import { createContext, useContext, useState, ReactNode } from 'react';
 
+/**
+ * Represents a type alias for supported language codes.
+ *
+ * `Language` can hold one of the following string values:
+ * - 'EN': Represents the English language.
+ * - 'HU': Represents the Hungarian language.
+ */
 type Language = 'EN' | 'HU'
 
+/**
+ * Represents the type definition for the language context within an application.
+ * The context includes the current language and a function to toggle the language state.
+ */
 type LanguageContextType = {
     language: Language;
     toggleLanguage: () => void;
