@@ -7,6 +7,21 @@ import {useIsMobile} from "../../Hooks/useIsMobile.ts";
 const MAX_OPACITY_FACTOR = 1.0;
 const MIN_OPACITY_FACTOR = 0.3;
 
+/**
+ * Star is a memoized functional component that renders a single parallax, animated star.
+ * This star responds to mouse movement, device type, and context settings, offering a dynamic visual effect
+ * based on these inputs. The component can switch between animated and static styles depending on user settings.
+ *
+ * @param {Object} props - The input parameters for the component.
+ * @param {string|number} props.top - The top position of the star as a percentage.
+ * @param {string|number} props.left - The left position of the star as a percentage.
+ * @param {number} props.size - The diameter of the star in pixels.
+ * @param {number} props.opacity - The base opacity of the star (value between 0 and 1).
+ * @param {number} props.layer - The parallax layer the star belongs to (higher layers usually move less).
+ * @param {MotionValue<number>} props.mouseX - The motion value for the mouse pointer's horizontal position.
+ * @param {MotionValue<number>} props.mouseY - The motion value for the mouse pointer's vertical position.
+ * @returns {JSX.Element} A motion-enabled `div` element representing the star.
+ */
 const Star = memo(({top, left, size, opacity, layer, mouseX, mouseY}: {
     top: string | number;
     left: string | number;
@@ -19,6 +34,7 @@ const Star = memo(({top, left, size, opacity, layer, mouseX, mouseY}: {
 
     const isMobile = useIsMobile();
 
+    //adjust the parallax strength depending on the layer
     const parallaxStrength = layer === 1 ? -20 : layer === 2 ? -10 : -5;
     const x = useTransform(mouseX, [0, window.innerWidth], isMobile? [0,0] : [0, parallaxStrength]);
     const y = useTransform(mouseY, [0, window.innerHeight], isMobile? [0,0] : [0, parallaxStrength])
@@ -32,10 +48,12 @@ const Star = memo(({top, left, size, opacity, layer, mouseX, mouseY}: {
         MAX_OPACITY_FACTOR -
         (positionSum / 200) * (MAX_OPACITY_FACTOR - MIN_OPACITY_FACTOR);
 
+    //adjust opacity based on how close it is to the bottom right corner, since because of the gradient background, that corner will always be the brightest part, so the least night-y part
     const finalOpacity = opacity * gradientOpacityFactor;
 
     const {disableStarAnimations} = useThemeSettingsContext()
 
+    //if animations are disabled, return a star that is not animated
     if (disableStarAnimations)
         return (
         <motion.div
@@ -64,6 +82,20 @@ const Star = memo(({top, left, size, opacity, layer, mouseX, mouseY}: {
     );
 });
 
+/**
+ * ShootingStar is a React component that renders an animated shooting star effect
+ * based on the provided position, mouse movement, and completion callback.
+ *
+ * @param {Object} props - The properties to customize the ShootingStar component.
+ * @param {string} props.top - The CSS `top` position of the shooting star.
+ * @param {string} props.left - The CSS `left` position of the shooting star.
+ * @param {MotionValue<number>} props.mouseX - A MotionValue instance representing the horizontal mouse position,
+ *                                             used for parallax.
+ * @param {MotionValue<number>} props.mouseY - A MotionValue instance representing the vertical mouse position,
+ *                                             used for parallax.
+ * @param {Function} props.onComplete - A callback function invoked when the animation finishes to make sure only one
+ *                                      shooting star is on screen at any given moment.
+ */
 const ShootingStar = ({top, left, mouseX, mouseY, onComplete}:{top:string; left:string;
     mouseX: MotionValue<number>;
     mouseY: MotionValue<number>;
@@ -79,13 +111,14 @@ const ShootingStar = ({top, left, mouseX, mouseY, onComplete}:{top:string; left:
     const x = useTransform(mouseX, [0, window.innerWidth], isMobile? [0,0] : [0, -20]);
     const y = useTransform(mouseY, [0, window.innerHeight], isMobile? [0,0] : [0, -20])
 
+    //shooting star animations are done by rotating a large container with the star at one end, so the movement follows a slight arc
     return (
         <motion.div className="absolute w-[150%] md:w-5/6"
                     style={{top, left, x, y}}
                     initial={{ rotate:rotateStart, opacity:0 }}
             animate={{ rotate:rotateEnd, opacity:[0, 1, 1, 0] }}
             transition={{
-                duration: isMobile? 3 : durationDesktop,
+                duration: isMobile? 3 : durationDesktop, //make animations last longer on mobile, since because of the inherently smaller screen size, stars travel a shorter distance
                 times: [0, 0.2, 0.9, 1],
             }}
                     onAnimationComplete={onComplete}
@@ -98,6 +131,19 @@ const ShootingStar = ({top, left, mouseX, mouseY, onComplete}:{top:string; left:
     )
 }
 
+/**
+ * ShootingStarController is a React functional component that controls the behavior and position of a shooting star element.
+ *
+ * @param {Object} params - The parameters for the component.
+ * @param {MotionValue<number>} params.mouseX - A MotionValue representing the current horizontal mouse position for parallax.
+ * @param {MotionValue<number>} params.mouseY - A MotionValue representing the current vertical mouse position for parallax.
+ *
+ * @returns {JSX.Element} A ShootingStar component that updates its position and appearance at random intervals.
+ *
+ * The component uses a responsive design approach to determine the position of the shooting star based on the device type (mobile or desktop).
+ * The position is randomly calculated within certain boundaries, and the star resets its position after a random delay
+ * between 3 and 8 seconds. The ShootingStar component is re-rendered with a new `key` whenever the star resets.
+ */
 const ShootingStarController = ({mouseX, mouseY}:{mouseX: MotionValue<number>; mouseY: MotionValue<number>;}) => {
 
     const isMobile = useIsMobile();
@@ -125,6 +171,19 @@ const ShootingStarController = ({mouseX, mouseY}:{mouseX: MotionValue<number>; m
 
 }
 
+/**
+ * `Stars` is a React functional component that renders a starfield animation.
+ * It provides an interactive visual experience by responding to mouse movement.
+ * The stars can optionally be disabled.
+ *
+ * The component listens to mouse movements to dynamically update the position of the stars.
+ * These interactions are managed using motion values (`mouseX` and `mouseY`) that are
+ * updated in response to mouse events. A cleanup function ensures proper removal of event
+ * listeners on unmounting.
+ *
+ * If the `disableStars` configuration from the theme settings context is `true`,
+ * the component will not render.
+ */
 export const Stars = () => {
 
     const {disableStars} = useThemeSettingsContext()
@@ -132,6 +191,7 @@ export const Stars = () => {
     const mouseX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
     const mouseY = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
 
+    //handle mouse position for parallax
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             mouseX.set(e.clientX);
@@ -146,6 +206,7 @@ export const Stars = () => {
         };
     }, [mouseX, mouseY]);
 
+    //if stars are disabled, don't render any
     if (disableStars) return;
 
     return (
