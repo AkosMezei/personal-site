@@ -911,11 +911,13 @@ function HomePage() {
                         </div>
                     }
                 />
-            <div className="fixed m-3 left-0 bottom-0">
+            <div className="fixed m-3 left-0 bottom-0 ">
                 <SettingsMenu isOpen={isSettingsMenuOpen} onToggle={handleToggleSettings}/>
             </div>
-            <div className="fixed m-3 right-0 bottom-0">
-                <MessageBox isOpen={isMessageBoxOpen} onToggle={handleToggleMessageBox}/>
+            <div className="fixed m-3 right-0 bottom-0 pointer-events-none">
+                <div className="pointer-events-auto">
+                    <MessageBox isOpen={isMessageBoxOpen} onToggle={handleToggleMessageBox}/>
+                </div>
             </div>
 
         </div>
