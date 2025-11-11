@@ -11,7 +11,7 @@ import {useThemeSettingsContext} from "../../Contexts/ThemeSettingsContext.tsx";
  * @property {number} opacity - The opacity level of the cloud, ranging from 0 (completely transparent) to 1 (completely opaque).
  * @property {number} width - The width of the cloud in pixels.
  */
-type CloudProps = {
+export type CloudProps = {
     src:string,
     top:string,
     duration:number,
