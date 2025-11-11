@@ -4,6 +4,13 @@ import {useThemeSettingsContext} from "../Contexts/ThemeSettingsContext.tsx";
 import {useFPS} from "../Hooks/useFPS.ts";
 import {useBackgroundContext} from "../Contexts/BackgroundContext.tsx";
 
+/**
+ * Props for the SettingsMenu component.
+ *
+ * @typedef {Object} SettingsMenuProps
+ * @property {boolean} isOpen - Indicates whether the settings menu is currently open.
+ * @property {function} onToggle - Callback function triggered to toggle the open/close state of the settings menu.
+ */
 type SettingsMenuProps = {
     isOpen: boolean,
     onToggle: () => void,
@@ -17,7 +24,7 @@ export const SettingsMenu = ({isOpen, onToggle}:SettingsMenuProps) => {
 
     const fps = useFPS({enabled: isOpen})
 
-    if (theme === "light") {
+    if (theme === "light") { //since the settings menu currently only contains options related to stars, it's needless to display it in light mode
         return null;
     }
 
@@ -41,9 +48,9 @@ export const SettingsMenu = ({isOpen, onToggle}:SettingsMenuProps) => {
                                 </button>
                             </li>
                             <li>
-                                    <motion.button disabled={disableStars} className="disabled:text-gray-500 disabled:cursor-not-allowed p-0.5 m-0.5 rounded-xl hover:bg-white/10" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={() => setDisableStarAnimations(!disableStarAnimations)}>
-                                        Click to {disableStarAnimations? "enable" : "disable"} star animations.
-                                    </motion.button>
+                                <motion.button disabled={disableStars} className="disabled:text-gray-500 disabled:cursor-not-allowed p-0.5 m-0.5 rounded-xl hover:bg-white/10" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={() => setDisableStarAnimations(!disableStarAnimations)}>
+                                    Click to {disableStarAnimations? "enable" : "disable"} star animations.
+                                </motion.button>
                             </li>
                         </ul>
                     </motion.div>
