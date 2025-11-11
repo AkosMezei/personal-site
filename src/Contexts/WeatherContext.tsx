@@ -4,17 +4,47 @@ import axios from "axios";
 import React from 'react';
 import {useThemeSettingsContext} from "./ThemeSettingsContext.tsx";
 
+/**
+ * Represents a geographical location defined by latitude and longitude coordinates.
+ *
+ * Properties:
+ * - `lat`: The latitude of the location, represented as a number. Positive values indicate locations in the northern hemisphere, and negative values indicate locations in the southern hemisphere.
+ * - `lon`: The longitude of the location, represented as a number. Positive values indicate locations east of the Prime Meridian, and negative values indicate locations west of the Prime Meridian.
+ */
 type Location = {
     lat: number;
     lon: number;
 }
 
+/**
+ * Represents the context for weather information.
+ *
+ * This type defines the structure used to manage and provide access to
+ * weather-related data, as well as its state within an application.
+ *
+ * Properties:
+ * - `weatherCategory` (WeatherCategory): Describes the current category or type
+ *   of weather information (e.g., clear, cloudy, stormy).
+ * - `isLoading` (boolean): Indicates whether the weather data is currently being
+ *   fetched or processed.
+ * - `error` (boolean): Represents if an error occurred while fetching or processing
+ *   the weather data.
+ */
 type WeatherContextType = {
     weatherCategory: WeatherCategory;
     isLoading: boolean;
     error: boolean;
 };
 
+/**
+ * Represents a cached weather entry containing a category and a timestamp.
+ *
+ * This type is designed to store weather data with an associated timestamp for caching purposes.
+ *
+ * @typedef {Object} CachedWeather
+ * @property {WeatherCategory} category - The category of the weather, as defined by the WeatherCategory type.
+ * @property {number} timestamp - The timestamp when the weather data was cached, represented as a UNIX epoch time in milliseconds.
+ */
 type CachedWeather = {
     category: WeatherCategory;
     timestamp: number;
@@ -66,12 +96,12 @@ export const WeatherProvider = ({children}:{children:ReactNode}) => {
     useEffect(() => {
         const getWeatherData = async () => {
             try {
-                const cachedDataString = localStorage.getItem("weather");
-                if (cachedDataString) {
+                const cachedDataString = localStorage.getItem("weather"); //get the cached weather data
+                if (cachedDataString) { //if cached data exists
                     const cachedData: CachedWeather = JSON.parse(cachedDataString)
-                    const isCacheFresh = Date.now() - cachedData.timestamp < CACHE_DURATION_MS;
+                    const isCacheFresh = Date.now() - cachedData.timestamp < CACHE_DURATION_MS; //check if it's fresh
 
-                    if (isCacheFresh) {
+                    if (isCacheFresh) { //if cache is fresh, set it as current weather
                         setWeatherCategory(cachedData.category);
                         setIsLoading(false);
                         return;
@@ -81,11 +111,11 @@ export const WeatherProvider = ({children}:{children:ReactNode}) => {
                 console.error("Couldn't get weather from localStorage:", e);
             }
 
-            const cachedLocationString = localStorage.getItem("userLocation");
+            const cachedLocationString = localStorage.getItem("userLocation"); //check if the user location is cached
             if (cachedLocationString) {
                 const cachedLocation: Location = JSON.parse(cachedLocationString);
-                fetchWeatherFromApi(cachedLocation);
-            } else {
+                fetchWeatherFromApi(cachedLocation); //if user location is cached, get the weather based on that
+            } else { //if user location is NOT cached, get user location
                 if ('geolocation' in navigator) {
                     navigator.geolocation.getCurrentPosition(
                         (position) => {
@@ -106,7 +136,7 @@ export const WeatherProvider = ({children}:{children:ReactNode}) => {
                 }
             }
         }
-        if (weatherMode !== 'manual') {
+        if (weatherMode !== 'manual') { //only get the weather data if it's not manually set by the user
             getWeatherData();
         }
     }, [weatherMode, manualWeather]);
