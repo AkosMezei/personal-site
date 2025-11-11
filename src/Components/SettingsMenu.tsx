@@ -2,6 +2,7 @@
 import {Settings} from "lucide-react";
 import {useThemeSettingsContext} from "../Contexts/ThemeSettingsContext.tsx";
 import {useFPS} from "../Hooks/useFPS.ts";
+import {useBackgroundContext} from "../Contexts/BackgroundContext.tsx";
 
 type SettingsMenuProps = {
     isOpen: boolean,
@@ -12,7 +13,13 @@ export const SettingsMenu = ({isOpen, onToggle}:SettingsMenuProps) => {
 
     const {disableStars, setDisableStars, disableStarAnimations, setDisableStarAnimations} = useThemeSettingsContext()
 
+    const {theme} = useBackgroundContext()
+
     const fps = useFPS({enabled: isOpen})
+
+    if (theme === "light") {
+        return null;
+    }
 
     return (
         <div>
