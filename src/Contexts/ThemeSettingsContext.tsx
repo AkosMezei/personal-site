@@ -6,7 +6,29 @@ type Weather = "clear" | "cloudy" | "stormy";
 type Time = number; //maybe change these to actual breakpoint numbers instead of 'number' (5, 12, 19, 23)
 type Debug = boolean;
 
-
+/**
+ * Interface defining the ThemeSettingsContextType structure to manage theme settings.
+ * This context provides various properties and methods to control theme-related configuration,
+ * including time and weather modes, debug options, and star visibility/animations.
+ *
+ * Properties:
+ * - timeMode: Represents the current mode for time settings.
+ * - manualTime: Specifies the manually set time when applicable.
+ * - weatherMode: Represents the current mode for weather settings.
+ * - manualWeather: Specifies the manually set weather when applicable.
+ * - debugMode: Determines the current debug mode.
+ * - disableStars: Flag indicating whether stars should be disabled.
+ * - disableStarAnimations: Flag indicating whether star animations should be disabled.
+ *
+ * Methods:
+ * - setDisableStarAnimations(disable): Updates the flag to enable or disable star animations.
+ * - setDisableStars(disable): Toggles the visibility of stars.
+ * - setTimeMode(mode): Updates the current time mode.
+ * - setManualTime(time): Sets a specific manual time.
+ * - setWeatherMode(mode): Updates the current weather mode.
+ * - setManualWeather(weather): Sets a specific manual weather condition.
+ * - setDebugMode(mode): Configures the debug mode for the theme.
+ */
 interface ThemeSettingsContextType {
     timeMode: Mode;
     manualTime: Time;

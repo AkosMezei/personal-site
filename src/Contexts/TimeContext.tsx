@@ -1,4 +1,8 @@
-﻿import {createContext, useContext, ReactNode} from 'react';
+﻿/**
+ * @file A simple context that manages and returns the current hour of the day.
+ */
+
+import {createContext, useContext, ReactNode} from 'react';
 import {useThemeSettingsContext} from "./ThemeSettingsContext.tsx";
 
 const TimeContext = createContext<number | null>(null);
@@ -6,6 +10,7 @@ const TimeContext = createContext<number | null>(null);
 export const TimeProvider = ({ children }: { children: ReactNode }) => {
     const {timeMode, manualTime} = useThemeSettingsContext()
 
+    //if timeMode is set to manual, return the hour corresponding to the manualTime
     const currentHour = timeMode === 'manual' ? manualTime : new Date().getHours();
 
     return (
