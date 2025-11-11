@@ -1,7 +1,7 @@
 ﻿import {motion} from 'framer-motion'
 import {useThemeSettingsContext} from "../../Contexts/ThemeSettingsContext.tsx";
 
-type CloudProps = {
+export type CloudProps = {
     src:string,
     top:string,
     duration:number,
