@@ -8,8 +8,27 @@ import {useWeatherContext} from "./WeatherContext.tsx";
 import {useCloudGenerator} from "../Hooks/useCloudGenerator.ts";
 import {AnimatePresence} from "motion/react";
 
+/**
+ * Represents a theme that can be applied to a user interface.
+ *
+ * The theme determines the visual style, colors, and appearance.
+ * It can either be set to 'dark' for a darker color scheme or
+ * 'light' for a brighter color scheme.
+ */
 type Theme = 'dark' | 'light';
 
+/**
+ * Represents a context type for managing background properties like theme and theme toggling functionality.
+ *
+ * This type can be used to provide and consume a stateful context that manages the current theme and its toggle function.
+ *
+ * The `theme` property allows access to the current theme configuration.
+ * The `toggleTheme` property provides a method to switch between themes.
+ *
+ * The type can either hold the context object or be null, depending on whether the context is available.
+ *
+ * Use this type to define and work with background-related context in applications requiring theme management.
+ */
 type BackgroundContextType = {
     theme: Theme;
     toggleTheme: () => void;
@@ -46,7 +65,7 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
     const initialTheme = getInitialTheme();
     const initialColors = getColorsForThemeAndTime(initialTheme, hour);
     const gradientHourlyProgress = hour / 23; //get the percentage of how much of the day already passed
-    const calculatedMidpoint = GRADIENT_MIDPOINT_START_PERCENT + gradientHourlyProgress * GRADIENT_MIDPOINT_RANGE_PERCENT;
+    const calculatedMidpoint = GRADIENT_MIDPOINT_START_PERCENT + gradientHourlyProgress * GRADIENT_MIDPOINT_RANGE_PERCENT; //calculate a gradient midpoint based on current time
     const [theme, setTheme] = useState(getInitialTheme);
     const primary: MotionValue<string> = useMotionValue(initialColors.primary);
     const via: MotionValue<string> = useMotionValue(initialColors.via);
@@ -66,7 +85,7 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
         animate(via, newColors.via, { duration: 1.2, ease: "easeOut" });
         animate(secondary, newColors.secondary, { duration: 1.0, ease: "easeOut" });
 
-        // Update the data-theme attribute
+        // Update the data-theme attribute - mainly so I can use tailwind dark: prefixes with my custom theming
         const root = document.documentElement;
         if (theme === 'dark') {
             root.setAttribute('data-theme', 'dark');
@@ -76,7 +95,7 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
 
     }, [theme, hour]);
 
-    useEffect(() => {
+    useEffect(() => { //recalculate the gradient midpoint if the hour changes
         const calculatedMidpoint = GRADIENT_MIDPOINT_START_PERCENT + gradientHourlyProgress * GRADIENT_MIDPOINT_RANGE_PERCENT;
         gradientMidpoint.set(calculatedMidpoint);
     }, [hour]);
@@ -91,7 +110,7 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
         window.dispatchEvent(new Event("storage"));
     };
 
-    useEffect(() => {
+    useEffect(() => { //get user preference for the initial theme
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         const handleChange = (e:MediaQueryListEvent) => {
             if (!localStorage.getItem('theme')) {
@@ -113,12 +132,14 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
                 theme === 'dark' ? 'text-white' : 'text-gray-900'
             }`}
         >
+            {/* Use the starfield as a background if the theme is dark */}
             {theme === 'dark' && (
                 <div style={{ position: 'absolute', inset: 0, zIndex: -1 }}>
                     <Stars />
                 </div>
             )}
 
+            {/* Use the clouds as a background if the theme is light*/}
             {theme === 'light' && (
                 <AnimatePresence>
                     <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:3}} style={{position: 'absolute', inset:0, zIndex: -1, pointerEvents: 'none'}}>
