@@ -4,9 +4,6 @@ import {STAR_DATA} from "../../data/starData.ts";
 import {useThemeSettingsContext} from "../../Contexts/ThemeSettingsContext.tsx";
 import {useIsMobile} from "../../Hooks/useIsMobile.ts";
 
-const MAX_OPACITY_FACTOR = 1.0;
-const MIN_OPACITY_FACTOR = 0.3;
-
 /**
  * Star is a memoized functional component that renders a single parallax, animated star.
  * This star responds to mouse movement, device type, and context settings, offering a dynamic visual effect
@@ -39,18 +36,6 @@ const Star = memo(({top, left, size, opacity, layer, mouseX, mouseY}: {
     const x = useTransform(mouseX, [0, window.innerWidth], isMobile? [0,0] : [0, parallaxStrength]);
     const y = useTransform(mouseY, [0, window.innerHeight], isMobile? [0,0] : [0, parallaxStrength])
 
-    const numericTop = parseFloat(top as string);
-    const numericLeft = parseFloat(left as string);
-
-    const positionSum = numericTop + numericLeft;
-
-    const gradientOpacityFactor =
-        MAX_OPACITY_FACTOR -
-        (positionSum / 200) * (MAX_OPACITY_FACTOR - MIN_OPACITY_FACTOR);
-
-    //adjust opacity based on how close it is to the bottom right corner, since because of the gradient background, that corner will always be the brightest part, so the least night-y part
-    const finalOpacity = opacity * gradientOpacityFactor;
-
     const {disableStarAnimations} = useThemeSettingsContext()
 
     //if animations are disabled, return a star that is not animated
@@ -58,7 +43,7 @@ const Star = memo(({top, left, size, opacity, layer, mouseX, mouseY}: {
         return (
         <motion.div
             className="absolute bg-white rounded-full"
-            style={{ top, left, width: size, height: size, opacity: finalOpacity, x, y}}
+            style={{ top, left, width: size, height: size, opacity: opacity, x, y}}
         />
     )
 
@@ -70,7 +55,7 @@ const Star = memo(({top, left, size, opacity, layer, mouseX, mouseY}: {
         <motion.div
             className="absolute bg-white rounded-full"
             style={{ top, left, width: size, height: size, opacity: 0, x, y}}
-            animate={{opacity:[finalOpacity, 0, 0, finalOpacity]}}
+            animate={{opacity:[opacity, 0, 0, opacity]}}
             transition={{
                 duration: randomCycleDuration,
                 repeat: Infinity,
