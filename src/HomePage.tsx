@@ -159,7 +159,7 @@ function HomePage() {
                                                                    <Trans i18nKey="education.universityProject.why_description" components={styledComponents}/>
                                                                </p>
                                                                <br/>
-                                                               <p className="text-left">
+                                                               <div className="text-left">
                                                                    <strong> {t('education.universityProject.how_title')} </strong>
                                                                    <Trans i18nKey="education.universityProject.how_description" components={styledComponents}/>
                                                                    <ul className="list-disc list-inside p-1 mt-2">
@@ -167,7 +167,7 @@ function HomePage() {
                                                                        <li> <Trans i18nKey="education.universityProject.how_bullet_2" components={styledComponents}/> </li>
                                                                        <li> <Trans i18nKey="education.universityProject.how_bullet_3" components={styledComponents}/> </li>
                                                                    </ul>
-                                                               </p>
+                                                               </div>
                                                            </div>
                                                        }
                                                    />
