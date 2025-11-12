@@ -142,7 +142,7 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
             {/* Use the clouds as a background if the theme is light*/}
             {theme === 'light' && (
                 <AnimatePresence>
-                    <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:3}} style={{position: 'absolute', inset:0, zIndex: -1, pointerEvents: 'none'}}>
+                    <motion.div initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:3}} style={{position: 'fixed', inset:0, zIndex: -1, pointerEvents: 'none'}}>
                         <Clouds data={cloudData}/>
                     </motion.div>
                 </AnimatePresence>
