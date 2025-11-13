@@ -153,7 +153,7 @@ function ExpandableDiv({
              onMouseLeave={handleMouseLeave}
              tabIndex={0}
              onKeyDown={handleKeyDown}
-             aria-role="button"
+             role="button"
              aria-expanded={isExpanded}
              aria-controls={contentId}
              className={`w-auto rounded-2xl transition-all duration-300 hover:outline hover:outline-1 outline-none ${shouldBlur? "backdrop-blur-xs" : ""} focus:ring-2 focus:ring-blue-500
