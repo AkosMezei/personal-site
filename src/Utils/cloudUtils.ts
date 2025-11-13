@@ -10,6 +10,7 @@ import cloud_small_2 from '../assets/clouds/cloud_small_2.png';
 import cloud_small_3 from '../assets/clouds/cloud_small_3.png';
 import cloud_small_4 from '../assets/clouds/cloud_small_4.png';
 
+//hardcoded image width so they can be spawned just off screen
 const imageWidths: Record<string, number> = {
     [cloud_large_1]: 690,
     [cloud_large_2]: 452,
@@ -28,6 +29,18 @@ export type CloudSizeType = "small" | "medium" | "large" | "long";
 export type CloudSpeedType = "slow" | "medium" | "fast";
 export type CloudType = "normal" | "stormy";
 
+/**
+ * Represents the data structure for cloud generation.
+ *
+ * @interface GeneratedCloudData
+ *
+ * @property {string} src - A string representing the source file for the cloud's visual asset.
+ * @property {string} top - A string determining the top positioning of the cloud, in vh.
+ * @property {number} duration - Duration in seconds for how long the cloud should move from one end of the screen to another.
+ * @property {number} opacity - A numeric value representing the cloud's transparency level, ranging from 0 (completely transparent) to 1 (completely opaque).
+ * @property {number} width - A numeric value specifying the width of the cloud in pixels.
+ * @property {number} id - A unique numeric identifier for the cloud instance, used for distinguishing between multiple instances.
+ */
 export interface GeneratedCloudData {
     src: string;
     top: string;
@@ -84,8 +97,8 @@ export const cloudConfig: Record<CloudSizeType, CloudSizeConfig> = {
  * @param {CloudType} cloudType - Sets the type of cloud
  */
 export function generateCloud(cloudSize: CloudSizeType, cloudSpeed: CloudSpeedType, cloudType: CloudType): GeneratedCloudData{
-    const config = cloudConfig[cloudSize];
-    const source = pickRandomCloud(config.imagePool);
+    const config = cloudConfig[cloudSize]; //creates a config based on cloud size
+    const source = pickRandomCloud(config.imagePool); //picks a random cloud from the image pool that is based on cloud size established in the config
 
     const [minDuration, maxDuration] = config.duration[cloudSpeed];
     const duration = randomBetween(minDuration, maxDuration);
@@ -97,7 +110,7 @@ export function generateCloud(cloudSize: CloudSizeType, cloudSpeed: CloudSpeedTy
 
     const width = imageWidths[source]; //get the width of the image to spawn the cloud at the very edge of the screen
 
-    const id = Date.now() + Math.random() * 10000;
+    const id = Date.now() + Math.random() * 10000; //generate a pseudo random id.
 
     return {
         src: source,
