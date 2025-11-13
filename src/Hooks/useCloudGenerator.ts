@@ -1,4 +1,8 @@
-﻿import {WeatherCategory} from "../Utils/weatherUtils.ts";
+﻿/**
+ * @File - hook to generate an array of semi-randomized clouds based on weather type
+ */
+
+import {WeatherCategory} from "../Utils/weatherUtils.ts";
 import {CloudSpeedType, CloudType, generateCloud, GeneratedCloudData} from "../Utils/cloudUtils.ts"
 import {useEffect, useState} from "react";
 
@@ -8,6 +12,13 @@ function randomBetween(min: number, max: number){
 }
 
 //region Cloud helper functions
+
+/**
+ * Generates a cloud with the specified speed and size.
+ *
+ * @param {CloudSpeedType} speed - The speed at which the cloud will move.
+ * @return {Cloud} A cloud with the provided speed and normal settings. - cloudType is currently unused, holdover from when stormy clouds had a stormy type to hue shift them to darker variants
+ */
 
 function generateSmallCloud(speed:CloudSpeedType){
     return generateCloud("small", speed, "normal")
@@ -27,6 +38,14 @@ function generateLongCloud(speed:CloudSpeedType, type:CloudType = "normal"){
 
 //endregion
 
+/**
+ * Generates and manages cloud data based on the specified weather category.
+ *
+ * @param {WeatherCategory} weatherCategory - The current weather category determining the type, quantity, and speed of clouds to generate.
+ *                                           Possible values are "clear", "cloudy", or "stormy".
+ *
+ * @return {GeneratedCloudData[]} An array of generated cloud data objects based on the weather category.
+ */
 export function useCloudGenerator(weatherCategory:WeatherCategory) {
     const [clouds, setClouds] = useState<GeneratedCloudData[]>([])
     useEffect(() => {
