@@ -1,4 +1,20 @@
-﻿export const STAR_DATA = [
+﻿/**
+ * @File - stores pre-generated star data
+ */
+
+/**
+ * Represents an array of star data objects, where each object contains properties
+ * for rendering a star in the dark mode background.
+ *
+ * Each object in the array includes the following properties:
+ * - `size`: The size of the star (numeric value representing its scale). - Unnecessarily gradual currently, since it's used as pixels, so only the whole parts are used
+ * - `opacity`: The transparency level of the star (value between 0 and 1).
+ * - `left`: The horizontal position of the star, defined in viewport width (vw) units.
+ * - `top`: The vertical position of the star, defined in viewport height (vh) units.
+ * - `layer`: The depth layer of the star used for parallax (reversely proportional to parallax amount).
+ */
+export const STAR_DATA = [
+    //dense starfield on initial viewport
     {"size":1.44, "opacity":0.32, "left":"98.739vw", "top":"18.015vh", "layer": 3 },
     {"size":2.06, "opacity":0.85, "left":"11.855vw", "top":"15.645vh", "layer": 3 },
     {"size":1.12, "opacity":0.74, "left":"49.375vw", "top":"28.007vh", "layer": 3 },
@@ -182,7 +198,8 @@
     {"size":1.36, "opacity":0.55, "left":"4.676vw", "top":"42.862vh", "layer": 1 },
     {"size":1.12, "opacity":1, "left":"31.435vw", "top":"26.13vh", "layer": 1 },
 
-    //left
+    //sparser starfield on the left part of the screen outside the initial viewport
+    //only generate stars on the right and left 25% since the middle area is mostly obscured by accordions
 
     {"size":1.12, "opacity":1, "left":"22.407vw", "top":"1017.823vh", "layer": 3 },
     {"size":2.53, "opacity":0.4, "left":"8.582vw", "top":"594.369vh", "layer": 3 },
@@ -277,7 +294,7 @@
     {"size":1.59, "opacity":0.52, "left":"17.391vw", "top":"663.728vh", "layer": 1 },
     {"size":1.12, "opacity":0.98, "left":"5.686vw", "top":"666.001vh", "layer": 1 },
 
-    //right - fewer - dimmer
+    //sparser starfield on the right part of the screen outside the initial viewport - even sparser - dimmer because the right side is brighter because of the background gradient
 
     {"size":1.6, "opacity":0.54, "left":"92.436vw", "top":"185.312vh", "layer": 3 },
     {"size":2.29, "opacity":0.92, "left":"82.78vw", "top":"1023.926vh", "layer": 3 },
