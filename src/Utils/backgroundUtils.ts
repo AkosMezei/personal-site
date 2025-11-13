@@ -52,9 +52,13 @@ export const timePalettes = {
         night:   { primary: light_primaryNightColor,  via: light_nightTransitionColor, secondary: light_secondaryNightColor },
     },
     dark: {
+        // sunrise: 5am-8am
         dawn:    { primary: dark_primaryDawnColor, via: dark_dawnTransitionColor,    secondary: dark_secondaryDawnColor},
+        // day: 8am-5pm
         day:     { primary: dark_primaryDayColor,  via: dark_dayTransitionColor,  secondary: dark_secondaryDayColor },
+        // sunset: 5pm-8pm
         dusk:    { primary: dark_primaryDuskColor,  via: dark_duskTransitionColor,  secondary: dark_secondaryDuskColor },
+        // night: 8pm-5am
         night:   { primary: dark_primaryNightColor,    via: dark_nightTransitionColor,   secondary: dark_secondaryNightColor },
     }
 };
