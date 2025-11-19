@@ -68,7 +68,7 @@ function Header() {
     //handler for copying the email address and changing it back to the address after 2 seconds
     useEffect(() => {
         if (isEmailCopied) {
-            navigator.clipboard.writeText("akosmezei1@gmail.com")
+            navigator.clipboard.writeText("contact@mezeiakos.cv")
             const timeout = setTimeout(() => {
                 setIsEmailCopied(false);
             }, 2000);
@@ -124,7 +124,7 @@ function Header() {
                             </div>
                             <div className="h-fit ml-5 m-1 p-1">
                                 <motion.div whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="inline-block w-[220px]">
-                                    <a href="mailto:akosmezei1@gmail.com" className="text-center"> <Mail className="inline"/> {isEmailCopied? "Copied!" : "akosmezei1@gmail.com"} </a>
+                                    <a href="mailto:contact@mezeiakos.cv" className="text-center"> <Mail className="inline"/> {isEmailCopied? "Copied!" : "contact@mezeiakos.cv"} </a>
                                 </motion.div>
                                 <motion.div role="button" whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="inline-block" onClick={() => setIsEmailCopied(true)}>
                                     <Copy className="ml-4 inline-block"/>
