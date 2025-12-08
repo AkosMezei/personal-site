@@ -50,6 +50,11 @@ type CachedWeather = {
     timestamp: number;
 };
 
+type CachedLocation = {
+    location: Location;
+    timestamp: number;
+}
+
 const CACHE_DURATION_MINUTES = 30;
 const CACHE_DURATION_MS = CACHE_DURATION_MINUTES * 60 * 1000; //*1000 to translate seconds into ms, *60 to translate seconds into minutes
 
@@ -113,8 +118,11 @@ export const WeatherProvider = ({children}:{children:ReactNode}) => {
 
             const cachedLocationString = localStorage.getItem("userLocation"); //check if the user location is cached
             if (cachedLocationString) {
-                const cachedLocation: Location = JSON.parse(cachedLocationString);
-                fetchWeatherFromApi(cachedLocation); //if user location is cached, get the weather based on that
+                const cachedLocation: CachedLocation = JSON.parse(cachedLocationString);
+                const isCacheFresh = Date.now() - cachedLocation.timestamp < CACHE_DURATION_MS;
+                if (isCacheFresh) {
+                    fetchWeatherFromApi(cachedLocation.location);
+                }//if user location is cached, get the weather based on that
             } else { //if user location is NOT cached, get user location
                 if ('geolocation' in navigator) {
                     navigator.geolocation.getCurrentPosition(
@@ -124,6 +132,8 @@ export const WeatherProvider = ({children}:{children:ReactNode}) => {
                                 lon: position.coords.longitude,
                             };
                             fetchWeatherFromApi(location);
+                            const dataToCache: CachedLocation = {location, timestamp: Date.now()};
+                            localStorage.setItem("userLocation", JSON.stringify(dataToCache));
                         },
                         (err) => {
                             console.error("User denied geolocation, falling back to IP", err);
