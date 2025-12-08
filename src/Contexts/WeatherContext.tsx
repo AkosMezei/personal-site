@@ -124,6 +124,7 @@ export const WeatherProvider = ({children}:{children:ReactNode}) => {
                                 lon: position.coords.longitude,
                             };
                             fetchWeatherFromApi(location);
+                            localStorage.setItem("userLocation", JSON.stringify(location)); //TODO handle timing out location too, after some longer time, such as a week?
                         },
                         (err) => {
                             console.error("User denied geolocation, falling back to IP", err);
