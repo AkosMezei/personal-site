@@ -1,4 +1,4 @@
-﻿import {memo, useEffect, useState} from 'react';
+﻿import {memo, useEffect, useMemo, useState} from 'react';
 import { motion, useMotionValue, useTransform, MotionValue } from 'framer-motion';
 import {STAR_DATA} from "../../data/starData.ts";
 import {useThemeSettingsContext} from "../../Contexts/ThemeSettingsContext.tsx";
@@ -175,6 +175,15 @@ export const Stars = () => {
     const mouseX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
     const mouseY = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
 
+    const isMobile = useIsMobile();
+
+    const activeStarData = useMemo(() => {
+        if (isMobile) {
+            return STAR_DATA.filter((_, index) => index % 2 === 0)
+        }
+        return STAR_DATA;
+    }, [isMobile])
+
     const [visibleCount, setVisibleCount] = useState(0);
 
     useEffect(() => { //create a star renderer so to speak
@@ -182,7 +191,7 @@ export const Stars = () => {
 
         let animationFrameId: number;
         let currentCount = 0;
-        const totalStars = STAR_DATA.length;
+        const totalStars = activeStarData.length;
         const batchSize = 10; //render batchSize stars each frame
 
         const renderBatch = () => {
@@ -199,7 +208,7 @@ export const Stars = () => {
         return () => {
             if (animationFrameId) cancelAnimationFrame(animationFrameId);
         }
-    }, [disableStars]);
+    }, [disableStars, activeStarData]);
 
     //handle mouse position for parallax
     useEffect(() => {
@@ -222,7 +231,7 @@ export const Stars = () => {
     //render stars from 0 to visibleCount only, which updates every frame, so we only render 10 stars a frame, instead of trying to render all on the first frame
     return (
         <div className="absolute inset-0 overflow-hidden">
-            {STAR_DATA.slice(0, visibleCount).map((star, index) => (
+            {activeStarData.slice(0, visibleCount).map((star, index) => (
                 <Star
                     key={index}
                     {...star}
