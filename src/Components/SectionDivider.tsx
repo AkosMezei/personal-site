@@ -28,7 +28,7 @@ export const SectionDivider = ({
     const { language } = useLanguageContext();
 
     return (
-        <div className={`w-auto rounded-2xl p-3  m-3 ${theme === 'dark' ? "bg-gray-800/30" : "bg-lightDivBackground/70 "}`}>
+        <div className={`w-auto rounded-2xl p-3 m-3 transition-colors duration-300 ${theme === 'dark' ? "bg-gray-800/30" : "bg-lightDivBackground/70 "}`}>
             {/* Title */}
             <div className="flex flex-col items-center justify-between">
                 <AnimatePresence mode="popLayout">
