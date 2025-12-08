@@ -61,9 +61,10 @@ const GRADIENT_MIDPOINT_START_PERCENT = 20;
 const GRADIENT_MIDPOINT_RANGE_PERCENT = 60;
 
 export function BackgroundProvider({ children }: { children: ReactNode }) {
-    const hour = useTimeContext();
+    const time = useTimeContext();
+    const hour = typeof time === 'number' ? time : time.getHours();
     const initialTheme = getInitialTheme();
-    const initialColors = getColorsForThemeAndTime(initialTheme, hour);
+    const initialColors = getColorsForThemeAndTime(initialTheme, time);
     const gradientHourlyProgress = hour / 23; //get the percentage of how much of the day already passed
     const calculatedMidpoint = GRADIENT_MIDPOINT_START_PERCENT + gradientHourlyProgress * GRADIENT_MIDPOINT_RANGE_PERCENT; //calculate a gradient midpoint based on current time
     const [theme, setTheme] = useState(getInitialTheme);
@@ -78,7 +79,7 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         // Get the target colors for the NEW theme
-        const newColors = getColorsForThemeAndTime(theme, hour);
+        const newColors = getColorsForThemeAndTime(theme, time);
 
         // Animate the motion values from their current state to the new colors
         animate(primary, newColors.primary, { duration: 1.4, ease: "easeOut" });
