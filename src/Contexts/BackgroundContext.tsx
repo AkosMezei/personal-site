@@ -1,5 +1,5 @@
 ﻿import {createContext, useContext, ReactNode, useEffect, useState} from 'react';
-import { motion, useMotionTemplate, useMotionValue, animate, MotionValue } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {useTimeContext} from "./TimeContext.tsx";
 import {getColorsForThemeAndTime} from "../Utils/backgroundUtils.ts";
 import {Stars} from "../Components/FX/Stars.tsx";
@@ -63,29 +63,21 @@ const GRADIENT_MIDPOINT_RANGE_PERCENT = 60;
 export function BackgroundProvider({ children }: { children: ReactNode }) {
     const time = useTimeContext();
     const hour = typeof time === 'number' ? time : time.getHours();
-    const initialTheme = getInitialTheme();
-    const initialColors = getColorsForThemeAndTime(initialTheme, time);
     const gradientHourlyProgress = hour / 23; //get the percentage of how much of the day already passed
     const calculatedMidpoint = GRADIENT_MIDPOINT_START_PERCENT + gradientHourlyProgress * GRADIENT_MIDPOINT_RANGE_PERCENT; //calculate a gradient midpoint based on current time
-    const [theme, setTheme] = useState(getInitialTheme);
-    const primary: MotionValue<string> = useMotionValue(initialColors.primary);
-    const via: MotionValue<string> = useMotionValue(initialColors.via);
-    const secondary: MotionValue<string> = useMotionValue(initialColors.secondary);
-    const gradientMidpoint = useMotionValue(calculatedMidpoint);
 
+    const [theme, setTheme] = useState(getInitialTheme);
     const {weatherCategory} = useWeatherContext()
+    //get colors for both themes
+    const lightColors = getColorsForThemeAndTime('light', time);
+    const darkColors = getColorsForThemeAndTime('dark', time);
+    //create both themes indifferent of which one is being used
+    const lightBackground = `linear-gradient(to bottom right, rgb(${lightColors.primary}), rgb(${lightColors.via}) ${calculatedMidpoint}%, rgb(${lightColors.secondary}))`;
+    const darkBackground = `linear-gradient(to bottom right, rgb(${darkColors.primary}), rgb(${darkColors.via}) ${calculatedMidpoint}%, rgb(${darkColors.secondary}))`;
 
     const cloudData = useCloudGenerator(weatherCategory);
 
     useEffect(() => {
-        // Get the target colors for the NEW theme
-        const newColors = getColorsForThemeAndTime(theme, time);
-
-        // Animate the motion values from their current state to the new colors
-        animate(primary, newColors.primary, { duration: 1.4, ease: "easeOut" });
-        animate(via, newColors.via, { duration: 1.2, ease: "easeOut" });
-        animate(secondary, newColors.secondary, { duration: 1.0, ease: "easeOut" });
-
         // Update the data-theme attribute - mainly so I can use tailwind dark: prefixes with my custom theming
         const root = document.documentElement;
         if (theme === 'dark') {
@@ -95,13 +87,6 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
         }
 
     }, [theme, hour]);
-
-    useEffect(() => { //recalculate the gradient midpoint if the hour changes
-        const calculatedMidpoint = GRADIENT_MIDPOINT_START_PERCENT + gradientHourlyProgress * GRADIENT_MIDPOINT_RANGE_PERCENT;
-        gradientMidpoint.set(calculatedMidpoint);
-    }, [hour]);
-
-    const background = useMotionTemplate`linear-gradient(to bottom right, rgb(${primary}), rgb(${via}) ${gradientMidpoint}%, rgb(${secondary}))`;
 
     const toggleTheme = () => {
         //toggle the state
@@ -124,21 +109,33 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
 
     return (
         <BackgroundContext.Provider value={{ theme, toggleTheme }}>
-        <motion.main
-            style={{background,
-                position: 'relative',
-                isolation: 'isolate',
-            }}
-            className={`min-h-screen transition-colors ${
+        <main
+            className={`relative isolate min-h-screen transition-colors duration-1000 ${
                 theme === 'dark' ? 'text-white' : 'text-gray-900'
             }`}
         >
+            {/* render both themes */}
+            <div
+                className="fixed inset-0 -z-20 pointer-events-none"
+                style={{background: lightBackground}}
+            />
+            {/* on theme change, don't change which theme is rendered, instead, change the opacity of the higher z index theme*/}
+            <motion.div
+                className="fixed inset-0 -z-10 pointer-events-none"
+                style={{background: darkBackground}}
+                initial={false}
+                animate={{opacity: theme === 'dark' ? 1 : 0}}
+                transition={{duration: 1.4, ease: 'easeOut'}}
+            />
+
             {/* Use the starfield as a background if the theme is dark */}
-            {theme === 'dark' && (
-                <div style={{ position: 'absolute', inset: 0, zIndex: -1 }}>
-                    <Stars />
-                </div>
-            )}
+            <motion.div
+                className="fixed inset-0 -z-10 pointer-events-none"
+                animate={{opacity: theme === 'dark' ? 1 : 0}}
+                transition={{duration: 0.3}}
+            >
+                <Stars/>
+            </motion.div>
 
             {/* Use the clouds as a background if the theme is light*/}
             {theme === 'light' && (
@@ -149,7 +146,7 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
                 </AnimatePresence>
             )}
             {children}
-        </motion.main>
+        </main>
         </BackgroundContext.Provider>
     )
 }
