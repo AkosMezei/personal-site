@@ -19,7 +19,7 @@ import {useIsMobile} from "../../Hooks/useIsMobile.ts";
  * @param {MotionValue<number>} props.mouseY - The motion value for the mouse pointer's vertical position.
  * @returns {JSX.Element} A motion-enabled `div` element representing the star.
  */
-const Star = memo(({top, left, size, opacity, layer, mouseX, mouseY}: {
+const Star = memo(({top, left, size, opacity, layer, mouseX, mouseY, disableStarAnimations}: {
     top: string | number;
     left: string | number;
     size: number;
@@ -27,6 +27,7 @@ const Star = memo(({top, left, size, opacity, layer, mouseX, mouseY}: {
     layer: number;
     mouseX: MotionValue<number>;
     mouseY: MotionValue<number>;
+    disableStarAnimations: boolean;
 }) => {
 
     const isMobile = useIsMobile();
@@ -35,8 +36,6 @@ const Star = memo(({top, left, size, opacity, layer, mouseX, mouseY}: {
     const parallaxStrength = layer === 1 ? -20 : layer === 2 ? -10 : -5;
     const x = useTransform(mouseX, [0, window.innerWidth], isMobile? [0,0] : [0, parallaxStrength]);
     const y = useTransform(mouseY, [0, window.innerHeight], isMobile? [0,0] : [0, parallaxStrength])
-
-    const {disableStarAnimations} = useThemeSettingsContext()
 
     //if animations are disabled, return a star that is not animated
     if (disableStarAnimations)
@@ -171,10 +170,36 @@ const ShootingStarController = ({mouseX, mouseY}:{mouseX: MotionValue<number>; m
  */
 export const Stars = () => {
 
-    const {disableStars} = useThemeSettingsContext()
+    const {disableStars, disableStarAnimations} = useThemeSettingsContext() //move star animations to parent for performance
 
     const mouseX = useMotionValue(typeof window !== 'undefined' ? window.innerWidth / 2 : 0);
     const mouseY = useMotionValue(typeof window !== 'undefined' ? window.innerHeight / 2 : 0);
+
+    const [visibleCount, setVisibleCount] = useState(0);
+
+    useEffect(() => { //create a star renderer so to speak
+        if (disableStars) return;
+
+        let animationFrameId: number;
+        let currentCount = 0;
+        const totalStars = STAR_DATA.length;
+        const batchSize = 10; //render batchSize stars each frame
+
+        const renderBatch = () => {
+            if (currentCount < totalStars) {
+                currentCount = Math.min(currentCount + batchSize, totalStars); //so it doesn't overflow
+                setVisibleCount(currentCount);
+
+                animationFrameId = requestAnimationFrame(renderBatch);
+            }
+        }
+
+        renderBatch();
+
+        return () => {
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+        }
+    }, [disableStars]);
 
     //handle mouse position for parallax
     useEffect(() => {
@@ -192,16 +217,18 @@ export const Stars = () => {
     }, [mouseX, mouseY]);
 
     //if stars are disabled, don't render any
-    if (disableStars) return;
+    if (disableStars) return null;
 
+    //render stars from 0 to visibleCount only, which updates every frame, so we only render 10 stars a frame, instead of trying to render all on the first frame
     return (
         <div className="absolute inset-0 overflow-hidden">
-            {STAR_DATA.map((star, index) => (
+            {STAR_DATA.slice(0, visibleCount).map((star, index) => (
                 <Star
                     key={index}
                     {...star}
                     mouseX={mouseX}
                     mouseY={mouseY}
+                    disableStarAnimations={disableStarAnimations}
                 />
             ))}
             <ShootingStarController mouseX={mouseX} mouseY={mouseY}/>
