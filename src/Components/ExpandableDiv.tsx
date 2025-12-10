@@ -1,7 +1,6 @@
 ﻿import React, {useState, useRef} from "react";
 import {ChevronDown, ChevronUp} from "lucide-react";
 import {AnimatePresence, motion} from "motion/react";
-import { useBackgroundContext } from "../Contexts/BackgroundContext.tsx";
 import { useTranslation } from "react-i18next";
 import type { ReactNode } from "react";
 
@@ -22,10 +21,6 @@ const textVariants = {
     animate: { opacity: 1, filter: "blur(0px)" },
     exit: { opacity: 0, filter: "blur(10px)" }
 };
-
-const light_hoverTitleColor = "text-blue-700";
-const dark_hoverTitleColor = "text-sky-400";
-
 
 /**
  * A collapsible UI component, often called an "accordion," that toggles between
@@ -137,13 +132,12 @@ function ExpandableDiv({
         }
     }
 
-    const { theme } = useBackgroundContext();
     const { i18n } = useTranslation();
 
     const [isExpanded, setIsExpanded] = useState(false);
 
     //title formatting pulled out so it's not repeated and consistent
-    const titleClassName = `text-xl md:text-3xl font-bold transition-colors duration-300 cursor-pointer ${isHovered || isExpanded? `${theme === 'dark'? dark_hoverTitleColor : light_hoverTitleColor }` : ''}`;
+    const titleClassName = `text-xl md:text-3xl font-bold transition-colors duration-300 cursor-pointer ${isHovered || isExpanded ? `dark:text-sky-400 text-blue-700` : ''}`;
 
     return (
         <motion.div ref={divRef}
@@ -157,9 +151,12 @@ function ExpandableDiv({
              aria-expanded={isExpanded}
              aria-controls={contentId}
              className={`w-auto rounded-2xl transition-all duration-300 hover:outline hover:outline-1 outline-none ${shouldBlur? "backdrop-blur-xs" : ""} focus:ring-2 focus:ring-blue-500
-             p-1  m-1 mt-2 md:p-3  md:m-3
-             ${theme === 'dark' ? `${isSectionBreak ? "bg-gray-800/30" : `bg-black/20 `} hover:outline-sky-400/50 outline-1 outline-white/10` : `${isSectionBreak ? "bg-lightDivBackground/70" : `${shouldBlur ? "bg-lightDivBackground/40":"bg-lightDivBackground/10"}`} hover:outline-sky-600/50 outline-1 outline-black/20`} 
-             ${isExpanded ? `${theme === 'dark'? "outline-sky-400/50 outline-1 outline-none":"outline-sky-600/50 outline-1 outline-none"}`:"hover:cursor-pointer"}
+             p-1  m-1 mt-2 md:p-3  md:m-3 outline-1 outline-black/20 dark:outline-white/10 hover:outline
+             ${isSectionBreak
+                 ? "bg-lightDivBackground/70 dark:bg-gray-800/30"
+                 : `dark:bg-black/20 ${shouldBlur ? "bg-lightDivBackground/40" : "bg-lightDivBackground/10"}`
+             }
+             ${isExpanded ? "dark:outline-sky-400/50 outline-1 outline-none outline-sky-600/50" : "hover:cursor-pointer"}
              `}>
 
             {/* Title formatting section */}
