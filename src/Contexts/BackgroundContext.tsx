@@ -130,7 +130,7 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
 
             {/* Use the starfield as a background if the theme is dark */}
             <motion.div
-                className="fixed inset-0 -z-10 pointer-events-none"
+                className="inset-0 -z-10 pointer-events-none"
                 animate={{opacity: theme === 'dark' ? 1 : 0}}
                 transition={{duration: 0.3}}
             >
