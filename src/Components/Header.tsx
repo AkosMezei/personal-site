@@ -81,20 +81,14 @@ function Header() {
     const { theme, toggleTheme } = useBackgroundContext();
     
     return (
-        <header className={`fixed top-0 w-full z-50 backdrop-blur-sm ${
-            theme === 'dark' ? 'bg-white/5' : 'bg-gray-900/15'
-        }`}>
+        <header className={`fixed top-0 w-full z-50 backdrop-blur-sm dark:bg-white/5 bg-gray-900/15 dark:text-white text-black`}>
             {/* Contact info */}
             <div className="container mx-auto px-4 py-3 flex justify-between items-center ">
                 <div onClick={()=> setIsContactInfoExpanded((prev)=>!prev)} className="cursor-pointer px-2">
-                    <h1 className={`text-xl font-bold ${
-                        theme === 'dark' ? 'text-white' : 'text-gray-900'
-                    }`}>
+                    <h1 className={`text-xl font-bold dark:text-white text-gray-900`}>
                         Mezei Ákos
                     </h1>
-                    <h2 className={` text-sm
-                    ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}
-                    >
+                    <h2 className={` text-sm dark:text-white text-gray-900`}>
                         Contact Info
                     </h2>
                 </div>
@@ -116,7 +110,7 @@ function Header() {
                             </motion.a>
                             <div className="h-fit m-1 p-1">
                                 <motion.div whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="inline-block w-[160px]">
-                                    <a href="tel:+40751780098" className="text-center"> <Phone className="inline"/> {isPhoneCopied? "Copied!" : "+40 751 780 098"} </a>
+                                    <a href="tel:+40751780098" className="text-center"> <Phone className="inline dark:text-white text-black"/> {isPhoneCopied? "Copied!" : "+40 751 780 098"} </a>
                                 </motion.div>
                                 <motion.div role="button" whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="inline-block" onClick={() => setIsPhoneCopied(true)}>
                                     <Copy className="ml-4 inline-block"/>
@@ -124,10 +118,10 @@ function Header() {
                             </div>
                             <div className="h-fit ml-5 m-1 p-1">
                                 <motion.div whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="inline-block w-[220px]">
-                                    <a href="mailto:contact@mezeiakos.cv" className="text-center"> <Mail className="inline"/> {isEmailCopied? "Copied!" : "contact@mezeiakos.cv"} </a>
+                                    <a href="mailto:contact@mezeiakos.cv" className="text-center"> <Mail className="inline dark:text-white text-black"/> {isEmailCopied? "Copied!" : "contact@mezeiakos.cv"} </a>
                                 </motion.div>
                                 <motion.div role="button" whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="inline-block" onClick={() => setIsEmailCopied(true)}>
-                                    <Copy className="ml-4 inline-block"/>
+                                    <Copy className="ml-4 inline-block "/>
                                 </motion.div>
                             </div>
                         </div>
@@ -146,7 +140,7 @@ function Header() {
                                                         exit={{ opacity: 0 }}
                                                         className="fixed inset-0 bg-black/50 backdrop-blur-md flex items-center justify-center z-50" onClick={() => setIsContactInfoExpanded(false)}
                                             >
-                                                <div className={`flex flex-col justify-between w-fit min-w-96 min-h-fit m-auto items-center text-white font-semibold ${theme === 'dark'? "bg-black/70" : "bg-black/70" } rounded-2xl p-10`} onClick={(e)=> e.stopPropagation()}>
+                                                <div className={`flex flex-col justify-between w-fit min-w-96 min-h-fit m-auto items-center text-white font-semibold bg-black/70" rounded-2xl p-10`} onClick={(e)=> e.stopPropagation()}>
                                                     <motion.a whileTap={{ scale: 0.8 }} className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="https://github.com/AkosMezei">
                                                         <img alt="Github Icon" className="h-6 inline" src={GitHub_Mark_White}/>
                                                         <img alt="Github Logo" className="h-6 inline" src={GitHub_Logo_White}/>
@@ -207,11 +201,7 @@ function Header() {
                     {/* Theme Toggle */}
                     <button
                         onClick={toggleTheme}
-                        className={`${isMobile ? "" : "ml-12"} ml-2 rounded-lg p-2 hover:bg-opacity-20 transition-colors ${
-                            theme === 'dark'
-                                ? 'text-white hover:bg-white'
-                                : 'text-black hover:bg-black'
-                        }`}
+                        className={`${isMobile ? "" : "ml-12"} ml-2 rounded-lg p-2 hover:bg-opacity-20 transition-colors dark:text-white dark:hover:bg-white/50 text-black hover:bg-black`}
                         aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
                     >
                         {theme === 'dark' ? (

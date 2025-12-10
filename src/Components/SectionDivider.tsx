@@ -1,5 +1,4 @@
 ﻿import type {ReactNode} from "react";
-import {useBackgroundContext} from "../Contexts/BackgroundContext.tsx";
 import {useLanguageContext} from "../Contexts/LanguageContext.tsx";
 import {AnimatePresence, motion} from "motion/react";
 
@@ -24,11 +23,10 @@ export const SectionDivider = ({
     title:string,
     content: ReactNode,}) => {
 
-    const { theme } = useBackgroundContext();
     const { language } = useLanguageContext();
 
     return (
-        <div className={`w-auto rounded-2xl p-3 m-3 transition-colors duration-300 ${theme === 'dark' ? "bg-gray-800/30" : "bg-lightDivBackground/70 "}`}>
+        <div className={`w-auto rounded-2xl p-3 m-3 transition-colors duration-300 dark:bg-gray-800/30 bg-lightDivBackground/70`}>
             {/* Title */}
             <div className="flex flex-col items-center justify-between">
                 <AnimatePresence mode="popLayout">
