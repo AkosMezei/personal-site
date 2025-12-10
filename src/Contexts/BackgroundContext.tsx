@@ -1,4 +1,4 @@
-﻿import {createContext, useContext, ReactNode, useEffect, useState} from 'react';
+﻿import {createContext, useContext, ReactNode, useEffect, useState, useLayoutEffect} from 'react';
 import { motion } from 'framer-motion';
 import {useTimeContext} from "./TimeContext.tsx";
 import {getColorsForThemeAndTime} from "../Utils/backgroundUtils.ts";
@@ -77,7 +77,7 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
 
     const cloudData = useCloudGenerator(weatherCategory);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         // Update the data-theme attribute - mainly so I can use tailwind dark: prefixes with my custom theming
         const root = document.documentElement;
         if (theme === 'dark') {
