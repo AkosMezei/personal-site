@@ -1,7 +1,7 @@
 ﻿import ExpandableDiv from "../ExpandableDiv.tsx";
 import {Trans, useTranslation} from "react-i18next";
 import {useRef} from "react";
-import {styledComponents} from "../../HomePage.tsx";
+import {styledComponents} from "../../data/Constants.tsx"
 import MainPageShowcase from "/MainPageShowcase.png"
 import addNewItemModal from "/addNewItemModal.png"
 import feedbackPage from "/feedbackPage.png"

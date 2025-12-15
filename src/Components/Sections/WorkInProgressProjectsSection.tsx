@@ -1,6 +1,6 @@
 ﻿import ExpandableDiv from "../ExpandableDiv.tsx";
 import {Trans, useTranslation} from "react-i18next";
-import {styledComponents} from "../../HomePage.tsx";
+import {styledComponents} from "../../data/Constants.tsx"
 
 
 export const WorkInProgressProjectsSection = () => {
