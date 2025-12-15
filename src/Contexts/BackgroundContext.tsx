@@ -131,10 +131,10 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
             {/* Use the starfield as a background if the theme is dark */}
             <motion.div
                 className="inset-0 -z-10 pointer-events-none"
-                animate={{opacity: theme === 'dark' ? 1 : 0}}
-                transition={{duration: 0.3}}
+                animate={{opacity: theme === 'dark' ? 1 : 0, visibility: theme === 'dark' ? 'visible' : 'hidden' }}
+                transition={{duration: 0.3, visibility: { delay: theme === 'dark' ? 0 : 0.3 } }}
             >
-                <Stars/>
+                <Stars isEnabled={theme === 'dark'}/>
             </motion.div>
 
             {/* Use the clouds as a background if the theme is light*/}

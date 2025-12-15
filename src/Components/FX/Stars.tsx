@@ -168,7 +168,7 @@ const ShootingStarController = ({mouseX, mouseY}:{mouseX: MotionValue<number>; m
  * If the `disableStars` configuration from the theme settings context is `true`,
  * the component will not render.
  */
-export const Stars = () => {
+export const Stars = ({isEnabled}:{isEnabled:boolean}) => {
 
     const {disableStars, disableStarAnimations} = useThemeSettingsContext() //move star animations to parent for performance
 
@@ -212,6 +212,9 @@ export const Stars = () => {
 
     //handle mouse position for parallax
     useEffect(() => {
+
+        if (disableStars || !isEnabled) return;
+
         const handleMouseMove = (e: MouseEvent) => {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
@@ -237,7 +240,7 @@ export const Stars = () => {
                     {...star}
                     mouseX={mouseX}
                     mouseY={mouseY}
-                    disableStarAnimations={disableStarAnimations}
+                    disableStarAnimations={disableStarAnimations || !isEnabled}
                 />
             ))}
             <ShootingStarController mouseX={mouseX} mouseY={mouseY}/>
