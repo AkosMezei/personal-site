@@ -1,17 +1,15 @@
 ﻿import { useBackgroundContext } from '../Contexts/BackgroundContext.tsx';
 import {Moon, Sun, Palette, BugOff, BugPlay, Phone, Copy, Mail} from 'lucide-react';
-import flagEN from "../assets/Flag_of_the_United_Kingdom.svg.jpg"
-import flagHU from "../assets/128px-Flag_of_Hungary.svg.jpg"
+import flagEN from "../assets/Flag_of_the_United_Kingdom.svg.jpg";
+import flagHU from "../assets/128px-Flag_of_Hungary.svg.jpg";
 import {useEffect, useState} from "react";
 import {AnimatePresence, motion} from "motion/react";
 import {useThemeSettingsContext} from "../Contexts/ThemeSettingsContext.tsx";
 import {useWeatherContext} from "../Contexts/WeatherContext.tsx"
 import {useTranslation} from "react-i18next";
-import GitHub_Logo from "/GitHub_Logo.png"
-import GitHub_Logo_White from "/GitHub_Logo_White.png"
-import GitHub_Mark from "/github-mark.svg"
-import GitHub_Mark_White from "/github-mark-white.svg"
-import LinkedinLogo from "/LI-Logo.png"
+import GitHub_Logo_White from "/GitHub_Logo_White.png";
+import GitHub_Mark_White from "/github-mark-white.svg";
+import LinkedinLogo from "/LI-Logo.png";
 import {createPortal} from "react-dom";
 import {useIsMobile} from "../Hooks/useIsMobile.ts";
 
@@ -81,14 +79,14 @@ function Header() {
     const { theme, toggleTheme } = useBackgroundContext();
     
     return (
-        <header className={`fixed top-0 w-full z-50 backdrop-blur-sm dark:bg-white/5 bg-gray-900/15 dark:text-white text-black`}>
+        <header className={`fixed top-0 w-full z-50 backdrop-blur-sm dark:bg-white/5 bg-gray-900/15 text-white drop-shadow-md`}> {/* possibly add text-shadow to tailwind config and use that for better performance */}
             {/* Contact info */}
             <div className="container mx-auto px-4 py-3 flex justify-between items-center ">
                 <div onClick={()=> setIsContactInfoExpanded((prev)=>!prev)} className="cursor-pointer px-2">
-                    <h1 className={`text-xl font-bold dark:text-white text-gray-900`}>
+                    <h1 className="text-xl tracking-wide font-semibold text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                         Mezei Ákos
                     </h1>
-                    <h2 className={` text-sm dark:text-white text-gray-900`}>
+                    <h2 className={` text-sm text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]`}>
                         Contact Info
                     </h2>
                 </div>
@@ -102,15 +100,15 @@ function Header() {
                     >
                         <div className="flex flex-auto justify-between w-full m-auto items-center">
                             <motion.a whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="https://github.com/AkosMezei">
-                                <img alt="Github Icon" className="h-6 inline" src={theme === 'dark' ? GitHub_Mark_White : GitHub_Mark}/>
-                                <img alt="Github Logo" className="h-6 inline" src={theme === 'dark' ? GitHub_Logo_White : GitHub_Logo}/>
+                                <img alt="Github Icon" className="h-6 inline" src={GitHub_Mark_White}/>
+                                <img alt="Github Logo" className="h-6 inline" src={GitHub_Logo_White}/>
                             </motion.a>
                             <motion.a whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="cursor-pointer m-1 p-1 rounded-xl h-fit" target="_blank" href="https://www.linkedin.com/in/akos-mezei-501a38253/">
                                 <img alt="Linkedin Logo" className="h-6 inline" src={LinkedinLogo}/>
                             </motion.a>
                             <div className="h-fit m-1 p-1">
                                 <motion.div whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="inline-block w-[160px]">
-                                    <a href="tel:+40751780098" className="text-center"> <Phone className="inline dark:text-white text-black"/> {isPhoneCopied? "Copied!" : "+40 751 780 098"} </a>
+                                    <a href="tel:+40751780098" className="text-center"> <Phone className="inline text-white"/> {isPhoneCopied? "Copied!" : "+40 751 780 098"} </a>
                                 </motion.div>
                                 <motion.div role="button" whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="inline-block" onClick={() => setIsPhoneCopied(true)}>
                                     <Copy className="ml-4 inline-block"/>
@@ -118,7 +116,7 @@ function Header() {
                             </div>
                             <div className="h-fit ml-5 m-1 p-1">
                                 <motion.div whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="inline-block w-[220px]">
-                                    <a href="mailto:contact@mezeiakos.cv" className="text-center"> <Mail className="inline dark:text-white text-black"/> {isEmailCopied? "Copied!" : "contact@mezeiakos.cv"} </a>
+                                    <a href="mailto:contact@mezeiakos.cv" className="text-center"> <Mail className="inline text-white"/> {isEmailCopied? "Copied!" : "contact@mezeiakos.cv"} </a>
                                 </motion.div>
                                 <motion.div role="button" whileHover={{scale:1.2}} whileTap={{ scale: 0.9 }} className="inline-block" onClick={() => setIsEmailCopied(true)}>
                                     <Copy className="ml-4 inline-block "/>
@@ -201,7 +199,7 @@ function Header() {
                     {/* Theme Toggle */}
                     <button
                         onClick={toggleTheme}
-                        className={`${isMobile ? "" : "ml-12"} ml-2 rounded-lg p-2 hover:bg-opacity-20 transition-colors dark:text-white dark:hover:bg-white/50 text-black hover:bg-black`}
+                        className={`${isMobile ? "" : "ml-12"} ml-2 rounded-lg p-2 hover:bg-opacity-20 transition-colors text-white dark:hover:bg-white/50 hover:bg-black`}
                         aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
                     >
                         {theme === 'dark' ? (
