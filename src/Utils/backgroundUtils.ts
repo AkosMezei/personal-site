@@ -37,7 +37,7 @@ const light_duskTransitionColor = '239 68 68';
 const light_primaryDuskColor = '251 146 60';
 
 // darkblue -> deeper blue -> gray-900
-const light_primaryNightColor = '30 58 138';
+const light_primaryNightColor = '46 87 206';
 const light_nightTransitionColor = '23 37 84';
 const light_secondaryNightColor = '17 24 39';
 
