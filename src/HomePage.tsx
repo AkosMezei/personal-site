@@ -245,7 +245,7 @@ function HomePage() {
                         defaultContent={
                             <></>
                         }
-                        expandedContent={
+                        expandedContent={() => (
                         <div>
                             <ExpandableDiv
                                 title={t('projects.featured.portfolio.title')}
@@ -677,6 +677,7 @@ function HomePage() {
                                 }
                             />
                         </div>
+                        )
                         }
                     />
                 </div>
@@ -686,7 +687,7 @@ function HomePage() {
                     orientation="center"
                     shouldBlur={true}
                     defaultContent={<></>}
-                    expandedContent={
+                    expandedContent={()=>(
                         <div>
                             {/* GAnki */}
                             <ExpandableDiv
@@ -909,6 +910,7 @@ function HomePage() {
                                 }
                             />
                         </div>
+                    )
                     }
                 />
             <div className="fixed m-3 left-0 bottom-0 ">

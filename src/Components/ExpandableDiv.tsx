@@ -60,7 +60,7 @@ function ExpandableDiv({
                        }: {
     title?: string,
     defaultContent?: ReactNode,
-    expandedContent?: ReactNode,
+    expandedContent?: ReactNode | (() => ReactNode),
     orientation?: "left" | "right" | "center",
     isSectionBreak?: boolean,
     shouldBlur?: boolean,
@@ -290,7 +290,6 @@ function ExpandableDiv({
                                     transition={{
                                         delay: 0.2
                                     }}> {/* Content animation */}
-
                             {orientation == "left" && (
                                 <div className="flex flex-row items-center justify-between">
                                     <AnimatePresence mode="wait">
@@ -302,7 +301,10 @@ function ExpandableDiv({
                                             exit="exit"
                                             transition={{duration: 0.3}}
                                         >
-                                            {expandedContent}
+                                            {typeof expandedContent === 'function'
+                                                ? (expandedContent as () => ReactNode)()
+                                                : expandedContent
+                                            }
                                         </motion.div>
                                     </AnimatePresence>
                                 </div>
@@ -319,7 +321,10 @@ function ExpandableDiv({
                                             exit="exit"
                                             transition={{ duration: 0.3 }}
                                         >
-                                            {expandedContent}
+                                            {typeof expandedContent === 'function'
+                                                ? (expandedContent as () => ReactNode)()
+                                                : expandedContent
+                                            }
                                         </motion.div>
                                     </AnimatePresence>
                                 </div>
@@ -337,7 +342,10 @@ function ExpandableDiv({
                                             transition={{ duration: 0.3 }}
                                             className="m-3 w-full"
                                         >
-                                            {expandedContent}
+                                            {typeof expandedContent === 'function'
+                                                ? (expandedContent as () => ReactNode)()
+                                                : expandedContent
+                                            }
                                         </motion.div>
                                     </AnimatePresence>
                                 </div>
