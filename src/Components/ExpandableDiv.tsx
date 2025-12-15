@@ -137,7 +137,7 @@ function ExpandableDiv({
     const [isExpanded, setIsExpanded] = useState(false);
 
     //title formatting pulled out so it's not repeated and consistent
-    const titleClassName = `text-xl md:text-3xl font-bold transition-colors duration-300 cursor-pointer ${isHovered || isExpanded ? `dark:text-sky-400 text-blue-700` : ''}`;
+    const titleClassName = `text-xl md:text-3xl font-bold cursor-pointer ${isHovered || isExpanded ? `dark:text-sky-400 text-blue-700` : ''}`;
 
     return (
         <motion.div ref={divRef}
@@ -150,7 +150,7 @@ function ExpandableDiv({
              role="button"
              aria-expanded={isExpanded}
              aria-controls={contentId}
-             className={`w-auto rounded-2xl transition-all duration-300 hover:outline hover:outline-1 outline-none ${shouldBlur? "backdrop-blur-xs" : ""} focus:ring-2 focus:ring-blue-500
+             className={`w-auto rounded-2xl transition-colors duration-300 hover:outline hover:outline-1 outline-none ${shouldBlur? "backdrop-blur-xs" : ""} focus:ring-2 focus:ring-blue-500
              p-1  m-1 mt-2 md:p-3  md:m-3 outline-1 outline-black/20 dark:outline-white/10 hover:outline
              ${isSectionBreak
                  ? "bg-lightDivBackground/70 dark:bg-gray-800/30"

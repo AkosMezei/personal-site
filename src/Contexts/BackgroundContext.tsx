@@ -110,7 +110,7 @@ export function BackgroundProvider({ children }: { children: ReactNode }) {
     return (
         <BackgroundContext.Provider value={{ theme, toggleTheme }}>
         <main
-            className={`relative isolate min-h-screen transition-colors duration-1000 ${
+            className={`relative isolate min-h-screen transition-colors duration-300 ${
                 theme === 'dark' ? 'text-white' : 'text-gray-900'
             }`}
         >
