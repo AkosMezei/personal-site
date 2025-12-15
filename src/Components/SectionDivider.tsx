@@ -1,6 +1,6 @@
 ﻿import type {ReactNode} from "react";
-import {useLanguageContext} from "../Contexts/LanguageContext.tsx";
 import {AnimatePresence, motion} from "motion/react";
+import i18n from "i18next";
 
 //for animating the text change on language change
 const textVariants = {
@@ -23,13 +23,11 @@ export const SectionDivider = ({
     title:string,
     content: ReactNode,}) => {
 
-    const { language } = useLanguageContext();
-
     return (
         <div className={`w-auto rounded-2xl p-3 m-3 transition-colors duration-300 dark:bg-gray-800/30 bg-lightDivBackground/70`}>
             {/* Title */}
             <div className="flex flex-col items-center justify-between">
-                <AnimatePresence mode="popLayout">
+                <AnimatePresence mode="popLayout" initial={false}>
                     <motion.h1
                         key={`title-${i18n.language}`}
                         variants={textVariants}
@@ -45,7 +43,7 @@ export const SectionDivider = ({
             </div>
             {/* Content */}
             <div className="flex flex-col items-center justify-center">
-                <AnimatePresence mode="wait">
+                <AnimatePresence mode="wait" initial={false}>
                     <motion.div
                         key={`default-content-${i18n.language}`}
                         variants={textVariants}
