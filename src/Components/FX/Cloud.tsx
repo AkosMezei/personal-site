@@ -34,7 +34,7 @@ export const Cloud = ({src, top, duration, opacity, width}:CloudProps) => {
         style={{top, x:`-${width}px`, willChange: 'transform'}}
         animate={{x: '100vw'}} //go off-screen
             transition={{
-                duration,
+                duration: duration,
                 repeat: Infinity,
                 repeatType: 'loop',
                 ease: 'linear',
