@@ -31,7 +31,7 @@ export const SectionDivider = ({
             <div className="flex flex-col items-center justify-between">
                 <AnimatePresence mode="popLayout">
                     <motion.h1
-                        key={`title-${language}`}
+                        key={`title-${i18n.language}`}
                         variants={textVariants}
                         initial="initial"
                         animate="animate"
@@ -47,7 +47,7 @@ export const SectionDivider = ({
             <div className="flex flex-col items-center justify-center">
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={`default-content-${language}`}
+                        key={`default-content-${i18n.language}`}
                         variants={textVariants}
                         initial="initial"
                         animate="animate"
