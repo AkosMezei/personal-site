@@ -15,10 +15,10 @@ type CloudsProps = {
 export const Clouds = ({data} : CloudsProps) => {
     return (
         <div className="absolute inset-0 overflow-hidden">
-            {data.map((cloud, index) => (
+            {data.map((cloud) => (
                 <Cloud
                     //remember to always use real keys when animating multiple things from now on, spent a whole entire day trying to debug clouds popping in while all I had to do was using a pregenerated key
-                    key={index}
+                    key={cloud.src + cloud.top}
                     {...cloud} // Pass all properties from the data object
                 />
             ))}
