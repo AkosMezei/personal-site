@@ -230,20 +230,20 @@ function Header() {
                                 {/* Always Present Theme Toggles - Time Based Dynamic Gradient */}
                                     <div className="flex flex-auto justify-evenly w-1/4 flex-wrap">
                                         <h1> Theme Colors: </h1>
-                                        <button className={`rounded-lg pr-1 pl-1 ${timeMode === "dynamic" ? "bg-amber-200" : ""}`} onClick={() => setTimeMode('dynamic')}> Dynamic </button>
-                                        <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 5) ? "bg-amber-200" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(5)}}> Morning </button>
-                                        <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 12) ? "bg-amber-200" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(12)}}> Midday </button>
-                                        <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 19) ? "bg-amber-200" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(19)}}> Evening </button>
-                                        <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 23) ? "bg-amber-200" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(23)}}> Night </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${timeMode === "dynamic" ? "bg-sky-800 dark:bg-sky-300/50" : ""}`} onClick={() => setTimeMode('dynamic')}> Dynamic </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 5) ? "bg-sky-800 dark:bg-sky-300/50" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(5)}}> Morning </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 12) ? "bg-sky-800 dark:bg-sky-300/50" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(12)}}> Midday </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 19) ? "bg-sky-800 dark:bg-sky-300/50" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(19)}}> Evening </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${(timeMode === "manual" && manualTime === 23) ? "bg-sky-800 dark:bg-sky-300/50" : ""}`} onClick={() => {setTimeMode('manual'); setManualTime(23)}}> Night </button>
                                     </div>
                                 {/* Light Theme Specific Toggles - Weather Mode */}
                                 {theme === "light" &&
                                     <div className="flex flex-auto justify-evenly w-1/4 flex-wrap">
                                         <h1> Weather: </h1>
-                                        <button className={`rounded-lg pr-1 pl-1 ${weatherMode === "dynamic" ? "bg-amber-200" : ""}`} onClick={() => setWeatherMode('dynamic')}> Dynamic </button>
-                                        <button className={`rounded-lg pr-1 pl-1 ${(weatherMode === "manual" && manualWeather === 'clear') ? "bg-amber-200" : ""}`} onClick={() => {setWeatherMode('manual'); setManualWeather('clear')}}> Clear </button>
-                                        <button className={`rounded-lg pr-1 pl-1 ${(weatherMode === "manual" && manualWeather === 'cloudy') ? "bg-amber-200" : ""}`} onClick={() => {setWeatherMode('manual'); setManualWeather('cloudy')}}> Cloudy </button>
-                                        <button className={`rounded-lg pr-1 pl-1 ${(weatherMode === "manual" && manualWeather === 'stormy') ? "bg-amber-200" : ""}`} onClick={() => {setWeatherMode('manual'); setManualWeather('stormy')}}> Stormy </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${weatherMode === "dynamic" ? "bg-sky-800 dark:bg-sky-300/50" : ""}`} onClick={() => setWeatherMode('dynamic')}> Dynamic </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${(weatherMode === "manual" && manualWeather === 'clear') ? "bg-sky-800 dark:bg-sky-300/50" : ""}`} onClick={() => {setWeatherMode('manual'); setManualWeather('clear')}}> Clear </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${(weatherMode === "manual" && manualWeather === 'cloudy') ? "bg-sky-800 dark:bg-sky-300/50" : ""}`} onClick={() => {setWeatherMode('manual'); setManualWeather('cloudy')}}> Cloudy </button>
+                                        <button className={`rounded-lg pr-1 pl-1 ${(weatherMode === "manual" && manualWeather === 'stormy') ? "bg-sky-800 dark:bg-sky-300/50" : ""}`} onClick={() => {setWeatherMode('manual'); setManualWeather('stormy')}}> Stormy </button>
                                     </div>
                                 }
                                 {/* Debug Mode Toggle */}
