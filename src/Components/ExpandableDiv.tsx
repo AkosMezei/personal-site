@@ -163,7 +163,7 @@ function ExpandableDiv({
 
             {orientation == "left" && (
                 <div className="flex flex-row items-center justify-between">
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence mode="wait" initial={false}>
                         <motion.h1
                             key={`title-${i18n.language}`}
                             variants={textVariants}
@@ -183,7 +183,7 @@ function ExpandableDiv({
             {orientation == "right" && (
                 <div className="flex flex-row items-center justify-between">
                     {isExpanded ? (<ChevronUp className="cursor-pointer"/>) : (<ChevronDown/>)}
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence mode="wait" initial={false}>
                         <motion.h1
                             key={`title-${i18n.language}`}
                             variants={textVariants}
@@ -202,7 +202,7 @@ function ExpandableDiv({
             {orientation == "center" && (
                 <div className="flex flex-row items-center justify-between">
                     {isExpanded ? (<ChevronUp className="cursor-pointer"/>) : (<ChevronDown/>)}
-                    <AnimatePresence mode="popLayout">
+                    <AnimatePresence mode="popLayout" initial={false}>
                         <motion.h1
                             key={`title-${i18n.language}`}
                             variants={textVariants}
@@ -223,7 +223,7 @@ function ExpandableDiv({
 
             {orientation == "left" && (
                 <div className="flex flex-row items-center justify-between">
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence mode="wait" initial={false}>
                         <motion.div
                             key={`default-content-${i18n.language}`}
                             variants={textVariants}
@@ -240,7 +240,7 @@ function ExpandableDiv({
 
             {orientation == "right" && (
                 <div className="flex flex-row items-center justify-end">
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence mode="wait" initial={false}>
                         <motion.div
                             key={`default-content-${i18n.language}`}
                             variants={textVariants}
@@ -257,7 +257,7 @@ function ExpandableDiv({
 
             {orientation == "center" && (
                 <div className="flex flex-row items-center justify-center">
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence mode="wait" initial={false}>
                         <motion.div
                             key={`default-content-${i18n.language}`}
                             variants={textVariants}
