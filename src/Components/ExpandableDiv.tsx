@@ -150,6 +150,7 @@ function ExpandableDiv({
              role="button"
              aria-expanded={isExpanded}
              aria-controls={contentId}
+             style={{willChange: 'background-color, border-color, height'}}
              className={`w-auto rounded-2xl transition-colors duration-300 hover:outline hover:outline-1 outline-none ${shouldBlur? "backdrop-blur-xs" : ""} focus:ring-2 focus:ring-blue-500
              p-1  m-1 mt-2 md:p-3  md:m-3 outline-1 outline-black/20 dark:outline-white/10 hover:outline
              ${isSectionBreak
@@ -172,6 +173,7 @@ function ExpandableDiv({
                             exit="exit"
                             transition={{ duration: 0.3 }}
                             className={titleClassName}
+                            style={{willChange: 'color'}}
                         >
                             {title}
                         </motion.h1>
@@ -192,6 +194,7 @@ function ExpandableDiv({
                             exit="exit"
                             transition={{ duration: 0.3 }}
                             className={titleClassName}
+                            style={{willChange: 'color'}}
                         >
                             {title}
                         </motion.h1>
@@ -211,6 +214,7 @@ function ExpandableDiv({
                             exit="exit"
                             transition={{ duration: 0.3 }}
                             className={titleClassName}
+                            style={{willChange: 'color'}}
                         >
                             {title}
                         </motion.h1>
