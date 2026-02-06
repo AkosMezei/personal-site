@@ -8,6 +8,7 @@ import feedbackPage from "/feedbackPage.png"
 import {LayoutGroup, motion} from "motion/react";
 import {ExpandableImage} from "../ExpandableImage.tsx";
 import {Flowchart} from "./Flowchart.tsx";
+import {useIsMobile} from "../../Hooks/useIsMobile.ts";
 
 const projectImages = [
     {src: MainPageShowcase, alt: "Image showing the main page of the Vinted Deal Tracker project."},
@@ -16,6 +17,8 @@ const projectImages = [
 ];
 
 export const FeaturedProjectsSection = () => {
+
+    const isMobile = useIsMobile()
 
     const hasPreloadedProjectImages = useRef(false);
 
@@ -276,7 +279,9 @@ export const FeaturedProjectsSection = () => {
                                             <p><Trans i18nKey="projects.featured.dealTracker.overview.how" components={styledComponents} /></p>
                                         </motion.div>
                                         <br></br>
-                                        <Flowchart/>
+                                        {!isMobile &&
+                                            <Flowchart/>
+                                        }
                                     </LayoutGroup>
 
                                     {/* Technical Deep Dive */}
