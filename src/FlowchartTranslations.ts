@@ -111,7 +111,7 @@
             },
             PriceDrop: {
                 label: "Send an alert for the price drop",
-                description: "Trigger the notification pipeline (Email/Discord) to alert the user of the deal immediately."
+                description: "Trigger the notification pipeline (Telegram) to alert the user of the deal immediately."
             },
             UpdateDatabase: {
                 label: "Update database",
@@ -231,7 +231,7 @@
             },
             PriceDrop: {
                 label: "Értesítés küldése az áresésről",
-                description: "Az értesítési csatorna (Email/Discord) aktiválása, hogy a felhasználót azonnal tájékoztassa az akcióról."
+                description: "Az értesítési csatorna (Telegram) aktiválása, hogy a felhasználót azonnal tájékoztassa az akcióról."
             },
             UpdateDatabase: {
                 label: "Adatbázis frissítése",
