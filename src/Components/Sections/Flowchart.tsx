@@ -8,7 +8,6 @@
 } from '@xyflow/react'
 
 import '@xyflow/react/dist/base.css';
-import {CustomNode} from "../Nodes/CustomNode.tsx";
 import {DecisionNode} from "../Nodes/DecisionNode.tsx";
 import { DaemonNode } from '../Nodes/DaemonNode.tsx';
 import {AiNode} from "../Nodes/AiNode.tsx";
@@ -20,7 +19,6 @@ import {useState} from "react";
 import {FlowControlBar} from "../FlowControlBar.tsx";
 
 const nodeTypes = {
-    custom: CustomNode,
     decision: DecisionNode,
     daemon: DaemonNode,
     ai: AiNode,
