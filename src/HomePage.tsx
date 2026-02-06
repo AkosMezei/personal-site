@@ -29,7 +29,7 @@ function HomePage() {
         }
     }
 
-    const { t } = useTranslation();
+    const { t } = useTranslation('translation');
 
     return (
         <div className="mx-2 py-20 lg:w-3/5 ml-auto mr-auto">
