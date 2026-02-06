@@ -514,7 +514,7 @@ export const Flowchart = () => {
 
     return (
         <ActiveNodeProvider>
-            <div className="w-full border-2 border-slate-700 rounded-lg overflow-hidden bg-slate-900/50 shadow-2xl relative flex flex-col"
+            <div className="w-full border-2 dark:border-slate-700 border-sky-500 rounded-lg overflow-hidden dark:bg-slate-900/50 bg-sky-200/15 shadow-2xl relative flex flex-col"
                  onMouseDown={(e) => e.stopPropagation()}
                  onMouseUp={(e) => e.stopPropagation()}
                  onClick={(e) => e.stopPropagation()}
@@ -531,7 +531,11 @@ export const Flowchart = () => {
                         preventScrolling={!isInteractive}
                         panOnDrag={!isInteractive}
                         defaultViewport={{ x: window.innerWidth / 2 - 450, y: 0, zoom: 0.85 }}
-                        defaultEdgeOptions={{ type: 'smoothstep', animated: true, style: {strokeWidth: 2} }}
+                        defaultEdgeOptions={{
+                            type: 'smoothstep',
+                            animated: true,
+                            style: {strokeWidth: 2, stroke: 'var(--flow-edge-color)'},
+                        }}
                     >
                         {!isInteractive && <FlowInteraction/>}
                         <Controls />
@@ -545,7 +549,7 @@ export const Flowchart = () => {
                             />
                         </div>
 
-                        <div className="absolute bottom-0 w-full h-24 bg-gradient-to-t from-slate-800 to-transparent pointer-events-none animate-pulse" />
+                        <div className="absolute bottom-0 w-full h-12 bg-gradient-to-t dark:from-slate-800 from-sky-400/30 to-transparent pointer-events-none animate-pulse" />
                     </ReactFlow>
                 </div>
             </div>

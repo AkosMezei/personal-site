@@ -18,6 +18,11 @@
         
         --accent: 88 202 155;
         --accent-foreground: 255 255 255;
+
+        --flow-edge-color: #002afc;
+    }
+    .dark, [data-theme="dark"] {
+        --flow-edge-color: #38bdf8; /* Sky Blue for Dark Mode */
     }
 }
 
