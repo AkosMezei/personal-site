@@ -7,6 +7,15 @@ export default {
   darkMode: ['class', '[data-theme="dark"]'],
   theme: {
     extend: {
+      animation: {
+        'blink-blinker': 'blink-animation 1s infinite',
+      },
+      keyframes: {
+        'blink-animation': {
+          '0%, 100%': { opacity: '1' },
+          '40%, 60%': { opacity: '0' },
+        }
+      },
       colors: {
         viteStart: '#4dc1ff',
         viteMiddle: '#ffd028',
@@ -65,5 +74,6 @@ export default {
     },
   },
   plugins: [],
+  important: true,
 }
 

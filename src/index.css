@@ -26,3 +26,11 @@ html {
     background-color: rgb(32,51,87);
     font-size:17px;
 }
+
+.react-flow__node-selectorNode {
+    font-size: 12px;
+    background: #eee;
+    border: 1px solid #555;
+    border-radius: 5px;
+    text-align: center;
+}
