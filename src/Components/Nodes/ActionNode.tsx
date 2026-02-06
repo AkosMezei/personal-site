@@ -17,7 +17,7 @@ const InfoTooltip = ({text, isActive, side = 'right'} :{text:string, isActive:bo
             }}
             transition={{ duration: 0.3 }}
 
-            className={`absolute ${positionClass} w-48 bg-slate-800/90 border border-slate-600 rounded-lg shadow-xl z-50 pointer-events-none`}>
+            className={`absolute ${positionClass} w-48 dark:bg-slate-800/90 border dark:border-slate-600 bg-sky-300/50 border-slate-800/50 rounded-lg shadow-xl z-50 pointer-events-none`}>
         <div className="m-3">
                 {text}
             </div>
