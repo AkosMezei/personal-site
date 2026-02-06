@@ -33,7 +33,7 @@ function HomePage() {
 
     return (
         <div className="mx-2 py-20 lg:w-3/5 ml-auto mr-auto">
-                <ExpandableDiv title={t('aboutMe.title')}
+            <ExpandableDiv title={t('aboutMe.title')}
                                orientation="center"
                                isSectionBreak={true}
                                shouldBlur={true}
