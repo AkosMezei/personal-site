@@ -7,6 +7,7 @@ import addNewItemModal from "/addNewItemModal.png"
 import feedbackPage from "/feedbackPage.png"
 import {LayoutGroup, motion} from "motion/react";
 import {ExpandableImage} from "../ExpandableImage.tsx";
+import {Flowchart} from "./Flowchart.tsx";
 
 const projectImages = [
     {src: MainPageShowcase, alt: "Image showing the main page of the Vinted Deal Tracker project."},
@@ -274,6 +275,8 @@ export const FeaturedProjectsSection = () => {
                                             <p><Trans i18nKey="projects.featured.dealTracker.overview.why" components={styledComponents} /></p>
                                             <p><Trans i18nKey="projects.featured.dealTracker.overview.how" components={styledComponents} /></p>
                                         </motion.div>
+                                        <br></br>
+                                        <Flowchart/>
                                     </LayoutGroup>
 
                                     {/* Technical Deep Dive */}
