@@ -1,4 +1,6 @@
-﻿import { createContext, useContext, useState, ReactNode } from 'react';
+﻿import {createContext, useContext, ReactNode, useEffect} from 'react';
+import {useLocalStorage} from "../Hooks/useLocalStorage.ts";
+import {useTranslation} from "react-i18next";
 
 /**
  * Represents a type alias for supported language codes.
@@ -7,7 +9,7 @@
  * - 'EN': Represents the English language.
  * - 'HU': Represents the Hungarian language.
  */
-type Language = 'EN' | 'HU'
+type Language = 'en' | 'hu'
 
 /**
  * Represents the type definition for the language context within an application.
@@ -29,10 +31,19 @@ export function useLanguageContext() {
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-    const [language, setLanguage] = useState<Language>('EN');
+    const { i18n } = useTranslation();
+    const [language, setLanguage] = useLocalStorage<Language>('language', i18n.language as Language)
+
+    useEffect(() => {
+        if (i18n.language !== language) {
+            i18n.changeLanguage(language);
+        }
+    }, [language, i18n]);
 
     const toggleLanguage = () => {
-        setLanguage(prev => prev === 'EN' ? 'HU' : 'EN');
+        const newLang = language === 'en' ? 'hu' : 'en';
+        setLanguage(newLang);
+        i18n.changeLanguage(newLang);
     };
 
     return (

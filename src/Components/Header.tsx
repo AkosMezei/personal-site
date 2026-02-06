@@ -6,20 +6,19 @@ import {useEffect, useState} from "react";
 import {AnimatePresence, motion} from "motion/react";
 import {useThemeSettingsContext} from "../Contexts/ThemeSettingsContext.tsx";
 import {useWeatherContext} from "../Contexts/WeatherContext.tsx"
-import {useTranslation} from "react-i18next";
 import GitHub_Logo_White from "/GitHub_Logo_White.png";
 import GitHub_Mark_White from "/github-mark-white.svg";
 import LinkedinLogo from "/LI-Logo.png";
 import {createPortal} from "react-dom";
 import {useIsMobile} from "../Hooks/useIsMobile.ts";
+import {useLanguageContext} from "../Contexts/LanguageContext.tsx";
 
 function Header() {
 
-    const {i18n} = useTranslation();
+    const { toggleLanguage, language } = useLanguageContext();
 
     const handleLanguageChange = () => {
-        const newLang = i18n.language === 'en' ? 'hu' : 'en';
-        i18n.changeLanguage(newLang);
+        toggleLanguage();
     };
 
     const {weatherCategory} = useWeatherContext()
@@ -176,11 +175,11 @@ function Header() {
                 {/* Settings */}
                 <div className="flex">
                     {/* Language Toggle */}
-                    <label className="inline-flex items-center cursor-pointer" role="switch" aria-checked={i18n.language === "en"}>
+                    <label className="inline-flex items-center cursor-pointer" role="switch" aria-checked={language === "en"}>
                         <span className="me-3 text-sm font-medium text-gray-900 dark:text-gray-300"> <img alt="English flag" className="rounded-full max-w-10" src={flagEN}/> </span>
                         <input
                             type="checkbox"
-                            checked={i18n.language === "hu"}
+                            checked={language === "hu"}
                             onChange={handleLanguageChange}
                             className="sr-only peer"
                         />
